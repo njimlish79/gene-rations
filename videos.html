@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gene-rations TV</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+header{
+    background:white;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#2e7d32;
+}
+
+.search-bar input{
+    width:350px;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:25px;
+}
+
+.upload-btn{
+    background:#2e7d32;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.banner{
+    background:linear-gradient(135deg,#2e7d32,#66bb6a);
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+.banner h1{
+    margin-bottom:10px;
+}
+
+.categories{
+    display:flex;
+    gap:10px;
+    overflow:auto;
+    padding:15px;
+    background:white;
+}
+
+.category{
+    background:#eeeeee;
+    padding:10px 15px;
+    border-radius:20px;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.category:hover{
+    background:#2e7d32;
+    color:white;
+}
+
+.video-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.video-card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.video-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.video-info{
+    padding:15px;
+}
+
+.video-title{
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.creator{
+    color:#666;
+    margin-bottom:10px;
+}
+
+.video-actions{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+}
+
+.video-actions button{
+    border:none;
+    background:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.featured{
+    margin:20px;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.featured video{
+    width:100%;
+}
+
+.featured-content{
+    padding:20px;
+}
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+}
+
+@media(max-width:768px){
+
+.search-bar input{
+    width:180px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+Gene-rations TV
+</div>
+
+<div class="search-bar">
+<input
+type="text"
+placeholder="Search videos...">
+</div>
+
+<button class="upload-btn">
+Upload Video
+</button>
+
+</header>
+
+<div class="banner">
+
+<h1>Welcome to Gene-rations TV</h1>
+
+<p>
+Watch, learn, create and share stories across generations.
+</p>
+
+</div>
+
+<div class="categories">
+
+<div class="category">Trending</div>
+<div class="category">Education</div>
+<div class="category">Technology</div>
+<div class="category">Business</div>
+<div class="category">Family</div>
+<div class="category">History</div>
+<div class="category">Gaming</div>
+<div class="category">Music</div>
+
+</div>
+
+<div class="featured">
+
+<video controls poster="https://picsum.photos/1200/500">
+<source src="" type="video/mp4">
+</video>
+
+<div class="featured-content">
+
+<h2>Featured Story of the Week</h2>
+
+<p>
+A powerful story connecting three generations of one family.
+</p>
+
+</div>
+
+</div>
+
+<div class="video-grid">
+
+<div class="video-card">
+
+<img src="https://picsum.photos/500/300?1">
+
+<div class="video-info">
+
+<div class="video-title">
+Technology Trends 2026
+</div>
+
+<div class="creator">
+By Gene-rations Tech
+</div>
+
+<div class="video-actions">
+<button>👍 1.2K</button>
+<button>💬 250</button>
+<button>🔔 Subscribe</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="video-card">
+
+<img src="https://picsum.photos/500/300?2">
+
+<div class="video-info">
+
+<div class="video-title">
+Family Heritage Stories
+</div>
+
+<div class="creator">
+By Family Roots
+</div>
+
+<div class="video-actions">
+<button>👍 980</button>
+<button>💬 180</button>
+<button>🔔 Subscribe</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="video-card">
+
+<img src="https://picsum.photos/500/300?3">
+
+<div class="video-info">
+
+<div class="video-title">
+Business Success Secrets
+</div>
+
+<div class="creator">
+By Millennial Network
+</div>
+
+<div class="video-actions">
+<button>👍 2.1K</button>
+<button>💬 540</button>
+<button>🔔 Subscribe</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="video-card">
+
+<img src="https://picsum.photos/500/300?4">
+
+<div class="video-info">
+
+<div class="video-title">
+Gen Alpha Gaming World
+</div>
+
+<div class="creator">
+By Alpha Gamers
+</div>
+
+<div class="video-actions">
+<button>👍 5.8K</button>
+<button>💬 1.4K</button>
+<button>🔔 Subscribe</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>
+© 2026 Gene-rations TV | Connecting Every Generation
+</p>
+
+</footer>
+
+<script>
+
+document
+.querySelector(".upload-btn")
+.addEventListener("click", function(){
+
+    alert(
+        "Video upload page coming next."
+    );
+
+});
+
+</script>
+
+</body>
+</html>

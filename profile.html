@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gene-rations | Profile</title>
+
+    <link rel="stylesheet" href="profile.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        <h2>Gene-rations</h2>
+    </div>
+
+    <ul class="nav-links">
+
+        <li><a href="dashboard.html"><i class="fas fa-home"></i> Home</a></li>
+
+        <li><a href="videos.html"><i class="fas fa-video"></i> Videos</a></li>
+
+        <li><a href="communities.html"><i class="fas fa-users"></i> Communities</a></li>
+
+        <li><a href="messages.html"><i class="fas fa-comments"></i> Messages</a></li>
+
+        <li><a href="marketplace.html"><i class="fas fa-store"></i> Marketplace</a></li>
+
+        <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
+
+        <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+
+        <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+
+        <li><a href="profile.html" class="active"><i class="fas fa-user"></i> Profile</a></li>
+
+    </ul>
+
+</nav>
+
+<!-- PROFILE HEADER -->
+
+<header class="profile-header">
+
+    <img id="coverPhoto"
+    class="cover-photo"
+    src="images/default-cover.jpg"
+    alt="Cover Photo">
+
+    <img id="profileImage"
+    class="profile-picture"
+    src="images/default-profile.png"
+    alt="Profile Picture">
+
+    <label for="imageUpload" class="camera-btn">
+        <i class="fas fa-camera"></i>
+    </label>
+
+    <input
+        type="file"
+        id="imageUpload"
+        accept="image/*"
+        hidden>
+
+</header>
+
+<!-- PROFILE CARD -->
+
+<section class="profile-card">
+
+    <h1 id="profileName">Gene-rations User</h1>
+
+    <p id="generationBadge" class="badge">
+        Generation Badge
+    </p>
+
+    <p id="bio">
+        Welcome to Gene-rations.
+    </p>
+
+    <button id="editProfile">
+        <i class="fas fa-user-edit"></i>
+        Edit Profile
+    </button>
+
+</section>
+
+<!-- PERSONAL DETAILS -->
+
+<section class="details">
+
+    <h2>Personal Information</h2>
+
+    <div class="detail-row">
+        <strong>Email</strong>
+        <span id="email">Not Available</span>
+    </div>
+
+    <div class="detail-row">
+        <strong>Phone</strong>
+        <span id="phone">Not Available</span>
+    </div>
+
+    <div class="detail-row">
+        <strong>Country</strong>
+        <span id="country">Not Available</span>
+    </div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="stats">
+
+    <div class="stat-card">
+        <h3 id="posts">0</h3>
+        <p>Posts</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="videos">0</h3>
+        <p>Videos</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="followers">0</h3>
+        <p>Followers</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="following">0</h3>
+        <p>Following</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="communities">0</h3>
+        <p>Communities</p>
+    </div>
+
+</section>
+
+<!-- QUICK ACTIONS -->
+
+<section class="quick-actions">
+
+    <a href="create-post.html">
+        <i class="fas fa-pen"></i>
+        Create Post
+    </a>
+
+    <a href="upload-video.html">
+        <i class="fas fa-video"></i>
+        Upload Video
+    </a>
+
+    <a href="friends.html">
+        <i class="fas fa-user-friends"></i>
+        Find Friends
+    </a>
+
+    <a href="communities.html">
+        <i class="fas fa-users"></i>
+        Communities
+    </a>
+
+    <a href="marketplace.html">
+        <i class="fas fa-store"></i>
+        Marketplace
+    </a>
+
+    <a href="events.html">
+        <i class="fas fa-calendar"></i>
+        Events
+    </a>
+
+</section>
+
+<!-- RECENT ACTIVITY -->
+
+<section class="activity">
+
+    <h2>Recent Activity</h2>
+
+    <div id="activityFeed">
+
+        <p>No recent activity yet.</p>
+
+    </div>
+
+</section>
+
+<!-- LOGOUT -->
+
+<div class="logout">
+
+    <button id="logout">
+
+        <i class="fas fa-sign-out-alt"></i>
+
+        Logout
+
+    </button>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+
+        © 2026 Gene-rations. All Rights Reserved.
+
+    </p>
+
+</footer>
+
+<script src="profile.js"></script>
+
+</body>
+</html>

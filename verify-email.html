@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gene-rations - Verify Email</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#2e7d32,#66bb6a);
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.logo h1{
+    color:#2e7d32;
+}
+
+.logo p{
+    color:#666;
+    margin-top:5px;
+}
+
+.info-box{
+    background:#e8f5e9;
+    border-left:4px solid #2e7d32;
+    padding:15px;
+    border-radius:6px;
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    text-align:center;
+    font-size:18px;
+    letter-spacing:3px;
+}
+
+.verify-btn{
+    width:100%;
+    padding:14px;
+    background:#2e7d32;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.verify-btn:hover{
+    background:#1b5e20;
+}
+
+.resend-btn{
+    width:100%;
+    margin-top:10px;
+    padding:12px;
+    background:#1565c0;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.message{
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+.success{
+    color:green;
+}
+
+.error{
+    color:red;
+}
+
+.links{
+    text-align:center;
+    margin-top:20px;
+}
+
+.links a{
+    color:#2e7d32;
+    text-decoration:none;
+}
+
+.timer{
+    text-align:center;
+    margin-top:10px;
+    color:#777;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+
+<h1>Gene-rations</h1>
+
+<p>Email Verification</p>
+
+</div>
+
+<div class="info-box">
+
+A verification code has been sent to your email address.
+Enter the code below to activate your account.
+
+</div>
+
+<form id="verifyForm">
+
+<div class="form-group">
+
+<label>Verification Code</label>
+
+<input
+type="text"
+id="verificationCode"
+placeholder="123456"
+maxlength="6"
+required>
+
+</div>
+
+<button
+type="submit"
+class="verify-btn">
+
+Verify Email
+
+</button>
+
+</form>
+
+<button
+class="resend-btn"
+onclick="resendCode()">
+
+Resend Verification Code
+
+</button>
+
+<div class="timer" id="timer">
+You can request a new code in 60 seconds.
+</div>
+
+<div id="message" class="message"></div>
+
+<div class="links">
+
+<a href="login.html">
+Back to Login
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+let countdown = 60;
+
+const timerElement =
+document.getElementById("timer");
+
+const interval = setInterval(() => {
+
+countdown--;
+
+timerElement.textContent =
+"You can request a new code in "
++ countdown +
+" seconds.";
+
+if(countdown <= 0){
+
+clearInterval(interval);
+
+timerElement.textContent =
+"You can now request a new verification code.";
+
+}
+
+},1000);
+
+document
+.getElementById("verifyForm")
+.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const code =
+document.getElementById("verificationCode").value;
+
+const message =
+document.getElementById("message");
+
+/*
+Future backend API:
+
+POST /api/verify-email
+
+{
+   code: code
+}
+
+*/
+
+if(code.length !== 6){
+
+message.textContent =
+"Please enter a valid 6-digit code.";
+
+message.className =
+"message error";
+
+return;
+
+}
+
+message.textContent =
+"Email verified successfully! Redirecting...";
+
+message.className =
+"message success";
+
+setTimeout(() => {
+
+window.location.href =
+"dashboard.html";
+
+},2000);
+
+});
+
+function resendCode(){
+
+alert(
+"A new verification code has been sent to your email."
+);
+
+}
+
+</script>
+
+</body>
+</html>

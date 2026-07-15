@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gene-rations Notifications</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+header{
+    background:#2e7d32;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.container{
+    max-width:1000px;
+    margin:30px auto;
+    padding:20px;
+}
+
+.notification-panel{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.panel-header{
+    background:#f8f8f8;
+    padding:20px;
+    border-bottom:1px solid #ddd;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.clear-btn{
+    background:#e53935;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.notification{
+    display:flex;
+    gap:15px;
+    padding:20px;
+    border-bottom:1px solid #eee;
+    transition:.3s;
+}
+
+.notification:hover{
+    background:#f9f9f9;
+}
+
+.icon{
+    font-size:28px;
+}
+
+.content h4{
+    margin-bottom:5px;
+}
+
+.time{
+    color:#777;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.unread{
+    border-left:5px solid #2e7d32;
+}
+
+.empty{
+    text-align:center;
+    padding:40px;
+    color:#888;
+    display:none;
+}
+
+.filter-bar{
+    margin-bottom:20px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.filter-btn{
+    padding:10px 15px;
+    border:none;
+    border-radius:20px;
+    background:white;
+    cursor:pointer;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+
+.filter-btn:hover{
+    background:#2e7d32;
+    color:white;
+}
+
+footer{
+    margin-top:30px;
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔔 Notification Center</h1>
+    <p>Stay connected across every generation</p>
+</header>
+
+<div class="container">
+
+    <div class="filter-bar">
+
+        <button class="filter-btn">All</button>
+        <button class="filter-btn">Messages</button>
+        <button class="filter-btn">Communities</button>
+        <button class="filter-btn">Videos</button>
+        <button class="filter-btn">Family Tree</button>
+
+    </div>
+
+    <div class="notification-panel">
+
+        <div class="panel-header">
+
+            <h2>Recent Notifications</h2>
+
+            <button
+            class="clear-btn"
+            onclick="clearNotifications()">
+                Clear All
+            </button>
+
+        </div>
+
+        <div id="notifications">
+
+            <div class="notification unread">
+
+                <div class="icon">💬</div>
+
+                <div class="content">
+                    <h4>New Message</h4>
+                    <p>
+                        James sent you a new message.
+                    </p>
+                    <div class="time">
+                        2 minutes ago
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="notification unread">
+
+                <div class="icon">🎥</div>
+
+                <div class="content">
+                    <h4>Video Comment</h4>
+                    <p>
+                        Someone commented on your video.
+                    </p>
+                    <div class="time">
+                        15 minutes ago
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="notification">
+
+                <div class="icon">👥</div>
+
+                <div class="content">
+                    <h4>Community Invitation</h4>
+                    <p>
+                        You've been invited to join
+                        Generation Z Lounge.
+                    </p>
+                    <div class="time">
+                        1 hour ago
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="notification">
+
+                <div class="icon">🌳</div>
+
+                <div class="content">
+                    <h4>Family Tree Update</h4>
+                    <p>
+                        A new family member was added
+                        to your tree.
+                    </p>
+                    <div class="time">
+                        Yesterday
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="notification">
+
+                <div class="icon">⭐</div>
+
+                <div class="content">
+                    <h4>New Follower</h4>
+                    <p>
+                        Sarah started following you.
+                    </p>
+                    <div class="time">
+                        Yesterday
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div
+        id="emptyMessage"
+        class="empty">
+
+            No notifications available.
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Gene-rations Notification Center
+</footer>
+
+<script>
+
+function clearNotifications(){
+
+    document
+    .getElementById("notifications")
+    .innerHTML = "";
+
+    document
+    .getElementById("emptyMessage")
+    .style.display = "block";
+}
+
+</script>
+
+</body>
+</html>

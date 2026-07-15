@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gene-rations Premium & Wallet</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+header{
+    background:linear-gradient(135deg,#1b5e20,#4caf50);
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+.container{
+    max-width:1200px;
+    margin:20px auto;
+    padding:20px;
+}
+
+.wallet-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+    margin-bottom:20px;
+}
+
+.balance{
+    font-size:42px;
+    color:#2e7d32;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    color:white;
+}
+
+.deposit{
+    background:#2e7d32;
+}
+
+.withdraw{
+    background:#1565c0;
+}
+
+.transfer{
+    background:#ff9800;
+}
+
+.subscription-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+.plan{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+.plan h2{
+    color:#2e7d32;
+}
+
+.price{
+    font-size:36px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.plan ul{
+    list-style:none;
+    margin:20px 0;
+}
+
+.plan ul li{
+    padding:6px;
+}
+
+.plan button{
+    width:100%;
+    padding:12px;
+    background:#2e7d32;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.transactions{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+    margin-top:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+.credit{
+    color:green;
+    font-weight:bold;
+}
+
+.debit{
+    color:red;
+    font-weight:bold;
+}
+
+footer{
+    margin-top:30px;
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>💎 Gene-rations Premium & Wallet</h1>
+
+<p>
+Support creators, earn rewards and unlock premium features
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="wallet-card">
+
+<h2>Wallet Balance</h2>
+
+<div class="balance" id="balance">
+KSh 5,250
+</div>
+
+<div class="actions">
+
+<button
+class="btn deposit"
+onclick="depositFunds()">
+
+Deposit
+
+</button>
+
+<button
+class="btn withdraw"
+onclick="withdrawFunds()">
+
+Withdraw
+
+</button>
+
+<button
+class="btn transfer"
+onclick="transferFunds()">
+
+Transfer
+
+</button>
+
+</div>
+
+</div>
+
+<h2>Premium Membership Plans</h2>
+
+<div class="subscription-grid">
+
+<div class="plan">
+
+<h2>Basic Premium</h2>
+
+<div class="price">
+KSh 299
+</div>
+
+<ul>
+<li>✓ Ad-Free Experience</li>
+<li>✓ Premium Badge</li>
+<li>✓ Priority Support</li>
+</ul>
+
+<button onclick="subscribe('Basic Premium')">
+Subscribe
+</button>
+
+</div>
+
+<div class="plan">
+
+<h2>Creator Premium</h2>
+
+<div class="price">
+KSh 799
+</div>
+
+<ul>
+<li>✓ Creator Analytics</li>
+<li>✓ Monetization Tools</li>
+<li>✓ Advanced Insights</li>
+</ul>
+
+<button onclick="subscribe('Creator Premium')">
+Subscribe
+</button>
+
+</div>
+
+<div class="plan">
+
+<h2>Family Premium</h2>
+
+<div class="price">
+KSh 999
+</div>
+
+<ul>
+<li>✓ Unlimited Family Tree</li>
+<li>✓ Family Storage</li>
+<li>✓ Heritage Archive</li>
+</ul>
+
+<button onclick="subscribe('Family Premium')">
+Subscribe
+</button>
+
+</div>
+
+</div>
+
+<div class="transactions">
+
+<h2>Recent Transactions</h2>
+
+<table>
+
+<tr>
+<th>Date</th>
+<th>Description</th>
+<th>Amount</th>
+</tr>
+
+<tr>
+<td>2026-06-04</td>
+<td>Creator Earnings</td>
+<td class="credit">+ KSh 1,200</td>
+</tr>
+
+<tr>
+<td>2026-06-03</td>
+<td>Premium Subscription</td>
+<td class="debit">- KSh 299</td>
+</tr>
+
+<tr>
+<td>2026-06-02</td>
+<td>Fan Donation</td>
+<td class="credit">+ KSh 500</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Gene-rations Premium & Wallet
+</footer>
+
+<script>
+
+let walletBalance = 5250;
+
+function updateBalance(){
+
+document.getElementById("balance")
+.textContent =
+"KSh " + walletBalance.toLocaleString();
+
+}
+
+function depositFunds(){
+
+const amount =
+prompt("Enter deposit amount:");
+
+if(amount && !isNaN(amount)){
+
+walletBalance += Number(amount);
+
+updateBalance();
+
+alert("Deposit successful.");
+
+}
+
+}
+
+function withdrawFunds(){
+
+const amount =
+prompt("Enter withdrawal amount:");
+
+if(amount && !isNaN(amount)){
+
+if(Number(amount) > walletBalance){
+
+alert("Insufficient funds.");
+
+return;
+
+}
+
+walletBalance -= Number(amount);
+
+updateBalance();
+
+alert("Withdrawal successful.");
+
+}
+
+}
+
+function transferFunds(){
+
+const amount =
+prompt("Enter transfer amount:");
+
+if(amount && !isNaN(amount)){
+
+if(Number(amount) > walletBalance){
+
+alert("Insufficient funds.");
+
+return;
+
+}
+
+walletBalance -= Number(amount);
+
+updateBalance();
+
+alert("Transfer completed.");
+
+}
+
+}
+
+function subscribe(plan){
+
+alert(
+"You have selected " +
+plan +
+". Payment integration can be connected to M-Pesa, cards or PayPal."
+);
+
+}
+
+</script>
+
+</body>
+</html>

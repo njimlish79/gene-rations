@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gene-rations - Two-Factor Authentication</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#1b5e20,#66bb6a);
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.logo h1{
+    color:#2e7d32;
+}
+
+.logo p{
+    color:#666;
+}
+
+.security-box{
+    background:#e8f5e9;
+    border-left:4px solid #2e7d32;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
+}
+
+.method-selection{
+    margin-bottom:20px;
+}
+
+.method-selection label{
+    display:block;
+    margin-bottom:10px;
+    cursor:pointer;
+}
+
+input[type="radio"]{
+    margin-right:8px;
+}
+
+.code-input{
+    width:100%;
+    padding:15px;
+    text-align:center;
+    font-size:24px;
+    letter-spacing:8px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    margin:15px 0;
+}
+
+.verify-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#2e7d32;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.verify-btn:hover{
+    background:#1b5e20;
+}
+
+.resend-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#1565c0;
+    color:white;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.backup-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#ff9800;
+    color:white;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.timer{
+    text-align:center;
+    margin-top:15px;
+    color:#666;
+}
+
+.message{
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+.success{
+    color:green;
+}
+
+.error{
+    color:red;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+
+<h1>🔒 Gene-rations</h1>
+
+<p>Two-Factor Authentication</p>
+
+</div>
+
+<div class="security-box">
+
+<strong>Security Verification</strong>
+
+<p style="margin-top:8px;">
+Enter the verification code sent to your selected method.
+</p>
+
+</div>
+
+<div class="method-selection">
+
+<label>
+<input type="radio" name="method" checked>
+Email Verification Code
+</label>
+
+<label>
+<input type="radio" name="method">
+SMS Verification Code
+</label>
+
+<label>
+<input type="radio" name="method">
+Authenticator App
+</label>
+
+</div>
+
+<input
+type="text"
+id="otp"
+class="code-input"
+maxlength="6"
+placeholder="123456">
+
+<button
+class="verify-btn"
+onclick="verifyCode()">
+
+Verify & Continue
+
+</button>
+
+<button
+class="resend-btn"
+onclick="resendCode()">
+
+Resend Code
+
+</button>
+
+<button
+class="backup-btn"
+onclick="useBackupCode()">
+
+Use Backup Recovery Code
+
+</button>
+
+<div
+class="timer"
+id="timer">
+
+New code available in 60 seconds
+
+</div>
+
+<div
+id="message"
+class="message">
+
+</div>
+
+</div>
+
+<script>
+
+let timeLeft = 60;
+
+const timer =
+document.getElementById("timer");
+
+const countdown =
+setInterval(() => {
+
+timeLeft--;
+
+timer.textContent =
+"New code available in " +
+timeLeft +
+" seconds";
+
+if(timeLeft <= 0){
+
+clearInterval(countdown);
+
+timer.textContent =
+"You can now request a new code.";
+
+}
+
+},1000);
+
+function verifyCode(){
+
+const otp =
+document.getElementById("otp").value;
+
+const message =
+document.getElementById("message");
+
+if(otp.length !== 6){
+
+message.textContent =
+"Enter a valid 6-digit code.";
+
+message.className =
+"message error";
+
+return;
+
+}
+
+/*
+Backend Verification Example
+
+POST /api/2fa/verify
+
+{
+   otp: otp
+}
+
+*/
+
+message.textContent =
+"Verification successful. Redirecting...";
+
+message.className =
+"message success";
+
+setTimeout(() => {
+
+window.location.href =
+"dashboard.html";
+
+},2000);
+
+}
+
+function resendCode(){
+
+alert(
+"A new verification code has been sent."
+);
+
+}
+
+function useBackupCode(){
+
+const backupCode =
+prompt(
+"Enter your backup recovery code:"
+);
+
+if(backupCode){
+
+alert(
+"Backup code submitted for verification."
+);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

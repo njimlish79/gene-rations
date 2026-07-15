@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gene-rations Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#2e7d32,#66bb6a);
+}
+
+.login-container{
+    width:100%;
+    max-width:450px;
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo h1{
+    color:#2e7d32;
+    margin-bottom:10px;
+}
+
+.logo p{
+    color:#666;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.password-box{
+    position:relative;
+}
+
+.show-password{
+    margin-top:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.login-btn{
+    width:100%;
+    padding:14px;
+    background:#2e7d32;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.login-btn:hover{
+    background:#1b5e20;
+}
+
+.links{
+    text-align:center;
+    margin-top:20px;
+}
+
+.links a{
+    color:#2e7d32;
+    text-decoration:none;
+    display:block;
+    margin-top:8px;
+}
+
+.message{
+    margin-top:15px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.success{
+    color:green;
+}
+
+.error{
+    color:red;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+<div class="logo">
+
+<h1>Gene-rations</h1>
+
+<p>Connect Every Generation</p>
+
+</div>
+
+<form id="loginForm">
+
+<div class="form-group">
+
+<label>Email Address</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Password</label>
+
+<input
+type="password"
+id="password"
+placeholder="Enter your password"
+required>
+
+<div class="show-password">
+
+<input
+type="checkbox"
+id="togglePassword"
+style="width:auto;">
+
+<label for="togglePassword">
+Show Password
+</label>
+
+</div>
+
+</div>
+
+<button
+type="submit"
+class="login-btn">
+
+Login
+
+</button>
+
+</form>
+
+<div id="message" class="message"></div>
+
+<div class="links">
+
+<a href="signup.html">
+Create New Account
+</a>
+
+<a href="#">
+Forgot Password?
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+const passwordField =
+document.getElementById("password");
+
+document
+.getElementById("togglePassword")
+.addEventListener("change",function(){
+
+passwordField.type =
+this.checked ? "text" : "password";
+
+});
+
+document
+.getElementById("loginForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+const message =
+document.getElementById("message");
+
+if(email === "" || password === ""){
+
+message.textContent =
+"Please fill in all fields.";
+
+message.className =
+"message error";
+
+return;
+
+}
+
+/*
+Replace this section with a backend API call
+when Node.js and database are connected.
+*/
+
+if(
+email === "admin@generations.com"
+&&
+password === "password123"
+){
+
+message.textContent =
+"Login successful! Redirecting...";
+
+message.className =
+"message success";
+
+setTimeout(() => {
+
+window.location.href =
+"dashboard.html";
+
+},1500);
+
+}
+else{
+
+message.textContent =
+"Invalid email or password.";
+
+message.className =
+"message error";
+
+}
+
+});
+
+document.getElementById("loginForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const email =
+    document.getElementById("email").value;
+
+    const password =
+    document.getElementById("password").value;
+
+    const user =
+    JSON.parse(
+        localStorage.getItem("user")
+    );
+
+    if(
+        user &&
+        email === user.email &&
+        password === user.password
+    ){
+
+        alert("Login Successful");
+
+        window.location.href =
+        "dashboard.html";
+
+    }else{
+
+        alert("Invalid Email or Password");
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gene-rations | Connecting Every Generation</title>
+<link rel="stylesheet" href="main.css">
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+/* Navigation */
+
+.navbar{
+    background:#2e7d32;
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:20px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.nav-links a:hover{
+    text-decoration:underline;
+}
+
+/* Hero Section */
+
+.hero{
+    background:linear-gradient(
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.5)
+    ),
+    url("https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1200");
+    
+    background-size:cover;
+    background-position:center;
+    color:white;
+    text-align:center;
+    padding:120px 20px;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:22px;
+    max-width:800px;
+    margin:auto;
+}
+
+.hero-buttons{
+    margin-top:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 25px;
+    margin:10px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn-primary{
+    background:#4caf50;
+    color:white;
+}
+
+.btn-secondary{
+    background:white;
+    color:#2e7d32;
+}
+
+/* Generations Section */
+
+.generations{
+    padding:60px 20px;
+    text-align:center;
+}
+
+.generations h2{
+    margin-bottom:30px;
+}
+
+.generation-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.generation-card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.generation-card h3{
+    color:#2e7d32;
+    margin-bottom:10px;
+}
+
+/* Features */
+
+.features{
+    background:white;
+    padding:60px 20px;
+}
+
+.features h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.feature{
+    padding:25px;
+    border-radius:12px;
+    background:#f8f8f8;
+    text-align:center;
+}
+
+.feature h3{
+    margin-bottom:10px;
+}
+
+/* CTA */
+
+.cta{
+    text-align:center;
+    background:#2e7d32;
+    color:white;
+    padding:60px 20px;
+}
+
+.cta h2{
+    margin-bottom:15px;
+}
+
+/* Footer */
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+@media(max-width:768px){
+
+.navbar{
+    flex-direction:column;
+    gap:15px;
+}
+
+.nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.hero h1{
+    font-size:36px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+Gene-rations
+</div>
+
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="login.html">Login</a></li>
+<li><a href="signup.html">Sign Up</a></li>
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<h1>Connecting Every Generation</h1>
+
+<p>
+A social network that combines the best of
+community, family heritage, video sharing,
+learning, events, and creator opportunities.
+</p>
+
+<div class="hero-buttons">
+
+<a href="signup.html" class="btn btn-primary">
+Get Started
+</a>
+
+<a href="login.html" class="btn btn-secondary">
+Login
+</a>
+
+</div>
+
+</section>
+
+<section class="generations">
+
+<h2>Built For Every Generation</h2>
+
+<div class="generation-grid">
+
+<div class="generation-card">
+<h3>Generation Alpha</h3>
+<p>Learn, explore and connect.</p>
+</div>
+
+<div class="generation-card">
+<h3>Generation Z</h3>
+<p>Create, share and inspire.</p>
+</div>
+
+<div class="generation-card">
+<h3>Millennials</h3>
+<p>Build communities and businesses.</p>
+</div>
+
+<div class="generation-card">
+<h3>Generation X</h3>
+<p>Lead, mentor and collaborate.</p>
+</div>
+
+<div class="generation-card">
+<h3>Baby Boomers</h3>
+<p>Preserve heritage and wisdom.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="features">
+
+<h2>Platform Features</h2>
+
+<div class="feature-grid">
+
+<div class="feature">
+<h3>🎥 Videos</h3>
+<p>Share and discover video content.</p>
+</div>
+
+<div class="feature">
+<h3>🌐 Communities</h3>
+<p>Join groups that match your interests.</p>
+</div>
+
+<div class="feature">
+<h3>💬 Messaging</h3>
+<p>Connect with friends and family.</p>
+</div>
+
+<div class="feature">
+<h3>🌳 Family Tree</h3>
+<p>Build and preserve your family history.</p>
+</div>
+
+<div class="feature">
+<h3>📅 Events</h3>
+<p>Organize and attend meetups.</p>
+</div>
+
+<div class="feature">
+<h3>🤖 AI Assistant</h3>
+<p>Get intelligent help and recommendations.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="cta">
+
+<h2>Join Gene-rations Today</h2>
+
+<p>
+Become part of a platform where every generation matters.
+</p>
+
+<br>
+
+<a href="signup.html" class="btn btn-secondary">
+Create Free Account
+</a>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 Gene-rations. Connecting Every Generation.
+</p>
+
+</footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

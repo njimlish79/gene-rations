@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations Sign Up</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/css/intlTelInput.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:650px;
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo h1{
+    color:#2e7d32;
+    font-size:38px;
+}
+
+.logo p{
+    color:#666;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+input,
+select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.iti{
+    width:100%;
+}
+
+.generation-box{
+    margin-top:10px;
+    background:#e8f5e9;
+    padding:12px;
+    border-radius:8px;
+    color:#2e7d32;
+    font-weight:bold;
+}
+
+.checkbox-group{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.checkbox-group input{
+    width:auto;
+}
+
+.signup-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#2e7d32;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.signup-btn:hover{
+    background:#1b5e20;
+}
+
+.message{
+    margin-top:15px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.success{
+    color:green;
+}
+
+.error{
+    color:red;
+}
+
+.footer-link{
+    text-align:center;
+    margin-top:20px;
+}
+
+.footer-link a{
+    color:#2e7d32;
+    text-decoration:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+
+<h1>Gene-rations</h1>
+
+<p>Connect Every Generation</p>
+
+</div>
+
+<form id="signupForm">
+
+<div class="form-group">
+
+<label>Full Name</label>
+
+<input
+type="text"
+id="fullName"
+placeholder="Enter full name"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Gender</label>
+
+<select id="gender" required>
+
+<option value="">
+Select Gender
+</option>
+
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Email Address</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter email address"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Phone Number</label>
+
+<input
+type="tel"
+id="phone"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Date of Birth</label>
+
+<input
+type="date"
+id="dob"
+required>
+
+<div
+class="generation-box"
+id="generationBox">
+
+Your generation will appear here
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Password</label>
+
+<input
+type="password"
+id="password"
+minlength="8"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Confirm Password</label>
+
+<input
+type="password"
+id="confirmPassword"
+minlength="8"
+required>
+
+</div>
+
+<div class="form-group checkbox-group">
+
+<input
+type="checkbox"
+id="showPasswords">
+
+<label for="showPasswords">
+Show Passwords
+</label>
+
+</div>
+
+<div class="form-group checkbox-group">
+
+<input
+type="checkbox"
+id="terms"
+required>
+
+<label for="terms">
+I agree to the Terms & Conditions
+</label>
+
+</div>
+
+<button
+type="submit"
+class="signup-btn">
+
+Create Account
+
+</button>
+
+</form>
+
+<div
+id="message"
+class="message">
+
+</div>
+
+<div class="footer-link">
+
+<a href="login.html">
+Already have an account? Login
+</a>
+
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
+
+<script>
+
+const phoneInput =
+document.querySelector("#phone");
+
+const iti =
+window.intlTelInput(
+phoneInput,
+{
+    initialCountry:"ke",
+    separateDialCode:true,
+    preferredCountries:[
+        "ke",
+        "ug",
+        "tz",
+        "rw",
+        "us",
+        "gb"
+    ],
+    utilsScript:
+    "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js"
+}
+);
+
+function getGeneration(year){
+
+if(year >= 2013)
+return "Generation Alpha";
+
+if(year >= 1997)
+return "Generation Z";
+
+if(year >= 1981)
+return "Millennial";
+
+if(year >= 1965)
+return "Generation X";
+
+if(year >= 1946)
+return "Baby Boomer";
+
+return "Silent Generation";
+
+}
+
+document
+.getElementById("dob")
+.addEventListener("change",function(){
+
+const year =
+new Date(this.value).getFullYear();
+
+document
+.getElementById("generationBox")
+.textContent =
+"Generation: " +
+getGeneration(year);
+
+});
+
+document
+.getElementById("showPasswords")
+.addEventListener("change",function(){
+
+const type =
+this.checked ? "text" : "password";
+
+document
+.getElementById("password").type =
+type;
+
+document
+.getElementById("confirmPassword").type =
+type;
+
+});
+
+document
+.getElementById("signupForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const password =
+document.getElementById("password").value;
+
+const confirmPassword =
+document.getElementById("confirmPassword").value;
+
+const message =
+document.getElementById("message");
+
+if(password !== confirmPassword){
+
+message.textContent =
+"Passwords do not match.";
+
+message.className =
+"message error";
+
+return;
+
+}
+
+if(!iti.isValidNumber()){
+
+message.textContent =
+"Please enter a valid phone number.";
+
+message.className =
+"message error";
+
+return;
+
+}
+
+const internationalPhone =
+iti.getNumber();
+
+console.log(
+"Phone:",
+internationalPhone
+);
+
+message.textContent =
+"Account created successfully!";
+
+message.className =
+"message success";
+
+setTimeout(() => {
+
+window.location.href =
+"verify-email.html";
+
+},2000);
+
+});
+document.getElementById("signupForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const userData = {
+        fullName: document.getElementById("fullName").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+    };
+
+    localStorage.setItem(
+        "user",
+        JSON.stringify(userData)
+    );
+
+    window.location.href = "login.html";
+
+});
+
+</script>
+
+</body>
+</html>

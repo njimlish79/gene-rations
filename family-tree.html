@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gene-rations Family Tree</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+header{
+    background:#2e7d32;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    max-width:1200px;
+    margin:20px auto;
+    padding:20px;
+}
+
+.controls{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.controls input,
+.controls select{
+    padding:10px;
+    margin:5px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.controls button{
+    padding:10px 15px;
+    border:none;
+    background:#2e7d32;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.tree-container{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    overflow-x:auto;
+}
+
+.tree{
+    text-align:center;
+    min-width:800px;
+}
+
+.person{
+    display:inline-block;
+    padding:15px 20px;
+    margin:10px;
+    background:#2e7d32;
+    color:white;
+    border-radius:12px;
+    min-width:150px;
+}
+
+.person small{
+    display:block;
+    margin-top:5px;
+}
+
+.line{
+    font-size:30px;
+    color:#666;
+}
+
+.family-gallery{
+    margin-top:20px;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    margin-top:15px;
+}
+
+.gallery-item img{
+    width:100%;
+    border-radius:10px;
+}
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Gene-rations Family Tree</h1>
+    <p>Preserving Family History Across Generations</p>
+</header>
+
+<div class="container">
+
+    <div class="controls">
+
+        <h2>Add Family Member</h2>
+
+        <br>
+
+        <input
+        type="text"
+        id="memberName"
+        placeholder="Family Member Name">
+
+        <select id="relationship">
+            <option>Father</option>
+            <option>Mother</option>
+            <option>Grandfather</option>
+            <option>Grandmother</option>
+            <option>Brother</option>
+            <option>Sister</option>
+            <option>Son</option>
+            <option>Daughter</option>
+        </select>
+
+        <button onclick="addMember()">
+            Add Member
+        </button>
+
+    </div>
+
+    <div class="tree-container">
+
+        <h2 style="text-align:center;">
+            My Family Tree
+        </h2>
+
+        <br>
+
+        <div class="tree" id="tree">
+
+            <div class="person">
+                Grandfather
+                <small>Silent Generation</small>
+            </div>
+
+            <div class="person">
+                Grandmother
+                <small>Silent Generation</small>
+            </div>
+
+            <div class="line">↓</div>
+
+            <div class="person">
+                Father
+                <small>Baby Boomer</small>
+            </div>
+
+            <div class="person">
+                Mother
+                <small>Generation X</small>
+            </div>
+
+            <div class="line">↓</div>
+
+            <div class="person">
+                You
+                <small>Generation Z</small>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="family-gallery">
+
+        <h2>Family Memories</h2>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item">
+                <img src="https://picsum.photos/300/200?1">
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://picsum.photos/300/200?2">
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://picsum.photos/300/200?3">
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://picsum.photos/300/200?4">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Gene-rations Family Tree
+</footer>
+
+<script>
+
+function addMember(){
+
+    const name =
+    document.getElementById("memberName").value;
+
+    const relation =
+    document.getElementById("relationship").value;
+
+    if(name.trim() === ""){
+        alert("Enter a name.");
+        return;
+    }
+
+    const member =
+    document.createElement("div");
+
+    member.className = "person";
+
+    member.innerHTML =
+        relation +
+        "<br><small>" +
+        name +
+        "</small>";
+
+    document
+    .getElementById("tree")
+    .appendChild(member);
+
+    document
+    .getElementById("memberName")
+    .value = "";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gene-rations AI Assistant</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+header{
+    background:linear-gradient(135deg,#2e7d32,#4caf50);
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.container{
+    max-width:1200px;
+    margin:20px auto;
+    padding:20px;
+}
+
+.assistant-card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.chat-header{
+    background:#2e7d32;
+    color:white;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.ai-avatar{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:white;
+    color:#2e7d32;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.chat-body{
+    height:500px;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.message{
+    margin-bottom:15px;
+    padding:12px;
+    border-radius:10px;
+    max-width:80%;
+}
+
+.ai-message{
+    background:#e8f5e9;
+}
+
+.user-message{
+    background:#2e7d32;
+    color:white;
+    margin-left:auto;
+}
+
+.chat-footer{
+    display:flex;
+    gap:10px;
+    padding:15px;
+    border-top:1px solid #ddd;
+}
+
+.chat-footer input{
+    flex:1;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.send-btn{
+    background:#2e7d32;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.quick-actions{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+}
+
+.action-card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.action-card:hover{
+    transform:translateY(-3px);
+}
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🤖 Gene-rations AI Assistant</h1>
+
+<p>
+Your intelligent guide across generations
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="assistant-card">
+
+<div class="chat-header">
+
+<div class="ai-avatar">
+AI
+</div>
+
+<div>
+
+<h2>Gene Assistant</h2>
+
+<small>Online</small>
+
+</div>
+
+</div>
+
+<div
+class="chat-body"
+id="chatBody">
+
+<div class="message ai-message">
+
+Hello! 👋
+
+I can help you:
+
+<ul style="margin-top:10px;padding-left:20px;">
+<li>Find communities</li>
+<li>Discover videos</li>
+<li>Explore family history</li>
+<li>Plan events</li>
+<li>Support creators</li>
+<li>Answer questions</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="chat-footer">
+
+<input
+type="text"
+id="userInput"
+placeholder="Ask Gene Assistant anything...">
+
+<button
+class="send-btn"
+onclick="sendMessage()">
+
+Send
+
+</button>
+
+</div>
+
+</div>
+
+<div class="quick-actions">
+
+<div class="action-card"
+onclick="quickQuestion('Find communities for Generation Z')">
+
+🌐 Find Communities
+
+</div>
+
+<div class="action-card"
+onclick="quickQuestion('Show trending videos')">
+
+🎥 Trending Videos
+
+</div>
+
+<div class="action-card"
+onclick="quickQuestion('Help build my family tree')">
+
+🌳 Family Tree Help
+
+</div>
+
+<div class="action-card"
+onclick="quickQuestion('Plan an event')">
+
+📅 Event Planning
+
+</div>
+
+<div class="action-card"
+onclick="quickQuestion('Creator growth tips')">
+
+📈 Creator Tips
+
+</div>
+
+<div class="action-card"
+onclick="quickQuestion('Show platform statistics')">
+
+📊 Platform Insights
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Gene-rations AI Assistant
+</footer>
+
+<script>
+
+function sendMessage(){
+
+const input =
+document.getElementById("userInput");
+
+const text =
+input.value.trim();
+
+if(text === "") return;
+
+addUserMessage(text);
+
+let response =
+generateResponse(text);
+
+setTimeout(() => {
+
+addAIMessage(response);
+
+},500);
+
+input.value = "";
+
+}
+
+function addUserMessage(text){
+
+const div =
+document.createElement("div");
+
+div.className =
+"message user-message";
+
+div.textContent = text;

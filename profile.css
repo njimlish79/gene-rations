@@ -1,0 +1,353 @@
+/* ===========================
+   GENE-RATIONS PROFILE PAGE
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f7f4;
+    color:#333;
+    padding-top:70px;
+}
+
+/* ===========================
+   NAVBAR
+=========================== */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:#2e7d32;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    z-index:1000;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+
+.logo h2{
+    font-size:28px;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+
+.nav-links a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.nav-links a:hover,
+.nav-links .active{
+    color:#ffd54f;
+}
+
+/* ===========================
+   PROFILE HEADER
+=========================== */
+
+.profile-header{
+    position:relative;
+    margin-bottom:90px;
+}
+
+.cover-photo{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    display:block;
+    background:#d9d9d9;
+}
+
+.profile-picture{
+    position:absolute;
+    bottom:-70px;
+    left:50%;
+    transform:translateX(-50%);
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    border:6px solid #fff;
+    object-fit:cover;
+    background:#fff;
+    box-shadow:0 4px 12px rgba(0,0,0,.3);
+    z-index:5;
+}
+
+.camera-btn{
+    position:absolute;
+    left:calc(50% + 45px);
+    bottom:-65px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#2e7d32;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    border:3px solid #fff;
+    z-index:10;
+}
+
+.camera-btn:hover{
+    background:#1b5e20;
+}
+
+/* ===========================
+   PROFILE CARD
+=========================== */
+
+.profile-card{
+    max-width:900px;
+    margin:auto;
+    background:#fff;
+    text-align:center;
+    padding:100px 30px 30px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.profile-card h1{
+    color:#2e7d32;
+    margin-bottom:10px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 20px;
+    background:#2e7d32;
+    color:#fff;
+    border-radius:30px;
+    margin:10px 0;
+}
+
+#bio{
+    margin:20px 0;
+    line-height:1.7;
+}
+
+#editProfile{
+    background:#2e7d32;
+    color:#fff;
+    border:none;
+    padding:12px 25px;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+#editProfile:hover{
+    background:#1b5e20;
+}
+
+/* ===========================
+   DETAILS
+=========================== */
+
+.details{
+    max-width:900px;
+    margin:30px auto;
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 10px rgba(0,0,0,.08);
+}
+
+.details h2{
+    margin-bottom:20px;
+    color:#2e7d32;
+}
+
+.detail-row{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid #ddd;
+}
+
+/* ===========================
+   STATS
+=========================== */
+
+.stats{
+    max-width:900px;
+    margin:30px auto;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:20px;
+}
+
+.stat-card{
+    background:#fff;
+    text-align:center;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 10px rgba(0,0,0,.08);
+}
+
+.stat-card h3{
+    color:#2e7d32;
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+/* ===========================
+   QUICK ACTIONS
+=========================== */
+
+.quick-actions{
+    max-width:900px;
+    margin:30px auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.quick-actions a{
+    background:#fff;
+    text-decoration:none;
+    color:#2e7d32;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    font-weight:bold;
+    transition:.3s;
+    box-shadow:0 5px 10px rgba(0,0,0,.08);
+}
+
+.quick-actions i{
+    display:block;
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.quick-actions a:hover{
+    background:#2e7d32;
+    color:#fff;
+    transform:translateY(-5px);
+}
+
+/* ===========================
+   ACTIVITY
+=========================== */
+
+.activity{
+    max-width:900px;
+    margin:30px auto;
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 10px rgba(0,0,0,.08);
+}
+
+.activity h2{
+    color:#2e7d32;
+    margin-bottom:20px;
+}
+
+/* ===========================
+   LOGOUT
+=========================== */
+
+.logout{
+    text-align:center;
+    margin:40px 0;
+}
+
+#logout{
+    background:#d32f2f;
+    color:#fff;
+    border:none;
+    padding:15px 40px;
+    border-radius:40px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+#logout:hover{
+    background:#b71c1c;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer{
+    background:#2e7d32;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width:768px){
+
+    body{
+        padding-top:130px;
+    }
+
+    .navbar{
+        flex-direction:column;
+        gap:15px;
+        padding:15px;
+    }
+
+    .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:12px;
+    }
+
+    .cover-photo{
+        height:220px;
+    }
+
+    .profile-picture{
+        width:130px;
+        height:130px;
+        bottom:-60px;
+    }
+
+    .camera-btn{
+        bottom:-55px;
+        left:calc(50% + 35px);
+    }
+
+    .profile-card{
+        margin-top:80px;
+        padding-top:90px;
+    }
+
+    .detail-row{
+        flex-direction:column;
+        gap:8px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .quick-actions{
+        grid-template-columns:1fr;
+    }
+}

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gene-rations Events & Meetups</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+header{
+    background:#2e7d32;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.banner{
+    background:linear-gradient(135deg,#2e7d32,#66bb6a);
+    color:white;
+    text-align:center;
+    padding:40px 20px;
+}
+
+.container{
+    max-width:1200px;
+    margin:20px auto;
+    padding:20px;
+}
+
+.top-actions{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.search-box input{
+    padding:12px;
+    width:300px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.create-btn{
+    background:#2e7d32;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.events-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+    gap:20px;
+}
+
+.event-card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.event-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.event-content{
+    padding:20px;
+}
+
+.event-title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.event-date{
+    color:#2e7d32;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.event-location{
+    color:#666;
+    margin-bottom:12px;
+}
+
+.event-btn{
+    width:100%;
+    padding:10px;
+    background:#2e7d32;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.create-event{
+    margin-top:30px;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.create-event input,
+.create-event textarea{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>📅 Gene-rations Events & Meetups</h1>
+</header>
+
+<div class="banner">
+
+<h2>Connect Beyond the Screen</h2>
+
+<p>
+Join family reunions, creator gatherings,
+community meetups, workshops and webinars.
+</p>
+
+</div>
+
+<div class="container">
+
+<div class="top-actions">
+
+<div class="search-box">
+<input
+type="text"
+placeholder="Search events...">
+</div>
+
+<button class="create-btn">
++ Create Event
+</button>
+
+</div>
+
+<div class="events-grid" id="eventsGrid">
+
+<div class="event-card">
+
+<img src="https://picsum.photos/600/300?11">
+
+<div class="event-content">
+
+<div class="event-title">
+Family Reunion 2026
+</div>
+
+<div class="event-date">
+📅 July 18, 2026
+</div>
+
+<div class="event-location">
+📍 Nairobi, Kenya
+</div>
+
+<p>
+Celebrate family heritage and reconnect.
+</p>
+
+<br>
+
+<button class="event-btn"
+onclick="joinEvent(this)">
+RSVP
+</button>
+
+</div>
+
+</div>
+
+<div class="event-card">
+
+<img src="https://picsum.photos/600/300?12">
+
+<div class="event-content">
+
+<div class="event-title">
+Creators Summit
+</div>
+
+<div class="event-date">
+📅 August 5, 2026
+</div>
+
+<div class="event-location">
+📍 Virtual Event
+</div>
+
+<p>
+Learn content creation and monetization.
+</p>
+
+<br>
+
+<button class="event-btn"
+onclick="joinEvent(this)">
+RSVP
+</button>
+
+</div>
+
+</div>
+
+<div class="event-card">
+
+<img src="https://picsum.photos/600/300?13">
+
+<div class="event-content">
+
+<div class="event-title">
+Generation Z Networking
+</div>
+
+<div class="event-date">
+📅 September 10, 2026
+</div>
+
+<div class="event-location">
+📍 Mombasa, Kenya
+</div>
+
+<p>
+Meet innovators and entrepreneurs.
+</p>
+
+<br>
+
+<button class="event-btn"
+onclick="joinEvent(this)">
+RSVP
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="create-event">
+
+<h2>Create New Event</h2>
+
+<br>
+
+<input
+type="text"
+id="eventName"
+placeholder="Event Name">
+
+<input
+type="date"
+id="eventDate">
+
+<input
+type="text"
+id="eventLocation"
+placeholder="Location">
+
+<textarea
+id="eventDescription"
+placeholder="Event Description">
+</textarea>
+
+<button
+class="event-btn"
+onclick="createEvent()">
+Create Event
+</button>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Gene-rations Events & Meetups
+</footer>
+
+<script>
+
+function joinEvent(button){
+
+button.textContent = "✓ Registered";
+button.style.background = "#1565c0";
+
+}
+
+function createEvent(){
+
+const name =
+document.getElementById("eventName").value;
+
+const date =
+document.getElementById("eventDate").value;
+
+const location =
+document.getElementById("eventLocation").value;
+
+if(name.trim()==="" ||
+date==="" ||
+location===""){
+
+alert("Please fill all required fields.");
+return;
+
+}
+
+const card =
+document.createElement("div");
+
+card.className = "event-card";
+
+card.innerHTML = `
+
+<img src="https://picsum.photos/600/300?random=${Date.now()}">
+
+<div class="event-content">
+
+<div class="event-title">
+${name}
+</div>
+
+<div class="event-date">
+📅 ${date}
+</div>
+
+<div class="event-location">
+📍 ${location}
+</div>
+
+<p>
+Community event created by you.
+</p>
+
+<br>
+
+<button class="event-btn">
+RSVP
+</button>
+
+</div>
+
+`;
+
+document
+.getElementById("eventsGrid")
+.prepend(card);
+
+alert("Event created successfully!");
+
+document.getElementById("eventName").value="";
+document.getElementById("eventDate").value="";
+document.getElementById("eventLocation").value="";
+document.getElementById("eventDescription").value="";
+
+}
+
+</script>
+
+</body>
+</html>

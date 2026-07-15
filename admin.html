@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gene-rations Admin Panel</title>
+
+<link rel="stylesheet" href="css/main.css">
+
+<script src="js/app.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.header{
+    background:#1b5e20;
+    color:white;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.container{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    min-height:calc(100vh - 65px);
+}
+
+.sidebar{
+    background:white;
+    border-right:1px solid #ddd;
+    padding:20px;
+}
+
+.menu-item{
+    padding:12px;
+    margin-bottom:10px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.menu-item:hover{
+    background:#e8f5e9;
+}
+
+.main{
+    padding:20px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.stat-card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.stat-card h2{
+    color:#2e7d32;
+}
+
+.panel-card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,
+td{
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid #ddd;
+}
+
+th{
+    background:#f5f5f5;
+}
+
+.action-btn{
+    border:none;
+    padding:8px 10px;
+    border-radius:6px;
+    cursor:pointer;
+    color:white;
+}
+
+.edit{
+    background:#1976d2;
+}
+
+.delete{
+    background:#d32f2f;
+}
+
+.approve{
+    background:#2e7d32;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#222;
+    color:white;
+}
+
+@media(max-width:768px){
+
+.container{
+    grid-template-columns:1fr;
+}
+
+.sidebar{
+    border-right:none;
+    border-bottom:1px solid #ddd;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="logo">
+🛡 Gene-rations Admin
+</div>
+
+<div>
+Administrator Dashboard
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="sidebar">
+
+<h3>Management</h3>
+
+<div class="menu-item">📊 Dashboard</div>
+<div class="menu-item">👥 Users</div>
+<div class="menu-item">🎥 Videos</div>
+<div class="menu-item">🌐 Communities</div>
+<div class="menu-item">🌳 Family Trees</div>
+<div class="menu-item">🚩 Reports</div>
+<div class="menu-item">🔔 Notifications</div>
+<div class="menu-item">⚙ Settings</div>
+
+</div>
+
+<div class="main">
+
+<div class="stats">
+
+<div class="stat-card">
+<h2>25,430</h2>
+<p>Registered Users</p>
+</div>
+
+<div class="stat-card">
+<h2>8,921</h2>
+<p>Videos Uploaded</p>
+</div>
+
+<div class="stat-card">
+<h2>1,240</h2>
+<p>Communities</p>
+</div>
+
+<div class="stat-card">
+<h2>97</h2>
+<p>Reports Pending</p>
+</div>
+
+</div>
+
+<div class="panel-card">
+
+<h2>Recent Users</h2>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Generation</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+<tr>
+<td>James Nganga</td>
+<td>Generation Z</td>
+<td>Active</td>
+<td>
+<button class="action-btn edit">
+Edit
+</button>
+</td>
+</tr>
+
+<tr>
+<td>Sarah W.</td>
+<td>Millennial</td>
+<td>Active</td>
+<td>
+<button class="action-btn edit">
+Edit
+</button>
+</td>
+</tr>
+
+<tr>
+<td>John K.</td>
+<td>Generation X</td>
+<td>Pending</td>
+<td>
+<button class="action-btn approve">
+Approve
+</button>
+</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="panel-card">
+
+<h2>Reported Content</h2>
+
+<table>
+
+<tr>
+<th>Content</th>
+<th>Reason</th>
+<th>Action</th>
+</tr>
+
+<tr>
+<td>Video #421</td>
+<td>Spam</td>
+<td>
+<button class="action-btn delete">
+Remove
+</button>
+</td>
+</tr>
+
+<tr>
+<td>Community Post #88</td>
+<td>Inappropriate</td>
+<td>
+<button class="action-btn delete">
+Remove
+</button>
+</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Gene-rations Administration System
+</footer>
+
+<script>
+
+document
+.querySelectorAll(".approve")
+.forEach(button => {
+
+button.addEventListener("click", () => {
+
+alert("User approved successfully.");
+
+});
+
+});
+
+document
+.querySelectorAll(".delete")
+.forEach(button => {
+
+button.addEventListener("click", () => {
+
+if(confirm("Remove this content?")){
+
+button.closest("tr").remove();
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

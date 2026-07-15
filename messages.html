@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gene-rations Messages</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    height:100vh;
+}
+
+.header{
+    background:#2e7d32;
+    color:white;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.container{
+    display:flex;
+    height:calc(100vh - 65px);
+}
+
+.contacts{
+    width:30%;
+    background:white;
+    border-right:1px solid #ddd;
+    overflow-y:auto;
+}
+
+.contacts h2{
+    padding:20px;
+    border-bottom:1px solid #ddd;
+}
+
+.contact{
+    padding:15px 20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+    border-bottom:1px solid #eee;
+}
+
+.contact:hover{
+    background:#f0f0f0;
+}
+
+.avatar{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#2e7d32;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.chat-area{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+
+.chat-header{
+    background:white;
+    padding:15px 20px;
+    border-bottom:1px solid #ddd;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.chat-actions button{
+    border:none;
+    background:#2e7d32;
+    color:white;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-left:8px;
+}
+
+.messages{
+    flex:1;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.message{
+    max-width:70%;
+    padding:12px;
+    margin-bottom:12px;
+    border-radius:12px;
+}
+
+.received{
+    background:white;
+    border:1px solid #ddd;
+}
+
+.sent{
+    background:#2e7d32;
+    color:white;
+    margin-left:auto;
+}
+
+.message-input{
+    background:white;
+    padding:15px;
+    display:flex;
+    gap:10px;
+    border-top:1px solid #ddd;
+}
+
+.message-input input{
+    flex:1;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.send-btn{
+    background:#2e7d32;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+
+.contacts{
+    width:35%;
+}
+
+.logo{
+    font-size:20px;
+}
+
+.chat-actions button{
+    padding:6px 8px;
+    font-size:12px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="logo">
+Gene-rations Messages
+</div>
+
+<div>
+🔔 Notifications
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="contacts">
+
+<h2>Chats</h2>
+
+<div class="contact">
+<div class="avatar">J</div>
+<div>
+<strong>James</strong><br>
+<small>Generation Z</small>
+</div>
+</div>
+
+<div class="contact">
+<div class="avatar">A</div>
+<div>
+<strong>Alpha Hub</strong><br>
+<small>Community Group</small>
+</div>
+</div>
+
+<div class="contact">
+<div class="avatar">M</div>
+<div>
+<strong>Millennial Network</strong><br>
+<small>Community Group</small>
+</div>
+</div>
+
+<div class="contact">
+<div class="avatar">F</div>
+<div>
+<strong>Family Group</strong><br>
+<small>Family Tree Chat</small>
+</div>
+</div>
+
+</div>
+
+<div class="chat-area">
+
+<div class="chat-header">
+
+<div>
+<strong>Family Group</strong>
+</div>
+
+<div class="chat-actions">
+<button onclick="voiceCall()">
+📞 Voice
+</button>
+
+<button onclick="videoCall()">
+📹 Video
+</button>
+</div>
+
+</div>
+
+<div class="messages" id="messages">
+
+<div class="message received">
+Hello everyone 👋
+</div>
+
+<div class="message sent">
+Welcome to Gene-rations!
+</div>
+
+<div class="message received">
+Let's share family memories here.
+</div>
+
+</div>
+
+<div class="message-input">
+
+<input
+type="text"
+id="messageText"
+placeholder="Type a message...">
+
+<button
+class="send-btn"
+onclick="sendMessage()">
+
+Send
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function sendMessage(){
+
+let input =
+document.getElementById("messageText");
+
+let text = input.value.trim();
+
+if(text === ""){
+return;
+}
+
+let message =
+document.createElement("div");
+
+message.classList.add(
+"message",
+"sent"
+);
+
+message.textContent = text;
+
+document
+.getElementById("messages")
+.appendChild(message);
+
+input.value = "";
+
+document
+.getElementById("messages")
+.scrollTop =
+document
+.getElementById("messages")
+.scrollHeight;
+
+}
+
+function voiceCall(){
+
+alert(
+"Voice calling feature will be connected to WebRTC in future versions."
+);
+
+}
+
+function videoCall(){
+
+alert(
+"Video calling feature will be connected to WebRTC in future versions."
+);
+
+}
+
+</script>
+
+</body>
+</html>
