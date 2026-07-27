@@ -1,29 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile | Gene-rations</title>
+    <title>Gene-rations | Profile</title>
 
+    <!-- Main CSS -->
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="profile.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header class="profile-header">
-        <h1>My Profile</h1>
-    </header>
+<!-- ===========================
+     TOP NAVIGATION
+============================ -->
 
-    <!-- Profile Card -->
-    <section class="profile-card">
+<header class="top-header">
 
-        <div class="profile-image-section">
+    <nav class="navbar">
 
-            <img src="images/default-profile.png"
-                 id="profileImage"
-                 alt="Profile Photo">
+        <!-- Logo -->
+
+        <div class="logo">
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-dna"></i>
+
+                <span>Gene-rations</span>
+
+            </a>
+
+        </div>
+
+        <!-- Search -->
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="search"
+                placeholder="Search Gene-rations..."
+                id="searchInput">
+
+        </div>
+
+        <!-- Navigation -->
+
+        <ul class="nav-menu">
+
+            <li>
+
+                <a href="dashboard.html">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>Home</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="videos.html">
+
+                    <i class="fa-solid fa-video"></i>
+
+                    <span>Videos</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="communities.html">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span>Communities</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="events.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>Events</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="marketplace.html">
+
+                    <i class="fa-solid fa-store"></i>
+
+                    <span>Marketplace</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="messages.html">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <span>Messages</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="notifications.html">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    <span>Notifications</span>
+
+                </a>
+
+            </li>
+
+        </ul>
+
+        <!-- User Menu -->
+
+        <div class="user-menu">
+
+            <button class="icon-btn">
+
+                <i class="fa-solid fa-circle-half-stroke"></i>
+
+            </button>
+
+            <button class="icon-btn">
+
+                <i class="fa-solid fa-language"></i>
+
+            </button>
+
+            <button class="icon-btn">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+
+            <img
+                src="images/default-profile.png"
+                alt="Profile"
+                id="navProfileImage"
+                class="nav-profile-image">
+
+        </div>
+    </nav>
+</header>
+
+<main class="profile-page">
+  <!-- ===========================
+     PROFILE HEADER
+============================ -->
+
+<section class="profile-header">
+
+    <div class="profile-header-card">
+
+        <!-- Profile Photo -->
+
+        <div class="profile-photo-section">
+
+            <div class="photo-wrapper">
+
+                <img
+                    src="images/default-profile.png"
+                    id="profileImage"
+                    alt="Profile Photo">
+
+                <span class="online-indicator"></span>
+
+            </div>
 
             <input
                 type="file"
@@ -31,130 +202,1116 @@
                 accept="image/*"
                 hidden>
 
-            <button id="uploadBtn">
-                Upload Photo
+            <button
+                class="primary-btn"
+                id="uploadBtn">
+
+                <i class="fa-solid fa-camera"></i>
+
+                Change Photo
+
             </button>
 
         </div>
 
-        <h2 id="fullName">Full Name</h2>
+        <!-- Profile Details -->
 
-        <span id="generationBadge"
-              class="generation-badge">
-              Generation Badge
-        </span>
+        <div class="profile-details">
 
-        <p id="generationName">
-            Generation Name
-        </p>
+            <div class="name-section">
 
-    </section>
+                <h1 id="fullName">
 
-    <!-- Personal Information -->
+                    Full Name
 
-    <section class="profile-info">
+                </h1>
 
-        <h3>Personal Information</h3>
+                <span
+                    class="verified-badge"
+                    id="verifiedBadge"
+                    title="Verified Account">
 
-        <div class="info-item">
-            <strong>Email</strong>
-            <p id="email"></p>
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </span>
+
+            </div>
+
+            <div class="generation-section">
+
+                <span
+                    class="generation-badge"
+                    id="generationBadge">
+
+                    Generation Badge
+
+                </span>
+
+                <span
+                    id="generationName"
+                    class="generation-name">
+
+                    Generation Name
+
+                </span>
+
+            </div>
+
+            <div class="member-info">
+
+                <div class="member-item">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>
+                        Member Since:
+                    </span>
+
+                    <strong id="memberSince">
+
+                        July 2026
+
+                    </strong>
+
+                </div>
+
+                <div class="member-item">
+
+                    <i class="fa-solid fa-circle status-online"></i>
+
+                    <strong id="statusText">
+
+                        Online
+
+                    </strong>
+
+                </div>
+
+                <div class="member-item">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <span id="country">
+
+                        Kenya
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- Generation Progress -->
+
+            <div class="generation-progress">
+
+                <div class="progress-title">
+
+                    <span>Generation Level</span>
+
+                    <strong id="levelText">
+
+                        Level 1
+
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        id="progressFill">
+
+                    </div>
+
+                </div>
+
+                <small id="xpText">
+
+                    0 / 100 XP
+
+                </small>
+
+            </div>
+
+            <!-- Quick Statistics -->
+
+            <div class="quick-stats">
+
+                <div class="quick-stat">
+
+                    <h3 id="flowers">
+
+                        0
+
+                    </h3>
+
+                    <p>Flowers</p>
+
+                </div>
+
+                <div class="quick-stat">
+
+                    <h3 id="followers">
+
+                        0
+
+                    </h3>
+
+                    <p>Followers</p>
+
+                </div>
+
+                <div class="quick-stat">
+
+                    <h3 id="following">
+
+                        0
+
+                    </h3>
+
+                    <p>Following</p>
+
+                </div>
+
+                <div class="quick-stat">
+
+                    <h3 id="profileViews">
+
+                        0
+
+                    </h3>
+
+                    <p>Views</p>
+
+                </div>
+
+            </div>
+
+            <!-- Action Buttons -->
+
+            <div class="profile-actions">
+
+                <button
+                    id="editProfileBtn"
+                    class="primary-btn">
+
+                    <i class="fa-solid fa-user-pen"></i>
+
+                    Edit Profile
+
+                </button>
+
+                <button
+                    id="shareProfileBtn"
+                    class="secondary-btn">
+
+                    <i class="fa-solid fa-share-nodes"></i>
+
+                    Share
+
+                </button>
+
+                <button
+                    id="settingsBtn"
+                    class="secondary-btn">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    Settings
+
+                </button>
+
+            </div>
+
+            <!-- Profile Completion -->
+
+            <div class="profile-completion">
+
+                <div class="completion-header">
+
+                    <span>Profile Completion</span>
+
+                    <strong id="completionPercent">
+
+                        70%
+
+                    </strong>
+
+                </div>
+
+                <div class="completion-bar">
+
+                    <div
+                        class="completion-fill"
+                        id="completionFill">
+
+                    </div>
+
+                </div>
+
+                <small>
+
+                    Complete your profile to unlock more Gene-rations features.
+
+                </small>
+
+            </div>
+
         </div>
 
-        <div class="info-item">
-            <strong>Phone</strong>
-            <p id="phone"></p>
+    </div>
+
+</section>
+
+  <!-- ==========================================
+     PROFILE CONTENT
+=========================================== -->
+
+<section class="profile-content">
+
+    <!-- Left Sidebar -->
+    <aside class="left-sidebar">
+
+        <!-- About Me -->
+
+        <div class="profile-card">
+
+            <div class="card-header">
+
+                <h2>
+                    <i class="fa-solid fa-address-card"></i>
+                    About Me
+                </h2>
+
+                <button id="editBioBtn">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+
+            </div>
+
+            <textarea
+                id="bio"
+                placeholder="Tell the Gene-rations community about yourself..."></textarea>
+
+            <button id="saveBioBtn" class="primary-btn">
+                Save Bio
+            </button>
+
         </div>
 
-        <div class="info-item">
-            <strong>Date of Birth</strong>
-            <p id="dob"></p>
+        <!-- Personal Information -->
+
+        <div class="profile-card">
+
+            <div class="card-header">
+
+                <h2>
+
+                    <i class="fa-solid fa-id-card"></i>
+
+                    Personal Information
+
+                </h2>
+
+            </div>
+
+            <div class="info-list">
+
+                <div class="info-item">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <div>
+
+                        <label>Email</label>
+
+                        <span id="email">
+                            user@example.com
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="info-item">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <div>
+
+                        <label>Phone</label>
+
+                        <span id="phone">
+                            +254...
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="info-item">
+
+                    <i class="fa-solid fa-cake-candles"></i>
+
+                    <div>
+
+                        <label>Date of Birth</label>
+
+                        <span id="dob"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="info-item">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <div>
+
+                        <label>Gender</label>
+
+                        <span id="gender"></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="info-item">
-            <strong>Gender</strong>
-            <p id="gender"></p>
+        <!-- Generation Identity -->
+
+        <div class="profile-card">
+
+            <div class="card-header">
+
+                <h2>
+
+                    <i class="fa-solid fa-dna"></i>
+
+                    Generation Identity
+
+                </h2>
+
+            </div>
+
+            <div class="generation-info">
+
+                <div class="generation-row">
+
+                    <strong>Generation</strong>
+
+                    <span id="generationText">
+
+                        Generation Z
+
+                    </span>
+
+                </div>
+
+                <div class="generation-row">
+
+                    <strong>Badge</strong>
+
+                    <span id="badgeText">
+
+                        Explorer
+
+                    </span>
+
+                </div>
+
+                <div class="generation-row">
+
+                    <strong>Rank</strong>
+
+                    <span id="generationRank">
+
+                        #1
+
+                    </span>
+
+                </div>
+
+                <div class="generation-row">
+
+                    <strong>Generation XP</strong>
+
+                    <span id="generationXP">
+
+                        0 XP
+
+                    </span>
+
+                </div>
+
+            </div>
+
         </div>
 
-    </section>
+        <!-- Reputation -->
 
-    <!-- Bio -->
+        <div class="profile-card">
 
-    <section class="bio-section">
+            <div class="card-header">
 
-        <h3>Bio</h3>
+                <h2>
 
-        <textarea
-            id="bio"
-            placeholder="Tell people about yourself...">
-        </textarea>
+                    <i class="fa-solid fa-star"></i>
 
-        <button id="saveBioBtn">
-            Save Bio
-        </button>
+                    Reputation
 
-    </section>
+                </h2>
 
-    <!-- Statistics -->
+            </div>
 
-    <section class="stats">
+            <div class="reputation-grid">
 
-        <div class="stat-card">
-            <h3 id="flowers">0</h3>
-            <p>Flowers</p>
+                <div class="rep-box">
+
+                    <h3 id="posts">
+                        0
+                    </h3>
+
+                    <p>Posts</p>
+
+                </div>
+
+                <div class="rep-box">
+
+                    <h3 id="videos">
+                        0
+                    </h3>
+
+                    <p>Videos</p>
+
+                </div>
+
+                <div class="rep-box">
+
+                    <h3 id="communities">
+                        0
+                    </h3>
+
+                    <p>Communities</p>
+
+                </div>
+
+                <div class="rep-box">
+
+                    <h3 id="reputation">
+                        0
+                    </h3>
+
+                    <p>Reputation</p>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="stat-card">
-            <h3 id="followers">0</h3>
-            <p>Followers</p>
+        <!-- Achievements -->
+
+        <div class="profile-card">
+
+            <div class="card-header">
+
+                <h2>
+
+                    <i class="fa-solid fa-trophy"></i>
+
+                    Achievements
+
+                </h2>
+
+            </div>
+
+            <div class="achievement-list">
+
+                <div class="achievement">
+
+                    🏆 Early Member
+
+                </div>
+
+                <div class="achievement">
+
+                    🌸 First Flower
+
+                </div>
+
+                <div class="achievement">
+
+                    🎥 First Video
+
+                </div>
+
+                <div class="achievement">
+
+                    ⭐ Community Contributor
+
+                </div>
+
+                <div class="achievement">
+
+                    🔥 7-Day Streak
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="stat-card">
-            <h3 id="following">0</h3>
-            <p>Following</p>
+    </aside>
+
+    <!-- Main Content Begins -->
+
+    <section class="main-profile-content">
+
+      <!-- ==========================================
+     MAIN PROFILE CONTENT
+========================================== -->
+
+        <!-- Navigation Tabs -->
+
+        <div class="content-tabs">
+
+            <button class="tab-btn active"
+                    data-tab="posts">
+
+                <i class="fa-solid fa-pen"></i>
+
+                Posts
+
+            </button>
+
+            <button class="tab-btn"
+                    data-tab="videos">
+
+                <i class="fa-solid fa-video"></i>
+
+                Videos
+
+            </button>
+
+            <button class="tab-btn"
+                    data-tab="photos">
+
+                <i class="fa-solid fa-image"></i>
+
+                Photos
+
+            </button>
+
+            <button class="tab-btn"
+                    data-tab="saved">
+
+                <i class="fa-solid fa-bookmark"></i>
+
+                Saved
+
+            </button>
+
         </div>
 
-    </section>
+<!-- ==========================================
+     POSTS TAB
+========================================== -->
 
-    <!-- Action Buttons -->
+<div class="tab-content active" id="postsTab">
 
-    <section class="profile-actions">
+    <!-- Create Post -->
 
-        <button id="editProfileBtn">
-            Edit Profile
-        </button>
+    <div class="profile-card">
 
-        <button id="settingsBtn">
-            Settings
-        </button>
+        <div class="create-post">
 
-        <button id="changePasswordBtn">
-            Change Password
-        </button>
+            <img src="images/default-profile.png"
+                 id="miniProfileImage"
+                 class="mini-profile">
 
-        <button id="logoutBtn">
-            Logout
-        </button>
+            <textarea
+                id="postInput"
+                placeholder="Share something with Gene-rations..."></textarea>
 
-    </section>
+        </div>
 
-    <!-- Recent Posts -->
+        <div class="post-actions">
 
-    <section class="recent-posts">
+            <button id="photoPostBtn">
 
-        <h3>Recent Posts</h3>
+                <i class="fa-solid fa-image"></i>
 
-        <div id="postsContainer">
+                Photo
 
-            <p class="empty-posts">
-                You haven't posted anything yet.
+            </button>
+
+            <button id="videoPostBtn">
+
+                <i class="fa-solid fa-video"></i>
+
+                Video
+
+            </button>
+
+            <button id="publishPostBtn"
+                    class="primary-btn">
+
+                Publish
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- User Posts -->
+
+    <div id="postsContainer">
+
+        <!-- Post -->
+
+        <article class="post-card">
+
+            <div class="post-header">
+
+                <img src="images/default-profile.png"
+                     class="mini-profile">
+
+                <div>
+
+                    <h3 id="postOwner">
+
+                        Full Name
+
+                    </h3>
+
+                    <small>
+
+                        Just now •
+                        <span id="postGeneration">
+
+                            Generation Badge
+
+                        </span>
+
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="post-body">
+
+                <p>
+
+                    Welcome to Gene-rations.
+
+                </p>
+
+            </div>
+
+            <div class="post-footer">
+
+                <button>
+
+                    ❤️ Like
+
+                </button>
+
+                <button>
+
+                    🌸 Flower
+
+                </button>
+
+                <button>
+
+                    💬 Comment
+
+                </button>
+
+                <button>
+
+                    🔄 Share
+
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     VIDEOS TAB
+========================================== -->
+
+<div class="tab-content"
+     id="videosTab">
+
+    <div class="profile-card">
+
+        <h2>
+
+            <i class="fa-solid fa-video"></i>
+
+            My Videos
+
+        </h2>
+
+        <div id="videosContainer">
+
+            <p>
+
+                No videos uploaded yet.
+
             </p>
 
         </div>
 
-    </section>
+    </div>
 
-    <script src="profile.js"></script>
+</div>
+
+<!-- ==========================================
+     PHOTOS TAB
+========================================== -->
+
+<div class="tab-content"
+     id="photosTab">
+
+    <div class="profile-card">
+
+        <h2>
+
+            <i class="fa-solid fa-image"></i>
+
+            My Photos
+
+        </h2>
+
+        <div class="photo-grid">
+
+            <p>
+
+                No photos uploaded yet.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     SAVED TAB
+========================================== -->
+
+<div class="tab-content"
+     id="savedTab">
+
+    <div class="profile-card">
+
+        <h2>
+
+            <i class="fa-solid fa-bookmark"></i>
+
+            Saved Content
+
+        </h2>
+
+        <p>
+
+            You haven't saved anything yet.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     RIGHT SIDEBAR
+========================================== -->
+
+<aside class="right-sidebar">
+
+    <!-- Communities -->
+
+    <div class="profile-card">
+
+        <h2>
+
+            <i class="fa-solid fa-users"></i>
+
+            My Communities
+
+        </h2>
+
+        <ul class="community-list">
+
+            <li>Generation Leaders</li>
+
+            <li>Technology Hub</li>
+
+            <li>Millennial Network</li>
+
+            <li>Business Forum</li>
+
+            <li>Youth Innovation</li>
+
+        </ul>
+
+    </div>
+
+    <!-- Timeline -->
+
+    <div class="profile-card">
+
+        <h2>
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            Activity Timeline
+
+        </h2>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+
+                🌸 Received 5 Flowers
+
+            </div>
+
+            <div class="timeline-item">
+
+                📝 Published a post
+
+            </div>
+
+            <div class="timeline-item">
+
+                👥 Joined Technology Hub
+
+            </div>
+
+            <div class="timeline-item">
+
+                🎥 Uploaded first video
+
+            </div>
+
+            <div class="timeline-item">
+
+                🏆 Earned Early Member badge
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Profile Actions -->
+
+    <div class="profile-card">
+
+        <h2>
+
+            Quick Actions
+
+        </h2>
+
+        <button id="changePasswordBtn">
+
+            🔒 Change Password
+
+        </button>
+
+        <button id="privacyBtn">
+
+            🛡 Privacy Settings
+
+        </button>
+
+        <button id="logoutBtn">
+
+            🚪 Logout
+
+        </button>
+
+    </div>
+
+</aside>
+
+</section>
+
+  <!-- ==========================================
+     PROFILE FOOTER
+========================================== -->
+
+<footer class="profile-footer">
+
+    <div class="footer-card">
+
+        <div class="footer-info">
+
+            <div class="footer-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <strong>Member Since:</strong>
+                <span id="footerMemberSince">July 2026</span>
+            </div>
+
+            <div class="footer-item">
+                <i class="fa-solid fa-clock"></i>
+                <strong>Last Active:</strong>
+                <span id="lastActive">Just now</span>
+            </div>
+
+            <div class="footer-item">
+                <i class="fa-solid fa-eye"></i>
+                <strong>Profile Views:</strong>
+                <span id="footerProfileViews">0</span>
+            </div>
+
+            <div class="footer-item">
+                <i class="fa-solid fa-dna"></i>
+                <strong>Generation Score:</strong>
+                <span id="footerGenerationScore">0 XP</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-links">
+
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="help.html">Help Centre</a>
+        <a href="contact.html">Contact</a>
+
+    </div>
+
+    <p class="copyright">
+
+        &copy; 2026 Gene-rations. All Rights Reserved.
+
+    </p>
+
+</footer>
+
+<!-- ==========================================
+     SCROLL TO TOP
+========================================== -->
+
+<button id="scrollTopBtn" title="Back to Top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- ==========================================
+     LOADING OVERLAY
+========================================== -->
+
+<div id="loadingOverlay" class="loading-overlay">
+
+    <div class="loader"></div>
+
+    <p>Loading your Gene-rations profile...</p>
+
+</div>
+
+<!-- ==========================================
+     EDIT PROFILE MODAL
+========================================== -->
+
+<div id="editProfileModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Edit Profile</h2>
+
+            <button id="closeModalBtn">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <form id="editProfileForm">
+
+            <label>Full Name</label>
+            <input type="text" id="editFullName">
+
+            <label>Phone Number</label>
+            <input type="tel" id="editPhone">
+
+            <label>Country</label>
+            <input type="text" id="editCountry">
+
+            <label>Bio</label>
+            <textarea id="editBio"></textarea>
+
+            <button type="submit" class="primary-btn">
+
+                Save Changes
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     PROFILE PHOTO PREVIEW MODAL
+========================================== -->
+
+<div id="photoModal" class="modal">
+
+    <div class="modal-content photo-modal">
+
+        <button id="closePhotoModal">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <img
+            src="images/default-profile.png"
+            id="largeProfileImage"
+            alt="Profile Photo Preview">
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     JAVASCRIPT FILES
+========================================== -->
+
+<script src="app.js"></script>
+<script src="profile.js"></script>
+
+</main>
 
 </body>
 </html>
