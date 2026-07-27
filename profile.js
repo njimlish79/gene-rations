@@ -1,13 +1,4 @@
-/*==================================================
-  GENE-RATIONS PROFILE
-  profile.js - Part 1
-==================================================*/
-
 document.addEventListener("DOMContentLoaded", () => {
-
-    // ==========================================
-    // Get Logged-in User
-    // ==========================================
 
     let user = JSON.parse(localStorage.getItem("userData"));
 
@@ -17,20 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // ==========================================
-    // Helper Function
-    // ==========================================
-
     function setText(id, value) {
         const element = document.getElementById(id);
         if (element) {
             element.textContent = value || "Not Available";
         }
     }
-
-    // ==========================================
-    // Populate Profile Information
-    // ==========================================
 
     setText("fullName", user.fullName);
     setText("email", user.email);
@@ -40,10 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Country is optional
     setText("country", user.country || "Kenya");
-
-    // ==========================================
-    // Member Since
-    // ==========================================
 
     if (!user.memberSince) {
 
@@ -65,10 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setText("memberSince", user.memberSince);
     setText("footerMemberSince", user.memberSince);
 
-    // ==========================================
-    // Generation Information
-    // ==========================================
-
     const generation = user.generation || "Generation";
 
     setText("generationName", generation);
@@ -81,10 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
         user.badge || "Explorer"
     );
 
-    // ==========================================
-    // Statistics Defaults
-    // ==========================================
-
     user.flowers = user.flowers || 0;
     user.followers = user.followers || 0;
     user.following = user.following || 0;
@@ -94,10 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
     user.reputation = user.reputation || 0;
     user.profileViews = user.profileViews || 0;
     user.generationXP = user.generationXP || 0;
-
-    // ==========================================
-    // Display Statistics
-    // ==========================================
 
     setText("flowers", user.flowers);
     setText("followers", user.followers);
@@ -114,10 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setText("generationXP", user.generationXP + " XP");
     setText("footerGenerationScore", user.generationXP + " XP");
-
-    // ==========================================
-    // Level Calculation
-    // ==========================================
 
     const level = Math.floor(user.generationXP / 100) + 1;
 
@@ -223,19 +186,11 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 });
-/*==================================================
-  PROFILE.JS - PART 2
-  Photo Upload + Modals + Edit Profile
-==================================================*/
 
-document.addEventListener("DOMContentLoaded", () => {
+}
 
     let user =
         JSON.parse(localStorage.getItem("userData")) || {};
-
-    // ==========================================
-    // PROFILE PHOTO UPLOAD
-    // ==========================================
 
     const uploadBtn =
         document.getElementById("uploadBtn");
@@ -291,9 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    // ==========================================
-    // UPDATE ALL PROFILE IMAGES
-    // ==========================================
 
     function updateAllProfileImages(image) {
 
@@ -508,15 +460,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
-    }
+       }
 
-});
-/*==================================================
-  PROFILE.JS - PART 3
-  Bio + Tabs + Posts + Timeline
-==================================================*/
-
-document.addEventListener("DOMContentLoaded", () => {
+    });
 
     let user = JSON.parse(localStorage.getItem("userData")) || {};
 
@@ -789,10 +735,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updatePostCount();
 
 });
-/*==================================================
-  PROFILE.JS - PART 4
-  Final Features
-==================================================*/
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -1061,10 +1003,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    // ==========================================
-    // PRIVACY SETTINGS
-    // ==========================================
-
     const privacyBtn =
         document.getElementById("privacyBtn");
 
@@ -1077,10 +1015,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     }
-
-    // ==========================================
-    // LOGOUT
-    // ==========================================
 
     const logoutBtn =
         document.getElementById("logoutBtn");
@@ -1101,10 +1035,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     }
-
-    // ==========================================
-    // LAST ACTIVE
-    // ==========================================
 
     const lastActive =
         document.getElementById("lastActive");
