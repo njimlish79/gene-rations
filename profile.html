@@ -1,361 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Gene-rations</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Gene-rations | My Profile</title>
-
-<link rel="stylesheet" href="profile.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="profile.css">
 </head>
 
 <body>
 
-<!-- Navigation -->
+    <!-- Header -->
+    <header class="profile-header">
+        <h1>My Profile</h1>
+    </header>
 
-<nav class="navbar">
+    <!-- Profile Card -->
+    <section class="profile-card">
 
-<div class="logo">
-Gene-rations
-</div>
+        <div class="profile-image-section">
 
-<ul class="nav-links">
+            <img src="images/default-profile.png"
+                 id="profileImage"
+                 alt="Profile Photo">
 
-<li><a href="dashboard.html">Home</a></li>
+            <input
+                type="file"
+                id="imageUpload"
+                accept="image/*"
+                hidden>
 
-<li><a href="videos.html">Videos</a></li>
+            <button id="uploadBtn">
+                Upload Photo
+            </button>
 
-<li><a href="community.html">Communities</a></li>
+        </div>
 
-<li><a href="messages.html">Messages</a></li>
+        <h2 id="fullName">Full Name</h2>
 
-<li><a href="marketplace.html">Marketplace</a></li>
+        <span id="generationBadge"
+              class="generation-badge">
+              Generation Badge
+        </span>
 
-<li><a href="events.html">Events</a></li>
+        <p id="generationName">
+            Generation Name
+        </p>
 
-<li><a href="profile.html" class="active">Profile</a></li>
+    </section>
 
-</ul>
+    <!-- Personal Information -->
 
-</nav>
+    <section class="profile-info">
 
-<!-- Cover Photo -->
+        <h3>Personal Information</h3>
 
-<section class="cover-section">
+        <div class="info-item">
+            <strong>Email</strong>
+            <p id="email"></p>
+        </div>
 
-<img
-src="images/cover.jpg"
-class="cover-photo"
-alt="Cover Photo">
+        <div class="info-item">
+            <strong>Phone</strong>
+            <p id="phone"></p>
+        </div>
 
-<div class="profile-picture-area">
+        <div class="info-item">
+            <strong>Date of Birth</strong>
+            <p id="dob"></p>
+        </div>
 
-<img
-src="images/default-profile.png"
-id="profileImage"
-class="profile-picture"
-alt="Profile">
+        <div class="info-item">
+            <strong>Gender</strong>
+            <p id="gender"></p>
+        </div>
 
-<button id="uploadPhoto">
+    </section>
 
-<i class="fa fa-camera"></i>
+    <!-- Bio -->
 
-</button>
+    <section class="bio-section">
 
-<input
-type="file"
-id="photoInput"
-accept="image/*"
-hidden>
+        <h3>Bio</h3>
 
-</div>
+        <textarea
+            id="bio"
+            placeholder="Tell people about yourself...">
+        </textarea>
 
-</section>
+        <button id="saveBioBtn">
+            Save Bio
+        </button>
 
-<!-- Profile Card -->
+    </section>
 
-<section class="profile-card">
+    <!-- Statistics -->
 
-<h1 id="fullName">
-Loading...
-</h1>
+    <section class="stats">
 
-<div
-id="generationBadge"
-class="badge">
+        <div class="stat-card">
+            <h3 id="flowers">0</h3>
+            <p>Flowers</p>
+        </div>
 
-Loading Badge...
+        <div class="stat-card">
+            <h3 id="followers">0</h3>
+            <p>Followers</p>
+        </div>
 
-</div>
+        <div class="stat-card">
+            <h3 id="following">0</h3>
+            <p>Following</p>
+        </div>
 
-<p id="bio">
+    </section>
 
-"No biography yet."
+    <!-- Action Buttons -->
 
-</p>
+    <section class="profile-actions">
 
-<button id="editProfile">
+        <button id="editProfileBtn">
+            Edit Profile
+        </button>
 
-Edit Profile
+        <button id="settingsBtn">
+            Settings
+        </button>
 
-</button>
+        <button id="changePasswordBtn">
+            Change Password
+        </button>
 
-</section>
+        <button id="logoutBtn">
+            Logout
+        </button>
 
-<!-- Statistics -->
+    </section>
 
-<section class="stats">
+    <!-- Recent Posts -->
 
-<div class="stat">
+    <section class="recent-posts">
 
-<h2 id="posts">
+        <h3>Recent Posts</h3>
 
-0
+        <div id="postsContainer">
 
-</h2>
+            <p class="empty-posts">
+                You haven't posted anything yet.
+            </p>
 
-<p>Posts</p>
+        </div>
 
-</div>
+    </section>
 
-<div class="stat">
-
-<h2 id="videos">
-
-0
-
-</h2>
-
-<p>Videos</p>
-
-</div>
-
-<div class="stat">
-
-<h2 id="followers">
-
-0
-
-</h2>
-
-<p>Followers</p>
-
-</div>
-
-<div class="stat">
-
-<h2 id="following">
-
-0
-
-</h2>
-
-<p>Following</p>
-
-</div>
-
-<div class="stat">
-
-<h2 id="communities">
-
-0
-
-</h2>
-
-<p>Communities</p>
-
-</div>
-
-</section>
-
-<!-- Personal Information -->
-
-<section class="details">
-
-<h2>
-
-Personal Information
-
-</h2>
-
-<div class="detail-row">
-
-<strong>
-
-<i class="fa fa-envelope"></i>
-
-Email
-
-</strong>
-
-<span id="email"></span>
-
-</div>
-
-<div class="detail-row">
-
-<strong>
-
-<i class="fa fa-phone"></i>
-
-Phone
-
-</strong>
-
-<span id="phone"></span>
-
-</div>
-
-<div class="detail-row">
-
-<strong>
-
-<i class="fa fa-user"></i>
-
-Gender
-
-</strong>
-
-<span id="gender"></span>
-
-</div>
-
-<div class="detail-row">
-
-<strong>
-
-<i class="fa fa-calendar"></i>
-
-Date of Birth
-
-</strong>
-
-<span id="dob"></span>
-
-</div>
-
-<div class="detail-row">
-
-<strong>
-
-<i class="fa fa-users"></i>
-
-Generation
-
-</strong>
-
-<span id="generation"></span>
-
-</div>
-
-</section>
-
-<!-- Recent Activity -->
-
-<section class="activity">
-
-<h2>
-
-Recent Activity
-
-</h2>
-
-<div id="activityList">
-
-<p>
-
-No recent activity.
-
-</p>
-
-</div>
-
-</section>
-
-<!-- Quick Actions -->
-
-<section class="quick-actions">
-
-<a href="videos.html">
-
-<i class="fa fa-video"></i>
-
-My Videos
-
-</a>
-
-<a href="messages.html">
-
-<i class="fa fa-comments"></i>
-
-Messages
-
-</a>
-
-<a href="community.html">
-
-<i class="fa fa-users"></i>
-
-Communities
-
-</a>
-
-<a href="family-tree.html">
-
-<i class="fa fa-tree"></i>
-
-Family Tree
-
-</a>
-
-<a href="premium.html">
-
-<i class="fa fa-wallet"></i>
-
-Wallet
-
-</a>
-
-<a href="assistant.html">
-
-<i class="fa fa-robot"></i>
-
-AI Assistant
-
-</a>
-
-</section>
-
-<!-- Logout -->
-
-<section class="logout">
-
-<button id="logout">
-
-Logout
-
-</button>
-
-</section>
-
-<footer>
-
-<p>
-
-© 2026 Gene-rations
-
-Connecting Every Generation
-
-</p>
-
-</footer>
-
-<script src="profile.js"></script>
+    <script src="profile.js"></script>
 
 </body>
 </html>
