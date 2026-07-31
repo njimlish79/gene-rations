@@ -237,17 +237,6 @@ return;
 
 }
 
-/*
-Replace this section with a backend API call
-when Node.js and database are connected.
-*/
-
-if(
-email === "admin@generations.com"
-&&
-password === "password123"
-){
-
 message.textContent =
 "Login successful! Redirecting...";
 
@@ -274,36 +263,34 @@ message.className =
 
 });
 
-document.getElementById("loginForm")
-.addEventListener("submit", function(e){
+document.getElementById("loginForm").addEventListener("submit", function(e) {
 
     e.preventDefault();
 
-    const email =
-    document.getElementById("email").value;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
-    const password =
-    document.getElementById("password").value;
+    const message = document.getElementById("message");
 
-    const user =
-    JSON.parse(
-        localStorage.getItem("user")
-    );
+    const user = JSON.parse(localStorage.getItem("userData"));
 
-    if(
+    if (
         user &&
         email === user.email &&
         password === user.password
-    ){
+    ) {
 
-        alert("Login Successful");
+        message.textContent = "Login successful! Redirecting...";
+        message.className = "message success";
 
-        window.location.href =
-        "dashboard.html";
+        setTimeout(() => {
+            window.location.href = "dashboard.html";
+        }, 1500);
 
-    }else{
+    } else {
 
-        alert("Invalid Email or Password");
+        message.textContent = "Invalid email or password.";
+        message.className = "message error";
 
     }
 
