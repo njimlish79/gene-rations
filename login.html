@@ -197,88 +197,47 @@ Forgot Password?
 </div>
 
 <script>
+  
+const passwordField = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
 
-const passwordField =
-document.getElementById("password");
-
-document
-.getElementById("togglePassword")
-.addEventListener("change",function(){
-
-passwordField.type =
-this.checked ? "text" : "password";
-
+togglePassword.addEventListener("change", function () {
+    passwordField.type = this.checked ? "text" : "password";
 });
 
-document
-.getElementById("loginForm")
-.addEventListener("submit",function(e){
-
-e.preventDefault();
-
-const email =
-document.getElementById("email").value;
-
-const password =
-document.getElementById("password").value;
-
-const message =
-document.getElementById("message");
-
-if(email === "" || password === ""){
-
-message.textContent =
-"Please fill in all fields.";
-
-message.className =
-"message error";
-
-return;
-
-}
-
-message.textContent =
-"Login successful! Redirecting...";
-
-message.className =
-"message success";
-
-setTimeout(() => {
-
-window.location.href =
-"dashboard.html";
-
-},1500);
-
-}
-else{
-
-message.textContent =
-"Invalid email or password.";
-
-message.className =
-"message error";
-
-}
-
-});
-
-document.getElementById("loginForm").addEventListener("submit", function(e) {
+document.getElementById("loginForm").addEventListener("submit", function (e) {
 
     e.preventDefault();
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
-
     const message = document.getElementById("message");
 
+    // Clear previous message
+    message.textContent = "";
+    message.className = "message";
+
+    // Validate fields
+    if (email === "" || password === "") {
+
+        message.textContent = "Please fill in all fields.";
+        message.className = "message error";
+        return;
+    }
+
+    // Read saved user
     const user = JSON.parse(localStorage.getItem("userData"));
 
-    if (
-        user &&
-        email === user.email &&
-        password === user.password
-    ) {
+    // Check if a user exists
+    if (!user) {
+
+        message.textContent = "No account found. Please sign up first.";
+        message.className = "message error";
+        return;
+    }
+
+    // Check credentials
+    if (email === user.email && password === user.password) {
 
         message.textContent = "Login successful! Redirecting...";
         message.className = "message success";
@@ -291,11 +250,10 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
 
         message.textContent = "Invalid email or password.";
         message.className = "message error";
-
     }
 
 });
-
+  
 </script>
 
 </body>
