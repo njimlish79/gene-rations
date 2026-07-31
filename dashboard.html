@@ -266,7 +266,7 @@ and every generation around the world.
 
 <div class="generation">
 Current Generation:
-<strong>Generation Z</strong>
+<strong id="dashboardGeneration"></strong>
 </div>
 
 </div>
@@ -285,7 +285,7 @@ placeholder="Share something with the community...">
 
 <div class="feed-post">
 
-<h4>James Nganga</h4>
+<h4 id="dashboardName"></h4>
 
 <p>
 Just joined Gene-rations and excited to connect
@@ -378,6 +378,12 @@ Join "Generation Leaders" community.
   
 <script>
 
+  const user = JSON.parse(localStorage.getItem("userData"));
+
+if (!user) {
+    window.location.href = "login.html";
+}
+
 const user = JSON.parse(localStorage.getItem("user"));
 
 if(!user){
@@ -451,12 +457,29 @@ function createPost(){
 
 function logout(){
 
-    localStorage.removeItem("user");
+    localStorage.removeItem("userData");
 
     window.location.href =
     "index.html";
 }
 
+  document.addEventListener("DOMContentLoaded", () => {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+
+    if (!userData) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    // User name
+    document.getElementById("dashboardName").textContent =
+        userData.fullName || "User";
+
+    // Generation
+    document.getElementById("dashboardGeneration").textContent =
+        userData.generation || "Unknown Generation";
+});
+  
 </script>
   
 <script src="script.js"></script>

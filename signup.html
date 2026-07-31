@@ -427,31 +427,45 @@ message.textContent =
 message.className =
 "message success";
 
-setTimeout(() => {
-
-window.location.href =
-"verify-email.html";
-
-},2000);
-
 });
+  
 document.getElementById("signupForm")
 .addEventListener("submit", function(e){
 
     e.preventDefault();
 
-    const userData = {
-        fullName: document.getElementById("fullName").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value
-    };
+  const fullName = document.getElementById("fullName").value.trim();
+const email = document.getElementById("email").value.trim();
+const phone = document.getElementById("phone").value.trim();
+const dob = document.getElementById("dob").value;
+const gender = document.getElementById("gender").value;
+const password = document.getElementById("password").value;
+const profilePhoto = ""; // Default if no photo uploaded
 
-    localStorage.setItem(
-        "user",
-        JSON.stringify(userData)
-    );
+  const internationalPhone = iti.getNumber();
+  const generation = getGeneration(
+    new Date(dob).getFullYear()
+);
 
-    window.location.href = "login.html";
+ const userData = {
+    fullName,
+    email,
+    phone: internationalPhone,
+    dob,
+    gender,
+    password,
+    generation,
+    profilePhoto,
+    bio: "",
+    followers: 0,
+    following: 0,
+    posts: 0,
+    communities: []
+};
+
+localStorage.setItem("userData", JSON.stringify(userData));
+
+  window.location.href = "two-factor.html";
 
 });
 

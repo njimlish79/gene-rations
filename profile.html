@@ -868,6 +868,11 @@ Login Activity
 <script>
   // ================= LOAD PROFILE =================
 
+  const user = JSON.parse(localStorage.getItem("userData"));
+if (!user) {
+    window.location.href = "login.html";
+}
+
 document.addEventListener("DOMContentLoaded", loadProfile);
 
 function loadProfile(){
