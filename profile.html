@@ -866,299 +866,374 @@ Login Activity
 </div>
 
 <script>
-  // ================= LOAD PROFILE =================
+  
+document.addEventListener("DOMContentLoaded", initProfile);
 
-  const user = JSON.parse(localStorage.getItem("userData"));
-if (!user) {
-    window.location.href = "login.html";
-}
+function initProfile() {
 
-document.addEventListener("DOMContentLoaded", loadProfile);
+    const user = JSON.parse(localStorage.getItem("userData"));
 
-function loadProfile(){
+    if (!user) {
+        window.location.href = "login.html";
+        return;
+    }
 
-const user = JSON.parse(localStorage.getItem("userData")) || {};
+    // ================= PROFILE HEADER =================
 
-// Header
-document.getElementById("fullName").textContent = user.fullName || "Guest User";
-document.getElementById("generationName").textContent = user.generation || "Unknown Generation";
-document.getElementById("generationBadge").textContent = user.generationBadge || "Member";
+    document.getElementById("fullName").textContent =
+        user.fullName || "Guest User";
 
-// Personal Details
-document.getElementById("infoName").textContent = user.fullName || "-";
-document.getElementById("infoPhone").textContent = user.phone || "-";
-document.getElementById("infoEmail").textContent = user.email || "-";
-document.getElementById("infoDOB").textContent = user.dob || "-";
-document.getElementById("infoGender").textContent = user.gender || "-";
-document.getElementById("infoCountry").textContent = user.country || "-";
-document.getElementById("infoGeneration").textContent = user.generation || "-";
-document.getElementById("infoBadge").textContent = user.generationBadge || "-";
+    document.getElementById("generationName").textContent =
+        user.generation || "Unknown Generation";
 
-document.getElementById("generationDescription").textContent =
-user.generationDescription ||
-"Welcome to Gene-rations.";
+    document.getElementById("generationBadge").textContent =
+        user.generationBadge || user.generation || "Member";
 
-document.getElementById("memberSince").textContent =
-user.memberSince || new Date().toLocaleDateString();
+    // ================= PERSONAL INFORMATION =================
 
-document.getElementById("lastActive").textContent =
-new Date().toLocaleString();
+    document.getElementById("infoName").textContent =
+        user.fullName || "-";
 
-// About Me
-document.getElementById("bio").value = user.bio || "";
-document.getElementById("interests").value = user.interests || "";
-document.getElementById("hobbies").value = user.hobbies || "";
+    document.getElementById("infoPhone").textContent =
+        user.phone || "-";
 
-// Statistics
-document.getElementById("followers").textContent = user.followers || 0;
-document.getElementById("following").textContent = user.following || 0;
-document.getElementById("posts").textContent = user.posts || 0;
-document.getElementById("events").textContent = user.events || 0;
-document.getElementById("familyMembers").textContent = user.familyMembers || 0;
-document.getElementById("profileViews").textContent = user.profileViews || 0;
+    document.getElementById("infoEmail").textContent =
+        user.email || "-";
 
-// Profile Photo
-if(user.profilePhoto){
-document.getElementById("profileImage").src = user.profilePhoto;
-}
+    document.getElementById("infoDOB").textContent =
+        user.dob || "-";
 
-// Skills
-loadSkills();
+    document.getElementById("infoGender").textContent =
+        user.gender || "-";
 
-}
+    document.getElementById("infoCountry").textContent =
+        user.country || "Not Set";
 
-// ================= SAVE PROFILE =================
+    document.getElementById("infoGeneration").textContent =
+        user.generation || "-";
 
-function saveProfile(){
+    document.getElementById("infoBadge").textContent =
+        user.generationBadge || user.generation || "-";
 
-const user = JSON.parse(localStorage.getItem("userData")) || {};777ù7
+    document.getElementById("generationDescription").textContent =
+        user.generationDescription ||
+        ("Welcome to the " + (user.generation || "Gene-rations") + " community.");
 
-user.bio = document.getElementById("bio").value;
-user.interests = document.getElementById("interests").value;
-user.hobbies = document.getElementById("hobbies").value;
-user.lastActive = new Date().toLocaleString();
+    document.getElementById("memberSince").textContent =
+        user.memberSince || "Today";
 
-localStorage.setItem("userData", JSON.stringify(user));
+    document.getElementById("lastActive").textContent =
+        new Date().toLocaleString();
 
-alert("Profile saved successfully.");
+    // ================= ABOUT ME =================
 
+    document.getElementById("bio").value =
+        user.bio || "";
+
+    document.getElementById("interests").value =
+        user.interests || "";
+
+    document.getElementById("hobbies").value =
+        user.hobbies || "";
+
+    // Continue in Part 2...
+}    // ================= STATISTICS =================
+
+    document.getElementById("followers").textContent =
+        user.followers || 0;
+
+    document.getElementById("following").textContent =
+        user.following || 0;
+
+    document.getElementById("posts").textContent =
+        user.posts || 0;
+
+    document.getElementById("events").textContent =
+        user.events || 0;
+
+    document.getElementById("familyMembers").textContent =
+        user.familyMembers || 0;
+
+    document.getElementById("profileViews").textContent =
+        user.profileViews || 0;
+
+    // ================= ACTIVITY =================
+
+    document.getElementById("recentPosts").textContent =
+        user.recentPosts || 0;
+
+    document.getElementById("likes").textContent =
+        user.likes || 0;
+
+    document.getElementById("comments").textContent =
+        user.comments || 0;
+
+    document.getElementById("upcomingEvents").textContent =
+        user.upcomingEvents || 0;
+
+    document.getElementById("organizedEvents").textContent =
+        user.organizedEvents || 0;
+
+    document.getElementById("timeline").textContent =
+        user.timeline || 0;
+
+    // ================= FAMILY TREE =================
+
+    document.getElementById("connectedFamily").textContent =
+        (user.connectedFamily || 0) + " Members";
+
+    document.getElementById("familyStatus").textContent =
+        user.familyStatus || "No Family Connected";
+
+    // ================= ACHIEVEMENTS =================
+
+    document.getElementById("postsAchievement").textContent =
+        user.postsAchievement || "No milestone yet";
+
+    document.getElementById("followersAchievement").textContent =
+        user.followersAchievement || "No milestone yet";
+
+    document.getElementById("communityLeader").textContent =
+        user.communityLeader || "Not Earned";
+
+    document.getElementById("topContributor").textContent =
+        user.topContributor || "Not Earned";
+
+    document.getElementById("eventOrganizer").textContent =
+        user.eventOrganizer || "Not Earned";
+
+    document.getElementById("verifiedAchievement").textContent =
+        user.verifiedAchievement || "Verified";
+
+    // ================= REPUTATION =================
+
+    document.getElementById("contributionScore").textContent =
+        user.contributionScore || 0;
+
+    document.getElementById("communityRank").textContent =
+        user.communityRank || "New";
+
+    document.getElementById("engagementLevel").textContent =
+        user.engagementLevel || "Low";
+
+    // ================= PROFILE PHOTO =================
+
+    if (user.profilePhoto) {
+        document.getElementById("profileImage").src =
+            user.profilePhoto;
+    }
+
+    // ================= SKILLS =================
+
+    loadSkills();
+
+  }
+
+  // ================= SAVE PROFILE =================
+
+function saveProfile() {
+
+    const user = JSON.parse(localStorage.getItem("userData")) || {};
+
+    user.bio = document.getElementById("bio").value.trim();
+    user.interests = document.getElementById("interests").value.trim();
+    user.hobbies = document.getElementById("hobbies").value.trim();
+
+    user.lastActive = new Date().toLocaleString();
+
+    localStorage.setItem("userData", JSON.stringify(user));
+
+    alert("Profile updated successfully!");
 }
 
 // ================= PROFILE PHOTO =================
 
-document.getElementById("photoUpload").addEventListener("change",function(e){
+document.getElementById("photoUpload").addEventListener("change", function (e) {
 
-const file = e.target.files[0];
+    const file = e.target.files[0];
 
-if(!file) return;
+    if (!file) return;
 
-const reader = new FileReader();
+    const reader = new FileReader();
 
-reader.onload=function(){
+    reader.onload = function () {
 
-document.getElementById("profileImage").src=reader.result;
+        document.getElementById("profileImage").src = reader.result;
 
-const user=JSON.parse(localStorage.getItem("userData"))||{};
+        const user = JSON.parse(localStorage.getItem("userData")) || {};
 
-user.profilePhoto=reader.result;
+        user.profilePhoto = reader.result;
 
-localStorage.setItem("userData",JSON.stringify(user));
+        localStorage.setItem("userData", JSON.stringify(user));
+    };
 
-}
-
-reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
 
 });
 
 // ================= SKILLS =================
 
-function loadSkills(){
+function loadSkills() {
 
-const user=JSON.parse(localStorage.getItem("userData"))||{};
+    const user = JSON.parse(localStorage.getItem("userData")) || {};
 
-const container=document.getElementById("skillContainer");
+    const container = document.getElementById("skillContainer");
 
-container.innerHTML="";
+    container.innerHTML = "";
 
-if(user.skills && user.skills.length){
+    if (user.skills && user.skills.length > 0) {
 
-user.skills.forEach(skill=>{
+        user.skills.forEach(function (skill) {
 
-const tag=document.createElement("span");
+            const tag = document.createElement("span");
 
-tag.className="skill";
+            tag.className = "skill";
 
-tag.textContent=skill;
+            tag.textContent = skill;
 
-container.appendChild(tag);
+            container.appendChild(tag);
 
-});
+        });
 
-}else{
+    } else {
 
-container.innerHTML="<span class='skill'>No Skills Selected</span>";
+        container.innerHTML =
+            "<span class='skill'>No Skills Selected</span>";
 
-}
-
-}
-
-function selectSkills(){
-
-window.location.href="skills.html";
+    }
 
 }
 
-function editSkills(){
+function selectSkills() {
 
-window.location.href="skills.html";
-
-}
-
-function removeSkills(){
-
-const user=JSON.parse(localStorage.getItem("userData"))||{};
-
-user.skills=[];
-
-localStorage.setItem("userData",JSON.stringify(user));
-
-loadSkills();
+    window.location.href = "skills.html";
 
 }
 
-// ================= NAVIGATION =================
+function editSkills() {
 
-function goHome(){
-
-window.location.href="dashboard.html";
+    window.location.href = "skills.html";
 
 }
 
-function viewFamilyTree(){
+function removeSkills() {
 
-window.location.href="family-tree.html";
+    const user = JSON.parse(localStorage.getItem("userData")) || {};
 
-}
+    user.skills = [];
 
-// ================= AI =================
+    localStorage.setItem("userData", JSON.stringify(user));
 
-function askAI(){
+    loadSkills();
 
-window.location.href="assistance.html";
-
-}
-
-function profileSuggestions(){
-
-alert("AI Profile Suggestions Coming Soon");
+    alert("Skills removed successfully.");
 
 }
+  // ================= NAVIGATION =================
 
-function writingAssistant(){
-
-window.location.href="assistance.html";
-
+function goHome() {
+    window.location.href = "dashboard.html";
 }
 
-function aiRecommendations(){
-
-alert("AI Recommendations Coming Soon");
-
+function editProfile() {
+    document.getElementById("bio").focus();
 }
 
-function careerSuggestions(){
+// ================= FAMILY TREE =================
 
-alert("Career Suggestions Coming Soon");
-
+function viewFamilyTree() {
+    window.location.href = "family-tree.html";
 }
 
-function learningRecommendations(){
+// ================= AI ASSISTANT =================
 
-alert("Learning Recommendations Coming Soon");
+function askAI() {
+    window.location.href = "ai-assistant.html";
+}
 
+function profileSuggestions() {
+    alert("AI Profile Suggestions coming soon.");
+}
+
+function writingAssistant() {
+    window.location.href = "ai-assistant.html";
+}
+
+function aiRecommendations() {
+    alert("AI Recommendations coming soon.");
+}
+
+function careerSuggestions() {
+    alert("AI Career Suggestions coming soon.");
+}
+
+function learningRecommendations() {
+    alert("AI Learning Recommendations coming soon.");
 }
 
 // ================= PRIVACY & SECURITY =================
 
-// Change Password
 function changePassword() {
     window.location.href = "forgotpassword.html";
 }
 
-// Privacy Settings
 function privacySettings() {
-    window.location.href = "privacy-settings.html";
+    alert("Privacy Settings coming soon.");
 }
 
-// Blocked Users
 function blockedUsers() {
-    window.location.href = "blocked-users.html";
+    alert("Blocked Users page coming soon.");
 }
 
-// Login Activity
 function loginActivity() {
-    window.location.href = "login-activity.html";
+    alert("Login Activity coming soon.");
 }
 
-// ================= SETTINGS =================
+// ================= ACCOUNT SETTINGS =================
 
-function toggleDarkMode(){
-
-document.body.classList.toggle("dark-mode");
-
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
 }
 
-function notificationSettings(){
-
-alert("Notification Settings");
-
+function notificationSettings() {
+    alert("Notification Settings coming soon.");
 }
 
-function logout(){
+function logout() {
 
-localStorage.removeItem("currentUser");
+    localStorage.removeItem("currentUser");
 
-window.location.href="login.html";
-
+    window.location.href = "login.html";
 }
 
-function deleteAccount(){
+function deleteAccount() {
 
-if(confirm("Delete your account permanently?")){
+    if (confirm("Are you sure you want to delete your account?")) {
 
-localStorage.removeItem("userData");
+        localStorage.removeItem("userData");
+        localStorage.removeItem("currentUser");
 
-window.location.href="signup.html";
-
-}
-
+        window.location.href = "signup.html";
+    }
 }
 
 // ================= FOOTER =================
 
-function terms(){
-
-window.location.href="terms.html";
-
+function terms() {
+    window.location.href = "terms.html";
 }
 
-function privacyPolicy(){
-
-window.location.href="privacy.html";
-
+function privacyPolicy() {
+    window.location.href = "privacy.html";
 }
 
-function helpSupport(){
-
-window.location.href="help.html";
-
+function helpSupport() {
+    window.location.href = "help.html";
 }
 
-function contactUs(){
-
-window.location.href="contact.html";
-
-}
+function contactUs() {
+    window.location.href = "contact.html";
+  }
 
 </script>
 
