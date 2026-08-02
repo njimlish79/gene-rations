@@ -1,1242 +1,819 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gene-rations | Profile</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations Profile</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-    background:#04d167;
-    color:#333;
+
+background:#eef3f9;
+
 }
 
-header{
-    background:#08d209;
-    color:#fff;
-    padding:20px;
-    text-align:center;
-    position:sticky;
-    top:0;
-    z-index:100;
+/*======================
+HEADER
+======================*/
+
+.header{
+
+background:linear-gradient(135deg,#057808,#1565c0);
+
+padding:20px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+color:white;
+
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+
 }
 
-header h1{
-    font-size:26px;
+.logo{
+
+font-size:28px;
+
+font-weight:bold;
+
 }
 
-.container{
-    width:95%;
-    max-width:900px;
-    margin:20px auto;
+.home-btn{
+
+background:white;
+
+color:#078b24;
+
+padding:10px 20px;
+
+border-radius:30px;
+
+text-decoration:none;
+
+font-weight:bold;
+
 }
 
-/* Cards */
+/*======================
+PROFILE CARD
+======================*/
 
-.card{
-    background:#fff;
-    border-radius:12px;
-    padding:20px;
-    margin-bottom:20px;
-    box-shadow:0 3px 10px rgba(0,0,0,.1);
+.profile-card{
+
+max-width:900px;
+
+margin:30px auto;
+
+background:white;
+
+border-radius:20px;
+
+overflow:hidden;
+
+box-shadow:0 10px 25px rgba(0,6,2,.15);
+
 }
 
-.card h2{
-    color:#2563eb;
-    margin-bottom:15px;
-}
-
-/* Profile Header */
+/*======================
+PROFILE HEADER
+======================*/
 
 .profile-header{
-    text-align:center;
+
+padding:30px;
+
+display:flex;
+
+flex-wrap:wrap;
+
+align-items:center;
+
+gap:25px;
+
+background:linear-gradient(135deg,#1976d2,#42a5f5);
+
+color:white;
+
 }
 
-.profile-photo{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    object-fit:cover;
-    border:4px solid #2563eb;
+.image-box{
+
+text-align:center;
+
+}
+
+.image-box img{
+
+width:140px;
+
+height:140px;
+
+border-radius:50%;
+
+border:5px solid white;
+
+object-fit:cover;
+
+background:#ddd;
+
+cursor:pointer;
+
+}
+
+.image-box input{
+
+display:none;
+
 }
 
 .upload-btn{
-    margin-top:10px;
+
+display:inline-block;
+
+margin-top:12px;
+
+padding:10px 18px;
+
+background:white;
+
+color:#1565c0;
+
+border-radius:30px;
+
+font-weight:bold;
+
+cursor:pointer;
+
 }
 
-.upload-btn input{
-    display:none;
+.user-info{
+
+flex:1;
+
 }
 
-.upload-btn label{
-    display:inline-block;
-    background:#2563eb;
-    color:#fff;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
+.user-info h2{
+
+font-size:34px;
+
+margin-bottom:10px;
+
 }
 
-.profile-header h2{
-    margin-top:15px;
+#generationName{
+
+font-size:22px;
+
+font-weight:bold;
+
+margin-bottom:10px;
+
 }
 
-.generation{
-    color:#2563eb;
-    font-weight:bold;
-    margin-top:8px;
+.member{
+
+font-size:15px;
+
+opacity:.9;
+
 }
 
-.badge{
-    display:inline-block;
-    margin-top:10px;
-    background:#16a34a;
-    color:white;
-    padding:6px 14px;
-    border-radius:20px;
-    font-size:14px;
+/*======================
+WELCOME CARD
+======================*/
+
+.welcome{
+
+margin:25px;
+
+padding:20px;
+
+background:#e8f5e9;
+
+border-left:6px solid #43a047;
+
+border-radius:15px;
+
 }
 
-.verified{
-    display:inline-block;
-    margin-top:10px;
-    background:#facc15;
-    color:#222;
-    padding:6px 14px;
-    border-radius:20px;
-    font-size:14px;
-    font-weight:bold;
+.welcome h3{
+
+color:#2e7d32;
+
+margin-bottom:10px;
+
 }
 
-.button-group{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:20px;
+#welcomeMessage{
+
+font-size:17px;
+
+line-height:1.6;
+
 }
 
-.button-group button{
-    padding:10px 20px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    background:#2563eb;
-    color:white;
-    font-weight:bold;
-}
-
-.button-group button:hover{
-    background:#1d4ed8;
-}
-
-/* Information */
+/*======================
+INFO GRID
+======================*/
 
 .info-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+
+gap:20px;
+
+padding:25px;
+
 }
 
-.info-item{
-    background:#f8fafc;
-    padding:12px;
-    border-radius:8px;
+.card{
+
+background:white;
+
+border-radius:15px;
+
+padding:20px;
+
+box-shadow:0 5px 12px rgba(0,0,0,.08);
+
+transition:.3s;
+
 }
 
-.info-item strong{
-    color:#2563eb;
-    display:block;
-    margin-bottom:5px;
+.card:hover{
+
+transform:translateY(-5px);
+
 }
 
-textarea{
-    width:100%;
-    padding:10px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    resize:vertical;
-    min-height:80px;
+.card h3{
+
+color:#1565c0;
+
+margin-bottom:15px;
+
 }
 
-input[type="text"]{
-    width:100%;
-    padding:10px;
-    border:1px solid #ccc;
-    border-radius:8px;
+.item{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:12px 0;
+
+border-bottom:1px solid #eee;
+
 }
 
-/* Skills */
+.item:last-child{
 
-.skill-tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:15px;
+border:none;
+
 }
 
-.skill{
-    background:#2563eb;
-    color:white;
-    padding:8px 12px;
-    border-radius:20px;
-    font-size:14px;
+.value{
+
+font-weight:bold;
+
+color:#0d47a1;
+
+}
+  /*=========================
+SETTING BUTTONS
+=========================*/
+
+.setting-btn{
+
+width:100%;
+
+padding:12px;
+
+margin-top:12px;
+
+background:#1565c0;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:.3s;
+
 }
 
-.skill-buttons{
-    margin-top:20px;
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
+.setting-btn:hover{
+
+background:#0d47a1;
+
 }
 
-.skill-buttons button{
-    flex:1;
-    min-width:150px;
-    background:#2563eb;
-    color:white;
-    border:none;
-    padding:12px;
-    border-radius:8px;
-    cursor:pointer;
+/*=========================
+RECENT POSTS
+=========================*/
+
+#recentPosts{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
 }
 
-/* Statistics */
+.post{
 
-.stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
+padding:12px;
+
+background:#f5f7fb;
+
+border-left:5px solid #1976d2;
+
+border-radius:8px;
+
 }
 
-.stat-box{
-    background:#2563eb;
-    color:white;
-    text-align:center;
-    padding:20px;
-    border-radius:10px;
+/*=========================
+FOOTER
+=========================*/
+
+.footer{
+
+text-align:center;
+
+padding:25px;
+
+background:#1565c0;
+
+color:white;
+
+margin-top:30px;
+
 }
 
-.stat-box h3{
-    font-size:30px;
-}
-
-.stat-box p{
-    margin-top:8px;
-}
-
-/* Mobile */
+/*=========================
+RESPONSIVE
+=========================*/
 
 @media(max-width:768px){
 
+.profile-header{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.user-info h2{
+  
+font-size:28px;
+
+}
+
 .info-grid{
+
 grid-template-columns:1fr;
-}
 
-.stats{
-grid-template-columns:1fr 1fr;
 }
 
 }
 
-@media(max-width:500px){
-
-.stats{
-grid-template-columns:1fr;
-}
-
-}
-  /* ================= PRIVACY & SECURITY ================= */
-
-.security-section{
-    background:#fff;
-    padding:20px;
-    margin-bottom:20px;
-    border-radius:12px;
-    box-shadow:0 3px 10px rgba(0,0,0,.1);
-}
-
-.security-section h2{
-    color:#2563eb;
-    margin-bottom:20px;
-}
-
-.security-list{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-.security-btn{
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-    gap:15px;
-    padding:15px;
-    border:none;
-    border-radius:10px;
-    background:#f8fafc;
-    color:#333;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.security-btn:hover{
-    background:#2563eb;
-    color:#fff;
-    transform:translateX(5px);
-}
-
-.security-btn span{
-    font-size:22px;
-}
-
-/* Mobile */
-
-@media(max-width:768px){
-
-.security-btn{
-    font-size:15px;
-    padding:14px;
-}
-
-}
-</style>
+  </style>
 
 </head>
 
 <body>
 
-<header>
-<h1>Gene-rations Profile</h1>
+<header class="header">
+
+<div class="logo">
+
+Gene-rations
+
+</div>
+
+<a href="dashboard.html"
+class="home-btn">
+
+Home
+
+</a>
+
 </header>
 
-<div class="container">
+<div class="profile-card">
 
-<!-- ================= PROFILE HEADER ================= -->
+<div class="profile-header">
 
-<div class="card profile-header">
+<div class="image-box">
 
-<img src="https://via.placeholder.com/120"
-id="profileImage"
-class="profile-photo">
+<img id="profileImage"
+src="https://via.placeholder.com/140">
 
-<div class="upload-btn">
-<input type="file" id="photoUpload" accept="image/*">
-<label for="photoUpload">Upload Photo</label>
+<br>
+
+<label class="upload-btn">
+
+Upload Photo
+
+<input
+type="file"
+id="imageUpload"
+accept="image/*">
+
+</label>
+
 </div>
 
-<h2 id="fullName">Full Name</h2>
+<div class="user-info">
 
-<p class="generation" id="generationName">
-Generation
+<h2 id="fullName">
+
+Loading...
+
+</h2>
+
+<div id="generationName">
+
+Loading...
+
+</div>
+
+<p class="member">
+
+Member since
+
+<span id="memberSince">
+
+Loading...
+
+</span>
+
 </p>
 
-<span class="badge" id="generationBadge">
-Generation Badge
-</span>
-
-<br>
-
-<span class="verified" id="verifiedStatus">
-✓ Verified Member
-</span>
-
-<div class="button-group">
-<button onclick="goHome()">🏠 Home</button>
-<button onclick="editProfile()">✏ Edit Profile</button>
 </div>
 
 </div>
 
-<!-- ================= PROFILE INFORMATION ================= -->
+<div class="welcome">
 
-<div class="card">
+<h3>
 
-<h2>Profile Information</h2>
+Welcome
 
-<div class="info-grid">
+</h3>
 
-<div class="info-item">
-<strong>Full Name</strong>
-<span id="infoName"></span>
-</div>
+<p id="welcomeMessage">
 
-<div class="info-item">
-<strong>Phone Number</strong>
-<span id="infoPhone"></span>
-</div>
+Loading...
 
-<div class="info-item">
-<strong>Email Address</strong>
-<span id="infoEmail"></span>
-</div>
-
-<div class="info-item">
-<strong>Date of Birth</strong>
-<span id="infoDOB"></span>
-</div>
-
-<div class="info-item">
-<strong>Gender</strong>
-<span id="infoGender"></span>
-</div>
-
-<div class="info-item">
-<strong>Country</strong>
-<span id="infoCountry"></span>
-</div>
-
-<div class="info-item">
-<strong>Generation Name</strong>
-<span id="infoGeneration"></span>
-</div>
-
-<div class="info-item">
-<strong>Generation Badge</strong>
-<span id="infoBadge"></span>
-</div>
-
-<div class="info-item">
-<strong>Generation Description</strong>
-<span id="generationDescription"></span>
-</div>
-
-<div class="info-item">
-<strong>Member Since</strong>
-<span id="memberSince"></span>
-</div>
-
-<div class="info-item">
-<strong>Last Active</strong>
-<span id="lastActive"></span>
-</div>
-
-</div>
-
-<br>
-
-<h3>About Me</h3>
-
-<br>
-
-<label><strong>Bio</strong></label>
-
-<textarea id="bio"></textarea>
-
-<br><br>
-
-<label><strong>Interests</strong></label>
-
-<textarea id="interests"></textarea>
-
-<br><br>
-
-<label><strong>Hobbies</strong></label>
-
-<textarea id="hobbies"></textarea>
-
-<br><br>
-
-<h3>Skills</h3>
-
-<div class="skill-tags" id="skillContainer">
-
-<span class="skill">No Skills Selected</span>
-
-</div>
-
-<div class="skill-buttons">
-
-<button onclick="selectSkills()">
-➕ Select Skills
-</button>
-
-<button onclick="editSkills()">
-✏ Edit Skills
-</button>
-
-<button onclick="removeSkills()">
-🗑 Remove Skills
-</button>
-
-</div>
-
-<br>
-
-<h3>Profile Privacy</h3>
-
-<br>
-
-<select id="privacySetting">
-
-<option>Public Profile</option>
-
-<option>Private Profile</option>
-
-</select>
-
-<br><br>
-
-<button onclick="saveProfile()">
-💾 Save Changes
-</button>
-
-</div>
-
-<!-- ================= STATISTICS ================= -->
-
-<div class="card">
-
-<h2>Statistics</h2>
-
-<div class="stats">
-
-<div class="stat-box">
-<h3 id="followers">0</h3>
-<p>Followers</p>
-</div>
-
-<div class="stat-box">
-<h3 id="following">0</h3>
-<p>Following</p>
-</div>
-
-<div class="stat-box">
-<h3 id="posts">0</h3>
-<p>Posts</p>
-</div>
-
-<div class="stat-box">
-<h3 id="events">0</h3>
-<p>Events Attended</p>
-</div>
-
-<div class="stat-box">
-<h3 id="familyMembers">0</h3>
-<p>Family Members</p>
-</div>
-
-<div class="stat-box">
-<h3 id="profileViews">0</h3>
-<p>Profile Views</p>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= ACTIVITY ================= -->
-
-<div class="card">
-
-<h2>Activity</h2>
-
-<div class="stats">
-
-<div class="stat-box">
-<h3 id="recentPosts">0</h3>
-<p>Recent Posts</p>
-</div>
-
-<div class="stat-box">
-<h3 id="likes">0</h3>
-<p>Likes</p>
-</div>
-
-<div class="stat-box">
-<h3 id="comments">0</h3>
-<p>Comments</p>
-</div>
-
-<div class="stat-box">
-<h3 id="upcomingEvents">0</h3>
-<p>Upcoming Events</p>
-</div>
-
-<div class="stat-box">
-<h3 id="organizedEvents">0</h3>
-<p>Events Organized</p>
-</div>
-
-<div class="stat-box">
-<h3 id="timeline">0</h3>
-<p>Timeline Milestones</p>
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= FAMILY TREE ================= -->
-
-<div class="card">
-
-<h2>Family Tree</h2>
-
-<p style="margin-bottom:20px;">
-Connect with relatives and explore your family generations.
 </p>
 
-<div class="button-group">
-
-<button onclick="viewFamilyTree()">
-🌳 View Family Tree
-</button>
-
 </div>
-
-<br>
-
 <div class="info-grid">
 
-<div class="info-item">
-<strong>Connected Family Members</strong>
-<span id="connectedFamily">0 Members</span>
-</div>
+    <!-- Generation Identity -->
 
-<div class="info-item">
-<strong>Family Status</strong>
-<span id="familyStatus">No Family Connected</span>
-</div>
+    <div class="card">
 
-</div>
+        <h3>
+            <i class="fa-solid fa-award"></i>
+            Generation Identity
+        </h3>
 
-</div>
+        <div class="item">
+            <span>Generation Badge</span>
+            <span class="value"
+                  id="generationBadge">
+                Loading...
+            </span>
+        </div>
 
-<!-- ================= ACHIEVEMENTS ================= -->
+        <div class="item">
+            <span>Description</span>
+            <span class="value"
+                  id="generationDescription">
+                Loading...
+            </span>
+        </div>
 
-<div class="card">
+    </div>
 
-<h2>Achievements</h2>
+    <!-- Followers -->
 
-<div class="info-grid">
+    <div class="card">
 
-<div class="info-item">
-<strong>Posts Milestone</strong>
-<span id="postsAchievement">
-No milestone yet
-</span>
-</div>
+        <h3>
+            <i class="fa-solid fa-users"></i>
+            Community
+        </h3>
 
-<div class="info-item">
-<strong>Followers Milestone</strong>
-<span id="followersAchievement">
-No milestone yet
-</span>
-</div>
+        <div class="item">
 
-<div class="info-item">
-<strong>Community Leader</strong>
-<span id="communityLeader">
-Not Earned
-</span>
-</div>
+            <span>Followers</span>
 
-<div class="info-item">
-<strong>Top Contributor</strong>
-<span id="topContributor">
-Not Earned
-</span>
-</div>
+            <span class="value"
+                  id="followers">
 
-<div class="info-item">
-<strong>Event Organizer</strong>
-<span id="eventOrganizer">
-Not Earned
-</span>
-</div>
+                0
 
-<div class="info-item">
-<strong>Verified Member</strong>
-<span id="verifiedAchievement">
-Verified
-</span>
-</div>
+            </span>
 
-</div>
+        </div>
 
-</div>
+        <div class="item">
 
-<!-- ================= REPUTATION ================= -->
+            <span>Following</span>
 
-<div class="card">
+            <span class="value"
+                  id="following">
 
-<h2>Reputation</h2>
+                0
 
-<div class="stats">
+            </span>
 
-<div class="stat-box">
-<h3 id="contributionScore">0</h3>
-<p>Contribution Score</p>
-</div>
+        </div>
 
-<div class="stat-box">
-<h3 id="communityRank">New</h3>
-<p>Community Rank</p>
-</div>
+    </div>
 
-<div class="stat-box">
-<h3 id="engagementLevel">Low</h3>
-<p>Engagement Level</p>
-</div>
+    <!-- Recent Posts -->
 
-</div>
+    <div class="card">
 
-</div>
+        <h3>
+            <i class="fa-solid fa-file-lines"></i>
+            Recent Posts
+        </h3>
 
-  <!-- ================= AI ASSISTANT ================= -->
+        <div id="recentPosts">
 
-<div class="card">
+            <p>No posts yet.</p>
 
-<h2>AI Assistant</h2>
+        </div>
 
-<p style="margin-bottom:20px;">
-Get personalized AI assistance based on your profile, generation, skills, and activities.
-</p>
+    </div>
 
-<div class="button-group">
+    <!-- Profile Settings -->
 
-<button onclick="askAI()">
-🤖 Ask AI About Your Generation
-</button>
+    <div class="card">
 
-<button onclick="profileSuggestions()">
-💡 AI Profile Suggestions
-</button>
+        <h3>
+            <i class="fa-solid fa-gear"></i>
+            Profile Settings
+        </h3>
 
-<button onclick="writingAssistant()">
-✍ AI Writing Assistant
-</button>
+        <button
+        class="setting-btn"
+        onclick="location.href='edit-profile.html'">
 
-<button onclick="aiRecommendations()">
-🎯 AI Recommendations
-</button>
+            Edit Profile
 
-<button onclick="careerSuggestions()">
-💼 AI Career Suggestions
-</button>
+        </button>
 
-<button onclick="learningRecommendations()">
-📚 AI Learning Recommendations
-</button>
+        <button
+        class="setting-btn"
+        onclick="location.href='privacy.html'">
+
+            Privacy
+
+        </button>
+
+        <button
+        class="setting-btn"
+        onclick="location.href='resetpassword.html'">
+
+            Change Password
+
+        </button>
+
+    </div>
 
 </div>
 
-</div>
+<footer class="footer">
 
-<!-- ================= PRIVACY & SECURITY ================= -->
-
-<div class="card security-section">
-
-<h2>Privacy & Security</h2>
-
-<div class="security-list">
-
-<button class="security-btn" onclick="changePassword()">
-<span>🔑</span>
-Change Password
-</button>
-
-<button class="security-btn" onclick="privacySettings()">
-<span>🔒</span>
-Privacy Settings
-</button>
-
-<button class="security-btn" onclick="blockedUsers()">
-<span>🚫</span>
-Blocked Users
-</button>
-
-<button class="security-btn" onclick="loginActivity()">
-<span>🕒</span>
-Login Activity
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= ACCOUNT SETTINGS ================= -->
-
-<div class="card">
-
-<h2>Account Settings</h2>
-
-<div class="info-grid">
-
-<div class="info-item">
-<strong>Dark Mode</strong>
-<button onclick="toggleDarkMode()">
-🌙 Toggle Dark Mode
-</button>
-</div>
-
-<div class="info-item">
-<strong>Notifications</strong>
-<button onclick="notificationSettings()">
-🔔 Notification Settings
-</button>
-</div>
-
-<div class="info-item">
-<strong>Language</strong>
-
-<select id="language">
-
-<option>English</option>
-<option>Swahili</option>
-<option>French</option>
-<option>Spanish</option>
-<option>Arabic</option>
-
-</select>
-
-</div>
-
-<div class="info-item">
-<strong>Logout</strong>
-<button onclick="logout()">
-🚪 Logout
-</button>
-</div>
-
-<div class="info-item">
-<strong>Delete Account</strong>
-<button onclick="deleteAccount()">
-🗑 Delete Account
-</button>
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= FOOTER ================= -->
-
-<footer class="card" style="text-align:center;">
-
-<h3>Gene-rations</h3>
-
-<p>Version 1.0.0</p>
-
-<br>
-
-<div class="button-group">
-
-<button onclick="terms()">
-📄 Terms & Conditions
-</button>
-
-<button onclick="privacyPolicy()">
-🔐 Privacy Policy
-</button>
-
-<button onclick="helpSupport()">
-🆘 Help & Support
-</button>
-
-<button onclick="contactUs()">
-☎ Contact Us
-</button>
-
-</div>
-
-<p style="margin-top:20px;">
-© 2026 Gene-rations. All Rights Reserved.
-</p>
+    © 2026 Gene-rations
+    <br>
+    Connecting Every Generation.
 
 </footer>
 
-</div>
-
 <script>
-  
-document.addEventListener("DOMContentLoaded", initProfile);
+  //==============================
+// LOAD USER
+//==============================
 
-function initProfile() {
+let user = JSON.parse(localStorage.getItem("userData"));
 
-    const user = JSON.parse(localStorage.getItem("userData"));
+if (!user) {
 
-    if (!user) {
-        window.location.href = "login.html";
-        return;
-    }
+    alert("Please sign up or log in first.");
 
-    // ================= PROFILE HEADER =================
+    window.location.href = "login.html";
 
-    document.getElementById("fullName").textContent =
-        user.fullName || "Guest User";
-
-    document.getElementById("generationName").textContent =
-        user.generation || "Unknown Generation";
-
-    document.getElementById("generationBadge").textContent =
-        user.generationBadge || user.generation || "Member";
-
-    // ================= PERSONAL INFORMATION =================
-
-    document.getElementById("infoName").textContent =
-        user.fullName || "-";
-
-    document.getElementById("infoPhone").textContent =
-        user.phone || "-";
-
-    document.getElementById("infoEmail").textContent =
-        user.email || "-";
-
-    document.getElementById("infoDOB").textContent =
-        user.dob || "-";
-
-    document.getElementById("infoGender").textContent =
-        user.gender || "-";
-
-    document.getElementById("infoCountry").textContent =
-        user.country || "Not Set";
-
-    document.getElementById("infoGeneration").textContent =
-        user.generation || "-";
-
-    document.getElementById("infoBadge").textContent =
-        user.generationBadge || user.generation || "-";
-
-    document.getElementById("generationDescription").textContent =
-        user.generationDescription ||
-        ("Welcome to the " + (user.generation || "Gene-rations") + " community.");
-
-    document.getElementById("memberSince").textContent =
-        user.memberSince || "Today";
-
-    document.getElementById("lastActive").textContent =
-        new Date().toLocaleString();
-
-    // ================= ABOUT ME =================
-
-    document.getElementById("bio").value =
-        user.bio || "";
-
-    document.getElementById("interests").value =
-        user.interests || "";
-
-    document.getElementById("hobbies").value =
-        user.hobbies || "";
-
-    // Continue in Part 2...
-}    // ================= STATISTICS =================
-
-    document.getElementById("followers").textContent =
-        user.followers || 0;
-
-    document.getElementById("following").textContent =
-        user.following || 0;
-
-    document.getElementById("posts").textContent =
-        user.posts || 0;
-
-    document.getElementById("events").textContent =
-        user.events || 0;
-
-    document.getElementById("familyMembers").textContent =
-        user.familyMembers || 0;
-
-    document.getElementById("profileViews").textContent =
-        user.profileViews || 0;
-
-    // ================= ACTIVITY =================
-
-    document.getElementById("recentPosts").textContent =
-        user.recentPosts || 0;
-
-    document.getElementById("likes").textContent =
-        user.likes || 0;
-
-    document.getElementById("comments").textContent =
-        user.comments || 0;
-
-    document.getElementById("upcomingEvents").textContent =
-        user.upcomingEvents || 0;
-
-    document.getElementById("organizedEvents").textContent =
-        user.organizedEvents || 0;
-
-    document.getElementById("timeline").textContent =
-        user.timeline || 0;
-
-    // ================= FAMILY TREE =================
-
-    document.getElementById("connectedFamily").textContent =
-        (user.connectedFamily || 0) + " Members";
-
-    document.getElementById("familyStatus").textContent =
-        user.familyStatus || "No Family Connected";
-
-    // ================= ACHIEVEMENTS =================
-
-    document.getElementById("postsAchievement").textContent =
-        user.postsAchievement || "No milestone yet";
-
-    document.getElementById("followersAchievement").textContent =
-        user.followersAchievement || "No milestone yet";
-
-    document.getElementById("communityLeader").textContent =
-        user.communityLeader || "Not Earned";
-
-    document.getElementById("topContributor").textContent =
-        user.topContributor || "Not Earned";
-
-    document.getElementById("eventOrganizer").textContent =
-        user.eventOrganizer || "Not Earned";
-
-    document.getElementById("verifiedAchievement").textContent =
-        user.verifiedAchievement || "Verified";
-
-    // ================= REPUTATION =================
-
-    document.getElementById("contributionScore").textContent =
-        user.contributionScore || 0;
-
-    document.getElementById("communityRank").textContent =
-        user.communityRank || "New";
-
-    document.getElementById("engagementLevel").textContent =
-        user.engagementLevel || "Low";
-
-    // ================= PROFILE PHOTO =================
-
-    if (user.profilePhoto) {
-        document.getElementById("profileImage").src =
-            user.profilePhoto;
-    }
-
-    // ================= SKILLS =================
-
-    loadSkills();
-
-  }
-
-  // ================= SAVE PROFILE =================
-
-function saveProfile() {
-
-    const user = JSON.parse(localStorage.getItem("userData")) || {};
-
-    user.bio = document.getElementById("bio").value.trim();
-    user.interests = document.getElementById("interests").value.trim();
-    user.hobbies = document.getElementById("hobbies").value.trim();
-
-    user.lastActive = new Date().toLocaleString();
-
-    localStorage.setItem("userData", JSON.stringify(user));
-
-    alert("Profile updated successfully!");
 }
 
-// ================= PROFILE PHOTO =================
+//==============================
+// LOAD PROFILE DATA
+//==============================
 
-document.getElementById("photoUpload").addEventListener("change", function (e) {
+document.getElementById("fullName").textContent =
+user.fullName || "Gene-rations Member";
 
-    const file = e.target.files[0];
+document.getElementById("generationName").textContent =
+user.generation || "Unknown Generation";
 
-    if (!file) return;
+document.getElementById("memberSince").textContent =
+user.memberSince || new Date().toLocaleDateString();
 
-    const reader = new FileReader();
+document.getElementById("generationBadge").textContent =
+user.generationBadge || user.generation || "Member";
 
-    reader.onload = function () {
+document.getElementById("generationDescription").textContent =
+user.generationDescription ||
+"Welcome to Gene-rations.";
 
-        document.getElementById("profileImage").src = reader.result;
+document.getElementById("followers").textContent =
+user.followers || 0;
 
-        const user = JSON.parse(localStorage.getItem("userData")) || {};
+document.getElementById("following").textContent =
+user.following || 0;
 
-        user.profilePhoto = reader.result;
+//==============================
+// WELCOME MESSAGE
+//==============================
 
-        localStorage.setItem("userData", JSON.stringify(user));
-    };
+const welcome = document.getElementById("welcomeMessage");
 
-    reader.readAsDataURL(file);
+switch(user.generation){
+
+case "Generation Alpha":
+
+welcome.innerHTML =
+"🌱 Welcome to <b>Generation Alpha</b>. You are growing up in a world shaped by technology and limitless possibilities.";
+
+break;
+
+case "Generation Z":
+
+welcome.innerHTML =
+"📱 Welcome to <b>Generation Z</b>. You are creative, connected and ready to shape the future.";
+
+break;
+
+case "Millennial":
+
+welcome.innerHTML =
+"🚀 Welcome to the <b>Millennial Generation</b>. You bridge the digital and traditional worlds.";
+
+break;
+
+case "Generation X":
+
+welcome.innerHTML =
+"💼 Welcome to <b>Generation X</b>. Your experience and leadership inspire younger generations.";
+
+break;
+
+case "Silent Generation":
+
+welcome.innerHTML =
+"🏆 Welcome to the <b>Silent Generation</b>. Your wisdom and life experiences are treasured.";
+
+break;
+
+default:
+
+welcome.innerHTML =
+"🎉 Welcome to the Gene-rations community.";
+
+}
+
+//==============================
+// PROFILE PHOTO
+//==============================
+
+const profileImage =
+document.getElementById("profileImage");
+
+if(user.profilePhoto){
+
+profileImage.src = user.profilePhoto;
+
+}
+
+document.getElementById("imageUpload")
+.addEventListener("change",function(){
+
+const file = this.files[0];
+
+if(!file) return;
+
+const reader = new FileReader();
+
+reader.onload = function(e){
+
+profileImage.src = e.target.result;
+
+user.profilePhoto = e.target.result;
+
+localStorage.setItem(
+"userData",
+JSON.stringify(user)
+);
+
+};
+
+reader.readAsDataURL(file);
 
 });
 
-// ================= SKILLS =================
+//==============================
+// RECENT POSTS
+//==============================
 
-function loadSkills() {
+const recentPosts =
+document.getElementById("recentPosts");
 
-    const user = JSON.parse(localStorage.getItem("userData")) || {};
+if(user.posts &&
+Array.isArray(user.posts) &&
+user.posts.length>0){
 
-    const container = document.getElementById("skillContainer");
+recentPosts.innerHTML="";
 
-    container.innerHTML = "";
+user.posts
+.slice(0,3)
+.forEach(post=>{
 
-    if (user.skills && user.skills.length > 0) {
+const div =
+document.createElement("div");
 
-        user.skills.forEach(function (skill) {
+div.className="post";
 
-            const tag = document.createElement("span");
+div.innerHTML=`
+<strong>${post.title || "Post"}</strong>
+<p>${post.content || post}</p>
+`;
 
-            tag.className = "skill";
+recentPosts.appendChild(div);
 
-            tag.textContent = skill;
+});
 
-            container.appendChild(tag);
+}else{
 
-        });
-
-    } else {
-
-        container.innerHTML =
-            "<span class='skill'>No Skills Selected</span>";
-
-    }
-
-}
-
-function selectSkills() {
-
-    window.location.href = "skills.html";
-
-}
-
-function editSkills() {
-
-    window.location.href = "skills.html";
+recentPosts.innerHTML=
+"<p>No posts yet.</p>";
 
 }
 
-function removeSkills() {
+//==============================
+// SAVE DEFAULTS
+//==============================
 
-    const user = JSON.parse(localStorage.getItem("userData")) || {};
+if(user.followers===undefined)
+user.followers=0;
 
-    user.skills = [];
+if(user.following===undefined)
+user.following=0;
 
-    localStorage.setItem("userData", JSON.stringify(user));
+if(!user.memberSince)
+user.memberSince=
+new Date().toLocaleDateString();
 
-    loadSkills();
-
-    alert("Skills removed successfully.");
-
-}
-  // ================= NAVIGATION =================
-
-function goHome() {
-    window.location.href = "dashboard.html";
-}
-
-function editProfile() {
-    document.getElementById("bio").focus();
-}
-
-// ================= FAMILY TREE =================
-
-function viewFamilyTree() {
-    window.location.href = "family-tree.html";
-}
-
-// ================= AI ASSISTANT =================
-
-function askAI() {
-    window.location.href = "ai-assistant.html";
-}
-
-function profileSuggestions() {
-    alert("AI Profile Suggestions coming soon.");
-}
-
-function writingAssistant() {
-    window.location.href = "ai-assistant.html";
-}
-
-function aiRecommendations() {
-    alert("AI Recommendations coming soon.");
-}
-
-function careerSuggestions() {
-    alert("AI Career Suggestions coming soon.");
-}
-
-function learningRecommendations() {
-    alert("AI Learning Recommendations coming soon.");
-}
-
-// ================= PRIVACY & SECURITY =================
-
-function changePassword() {
-    window.location.href = "forgotpassword.html";
-}
-
-function privacySettings() {
-    alert("Privacy Settings coming soon.");
-}
-
-function blockedUsers() {
-    alert("Blocked Users page coming soon.");
-}
-
-function loginActivity() {
-    alert("Login Activity coming soon.");
-}
-
-// ================= ACCOUNT SETTINGS =================
-
-function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
-}
-
-function notificationSettings() {
-    alert("Notification Settings coming soon.");
-}
-
-function logout() {
-
-    localStorage.removeItem("currentUser");
-
-    window.location.href = "login.html";
-}
-
-function deleteAccount() {
-
-    if (confirm("Are you sure you want to delete your account?")) {
-
-        localStorage.removeItem("userData");
-        localStorage.removeItem("currentUser");
-
-        window.location.href = "signup.html";
-    }
-}
-
-// ================= FOOTER =================
-
-function terms() {
-    window.location.href = "terms.html";
-}
-
-function privacyPolicy() {
-    window.location.href = "privacy.html";
-}
-
-function helpSupport() {
-    window.location.href = "help.html";
-}
-
-function contactUs() {
-    window.location.href = "contact.html";
-  }
+localStorage.setItem(
+"userData",
+JSON.stringify(user)
+);
 
 </script>
 
 </body>
-
 </html>
