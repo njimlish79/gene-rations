@@ -455,6 +455,7 @@ const profilePhoto = ""; // Default if no photo uploaded
     gender,
     password,
     generation,
+    generationBadge: generation,
     profilePhoto,
     bio: "",
     followers: 0,
@@ -462,7 +463,7 @@ const profilePhoto = ""; // Default if no photo uploaded
     posts: 0,
     communities: []
 };
-
+  
 localStorage.setItem("userData", JSON.stringify(userData));
 
   window.location.href = "login.html";
