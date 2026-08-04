@@ -264,9 +264,10 @@ Connect with family, communities, creators,
 and every generation around the world.
 </p>
 
-<div class="generation">
-Current Generation:
-<strong id="dashboardGeneration"></strong>
+    <div id="generationName">
+        Loading...
+<strong id="dashboardGeneration">Loding...</strong>
+      
 </div>
 
 </div>
@@ -464,22 +465,22 @@ function logout(){
 }
 
   document.addEventListener("DOMContentLoaded", () => {
-    const userData = JSON.parse(localStorage.getItem("userData"));
 
-    if (!userData) {
+    const user = JSON.parse(localStorage.getItem("userData"));
+
+    if (!user) {
         window.location.href = "login.html";
         return;
     }
 
-    // User name
     document.getElementById("dashboardName").textContent =
-        userData.fullName || "User";
+        user.fullName;
 
-    // Generation
     document.getElementById("dashboardGeneration").textContent =
-        userData.generation || "Unknown Generation";
+        user.generation;
+
 });
-  
+
 </script>
   
 <script src="script.js"></script>
