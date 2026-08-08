@@ -384,12 +384,6 @@ if (!user) {
     window.location.href = "login.html";
 }
 
-const user = JSON.parse(localStorage.getItem("user"));
-
-if(!user){
-    window.location.href = "index.html";
-}
-
 document.getElementById("welcome").innerText =
 `Welcome ${user.fullName || user.name}`;
 
@@ -400,7 +394,7 @@ document.getElementById("email").innerText =
 user.email;
 
 document.getElementById("age").innerText =
-user.age || "Not provided";
+user.generation || "Not provided";
 
 let generation = "Unknown";
 
