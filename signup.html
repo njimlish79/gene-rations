@@ -1,476 +1,1840 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gene-rations Sign Up</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/css/intlTelInput.css"/>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<style>
+    <title>Gene-rations | Create Account</title>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
 
-body{
-    background:#f4f6f9;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-}
+    <!-- =========================================
+         INTERNATIONAL PHONE CSS
+    ========================================== -->
 
-.container{
-    width:100%;
-    max-width:650px;
-    background:white;
-    padding:35px;
-    border-radius:15px;
-    box-shadow:0 5px 20px rgba(0,0,0,.1);
-}
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/css/intlTelInput.css"
+    >
 
-.logo{
-    text-align:center;
-    margin-bottom:25px;
-}
 
-.logo h1{
-    color:#2e7d32;
-    font-size:38px;
-}
+    <style>
 
-.logo p{
-    color:#666;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-.form-group{
-    margin-bottom:18px;
-}
 
-label{
-    display:block;
-    margin-bottom:6px;
-    font-weight:bold;
-}
+        body {
 
-input,
-select{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
-}
+            font-family:
+                Arial,
+                sans-serif;
 
-.iti{
-    width:100%;
-}
+            background: #f3f6fa;
 
-.generation-box{
-    margin-top:10px;
-    background:#e8f5e9;
-    padding:12px;
-    border-radius:8px;
-    color:#2e7d32;
-    font-weight:bold;
-}
+            min-height: 100vh;
 
-.checkbox-group{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
+            padding: 25px 15px;
 
-.checkbox-group input{
-    width:auto;
-}
+            color: #333;
+        }
 
-.signup-btn{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:8px;
-    background:#2e7d32;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
 
-.signup-btn:hover{
-    background:#1b5e20;
-}
+        /* =====================================
+           CONTAINER
+        ===================================== */
 
-.message{
-    margin-top:15px;
-    text-align:center;
-    font-weight:bold;
-}
+        .signup-container {
 
-.success{
-    color:green;
-}
+            width: 100%;
 
-.error{
-    color:red;
-}
+            max-width: 500px;
 
-.footer-link{
-    text-align:center;
-    margin-top:20px;
-}
+            margin: auto;
 
-.footer-link a{
-    color:#2e7d32;
-    text-decoration:none;
-}
+            background: #fff;
 
-</style>
+            border-radius: 20px;
+
+            padding: 30px 25px;
+
+            box-shadow:
+                0 8px 30px
+                rgba(0,0,0,0.08);
+        }
+
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .logo {
+
+            text-align: center;
+
+            color: #1877f2;
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #666;
+
+            font-size: 15px;
+
+            margin-bottom: 30px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================
+           FORM GROUP
+        ===================================== */
+
+        .form-group {
+
+            margin-bottom: 19px;
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: 600;
+
+            color: #333;
+
+            font-size: 15px;
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            height: 54px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 11px;
+
+            padding: 0 14px;
+
+            font-size: 16px;
+
+            outline: none;
+
+            background: white;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color: #1877f2;
+
+            box-shadow:
+                0 0 0 2px
+                rgba(24,119,242,0.08);
+        }
+
+
+        /* =====================================
+           PHONE
+        ===================================== */
+
+        .phone-input {
+
+            width: 100% !important;
+
+            height: 54px !important;
+        }
+
+
+        .iti {
+
+            width: 100%;
+        }
+
+
+        /* =====================================
+           DOB INFORMATION
+        ===================================== */
+
+        .generation-preview {
+
+            background: #eef5ff;
+
+            border-radius: 12px;
+
+            padding: 14px;
+
+            margin-top: 10px;
+
+            margin-bottom: 5px;
+
+            line-height: 1.6;
+
+            font-size: 15px;
+        }
+
+
+        .generation-preview strong {
+
+            color: #1877f2;
+
+            font-size: 17px;
+        }
+
+
+        /* =====================================
+           PASSWORD
+        ===================================== */
+
+        .password-wrapper {
+
+            position: relative;
+        }
+
+
+        .password-wrapper input {
+
+            padding-right: 70px;
+        }
+
+
+        .show-password {
+
+            position: absolute;
+
+            right: 12px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #1877f2;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-size: 14px;
+        }
+
+
+        .password-strength {
+
+            margin-top: 7px;
+
+            font-size: 13px;
+
+            color: #777;
+        }
+
+
+        /* =====================================
+           VERIFICATION METHOD
+        ===================================== */
+
+        .verification-box {
+
+            background: #f6f8fa;
+
+            border-radius: 13px;
+
+            padding: 17px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .verification-title {
+
+            font-size: 15px;
+
+            margin-bottom: 13px;
+
+            color: #444;
+        }
+
+
+        .verification-option {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 12px;
+
+            cursor: pointer;
+        }
+
+
+        .verification-option:last-child {
+
+            margin-bottom: 0;
+        }
+
+
+        .verification-option input {
+
+            width: 20px;
+
+            height: 20px;
+
+            accent-color: #1877f2;
+        }
+
+
+        .verification-option label {
+
+            margin: 0;
+
+            font-weight: normal;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================
+           AGREEMENTS
+        ===================================== */
+
+        .agreement {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+            margin-bottom: 14px;
+
+            line-height: 1.5;
+
+            font-size: 14px;
+
+            color: #666;
+        }
+
+
+        .agreement input {
+
+            width: 20px;
+
+            height: 20px;
+
+            flex-shrink: 0;
+
+            margin-top: 1px;
+
+            accent-color: #1877f2;
+        }
+
+
+        .agreement a {
+
+            color: #1877f2;
+
+            text-decoration: none;
+        }
+
+
+        /* =====================================
+           CREATE ACCOUNT BUTTON
+        ===================================== */
+
+        .signup-button {
+
+            width: 100%;
+
+            height: 55px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: #1877f2;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 8px;
+        }
+
+
+        .signup-button:hover {
+
+            background: #0d65d9;
+        }
+
+
+        .signup-button:disabled {
+
+            background: #9bbce9;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =====================================
+           MESSAGE
+        ===================================== */
+
+        #message {
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+
+        .error {
+
+            color: #d93025;
+        }
+
+
+        .success {
+
+            color: #188038;
+        }
+
+
+        /* =====================================
+           LOGIN LINK
+        ===================================== */
+
+        .login-link {
+
+            text-align: center;
+
+            margin-top: 23px;
+
+            color: #666;
+
+            font-size: 14px;
+        }
+
+
+        .login-link a {
+
+            color: #1877f2;
+
+            font-weight: bold;
+
+            text-decoration: none;
+        }
+
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (max-width: 480px) {
+
+            .signup-container {
+
+                padding:
+                    25px 18px;
+            }
+
+            .logo {
+
+                font-size: 27px;
+            }
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<div class="container">
 
-<div class="logo">
+<div class="signup-container">
 
-<h1>Gene-rations</h1>
 
-<p>Connect Every Generation</p>
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <div class="logo">
+        Gene-rations
+    </div>
+
+
+    <p class="subtitle">
+        Create your account and join your generation.
+    </p>
+
+
+    <!-- =====================================
+         SIGNUP FORM
+    ====================================== -->
+
+    <form id="signupForm">
+
+
+        <!-- FULL NAME -->
+
+        <div class="form-group">
+
+            <label for="fullName">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="fullName"
+                placeholder="Enter your full name"
+                autocomplete="name"
+                required
+            >
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+            <label for="email">
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                autocomplete="email"
+                required
+            >
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="form-group">
+
+            <label for="phone">
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                class="phone-input"
+                autocomplete="tel"
+                required
+            >
+
+        </div>
+
+
+        <!-- DATE OF BIRTH -->
+
+        <div class="form-group">
+
+            <label for="dob">
+                Date of Birth
+            </label>
+
+            <input
+                type="date"
+                id="dob"
+                required
+            >
+
+
+            <div
+                class="generation-preview"
+                id="generationPreview"
+            >
+
+                Age:
+                <strong id="agePreview">
+                    --
+                </strong>
+
+                <br>
+
+                Generation:
+                <strong id="generationPreview">
+                    --
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- GENDER -->
+
+        <div class="form-group">
+
+            <label for="gender">
+                Gender
+            </label>
+
+            <select
+                id="gender"
+                required
+            >
+
+                <option value="">
+                    Select gender
+                </option>
+
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Female">
+                    Female
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+                <option value="Prefer not to say">
+                    Prefer not to say
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="password">
+                Password
+            </label>
+
+
+            <div class="password-wrapper">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    autocomplete="new-password"
+                    minlength="8"
+                    required
+                >
+
+
+                <button
+                    type="button"
+                    class="show-password"
+                    id="showPassword"
+                >
+                    Show
+                </button>
+
+            </div>
+
+
+            <div
+                class="password-strength"
+                id="passwordStrength"
+            >
+                Minimum 8 characters
+            </div>
+
+        </div>
+
+
+        <!-- CONFIRM PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="confirmPassword">
+                Confirm Password
+            </label>
+
+
+            <div class="password-wrapper">
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm your password"
+                    autocomplete="new-password"
+                    required
+                >
+
+
+                <button
+                    type="button"
+                    class="show-password"
+                    id="showConfirmPassword"
+                >
+                    Show
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             VERIFICATION METHOD
+        ================================== -->
+
+        <div class="verification-box">
+
+            <div class="verification-title">
+
+                Choose your account verification method:
+
+            </div>
+
+
+            <div class="verification-option">
+
+                <input
+                    type="radio"
+                    id="emailVerification"
+                    name="verificationMethod"
+                    value="email"
+                    checked
+                >
+
+                <label for="emailVerification">
+
+                    📧 Email verification
+
+                </label>
+
+            </div>
+
+
+            <div class="verification-option">
+
+                <input
+                    type="radio"
+                    id="smsVerification"
+                    name="verificationMethod"
+                    value="sms"
+                >
+
+                <label for="smsVerification">
+
+                    📱 SMS verification
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             TERMS
+        ================================== -->
+
+        <div class="agreement">
+
+            <input
+                type="checkbox"
+                id="terms"
+                required
+            >
+
+            <div>
+
+                I agree to the
+                <a href="#">
+                    Gene-rations Terms and Conditions
+                </a>.
+
+            </div>
+
+        </div>
+
+
+        <!-- PRIVACY -->
+
+        <div class="agreement">
+
+            <input
+                type="checkbox"
+                id="privacy"
+                required
+            >
+
+            <div>
+
+                I agree to the
+                <a href="#">
+                    Gene-rations Privacy Policy
+                </a>.
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             BUTTON
+        ================================== -->
+
+        <button
+            type="submit"
+            class="signup-button"
+            id="signupButton"
+        >
+            Create Account
+        </button>
+
+
+        <!-- MESSAGE -->
+
+        <div id="message"></div>
+
+
+    </form>
+
+
+    <!-- =====================================
+         LOGIN
+    ====================================== -->
+
+    <div class="login-link">
+
+        Already have an account?
+
+        <a href="login.html">
+            Log In
+        </a>
+
+    </div>
+
 
 </div>
 
-<form id="signupForm">
 
-<div class="form-group">
+<!-- =========================================
+     INTERNATIONAL PHONE JS
+========================================= -->
 
-<label>Full Name</label>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/intlTelInput.min.js">
+</script>
 
-<input
-type="text"
-id="fullName"
-placeholder="Enter full name"
-required>
-
-</div>
-
-<div class="form-group">
-
-<label>Gender</label>
-
-<select id="gender" required>
-
-<option value="">
-Select Gender
-</option>
-
-<option>Male</option>
-<option>Female</option>
-<option>Other</option>
-
-</select>
-
-</div>
-
-<div class="form-group">
-
-<label>Email Address</label>
-
-<input
-type="email"
-id="email"
-placeholder="Enter email address"
-required>
-
-</div>
-
-<div class="form-group">
-
-<label>Phone Number</label>
-
-<input
-type="tel"
-id="phone"
-required>
-
-</div>
-
-<div class="form-group">
-
-<label>Date of Birth</label>
-
-<input
-type="date"
-id="dob"
-required>
-
-<div
-class="generation-box"
-id="generationBox">
-
-Your generation will appear here
-
-</div>
-
-</div>
-
-<div class="form-group">
-
-<label>Password</label>
-
-<input
-type="password"
-id="password"
-minlength="8"
-required>
-
-</div>
-
-<div class="form-group">
-
-<label>Confirm Password</label>
-
-<input
-type="password"
-id="confirmPassword"
-minlength="8"
-required>
-
-</div>
-
-<div class="form-group checkbox-group">
-
-<input
-type="checkbox"
-id="showPasswords">
-
-<label for="showPasswords">
-Show Passwords
-</label>
-
-</div>
-
-<div class="form-group checkbox-group">
-
-<input
-type="checkbox"
-id="terms"
-required>
-
-<label for="terms">
-I agree to the Terms & Conditions
-</label>
-
-</div>
-
-<button
-type="submit"
-class="signup-btn">
-
-Create Account
-
-</button>
-
-</form>
-
-<div
-id="message"
-class="message">
-
-</div>
-
-<div class="footer-link">
-
-<a href="login.html">
-Already have an account? Login
-</a>
-
-</div>
-
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
 
 <script>
 
-const phoneInput =
-document.querySelector("#phone");
+    /* =========================================
+       ELEMENTS
+    ========================================= */
 
-const iti =
-window.intlTelInput(
-phoneInput,
-{
-    initialCountry:"ke",
-    separateDialCode:true,
-    preferredCountries:[
-        "ke",
-        "ug",
-        "tz",
-        "rw",
-        "us",
-        "gb"
-    ],
-    utilsScript:
-    "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js"
-}
-);
+    const signupForm =
+        document.getElementById(
+            "signupForm"
+        );
 
-function getGeneration(year){
 
-if(year >= 2013)
-return "Generation Alpha";
+    const fullNameInput =
+        document.getElementById(
+            "fullName"
+        );
 
-if(year >= 1997)
-return "Generation Z";
 
-if(year >= 1981)
-return "Millennial";
+    const emailInput =
+        document.getElementById(
+            "email"
+        );
 
-if(year >= 1965)
-return "Generation X";
 
-if(year >= 1946)
-return "Baby Boomer";
+    const phoneInput =
+        document.getElementById(
+            "phone"
+        );
 
-return "Silent Generation";
 
-}
+    const dobInput =
+        document.getElementById(
+            "dob"
+        );
 
-document
-.getElementById("dob")
-.addEventListener("change",function(){
 
-const year =
-new Date(this.value).getFullYear();
+    const genderInput =
+        document.getElementById(
+            "gender"
+        );
 
-document
-.getElementById("generationBox")
-.textContent =
-"Generation: " +
-getGeneration(year);
 
-});
+    const passwordInput =
+        document.getElementById(
+            "password"
+        );
 
-document
-.getElementById("showPasswords")
-.addEventListener("change",function(){
 
-const type =
-this.checked ? "text" : "password";
+    const confirmPasswordInput =
+        document.getElementById(
+            "confirmPassword"
+        );
 
-document
-.getElementById("password").type =
-type;
 
-document
-.getElementById("confirmPassword").type =
-type;
+    const agePreview =
+        document.getElementById(
+            "agePreview"
+        );
 
-});
 
-document
-.getElementById("signupForm")
-.addEventListener("submit",function(e){
+    const generationPreview =
+        document.getElementById(
+            "generationPreview"
+        );
 
-e.preventDefault();
 
-const password =
-document.getElementById("password").value;
+    const passwordStrength =
+        document.getElementById(
+            "passwordStrength"
+        );
 
-const confirmPassword =
-document.getElementById("confirmPassword").value;
 
-const message =
-document.getElementById("message");
+    const message =
+        document.getElementById(
+            "message"
+        );
 
-if(password !== confirmPassword){
 
-message.textContent =
-"Passwords do not match.";
+    const signupButton =
+        document.getElementById(
+            "signupButton"
+        );
 
-message.className =
-"message error";
 
-return;
+    /* =========================================
+       INTERNATIONAL PHONE
+    ========================================= */
 
-}
+    const iti =
+        window.intlTelInput(
+            phoneInput,
+            {
 
-if(!iti.isValidNumber()){
+                /*
+                   Kenya is only the default.
 
-message.textContent =
-"Please enter a valid phone number.";
+                   Users can select ANY supported
+                   country from the country selector.
+                */
 
-message.className =
-"message error";
+                initialCountry: "ke",
 
-return;
+                separateDialCode: true,
 
-}
+                nationalMode: false,
 
-const internationalPhone =
-iti.getNumber();
+                loadUtils: () =>
+                    import(
+                        "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/utils.js"
+                    )
 
-console.log(
-"Phone:",
-internationalPhone
-);
+            }
+        );
 
-message.textContent =
-"Account created successfully!";
 
-message.className =
-"message success";
+    /* =========================================
+       DATE LIMITS
+    ========================================= */
 
-});
-  
-document.getElementById("signupForm")
-.addEventListener("submit", function(e){
+    const today =
+        new Date();
 
-    e.preventDefault();
 
-  const fullName = document.getElementById("fullName").value.trim();
-const email = document.getElementById("email").value.trim();
-const phone = document.getElementById("phone").value.trim();
-const dob = document.getElementById("dob").value;
-const gender = document.getElementById("gender").value;
-const password = document.getElementById("password").value;
-const profilePhoto = ""; // Default if no photo uploaded
+    const todayString =
+        today.toISOString()
+             .split("T")[0];
 
-  const internationalPhone = iti.getNumber();
-  const generation = getGeneration(
-    new Date(dob).getFullYear()
-);
 
- const userData = {
-    fullName,
-    email,
-    phone: internationalPhone,
-    dob,
-    gender,
-    password,
-    generation,
-    generationBadge: generation,
-    profilePhoto,
-    bio: "",
-    followers: 0,
-    following: 0,
-    posts: 0,
-    communities: []
-};
-  
-localStorage.setItem("userData", JSON.stringify(userData));
+    /*
+       Earliest allowed DOB:
+       1 January 1910
+    */
 
-  window.location.href = "login.html";
+    dobInput.min =
+        "1910-01-01";
 
-});
+
+    /*
+       Latest allowed DOB:
+       TODAY
+    */
+
+    dobInput.max =
+        todayString;
+
+
+    /* =========================================
+       GENERATION CALCULATION
+    ========================================= */
+
+    function calculateAge(
+        dateString
+    ) {
+
+        const birthDate =
+            new Date(dateString);
+
+
+        if (
+            isNaN(
+                birthDate.getTime()
+            )
+        ) {
+
+            return null;
+
+        }
+
+
+        let age =
+            today.getFullYear()
+            -
+            birthDate.getFullYear();
+
+
+        const month =
+            today.getMonth()
+            -
+            birthDate.getMonth();
+
+
+        if (
+            month < 0 ||
+            (
+                month === 0 &&
+                today.getDate()
+                <
+                birthDate.getDate()
+            )
+        ) {
+
+            age--;
+
+        }
+
+
+        return age;
+
+    }
+
+
+    function determineGeneration(
+        age
+    ) {
+
+        if (age >= 65) {
+
+            return "Silent Generation";
+
+        }
+
+
+        if (age >= 45) {
+
+            return "Generation X";
+
+        }
+
+
+        if (age >= 29) {
+
+            return "Millennial";
+
+        }
+
+
+        if (age >= 13) {
+
+            return "Generation Z";
+
+        }
+
+
+        return "Generation Alpha";
+
+    }
+
+
+    /* =========================================
+       DOB CHANGE
+    ========================================= */
+
+    dobInput.addEventListener(
+        "change",
+        function () {
+
+            if (!this.value) {
+
+                agePreview.textContent =
+                    "--";
+
+                generationPreview.textContent =
+                    "--";
+
+                return;
+
+            }
+
+
+            const selectedDate =
+                new Date(this.value);
+
+
+            const minimumDate =
+                new Date(
+                    "1910-01-01"
+                );
+
+
+            const maximumDate =
+                new Date();
+
+
+            /*
+               Prevent dates outside range.
+            */
+
+            if (
+                selectedDate <
+                minimumDate ||
+                selectedDate >
+                maximumDate
+            ) {
+
+                message.textContent =
+                    "Please select a date between 1910 and today.";
+
+                message.className =
+                    "error";
+
+                this.value = "";
+
+                agePreview.textContent =
+                    "--";
+
+                generationPreview.textContent =
+                    "--";
+
+                return;
+
+            }
+
+
+            const age =
+                calculateAge(
+                    this.value
+                );
+
+
+            const generation =
+                determineGeneration(
+                    age
+                );
+
+
+            agePreview.textContent =
+                age + " years";
+
+
+            generationPreview.textContent =
+                generation;
+
+
+            message.textContent =
+                "";
+
+            message.className = "";
+
+        }
+    );
+
+
+    /* =========================================
+       SHOW PASSWORD
+    ========================================= */
+
+    document
+        .getElementById(
+            "showPassword"
+        )
+        .addEventListener(
+            "click",
+            function () {
+
+                if (
+                    passwordInput.type ===
+                    "password"
+                ) {
+
+                    passwordInput.type =
+                        "text";
+
+                    this.textContent =
+                        "Hide";
+
+                } else {
+
+                    passwordInput.type =
+                        "password";
+
+                    this.textContent =
+                        "Show";
+
+                }
+
+            }
+        );
+
+
+    /* =========================================
+       SHOW CONFIRM PASSWORD
+    ========================================= */
+
+    document
+        .getElementById(
+            "showConfirmPassword"
+        )
+        .addEventListener(
+            "click",
+            function () {
+
+                if (
+                    confirmPasswordInput.type ===
+                    "password"
+                ) {
+
+                    confirmPasswordInput.type =
+                        "text";
+
+                    this.textContent =
+                        "Hide";
+
+                } else {
+
+                    confirmPasswordInput.type =
+                        "password";
+
+                    this.textContent =
+                        "Show";
+
+                }
+
+            }
+        );
+
+
+    /* =========================================
+       PASSWORD STRENGTH
+    ========================================= */
+
+    passwordInput.addEventListener(
+        "input",
+        function () {
+
+            const password =
+                this.value;
+
+
+            if (
+                password.length === 0
+            ) {
+
+                passwordStrength.textContent =
+                    "Minimum 8 characters";
+
+                passwordStrength.style.color =
+                    "#777";
+
+                return;
+
+            }
+
+
+            if (
+                password.length < 8
+            ) {
+
+                passwordStrength.textContent =
+                    "Weak password";
+
+                passwordStrength.style.color =
+                    "#d93025";
+
+                return;
+
+            }
+
+
+            const hasLetters =
+                /[A-Za-z]/.test(
+                    password
+                );
+
+
+            const hasNumbers =
+                /[0-9]/.test(
+                    password
+                );
+
+
+            const hasSpecial =
+                /[^A-Za-z0-9]/.test(
+                    password
+                );
+
+
+            if (
+                hasLetters &&
+                hasNumbers &&
+                hasSpecial
+            ) {
+
+                passwordStrength.textContent =
+                    "Strong password";
+
+                passwordStrength.style.color =
+                    "#188038";
+
+            }
+
+            else if (
+                hasLetters &&
+                hasNumbers
+            ) {
+
+                passwordStrength.textContent =
+                    "Good password";
+
+                passwordStrength.style.color =
+                    "#d68b00";
+
+            }
+
+            else {
+
+                passwordStrength.textContent =
+                    "Medium password";
+
+                passwordStrength.style.color =
+                    "#d68b00";
+
+            }
+
+        }
+    );
+
+
+    /* =========================================
+       FORM SUBMISSION
+    ========================================= */
+
+    signupForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            message.textContent =
+                "";
+
+            message.className =
+                "";
+
+
+            /* ================================
+               NAME
+            ================================= */
+
+            const fullName =
+                fullNameInput.value.trim();
+
+
+            if (
+                fullName.length < 2
+            ) {
+
+                showError(
+                    "Please enter your full name."
+                );
+
+                return;
+
+            }
+
+
+            /* ================================
+               EMAIL
+            ================================= */
+
+            const email =
+                emailInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (
+                !emailInput.checkValidity()
+            ) {
+
+                showError(
+                    "Please enter a valid email address."
+                );
+
+                return;
+
+            }
+
+
+            /* ================================
+               DOB
+            ================================= */
+
+            if (
+                !dobInput.value
+            ) {
+
+                showError(
+                    "Please enter your date of birth."
+                );
+
+                return;
+
+            }
+
+
+            const age =
+                calculateAge(
+                    dobInput.value
+                );
+
+
+            if (
+                age === null ||
+                age < 0 ||
+                age > 116
+            ) {
+
+                showError(
+                    "Please enter a valid date of birth between 1910 and today."
+                );
+
+                return;
+
+            }
+
+
+            const generation =
+                determineGeneration(
+                    age
+                );
+
+
+            /* ================================
+               GENDER
+            ================================= */
+
+            if (
+                !genderInput.value
+            ) {
+
+                showError(
+                    "Please select your gender."
+                );
+
+                return;
+
+            }
+
+
+            /* ================================
+               PASSWORD
+            ================================= */
+
+            const password =
+                passwordInput.value;
+
+
+            const confirmPassword =
+                confirmPasswordInput.value;
+
+
+            if (
+                password.length < 8
+            ) {
+
+                showError(
+                    "Password must contain at least 8 characters."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !/[A-Za-z]/.test(password) ||
+                !/[0-9]/.test(password)
+            ) {
+
+                showError(
+                    "Password must contain both letters and numbers."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                password !==
+                confirmPassword
+            ) {
+
+                showError(
+                    "Passwords do not match."
+                );
+
+                return;
+
+            }
+
+
+            /* ================================
+               PHONE
+            ================================= */
+
+            try {
+
+                /*
+                   Wait for the phone utilities
+                   to finish loading.
+                */
+
+                await iti.promise;
+
+            }
+
+            catch (error) {
+
+                console.log(
+                    "Phone utilities loading:",
+                    error
+                );
+
+            }
+
+
+            if (
+                !iti.isValidNumber()
+            ) {
+
+                showError(
+                    "Please enter a valid international phone number."
+                );
+
+                return;
+
+            }
+
+
+            const internationalPhone =
+                iti.getNumber();
+
+
+            /* ================================
+               VERIFICATION METHOD
+            ================================= */
+
+            const verificationMethod =
+                document.querySelector(
+                    'input[name="verificationMethod"]:checked'
+                ).value;
+
+
+            /* ================================
+               AGREEMENTS
+            ================================= */
+
+            if (
+                !document.getElementById(
+                    "terms"
+                ).checked
+            ) {
+
+                showError(
+                    "Please agree to the Gene-rations Terms and Conditions."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !document.getElementById(
+                    "privacy"
+                ).checked
+            ) {
+
+                showError(
+                    "Please agree to the Gene-rations Privacy Policy."
+                );
+
+                return;
+
+            }
+
+
+            /* ================================
+               GENERATION INFORMATION
+            ================================= */
+
+            const generationBadge =
+                generation;
+
+
+            const generationDescription =
+                "Welcome to the " +
+                generation +
+                " community.";
+
+
+            /* ================================
+               USER DATA
+            ================================= */
+
+            const userData = {
+
+                fullName:
+                    fullName,
+
+                email:
+                    email,
+
+                phone:
+                    internationalPhone,
+
+                dob:
+                    dobInput.value,
+
+                age:
+                    age,
+
+                gender:
+                    genderInput.value,
+
+                password:
+                    password,
+
+                generation:
+                    generation,
+
+                generationBadge:
+                    generationBadge,
+
+                generationDescription:
+                    generationDescription,
+
+                memberSince:
+                    new Date()
+                        .toISOString(),
+
+                lastActive:
+                    null,
+
+                profilePhoto:
+                    "",
+
+                bio:
+                    "",
+
+                interests:
+                    [],
+
+                hobbies:
+                    [],
+
+                skills:
+                    [],
+
+                followers:
+                    [],
+
+                following:
+                    [],
+
+                posts:
+                    [],
+
+                communities:
+                    [],
+
+                events:
+                    [],
+
+                familyMembers:
+                    [],
+
+                profileViews:
+                    0,
+
+                verified:
+                    false,
+
+                verificationMethod:
+                    verificationMethod,
+
+                verificationCode:
+                    generateVerificationCode(),
+
+                verificationExpires:
+                    Date.now()
+                    +
+                    (10 * 60 * 1000)
+
+            };
+
+
+            /* ================================
+               SAVE ACCOUNT
+            ================================= */
+
+            localStorage.setItem(
+                "userData",
+                JSON.stringify(userData)
+            );
+
+
+            /* ================================
+               REMOVE OLD LOGIN SESSION
+            ================================= */
+
+            localStorage.removeItem(
+                "loginSession"
+            );
+
+
+            /* ================================
+               SUCCESS
+            ================================= */
+
+            message.textContent =
+                "Account created successfully.";
+
+            message.className =
+                "success";
+
+
+            signupButton.disabled =
+                true;
+
+
+            /* ================================
+               GO TO VERIFICATION
+            ================================= */
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        "login.html";
+
+                },
+                700
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       ERROR FUNCTION
+    ========================================= */
+
+    function showError(
+        text
+    ) {
+
+        message.textContent =
+            text;
+
+        message.className =
+            "error";
+
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* =========================================
+       VERIFICATION CODE
+    ========================================= */
+
+    function generateVerificationCode() {
+
+        return Math.floor(
+            100000 +
+            Math.random() * 900000
+        ).toString();
+
+    }
 
 </script>
+
 
 </body>
 </html>

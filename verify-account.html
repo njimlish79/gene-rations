@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gene-rations | Verify Account</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f6fa;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .verification-container {
+            width: 100%;
+            max-width: 460px;
+            background: #ffffff;
+            padding: 32px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #1877f2;
+            margin-bottom: 12px;
+        }
+
+        .icon {
+            width: 70px;
+            height: 70px;
+            margin: 15px auto 20px;
+            border-radius: 50%;
+            background: #eef5ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .contact {
+            font-weight: bold;
+            color: #1877f2;
+            word-break: break-word;
+        }
+
+        .code-input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 8px;
+            outline: none;
+            margin: 20px 0 15px;
+        }
+
+        .code-input:focus {
+            border-color: #1877f2;
+        }
+
+        .verify-button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #1877f2;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .verify-button:hover {
+            background: #0d65d9;
+        }
+
+        .resend {
+            margin-top: 18px;
+        }
+
+        .resend button {
+            border: none;
+            background: transparent;
+            color: #1877f2;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .resend button:disabled {
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .change-method {
+            margin-top: 15px;
+        }
+
+        .change-method button {
+            border: none;
+            background: transparent;
+            color: #555;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .message {
+            margin-top: 15px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .error {
+            color: #d93025;
+        }
+
+        .success {
+            color: #188038;
+        }
+
+        .login-link {
+            margin-top: 22px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #1877f2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="verification-container">
+
+    <div class="logo">
+        Gene-rations
+    </div>
+
+    <div class="icon" id="verificationIcon">
+        ✉️
+    </div>
+
+    <h1 id="verificationTitle">
+        Verify Your Account
+    </h1>
+
+    <p class="description">
+        Enter the verification code sent to:
+        <br>
+        <span class="contact" id="contactDisplay">
+            Loading...
+        </span>
+    </p>
+
+    <form id="verificationForm">
+
+        <input
+            type="text"
+            id="verificationCode"
+            class="code-input"
+            placeholder="000000"
+            inputmode="numeric"
+            maxlength="6"
+            autocomplete="one-time-code"
+            required
+        >
+
+        <button
+            type="submit"
+            class="verify-button"
+        >
+            Verify Account
+        </button>
+
+    </form>
+
+    <div class="resend">
+
+        <button
+            type="button"
+            id="resendButton"
+            disabled
+        >
+            Resend Code
+        </button>
+
+        <span id="countdown">
+            60
+        </span>
+
+    </div>
+
+    <div class="change-method">
+
+        <button
+            type="button"
+            id="changeMethod"
+        >
+            Change verification method
+        </button>
+
+    </div>
+
+    <div
+        id="message"
+        class="message"
+    ></div>
+
+    <div class="login-link">
+
+        Already verified?
+
+        <a href="login.html">
+            Log In
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /* ==========================================
+       GET USER DATA
+    ========================================== */
+
+    const storedUser =
+        localStorage.getItem("userData");
+
+
+    /*
+       If someone opens this page directly
+       without creating an account first,
+       send them back to signup.
+    */
+
+    if (!storedUser) {
+
+        window.location.href =
+            "signup.html";
+
+    }
+
+
+    const userData =
+        JSON.parse(storedUser);
+
+
+    /* ==========================================
+       ELEMENTS
+    ========================================== */
+
+    const verificationTitle =
+        document.getElementById(
+            "verificationTitle"
+        );
+
+    const verificationIcon =
+        document.getElementById(
+            "verificationIcon"
+        );
+
+    const contactDisplay =
+        document.getElementById(
+            "contactDisplay"
+        );
+
+    const verificationForm =
+        document.getElementById(
+            "verificationForm"
+        );
+
+    const verificationCode =
+        document.getElementById(
+            "verificationCode"
+        );
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+    const resendButton =
+        document.getElementById(
+            "resendButton"
+        );
+
+    const countdown =
+        document.getElementById(
+            "countdown"
+        );
+
+    const changeMethod =
+        document.getElementById(
+            "changeMethod"
+        );
+
+
+    /* ==========================================
+       VERIFICATION METHOD
+    ========================================== */
+
+    const method =
+        userData.verificationMethod;
+
+
+    /* ==========================================
+       DISPLAY EMAIL OR PHONE
+    ========================================== */
+
+    if (method === "sms") {
+
+        verificationIcon.textContent =
+            "📱";
+
+        verificationTitle.textContent =
+            "Verify Your Phone";
+
+        contactDisplay.textContent =
+            maskPhone(userData.phone);
+
+    } else {
+
+        verificationIcon.textContent =
+            "✉️";
+
+        verificationTitle.textContent =
+            "Verify Your Email";
+
+        contactDisplay.textContent =
+            maskEmail(userData.email);
+
+    }
+
+
+    /* ==========================================
+       MASK EMAIL
+    ========================================== */
+
+    function maskEmail(email) {
+
+        if (!email) {
+            return "";
+        }
+
+        const parts =
+            email.split("@");
+
+        if (parts.length !== 2) {
+            return email;
+        }
+
+        const name =
+            parts[0];
+
+        const domain =
+            parts[1];
+
+        let visibleName =
+            name.substring(0, 1);
+
+        return (
+            visibleName +
+            "***@" +
+            domain
+        );
+
+    }
+
+
+    /* ==========================================
+       MASK PHONE
+    ========================================== */
+
+    function maskPhone(phone) {
+
+        if (!phone) {
+            return "";
+        }
+
+        if (phone.length <= 6) {
+            return phone;
+        }
+
+        return (
+            phone.substring(0, 4) +
+            "••••••" +
+            phone.substring(
+                phone.length - 3
+            )
+        );
+
+    }
+
+
+    /* ==========================================
+       DEMO VERIFICATION CODE
+    ========================================== */
+
+    /*
+       IMPORTANT:
+
+       This is a FRONT-END prototype.
+
+       A real production verification code
+       must be generated and sent by a secure
+       backend/SMS/email service.
+
+       For now we generate a temporary code
+       so you can test the complete flow.
+    */
+
+    function generateVerificationCode() {
+
+        const code =
+            Math.floor(
+                100000 +
+                Math.random() * 900000
+            ).toString();
+
+        sessionStorage.setItem(
+            "verificationCode",
+            code
+        );
+
+        console.log(
+            "Demo verification code:",
+            code
+        );
+
+    }
+
+
+    generateVerificationCode();
+
+
+    /* ==========================================
+       RESEND COUNTDOWN
+    ========================================== */
+
+    let seconds = 60;
+
+    let timer =
+        setInterval(
+            function() {
+
+                seconds--;
+
+                countdown.textContent =
+                    seconds;
+
+                if (seconds <= 0) {
+
+                    clearInterval(timer);
+
+                    resendButton.disabled =
+                        false;
+
+                    countdown.textContent =
+                        "";
+
+                }
+
+            },
+            1000
+        );
+
+
+    /* ==========================================
+       RESEND CODE
+    ========================================== */
+
+    resendButton.addEventListener(
+        "click",
+        function() {
+
+            generateVerificationCode();
+
+            message.textContent =
+                "A new verification code has been generated.";
+
+            message.className =
+                "message success";
+
+
+            resendButton.disabled =
+                true;
+
+            seconds = 60;
+
+            countdown.textContent =
+                seconds;
+
+
+            clearInterval(timer);
+
+            timer =
+                setInterval(
+                    function() {
+
+                        seconds--;
+
+                        countdown.textContent =
+                            seconds;
+
+                        if (seconds <= 0) {
+
+                            clearInterval(timer);
+
+                            resendButton.disabled =
+                                false;
+
+                            countdown.textContent =
+                                "";
+
+                        }
+
+                    },
+                    1000
+                );
+
+        }
+    );
+
+
+    /* ==========================================
+       VERIFY ACCOUNT
+    ========================================== */
+
+    verificationForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const enteredCode =
+                verificationCode.value.trim();
+
+            const correctCode =
+                sessionStorage.getItem(
+                    "verificationCode"
+                );
+
+
+            if (
+                enteredCode !== correctCode
+            ) {
+
+                message.textContent =
+                    "Incorrect verification code. Please try again.";
+
+                message.className =
+                    "message error";
+
+                return;
+
+            }
+
+
+            /* ==============================
+               MARK ACCOUNT VERIFIED
+            ============================== */
+
+            userData.verified =
+                true;
+
+
+            localStorage.setItem(
+                "userData",
+                JSON.stringify(userData)
+            );
+
+
+            localStorage.setItem(
+                "verificationPending",
+                "false"
+            );
+
+
+            sessionStorage.removeItem(
+                "verificationCode"
+            );
+
+
+            message.textContent =
+                "Account verified successfully!";
+
+            message.className =
+                "message success";
+
+
+            /* ==============================
+               GO TO LOGIN
+            ============================== */
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "login.html";
+
+                },
+                1000
+            );
+
+        }
+    );
+
+
+    /* ==========================================
+       CHANGE VERIFICATION METHOD
+    ========================================== */
+
+    changeMethod.addEventListener(
+        "click",
+        function() {
+
+            const newMethod =
+                method === "email"
+                    ? "sms"
+                    : "email";
+
+
+            userData.verificationMethod =
+                newMethod;
+
+
+            localStorage.setItem(
+                "userData",
+                JSON.stringify(userData)
+            );
+
+
+            window.location.reload();
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

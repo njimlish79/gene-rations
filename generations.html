@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Gene-rations | Generation Dashboard</title>
+
+    <style>
+
+        /* =========================================
+           BASIC RESET
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            transition: 0.3s;
+        }
+
+
+        /* =========================================
+           GENERATION THEMES
+        ========================================= */
+
+        body.silent {
+            --primary: #5f6f81;
+            --secondary: #dce3ea;
+            --background: #f1f4f7;
+            --card: #ffffff;
+            --text: #26313b;
+            --accent: #778899;
+        }
+
+        body.generation-x {
+            --primary: #6b4f3a;
+            --secondary: #eaded4;
+            --background: #f6f0eb;
+            --card: #ffffff;
+            --text: #302820;
+            --accent: #9a704f;
+        }
+
+        body.millennial {
+            --primary: #8e44ad;
+            --secondary: #eadcf0;
+            --background: #f8f1fa;
+            --card: #ffffff;
+            --text: #302336;
+            --accent: #b66bc9;
+        }
+
+        body.generation-z {
+            --primary: #1877f2;
+            --secondary: #dcecff;
+            --background: #f1f6fd;
+            --card: #ffffff;
+            --text: #1e293b;
+            --accent: #4d94ff;
+        }
+
+        body.generation-alpha {
+            --primary: #ff6b35;
+            --secondary: #ffe3d7;
+            --background: #fff7f3;
+            --card: #ffffff;
+            --text: #30231e;
+            --accent: #ff9b78;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        header {
+            background: var(--primary);
+            color: white;
+
+            padding: 14px 18px;
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.12);
+        }
+
+        .header-content {
+            max-width: 1100px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-button {
+            border: none;
+            background: rgba(255,255,255,0.15);
+            color: white;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            font-size: 18px;
+        }
+
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+
+        /* =========================================
+           HERO / GENERATION CARD
+        ========================================= */
+
+        .generation-hero {
+            background: var(--card);
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 30px rgba(0,0,0,0.08);
+
+            margin-bottom: 20px;
+        }
+
+        .hero-top {
+            background: var(--primary);
+            color: white;
+
+            padding: 30px 22px;
+
+            text-align: center;
+        }
+
+        .generation-badge {
+            width: 90px;
+            height: 90px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.18);
+
+            border: 3px solid rgba(255,255,255,0.7);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 42px;
+        }
+
+        .hero-top h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .hero-top p {
+            opacity: 0.92;
+            font-size: 15px;
+        }
+
+
+        /* =========================================
+           USER AREA
+        ========================================= */
+
+        .user-area {
+            padding: 22px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        .profile-photo {
+            width: 70px;
+            height: 70px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            background: var(--secondary);
+
+            border: 3px solid var(--primary);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 28px;
+
+            color: var(--primary);
+
+            overflow: hidden;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-info h2 {
+            font-size: 21px;
+            margin-bottom: 5px;
+        }
+
+        .user-info p {
+            color: #777;
+            font-size: 14px;
+        }
+
+
+        /* =========================================
+           GENERATION INFORMATION
+        ========================================= */
+
+        .generation-info {
+            padding: 0 22px 22px;
+        }
+
+        .generation-info h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .generation-info p {
+            line-height: 1.6;
+            color: #666;
+        }
+
+
+        /* =========================================
+           STATS
+        ========================================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            background: var(--card);
+
+            padding: 18px 10px;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .stat-number {
+            display: block;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: var(--primary);
+
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #777;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           QUICK ACTIONS
+        ========================================= */
+
+        .section-title {
+            font-size: 21px;
+
+            margin-bottom: 12px;
+
+            color: var(--text);
+        }
+
+        .actions {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+        }
+
+        .action {
+            background: var(--card);
+
+            border: none;
+
+            border-radius: 16px;
+
+            padding: 20px 10px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.06);
+
+            color: var(--text);
+
+            transition: 0.2s;
+        }
+
+        .action:hover {
+            transform: translateY(-2px);
+        }
+
+        .action-icon {
+            display: block;
+
+            font-size: 28px;
+
+            margin-bottom: 8px;
+        }
+
+        .action-name {
+            font-weight: bold;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================
+           GENERATION FEED
+        ========================================= */
+
+        .feed {
+            background: var(--card);
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.06);
+
+            margin-bottom: 20px;
+        }
+
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+        .feed-header h2 {
+            font-size: 20px;
+        }
+
+        .post-box {
+            border: 1px solid #ddd;
+
+            border-radius: 12px;
+
+            padding: 14px;
+
+            color: #888;
+
+            cursor: pointer;
+        }
+
+        .post-box:hover {
+            border-color: var(--primary);
+        }
+
+
+        /* =========================================
+           GENERATION NOTICE
+        ========================================= */
+
+        .notice {
+            background: var(--secondary);
+
+            border-left:
+                5px solid var(--primary);
+
+            padding: 17px;
+
+            border-radius: 10px;
+
+            margin-bottom: 20px;
+
+            line-height: 1.5;
+        }
+
+        .notice strong {
+            color: var(--primary);
+        }
+
+
+        /* =========================================
+           BOTTOM NAVIGATION
+        ========================================= */
+
+        .bottom-nav {
+            position: sticky;
+
+            bottom: 0;
+
+            background: var(--card);
+
+            border-top: 1px solid #ddd;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            padding: 8px;
+
+            z-index: 900;
+        }
+
+        .nav-item {
+            border: none;
+
+            background: transparent;
+
+            padding: 8px 3px;
+
+            cursor: pointer;
+
+            color: #777;
+
+            font-size: 12px;
+        }
+
+        .nav-item span {
+            display: block;
+
+            font-size: 21px;
+
+            margin-bottom: 3px;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+
+            font-weight: bold;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            main {
+                padding: 12px;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .actions {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .hero-top h1 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header>
+
+    <div class="header-content">
+
+        <div class="brand">
+            Gene-rations
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                class="header-button"
+                onclick="openNotifications()"
+                title="Notifications"
+            >
+                🔔
+            </button>
+
+            <button
+                class="header-button"
+                onclick="openProfile()"
+                title="Profile"
+            >
+                👤
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main>
+
+
+    <!-- GENERATION HERO -->
+
+    <section class="generation-hero">
+
+        <div class="hero-top">
+
+            <div
+                class="generation-badge"
+                id="generationBadge"
+            >
+                🌍
+            </div>
+
+            <h1 id="generationName">
+                Loading...
+            </h1>
+
+            <p id="generationTagline">
+                Loading your generation...
+            </p>
+
+        </div>
+
+
+        <!-- USER -->
+
+        <div class="user-area">
+
+            <div
+                class="profile-photo"
+                id="profilePhoto"
+            >
+                👤
+            </div>
+
+            <div class="user-info">
+
+                <h2 id="userName">
+                    Loading...
+                </h2>
+
+                <p>
+                    Age:
+                    <strong id="userAge">
+                        --
+                    </strong>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- GENERATION DESCRIPTION -->
+
+        <div class="generation-info">
+
+            <h3>
+                About Your Generation
+            </h3>
+
+            <p id="generationDescription">
+                Loading...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- GENERATION NOTICE -->
+
+    <div class="notice">
+
+        <strong id="welcomeTitle">
+            Welcome to your generation!
+        </strong>
+
+        <br>
+
+        <span id="welcomeMessage">
+            Loading...
+        </span>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <span
+                class="stat-number"
+                id="followersCount"
+            >
+                0
+            </span>
+
+            <span class="stat-label">
+                Followers
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span
+                class="stat-number"
+                id="followingCount"
+            >
+                0
+            </span>
+
+            <span class="stat-label">
+                Following
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span
+                class="stat-number"
+                id="postsCount"
+            >
+                0
+            </span>
+
+            <span class="stat-label">
+                Posts
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span
+                class="stat-number"
+                id="communityCount"
+            >
+                0
+            </span>
+
+            <span class="stat-label">
+                Communities
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <h2 class="section-title">
+        Your Generation
+    </h2>
+
+
+    <div class="actions">
+
+
+        <button
+            class="action"
+            onclick="openPage('profile.html')"
+        >
+
+            <span class="action-icon">
+                👤
+            </span>
+
+            <span class="action-name">
+                My Profile
+            </span>
+
+        </button>
+
+
+        <button
+            class="action"
+            onclick="openPage('communities.html')"
+        >
+
+            <span class="action-icon">
+                👥
+            </span>
+
+            <span class="action-name">
+                Communities
+            </span>
+
+        </button>
+
+
+        <button
+            class="action"
+            onclick="openPage('messages.html')"
+        >
+
+            <span class="action-icon">
+                💬
+            </span>
+
+            <span class="action-name">
+                Messages
+            </span>
+
+        </button>
+
+
+        <button
+            class="action"
+            onclick="openPage('videos.html')"
+        >
+
+            <span class="action-icon">
+                🎬
+            </span>
+
+            <span class="action-name">
+                Videos
+            </span>
+
+        </button>
+
+
+        <button
+            class="action"
+            onclick="openPage('events.html')"
+        >
+
+            <span class="action-icon">
+                📅
+            </span>
+
+            <span class="action-name">
+                Events
+            </span>
+
+        </button>
+
+
+        <button
+            class="action"
+            onclick="openPage('family-tree.html')"
+        >
+
+            <span class="action-icon">
+                🌳
+            </span>
+
+            <span class="action-name">
+                Family Tree
+            </span>
+
+        </button>
+
+
+        <button
+            class="action"
+            onclick="openPage('marketplace.html')"
+        >
+
+            <span class="action-icon">
+                🛍️
+            </span>
+
+            <span class="action-name">
+                Marketplace
+            </span>
+
+        </button>
+
+
+        <button
+            class="action"
+            onclick="openPage('ai-assistant.html')"
+        >
+
+            <span class="action-icon">
+                🤖
+            </span>
+
+            <span class="action-name">
+                AI Assistant
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <!-- GENERATION FEED -->
+
+    <section class="feed">
+
+        <div class="feed-header">
+
+            <h2>
+                Generation Feed
+            </h2>
+
+        </div>
+
+        <div
+            class="post-box"
+            onclick="openPage('create-post.html')"
+        >
+
+            💭
+            Share an idea, question or experience
+            with your generation...
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================
+     BOTTOM NAVIGATION
+========================================= -->
+
+<nav class="bottom-nav">
+
+    <button
+        class="nav-item active"
+        onclick="openPage('generations.html')"
+    >
+
+        <span>🏠</span>
+
+        Home
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="openPage('communities.html')"
+    >
+
+        <span>👥</span>
+
+        Communities
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="openPage('videos.html')"
+    >
+
+        <span>🎬</span>
+
+        Videos
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="openPage('messages.html')"
+    >
+
+        <span>💬</span>
+
+        Messages
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="openPage('profile.html')"
+    >
+
+        <span>👤</span>
+
+        Profile
+
+    </button>
+
+</nav>
+
+
+<script>
+
+
+/* ==========================================
+   GET USER DATA
+========================================== */
+
+const storedUser =
+    localStorage.getItem("userData");
+
+
+/*
+   The generation dashboard is protected.
+*/
+
+if (!storedUser) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+const userData =
+    JSON.parse(storedUser);
+
+
+/* ==========================================
+   CHECK LOGIN SESSION
+========================================== */
+
+const storedSession =
+    localStorage.getItem("loginSession");
+
+
+if (!storedSession) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+const loginSession =
+    JSON.parse(storedSession);
+
+
+if (
+    loginSession.loggedIn !== true
+) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const userName =
+    document.getElementById("userName");
+
+const userAge =
+    document.getElementById("userAge");
+
+const generationName =
+    document.getElementById("generationName");
+
+const generationBadge =
+    document.getElementById("generationBadge");
+
+const generationTagline =
+    document.getElementById("generationTagline");
+
+const generationDescription =
+    document.getElementById(
+        "generationDescription"
+    );
+
+const welcomeTitle =
+    document.getElementById(
+        "welcomeTitle"
+    );
+
+const welcomeMessage =
+    document.getElementById(
+        "welcomeMessage"
+    );
+
+const profilePhoto =
+    document.getElementById(
+        "profilePhoto"
+    );
+
+
+/* ==========================================
+   GENERATION DATA
+========================================== */
+
+const generations = {
+
+    "Silent Generation": {
+
+        className: "silent",
+
+        badge: "🎖️",
+
+        tagline:
+            "Wisdom, resilience and experience.",
+
+        description:
+            "A generation whose experiences, knowledge and life lessons provide an important foundation for the generations that followed.",
+
+        welcome:
+            "Your experience matters. Share your wisdom, stories and perspectives with the Gene-rations community."
+
+    },
+
+
+    "Generation X": {
+
+        className: "generation-x",
+
+        badge: "⭐",
+
+        tagline:
+            "Independent, adaptable and resilient.",
+
+        description:
+            "Generation X brings independence, adaptability and a bridge between traditional experiences and the rapidly changing digital world.",
+
+        welcome:
+            "Your perspective connects generations. Share your experiences, ideas and knowledge with your community."
+
+    },
+
+
+    "Millennial": {
+
+        className: "millennial",
+
+        badge: "🚀",
+
+        tagline:
+            "Connected, innovative and ambitious.",
+
+        description:
+            "Millennials experienced the transition from an offline world to a connected digital society and continue to shape modern communities.",
+
+        welcome:
+            "Your generation is building the future. Connect, collaborate and share ideas with your age mates."
+
+    },
+
+
+    "Generation Z": {
+
+        className: "generation-z",
+
+        badge: "⚡",
+
+        tagline:
+            "Digital, creative and connected.",
+
+        description:
+            "Generation Z has grown up in a highly connected world, bringing creativity, digital skills and new perspectives to society.",
+
+        welcome:
+            "Welcome to your generation hub. Connect with age mates, discuss ideas, create communities and make your voice heard."
+
+    },
+
+
+    "Generation Alpha": {
+
+        className: "generation-alpha",
+
+        badge: "🌟",
+
+        tagline:
+            "Curious, creative and future-focused.",
+
+        description:
+            "Generation Alpha is growing up in a world shaped by advanced technology, creativity and rapidly changing ways of learning and communicating.",
+
+        welcome:
+            "Welcome to your generation hub. Learn, explore, create and connect with your generation."
+
+    }
+
+};
+
+
+/* ==========================================
+   CALCULATE CURRENT AGE
+========================================== */
+
+function calculateAge(dateString) {
+
+    const birthDate =
+        new Date(dateString);
+
+    const today =
+        new Date();
+
+    let age =
+        today.getFullYear()
+        -
+        birthDate.getFullYear();
+
+    const monthDifference =
+        today.getMonth()
+        -
+        birthDate.getMonth();
+
+    if (
+        monthDifference < 0 ||
+        (
+            monthDifference === 0 &&
+            today.getDate() <
+            birthDate.getDate()
+        )
+    ) {
+
+        age--;
+
+    }
+
+    return age;
+
+}
+
+
+/* ==========================================
+   DETERMINE GENERATION
+========================================== */
+
+function determineGeneration(age) {
+
+    if (age >= 65) {
+
+        return "Silent Generation";
+
+    }
+
+    if (age >= 45) {
+
+        return "Generation X";
+
+    }
+
+    if (age >= 29) {
+
+        return "Millennial";
+
+    }
+
+    if (age >= 13) {
+
+        return "Generation Z";
+
+    }
+
+    return "Generation Alpha";
+
+}
+
+
+/* ==========================================
+   AUTOMATIC GENERATION CHECK
+========================================== */
+
+const currentAge =
+    calculateAge(userData.dob);
+
+const currentGeneration =
+    determineGeneration(currentAge);
+
+
+/*
+   If the user's age has moved them into
+   another generation, update the account.
+*/
+
+if (
+    currentGeneration !==
+    userData.generation
+) {
+
+    userData.age =
+        currentAge;
+
+    userData.generation =
+        currentGeneration;
+
+    localStorage.setItem(
+        "userData",
+        JSON.stringify(userData)
+    );
+
+}
+
+
+/* ==========================================
+   GET GENERATION INFORMATION
+========================================== */
+
+const generation =
+    generations[currentGeneration];
+
+
+if (!generation) {
+
+    console.error(
+        "Generation information not found."
+    );
+
+} else {
+
+    /* BODY THEME */
+
+    document.body.className =
+        generation.className;
+
+
+    /* GENERATION NAME */
+
+    generationName.textContent =
+        currentGeneration;
+
+
+    /* BADGE */
+
+    generationBadge.textContent =
+        generation.badge;
+
+
+    /* TAGLINE */
+
+    generationTagline.textContent =
+        generation.tagline;
+
+
+    /* DESCRIPTION */
+
+    generationDescription.textContent =
+        generation.description;
+
+
+    /* WELCOME */
+
+    welcomeTitle.textContent =
+        "Welcome to " +
+        currentGeneration +
+        "!";
+
+    welcomeMessage.textContent =
+        generation.welcome;
+
+}
+
+
+/* ==========================================
+   USER INFORMATION
+========================================== */
+
+userName.textContent =
+    userData.fullName ||
+    userData.name ||
+    "Gene-rations Member";
+
+
+userAge.textContent =
+    currentAge;
+
+
+/* ==========================================
+   PROFILE PHOTO
+========================================== */
+
+if (
+    userData.profilePhoto
+) {
+
+    profilePhoto.innerHTML =
+        `
+        <img
+            src="${userData.profilePhoto}"
+            alt="Profile photo"
+        >
+        `;
+
+}
+
+
+/* ==========================================
+   USER STATISTICS
+========================================== */
+
+document.getElementById(
+    "followersCount"
+).textContent =
+    userData.followers?.length ||
+    userData.followers ||
+    0;
+
+
+document.getElementById(
+    "followingCount"
+).textContent =
+    userData.following?.length ||
+    userData.following ||
+    0;
+
+
+document.getElementById(
+    "postsCount"
+).textContent =
+    userData.posts?.length ||
+    userData.posts ||
+    0;
+
+
+document.getElementById(
+    "communityCount"
+).textContent =
+    userData.communities?.length ||
+    userData.communities ||
+    0;
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+function openPage(page) {
+
+    window.location.href =
+        page;
+
+}
+
+
+function openProfile() {
+
+    window.location.href =
+        "profile.html";
+
+}
+
+
+function openNotifications() {
+
+    window.location.href =
+        "notifications.html";
+
+}
+
+
+/* ==========================================
+   LAST ACTIVE
+========================================== */
+
+userData.lastActive =
+    new Date().toISOString();
+
+localStorage.setItem(
+    "userData",
+    JSON.stringify(userData)
+);
+
+</script>
+
+</body>
+</html>
