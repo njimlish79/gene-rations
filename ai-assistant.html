@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations | AI Assistant</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f5fb;
+    color: #222;
+    min-height: 100vh;
+}
+
+/* HEADER */
+
+.header {
+    background: linear-gradient(135deg, #2864e8, #7b2ff7);
+    color: white;
+    padding: 16px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.header-btn {
+    border: none;
+    background: rgba(255,255,255,0.18);
+    color: white;
+
+    padding: 10px 14px;
+    border-radius: 22px;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* MAIN */
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ASSISTANT HEADER */
+
+.assistant-header {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+
+    margin-bottom: 15px;
+}
+
+.ai-icon {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #2864e8,
+        #7b2ff7
+    );
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+}
+
+.assistant-header h1 {
+    font-size: 23px;
+    margin-bottom: 5px;
+}
+
+.status {
+    color: #28a745;
+    font-size: 14px;
+}
+
+/* CHAT */
+
+.chat-container {
+    background: white;
+    border-radius: 20px;
+
+    height: 560px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+/* MESSAGES */
+
+.messages {
+    flex: 1;
+
+    padding: 20px;
+
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message-content {
+    max-width: 78%;
+
+    padding: 13px 16px;
+
+    border-radius: 17px;
+
+    line-height: 1.5;
+}
+
+.message.ai .message-content {
+    background: #f0f2ff;
+    border-bottom-left-radius: 5px;
+}
+
+.message.user .message-content {
+    background: #2864e8;
+    color: white;
+    border-bottom-right-radius: 5px;
+}
+
+/* QUICK QUESTIONS */
+
+.quick-actions {
+    padding: 10px 15px;
+
+    display: flex;
+    gap: 8px;
+
+    overflow-x: auto;
+
+    border-top: 1px solid #eee;
+}
+
+.quick-btn {
+    white-space: nowrap;
+
+    border: 1px solid #d9ddf5;
+
+    background: #f7f8ff;
+
+    color: #2864e8;
+
+    padding: 9px 13px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+/* INPUT */
+
+.input-area {
+    padding: 12px;
+
+    border-top: 1px solid #eee;
+
+    display: flex;
+    gap: 8px;
+}
+
+.input-area textarea {
+    flex: 1;
+
+    resize: none;
+
+    border: 1px solid #ddd;
+
+    border-radius: 15px;
+
+    padding: 13px;
+
+    font-size: 15px;
+
+    height: 50px;
+
+    outline: none;
+}
+
+.input-area textarea:focus {
+    border-color: #2864e8;
+}
+
+.send-btn {
+    width: 50px;
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #2864e8;
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+/* TYPING */
+
+.typing {
+    display: none;
+
+    padding: 5px 20px 12px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+/* EMPTY / WELCOME */
+
+.welcome {
+    text-align: center;
+
+    padding: 25px;
+
+    color: #666;
+}
+
+.welcome-icon {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .container {
+        padding: 12px;
+    }
+
+    .assistant-header {
+        padding: 15px;
+    }
+
+    .ai-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+    }
+
+    .assistant-header h1 {
+        font-size: 20px;
+    }
+
+    .chat-container {
+        height: calc(100vh - 190px);
+        min-height: 480px;
+    }
+
+    .message-content {
+        max-width: 88%;
+    }
+
+    .header-btn {
+        padding: 9px 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="logo">
+        Gene-rations
+    </div>
+
+    <div class="header-actions">
+
+        <button
+            class="header-btn"
+            onclick="goGeneration()">
+
+            Generation Hub
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <!-- AI HEADER -->
+
+    <section class="assistant-header">
+
+        <div class="ai-icon">
+            🤖
+        </div>
+
+        <div>
+
+            <h1>
+                Gene-rations AI
+            </h1>
+
+            <div class="status">
+                ● Assistant ready
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CHAT -->
+
+    <section class="chat-container">
+
+        <div
+            class="messages"
+            id="messages">
+
+            <div class="welcome">
+
+                <div class="welcome-icon">
+                    🤖
+                </div>
+
+                <h2>
+                    Welcome to Gene-rations AI
+                </h2>
+
+                <p style="margin-top:8px;">
+                    Your intelligent assistant
+                    inside the Gene-rations community.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK QUESTIONS -->
+
+        <div class="quick-actions">
+
+            <button
+                class="quick-btn"
+                onclick="quickQuestion(
+                    'What can I do on Gene-rations?'
+                )">
+
+                What can I do here?
+
+            </button>
+
+            <button
+                class="quick-btn"
+                onclick="quickQuestion(
+                    'How do generations work?'
+                )">
+
+                How do generations work?
+
+            </button>
+
+            <button
+                class="quick-btn"
+                onclick="quickQuestion(
+                    'How can I create a community?'
+                )">
+
+                Create a community
+
+            </button>
+
+            <button
+                class="quick-btn"
+                onclick="quickQuestion(
+                    'How does the marketplace work?'
+                )">
+
+                Marketplace help
+
+            </button>
+
+        </div>
+
+
+        <!-- TYPING -->
+
+        <div
+            class="typing"
+            id="typing">
+
+            Gene-rations AI is thinking...
+
+        </div>
+
+
+        <!-- INPUT -->
+
+        <div class="input-area">
+
+            <textarea
+                id="messageInput"
+                placeholder="Ask Gene-rations AI..."
+                onkeydown="handleKey(event)">
+            </textarea>
+
+            <button
+                class="send-btn"
+                onclick="sendMessage()">
+
+                ➤
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+/* =====================================
+   USER DATA
+===================================== */
+
+const user =
+    JSON.parse(
+        localStorage.getItem("userData")
+    ) || {};
+
+
+const userName =
+    user.fullName ||
+    user.name ||
+    "Gene-rations Member";
+
+
+const generation =
+    user.generation ||
+    "your generation";
+
+
+/* =====================================
+   CHAT STORAGE
+===================================== */
+
+let chatHistory =
+    JSON.parse(
+        localStorage.getItem(
+            "geneRationsAIChat"
+        )
+    ) || [];
+
+
+/* =====================================
+   LOAD CHAT
+===================================== */
+
+function loadChat() {
+
+    const messages =
+        document.getElementById(
+            "messages"
+        );
+
+
+    if (chatHistory.length === 0) {
+        return;
+    }
+
+
+    messages.innerHTML = "";
+
+
+    chatHistory.forEach(message => {
+
+        addMessageToScreen(
+            message.text,
+            message.sender,
+            false
+        );
+
+    });
+
+
+    scrollToBottom();
+}
+
+
+/* =====================================
+   SEND MESSAGE
+===================================== */
+
+function sendMessage() {
+
+    const input =
+        document.getElementById(
+            "messageInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+        return;
+    }
+
+
+    /*
+       Remove welcome screen.
+    */
+
+    const welcome =
+        document.querySelector(
+            ".welcome"
+        );
+
+    if (welcome) {
+        welcome.remove();
+    }
+
+
+    /* USER MESSAGE */
+
+    addMessageToScreen(
+        text,
+        "user",
+        true
+    );
+
+
+    input.value = "";
+
+
+    /* AI RESPONSE */
+
+    showTyping();
+
+
+    setTimeout(
+        function() {
+
+            hideTyping();
+
+            generateDemoResponse(text);
+
+        },
+        800
+    );
+}
+
+
+/* =====================================
+   QUICK QUESTION
+===================================== */
+
+function quickQuestion(question) {
+
+    document.getElementById(
+        "messageInput"
+    ).value = question;
+
+
+    sendMessage();
+}
+
+
+/* =====================================
+   ADD MESSAGE
+===================================== */
+
+function addMessageToScreen(
+    text,
+    sender,
+    save
+) {
+
+    const messages =
+        document.getElementById(
+            "messages"
+        );
+
+
+    const message =
+        document.createElement(
+            "div"
+        );
+
+
+    message.className =
+        "message " + sender;
+
+
+    const content =
+        document.createElement(
+            "div"
+        );
+
+
+    content.className =
+        "message-content";
+
+
+    content.textContent =
+        text;
+
+
+    message.appendChild(
+        content
+    );
+
+
+    messages.appendChild(
+        message
+    );
+
+
+    if (save) {
+
+        chatHistory.push({
+
+            text: text,
+
+            sender: sender,
+
+            time:
+                new Date().toISOString()
+
+        });
+
+
+        localStorage.setItem(
+            "geneRationsAIChat",
+            JSON.stringify(
+                chatHistory
+            )
+        );
+
+    }
+
+
+    scrollToBottom();
+}
+
+
+/* =====================================
+   DEMO AI RESPONSE
+===================================== */
+
+function generateDemoResponse(
+    question
+) {
+
+    const q =
+        question.toLowerCase();
+
+
+    let response;
+
+
+    if (
+        q.includes("hello") ||
+        q.includes("hi") ||
+        q.includes("hey")
+    ) {
+
+        response =
+            `Hello ${userName}! 👋
+I'm Gene-rations AI. How can I help you today?`;
+
+    }
+
+
+    else if (
+        q.includes("what can i do") ||
+        q.includes("what can") &&
+        q.includes("gene-rations")
+    ) {
+
+        response =
+            `Gene-rations is your generation-centered community hub. You can connect with your generation, participate in communities, create posts, exchange messages, attend events, explore the marketplace, build your family tree and much more.`;
+
+    }
+
+
+    else if (
+        q.includes("generation")
+    ) {
+
+        response =
+            `Your current generation is ${generation}. Gene-rations uses your date of birth during account creation to determine your generation. Your generation page becomes your main community hub.`;
+
+    }
+
+
+    else if (
+        q.includes("community") ||
+        q.includes("group")
+    ) {
+
+        response =
+            `Communities allow members to discuss shared interests and ideas. You can participate with your generation and, where appropriate, create groups that include members from other generations.`;
+
+    }
+
+
+    else if (
+        q.includes("marketplace") ||
+        q.includes("sell")
+    ) {
+
+        response =
+            `The Gene-rations Marketplace allows members to create listings for products or services. You can browse listings, view product details and add items to your cart.`;
+
+    }
+
+
+    else if (
+        q.includes("profile")
+    ) {
+
+        response =
+            `Your profile contains information connected to your Gene-rations account, including your name, generation, profile photo, bio, skills, interests, activity and other profile information.`;
+
+    }
+
+
+    else if (
+        q.includes("event")
+    ) {
+
+        response =
+            `The Events section allows Gene-rations members to discover, organize and participate in events and activities.`;
+
+    }
+
+
+    else if (
+        q.includes("family")
+    ) {
+
+        response =
+            `The Family Tree section helps you organize and connect family members. You can add family relationships and view your family structure.`;
+
+    }
+
+
+    else if (
+        q.includes("help") ||
+        q.includes("how")
+    ) {
+
+        response =
+            `I can help you understand Gene-rations features, navigate the platform and learn how different sections work. In the future, I'll be connected to the Gene-rations AI backend for much more advanced assistance.`;
+
+    }
+
+
+    else {
+
+        response =
+            `Thanks for your question, ${userName}. 🤖
+
+I'm currently running in frontend testing mode. My full AI capabilities will be connected when we add the backend/API.
+
+For now, you can ask me about Gene-rations, generations, communities, marketplace, profiles, events or the family tree.`;
+
+    }
+
+
+    addMessageToScreen(
+        response,
+        "ai",
+        true
+    );
+}
+
+
+/* =====================================
+   TYPING
+===================================== */
+
+function showTyping() {
+
+    document.getElementById(
+        "typing"
+    ).style.display = "block";
+
+    scrollToBottom();
+}
+
+
+function hideTyping() {
+
+    document.getElementById(
+        "typing"
+    ).style.display = "none";
+}
+
+
+/* =====================================
+   ENTER KEY
+===================================== */
+
+function handleKey(event) {
+
+    if (
+        event.key === "Enter" &&
+        !event.shiftKey
+    ) {
+
+        event.preventDefault();
+
+        sendMessage();
+    }
+}
+
+
+/* =====================================
+   SCROLL
+===================================== */
+
+function scrollToBottom() {
+
+    const messages =
+        document.getElementById(
+            "messages"
+        );
+
+
+    setTimeout(
+        function() {
+
+            messages.scrollTop =
+                messages.scrollHeight;
+
+        },
+        50
+    );
+}
+
+
+/* =====================================
+   GENERATION HUB
+===================================== */
+
+function goGeneration() {
+
+    window.location.href =
+        "generations.html";
+}
+
+
+/* =====================================
+   INITIALIZE
+===================================== */
+
+loadChat();
+
+</script>
+
+</body>
+</html>

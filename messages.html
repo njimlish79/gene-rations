@@ -1,339 +1,1815 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gene-rations Messages</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations | Messages</title>
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    background:#f4f6f9;
-    height:100vh;
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f5fb;
+    color: #222;
 }
 
-.header{
-    background:#2e7d32;
-    color:white;
-    padding:15px 25px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+
+    background:
+        linear-gradient(135deg, #2563eb, #7c3aed);
+
+    color: white;
+
+    padding: 15px 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
 }
 
-.logo{
-    font-size:28px;
-    font-weight:bold;
+.logo {
+
+    font-size: 22px;
+
+    font-weight: bold;
+
 }
 
-.container{
-    display:flex;
-    height:calc(100vh - 65px);
+.home-btn {
+
+    border: none;
+
+    background: rgba(255,255,255,.2);
+
+    color: white;
+
+    padding: 9px 15px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
 }
 
-.contacts{
-    width:30%;
-    background:white;
-    border-right:1px solid #ddd;
-    overflow-y:auto;
+
+/* =========================
+   LAYOUT
+========================= */
+
+.page {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 20px;
+
 }
 
-.contacts h2{
-    padding:20px;
-    border-bottom:1px solid #ddd;
+.messages-layout {
+
+    display: grid;
+
+    grid-template-columns: 320px 1fr;
+
+    gap: 15px;
+
+    min-height: 650px;
+
 }
 
-.contact{
-    padding:15px 20px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    cursor:pointer;
-    border-bottom:1px solid #eee;
+
+/* =========================
+   CONVERSATIONS
+========================= */
+
+.conversations {
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.06);
+
+    overflow: hidden;
+
 }
 
-.contact:hover{
-    background:#f0f0f0;
+.conversations-header {
+
+    padding: 18px;
+
+    border-bottom: 1px solid #eee;
+
 }
 
-.avatar{
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    background:#2e7d32;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
+.conversations-header h1 {
+
+    font-size: 22px;
+
+    margin-bottom: 12px;
+
 }
 
-.chat-area{
-    flex:1;
-    display:flex;
-    flex-direction:column;
+.search {
+
+    width: 100%;
+
+    padding: 11px 13px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 14px;
+
 }
 
-.chat-header{
-    background:white;
-    padding:15px 20px;
-    border-bottom:1px solid #ddd;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.search:focus {
+
+    border-color: #2563eb;
+
 }
 
-.chat-actions button{
-    border:none;
-    background:#2e7d32;
-    color:white;
-    padding:8px 12px;
-    border-radius:6px;
-    cursor:pointer;
-    margin-left:8px;
+
+/* =========================
+   CONVERSATION ITEM
+========================= */
+
+.conversation {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 14px 16px;
+
+    cursor: pointer;
+
+    border-bottom: 1px solid #f1f1f1;
+
 }
 
-.messages{
-    flex:1;
-    padding:20px;
-    overflow-y:auto;
+.conversation:hover {
+
+    background: #f8fafc;
+
 }
 
-.message{
-    max-width:70%;
-    padding:12px;
-    margin-bottom:12px;
-    border-radius:12px;
+.conversation.active {
+
+    background: #eff6ff;
+
 }
 
-.received{
-    background:white;
-    border:1px solid #ddd;
+.avatar {
+
+    width: 46px;
+
+    height: 46px;
+
+    min-width: 46px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+
+    overflow: hidden;
+
 }
 
-.sent{
-    background:#2e7d32;
-    color:white;
-    margin-left:auto;
+.avatar img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
 }
 
-.message-input{
-    background:white;
-    padding:15px;
-    display:flex;
-    gap:10px;
-    border-top:1px solid #ddd;
+.conversation-info {
+
+    min-width: 0;
+
+    flex: 1;
+
 }
 
-.message-input input{
-    flex:1;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
+.conversation-name {
+
+    font-weight: bold;
+
+    margin-bottom: 4px;
+
 }
 
-.send-btn{
-    background:#2e7d32;
-    color:white;
-    border:none;
-    padding:12px 20px;
-    border-radius:8px;
-    cursor:pointer;
+.last-message {
+
+    color: #777;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
 }
 
-@media(max-width:768px){
+.conversation-time {
 
-.contacts{
-    width:35%;
+    color: #999;
+
+    font-size: 11px;
+
 }
 
-.logo{
-    font-size:20px;
+
+/* =========================
+   CHAT
+========================= */
+
+.chat {
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.06);
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
 }
 
-.chat-actions button{
-    padding:6px 8px;
-    font-size:12px;
+
+/* =========================
+   CHAT HEADER
+========================= */
+
+.chat-header {
+
+    padding: 15px 18px;
+
+    border-bottom: 1px solid #eee;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
 }
+
+.chat-user-name {
+
+    font-weight: bold;
+
+}
+
+.chat-user-generation {
+
+    color: #777;
+
+    font-size: 12px;
+
+    margin-top: 3px;
+
+}
+
+
+/* =========================
+   CHAT BODY
+========================= */
+
+.chat-body {
+
+    flex: 1;
+
+    padding: 20px;
+
+    overflow-y: auto;
+
+    min-height: 450px;
+
+    background: #f8fafc;
+
+}
+
+
+/* =========================
+   EMPTY CHAT
+========================= */
+
+.empty-chat {
+
+    height: 100%;
+
+    min-height: 450px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    color: #777;
+
+    padding: 30px;
+
+}
+
+.empty-chat-icon {
+
+    font-size: 50px;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* =========================
+   MESSAGE BUBBLES
+========================= */
+
+.message-row {
+
+    display: flex;
+
+    margin-bottom: 12px;
+
+}
+
+.message-row.mine {
+
+    justify-content: flex-end;
+
+}
+
+.message-row.theirs {
+
+    justify-content: flex-start;
+
+}
+
+.message-bubble {
+
+    max-width: 75%;
+
+    padding: 11px 14px;
+
+    border-radius: 16px;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+
+}
+
+.mine .message-bubble {
+
+    background: #2563eb;
+
+    color: white;
+
+    border-bottom-right-radius: 4px;
+
+}
+
+.theirs .message-bubble {
+
+    background: white;
+
+    color: #222;
+
+    border-bottom-left-radius: 4px;
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,.05);
+
+}
+
+.message-time {
+
+    font-size: 10px;
+
+    margin-top: 4px;
+
+    opacity: .65;
+
+    text-align: right;
+
+}
+
+
+/* =========================
+   COMPOSE
+========================= */
+
+.compose {
+
+    padding: 13px;
+
+    border-top: 1px solid #eee;
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+.compose textarea {
+
+    flex: 1;
+
+    resize: none;
+
+    height: 45px;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    font-family: inherit;
+
+    outline: none;
+
+}
+
+.compose textarea:focus {
+
+    border-color: #2563eb;
+
+}
+
+.send-btn {
+
+    width: 50px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #2563eb;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+}
+
+
+/* =========================
+   NEW MESSAGE BUTTON
+========================= */
+
+.new-message-btn {
+
+    width: 100%;
+
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 11px;
+
+    border-radius: 10px;
+
+    margin-top: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.55);
+
+    z-index: 500;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+}
+
+.modal-box {
+
+    width: 100%;
+
+    max-width: 600px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 22px 22px 0 0;
+
+    padding: 22px;
+
+}
+
+.modal-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+
+}
+
+.close {
+
+    border: none;
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: #f1f5f9;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+}
+
+
+/* =========================
+   CONTACT SEARCH
+========================= */
+
+.contact {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    margin-top: 6px;
+
+}
+
+.contact:hover {
+
+    background: #f1f5f9;
+
+}
+
+.contact-info {
+
+    flex: 1;
+
+}
+
+.contact-name {
+
+    font-weight: bold;
+
+}
+
+.contact-generation {
+
+    color: #777;
+
+    font-size: 12px;
+
+    margin-top: 3px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .page {
+
+        padding: 10px;
+
+    }
+
+    .messages-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .conversations {
+
+        max-height: 350px;
+
+    }
+
+    .chat {
+
+        min-height: 550px;
+
+    }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<div class="header">
 
-<div class="logo">
-Gene-rations Messages
-</div>
+<!-- =========================
+     HEADER
+========================= -->
 
-<div>
-🔔 Notifications
-</div>
+<header class="header">
 
-</div>
+    <div class="logo">
+        Gene-rations
+    </div>
 
-<div class="container">
+    <button
+        class="home-btn"
+        onclick="goHome()">
 
-<div class="contacts">
+        ← Generation Hub
 
-<h2>Chats</h2>
+    </button>
 
-<div class="contact">
-<div class="avatar">J</div>
-<div>
-<strong>James</strong><br>
-<small>Generation Z</small>
-</div>
-</div>
+</header>
 
-<div class="contact">
-<div class="avatar">A</div>
-<div>
-<strong>Alpha Hub</strong><br>
-<small>Community Group</small>
-</div>
-</div>
 
-<div class="contact">
-<div class="avatar">M</div>
-<div>
-<strong>Millennial Network</strong><br>
-<small>Community Group</small>
-</div>
-</div>
 
-<div class="contact">
-<div class="avatar">F</div>
-<div>
-<strong>Family Group</strong><br>
-<small>Family Tree Chat</small>
-</div>
-</div>
+<main class="page">
 
-</div>
 
-<div class="chat-area">
+<div class="messages-layout">
 
-<div class="chat-header">
 
-<div>
-<strong>Family Group</strong>
-</div>
+<!-- ==================================================
+     CONVERSATIONS
+================================================== -->
 
-<div class="chat-actions">
-<button onclick="voiceCall()">
-📞 Voice
-</button>
+<section class="conversations">
 
-<button onclick="videoCall()">
-📹 Video
-</button>
-</div>
+
+<div class="conversations-header">
+
+    <h1>
+        Messages
+    </h1>
+
+
+    <input
+        id="conversationSearch"
+        class="search"
+        type="search"
+        placeholder="Search conversations...">
+
+
+    <button
+        class="new-message-btn"
+        onclick="openNewMessage()">
+
+        + New Message
+
+    </button>
 
 </div>
 
-<div class="messages" id="messages">
 
-<div class="message received">
-Hello everyone 👋
-</div>
-
-<div class="message sent">
-Welcome to Gene-rations!
-</div>
-
-<div class="message received">
-Let's share family memories here.
-</div>
+<div id="conversationList">
 
 </div>
 
-<div class="message-input">
+
+</section>
+
+
+
+<!-- ==================================================
+     CHAT
+================================================== -->
+
+<section class="chat">
+
+
+<div
+    id="chatHeader"
+    class="chat-header"
+    style="display:none;">
+
+    <div
+        id="chatAvatar"
+        class="avatar">
+
+        U
+
+    </div>
+
+    <div>
+
+        <div
+            id="chatUserName"
+            class="chat-user-name">
+
+            User
+
+        </div>
+
+        <div
+            id="chatUserGeneration"
+            class="chat-user-generation">
+
+            Generation
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div
+    id="chatBody"
+    class="chat-body">
+
+
+<div class="empty-chat">
+
+    <div class="empty-chat-icon">
+        💬
+    </div>
+
+    <h2>
+        Your Messages
+    </h2>
+
+    <p>
+        Select a conversation or start
+        a new private conversation.
+    </p>
+
+</div>
+
+
+</div>
+
+
+
+<div
+    id="compose"
+    class="compose"
+    style="display:none;">
+
+    <textarea
+        id="messageInput"
+        placeholder="Write a message..."></textarea>
+
+
+    <button
+        class="send-btn"
+        onclick="sendMessage()">
+
+        ➤
+
+    </button>
+
+</div>
+
+
+</section>
+
+
+</div>
+
+</main>
+
+
+
+<!-- ==================================================
+     NEW MESSAGE MODAL
+================================================== -->
+
+<div
+    id="newMessageModal"
+    class="modal">
+
+
+<div class="modal-box">
+
+
+<div class="modal-header">
+
+    <h2>
+        New Message
+    </h2>
+
+    <button
+        class="close"
+        onclick="closeNewMessage()">
+
+        ✕
+
+    </button>
+
+</div>
+
 
 <input
-type="text"
-id="messageText"
-placeholder="Type a message...">
+    id="contactSearch"
+    class="search"
+    type="search"
+    placeholder="Search members...">
 
-<button
-class="send-btn"
-onclick="sendMessage()">
 
-Send
+<div id="contactList">
 
-</button>
+</div>
+
 
 </div>
 
 </div>
 
-</div>
+
 
 <script>
 
-function sendMessage(){
+/* ==================================================
+   USER
+================================================== */
 
-let input =
-document.getElementById("messageText");
+const storedUser =
+    localStorage.getItem("userData");
 
-let text = input.value.trim();
 
-if(text === ""){
-return;
+if (!storedUser) {
+
+    window.location.href =
+        "login.html";
+
 }
 
-let message =
-document.createElement("div");
 
-message.classList.add(
-"message",
-"sent"
+const user =
+    JSON.parse(storedUser);
+
+
+const currentUserName =
+    user.fullName ||
+    user.name ||
+    "Gene-rations Member";
+
+
+const currentGeneration =
+    user.generation ||
+    "Your Generation";
+
+
+/* ==================================================
+   CONVERSATIONS
+================================================== */
+
+let conversations =
+    JSON.parse(
+        localStorage.getItem(
+            "messages"
+        )
+    ) || [];
+
+
+let activeConversation =
+    null;
+
+
+/* ==================================================
+   DEMO CONTACTS
+================================================== */
+
+let contacts =
+    JSON.parse(
+        localStorage.getItem(
+            "geneRationsContacts"
+        )
+    ) || [];
+
+
+/*
+   For frontend testing we create
+   a few sample members.
+
+   Later these will come from
+   the backend database.
+*/
+
+if (contacts.length === 0) {
+
+    contacts = [
+
+        {
+            id: "member-1",
+
+            name:
+                "Gene-rations Member",
+
+            generation:
+                currentGeneration
+
+        },
+
+        {
+            id: "member-2",
+
+            name:
+                "Generation Community Member",
+
+            generation:
+                currentGeneration
+
+        },
+
+        {
+            id: "member-3",
+
+            name:
+                "Cross Generation Member",
+
+            generation:
+                "All Generations"
+
+        }
+
+    ];
+
+
+    localStorage.setItem(
+        "geneRationsContacts",
+        JSON.stringify(
+            contacts
+        )
+    );
+
+}
+
+
+/* ==================================================
+   RENDER CONVERSATIONS
+================================================== */
+
+function renderConversations(
+    search = ""
+) {
+
+    const container =
+        document.getElementById(
+            "conversationList"
+        );
+
+
+    container.innerHTML =
+        "";
+
+
+    conversations
+        .filter(
+            function(conversation) {
+
+                return conversation.name
+                    .toLowerCase()
+                    .includes(
+                        search.toLowerCase()
+                    );
+
+            }
+        )
+        .forEach(
+            function(conversation) {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "conversation";
+
+
+                if (
+                    activeConversation &&
+                    activeConversation.id ===
+                    conversation.id
+                ) {
+
+                    item.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                const initials =
+                    conversation.name
+                        .charAt(0)
+                        .toUpperCase();
+
+
+                item.innerHTML = `
+
+                    <div class="avatar">
+                        ${initials}
+                    </div>
+
+                    <div class="conversation-info">
+
+                        <div class="conversation-name">
+
+                            ${escapeHTML(
+                                conversation.name
+                            )}
+
+                        </div>
+
+                        <div class="last-message">
+
+                            ${escapeHTML(
+                                getLastMessage(
+                                    conversation
+                                )
+                            )}
+
+                        </div>
+
+                    </div>
+
+                    <div class="conversation-time">
+
+                        ${getLastTime(
+                            conversation
+                        )}
+
+                    </div>
+
+                `;
+
+
+                item.onclick =
+                    function() {
+
+                        openConversation(
+                            conversation.id
+                        );
+
+                    };
+
+
+                container.appendChild(
+                    item
+                );
+
+            }
+        );
+
+}
+
+
+/* ==================================================
+   LAST MESSAGE
+================================================== */
+
+function getLastMessage(
+    conversation
+) {
+
+    if (
+        !conversation.messages ||
+        conversation.messages.length === 0
+    ) {
+
+        return "No messages yet";
+
+    }
+
+
+    return conversation
+        .messages[
+            conversation.messages.length - 1
+        ]
+        .text;
+
+}
+
+
+function getLastTime(
+    conversation
+) {
+
+    if (
+        !conversation.messages ||
+        conversation.messages.length === 0
+    ) {
+
+        return "";
+
+    }
+
+
+    return formatTime(
+        conversation
+            .messages[
+                conversation.messages.length - 1
+            ]
+            .time
+    );
+
+}
+
+
+/* ==================================================
+   OPEN CONVERSATION
+================================================== */
+
+function openConversation(
+    id
+) {
+
+    activeConversation =
+        conversations.find(
+            function(conversation) {
+
+                return conversation.id === id;
+
+            }
+        );
+
+
+    if (!activeConversation)
+        return;
+
+
+    document.getElementById(
+        "chatHeader"
+    ).style.display =
+        "flex";
+
+
+    document.getElementById(
+        "compose"
+    ).style.display =
+        "flex";
+
+
+    document.getElementById(
+        "chatUserName"
+    ).textContent =
+        activeConversation.name;
+
+
+    document.getElementById(
+        "chatUserGeneration"
+    ).textContent =
+        activeConversation.generation ||
+        "Gene-rations Member";
+
+
+    document.getElementById(
+        "chatAvatar"
+    ).textContent =
+        activeConversation.name
+            .charAt(0)
+            .toUpperCase();
+
+
+    renderMessages();
+
+
+    renderConversations();
+
+}
+
+
+/* ==================================================
+   RENDER CHAT
+================================================== */
+
+function renderMessages() {
+
+    const body =
+        document.getElementById(
+            "chatBody"
+        );
+
+
+    body.innerHTML =
+        "";
+
+
+    if (
+        !activeConversation.messages ||
+        activeConversation.messages.length === 0
+    ) {
+
+        body.innerHTML = `
+
+            <div class="empty-chat">
+
+                <div class="empty-chat-icon">
+                    👋
+                </div>
+
+                <h3>
+                    Start the conversation
+                </h3>
+
+                <p>
+                    Send a private message to
+                    ${escapeHTML(
+                        activeConversation.name
+                    )}.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    activeConversation.messages
+        .forEach(
+            function(message) {
+
+                const row =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                row.className =
+                    "message-row " +
+                    (
+                        message.sender ===
+                        currentUserName
+                            ? "mine"
+                            : "theirs"
+                    );
+
+
+                row.innerHTML = `
+
+                    <div class="message-bubble">
+
+                        ${escapeHTML(
+                            message.text
+                        )}
+
+                        <div class="message-time">
+
+                            ${formatTime(
+                                message.time
+                            )}
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                body.appendChild(
+                    row
+                );
+
+            }
+        );
+
+
+    body.scrollTop =
+        body.scrollHeight;
+
+}
+
+
+/* ==================================================
+   SEND MESSAGE
+================================================== */
+
+function sendMessage() {
+
+    if (!activeConversation)
+        return;
+
+
+    const input =
+        document.getElementById(
+            "messageInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text)
+        return;
+
+
+    if (
+        !activeConversation.messages
+    ) {
+
+        activeConversation.messages =
+            [];
+
+    }
+
+
+    activeConversation.messages.push({
+
+        sender:
+            currentUserName,
+
+        text:
+            text,
+
+        time:
+            new Date().toISOString()
+
+    });
+
+
+    saveMessages();
+
+
+    input.value =
+        "";
+
+
+    renderMessages();
+
+    renderConversations();
+
+}
+
+
+/* ==================================================
+   ENTER TO SEND
+================================================== */
+
+document.getElementById(
+    "messageInput"
+).addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter" &&
+            !event.shiftKey
+        ) {
+
+            event.preventDefault();
+
+            sendMessage();
+
+        }
+
+    }
 );
 
-message.textContent = text;
 
-document
-.getElementById("messages")
-.appendChild(message);
+/* ==================================================
+   NEW MESSAGE
+================================================== */
 
-input.value = "";
+function openNewMessage() {
 
-document
-.getElementById("messages")
-.scrollTop =
-document
-.getElementById("messages")
-.scrollHeight;
+    document.getElementById(
+        "newMessageModal"
+    ).style.display =
+        "flex";
+
+
+    renderContacts();
 
 }
 
-function voiceCall(){
 
-alert(
-"Voice calling feature will be connected to WebRTC in future versions."
+function closeNewMessage() {
+
+    document.getElementById(
+        "newMessageModal"
+    ).style.display =
+        "none";
+
+}
+
+
+/* ==================================================
+   CONTACTS
+================================================== */
+
+function renderContacts(
+    search = ""
+) {
+
+    const container =
+        document.getElementById(
+            "contactList"
+        );
+
+
+    container.innerHTML =
+        "";
+
+
+    contacts
+        .filter(
+            function(contact) {
+
+                return contact.name
+                    .toLowerCase()
+                    .includes(
+                        search.toLowerCase()
+                    );
+
+            }
+        )
+        .forEach(
+            function(contact) {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "contact";
+
+
+                item.innerHTML = `
+
+                    <div class="avatar">
+
+                        ${escapeHTML(
+                            contact.name
+                                .charAt(0)
+                                .toUpperCase()
+                        )}
+
+                    </div>
+
+                    <div class="contact-info">
+
+                        <div class="contact-name">
+
+                            ${escapeHTML(
+                                contact.name
+                            )}
+
+                        </div>
+
+                        <div class="contact-generation">
+
+                            ${escapeHTML(
+                                contact.generation
+                            )}
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                item.onclick =
+                    function() {
+
+                        startConversation(
+                            contact
+                        );
+
+                    };
+
+
+                container.appendChild(
+                    item
+                );
+
+            }
+        );
+
+}
+
+
+/* ==================================================
+   START CONVERSATION
+================================================== */
+
+function startConversation(
+    contact
+) {
+
+    let conversation =
+        conversations.find(
+            function(item) {
+
+                return item.contactId ===
+                    contact.id;
+
+            }
+        );
+
+
+    if (!conversation) {
+
+        conversation = {
+
+            id:
+                "conversation-" +
+                Date.now(),
+
+            contactId:
+                contact.id,
+
+            name:
+                contact.name,
+
+            generation:
+                contact.generation,
+
+            messages:
+                []
+
+        };
+
+
+        conversations.push(
+            conversation
+        );
+
+
+        saveMessages();
+
+    }
+
+
+    closeNewMessage();
+
+
+    openConversation(
+        conversation.id
+    );
+
+}
+
+
+/* ==================================================
+   SAVE
+================================================== */
+
+function saveMessages() {
+
+    localStorage.setItem(
+        "messages",
+        JSON.stringify(
+            conversations
+        )
+    );
+
+}
+
+
+/* ==================================================
+   SEARCH CONVERSATIONS
+================================================== */
+
+document.getElementById(
+    "conversationSearch"
+).addEventListener(
+    "input",
+    function() {
+
+        renderConversations(
+            this.value
+        );
+
+    }
 );
 
-}
 
-function videoCall(){
+/* ==================================================
+   SEARCH CONTACTS
+================================================== */
 
-alert(
-"Video calling feature will be connected to WebRTC in future versions."
+document.getElementById(
+    "contactSearch"
+).addEventListener(
+    "input",
+    function() {
+
+        renderContacts(
+            this.value
+        );
+
+    }
 );
 
+
+/* ==================================================
+   TIME
+================================================== */
+
+function formatTime(
+    dateString
+) {
+
+    const date =
+        new Date(dateString);
+
+
+    const now =
+        new Date();
+
+
+    const seconds =
+        Math.floor(
+            (now - date) / 1000
+        );
+
+
+    if (seconds < 60)
+        return "Now";
+
+
+    const minutes =
+        Math.floor(
+            seconds / 60
+        );
+
+
+    if (minutes < 60)
+        return minutes + "m";
+
+
+    const hours =
+        Math.floor(
+            minutes / 60
+        );
+
+
+    if (hours < 24)
+        return hours + "h";
+
+
+    const days =
+        Math.floor(
+            hours / 24
+        );
+
+
+    if (days < 7)
+        return days + "d";
+
+
+    return date.toLocaleDateString();
+
 }
+
+
+/* ==================================================
+   SECURITY
+================================================== */
+
+function escapeHTML(
+    value
+) {
+
+    return String(value)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* ==================================================
+   HOME
+================================================== */
+
+function goHome() {
+
+    window.location.href =
+        "generations.html";
+
+}
+
+
+/* ==================================================
+   START
+================================================== */
+
+renderConversations();
 
 </script>
 
 </body>
+
 </html>

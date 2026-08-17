@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations | Event Details</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f5fb;
+    color: #222;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    background:
+        linear-gradient(135deg, #2563eb, #7c3aed);
+
+    color: white;
+
+    padding: 15px 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.header-btn {
+    border: none;
+    background: rgba(255,255,255,.18);
+    color: white;
+    padding: 9px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+
+/* =========================
+   BACK
+========================= */
+
+.back-btn {
+    border: none;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.event-hero {
+    min-height: 270px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(135deg, #2563eb, #7c3aed);
+
+    color: white;
+
+    padding: 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+
+    position: relative;
+}
+
+.event-icon {
+    font-size: 55px;
+}
+
+.event-type {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+
+    background: rgba(255,255,255,.18);
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.event-hero h1 {
+    font-size: 31px;
+    line-height: 1.2;
+    margin-top: 20px;
+}
+
+.hero-generation {
+    margin-top: 8px;
+    opacity: .9;
+    font-size: 14px;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.action-btn {
+    flex: 1;
+
+    border: none;
+
+    padding: 13px;
+
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.going-btn {
+    background: #2563eb;
+    color: white;
+}
+
+.interested-btn {
+    background: white;
+    color: #333;
+}
+
+.share-btn {
+    background: #ede9fe;
+    color: #6d28d9;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.content-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr;
+
+    gap: 18px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.06);
+}
+
+.card h2 {
+    font-size: 19px;
+    margin-bottom: 13px;
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.description {
+    color: #555;
+
+    line-height: 1.65;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   INFORMATION
+========================= */
+
+.info-row {
+    display: flex;
+
+    gap: 12px;
+
+    padding: 13px 0;
+
+    border-bottom:
+        1px solid #eee;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-icon {
+    font-size: 20px;
+
+    width: 30px;
+}
+
+.info-text strong {
+    display: block;
+    font-size: 14px;
+}
+
+.info-text span {
+    display: block;
+
+    color: #777;
+
+    font-size: 13px;
+
+    margin-top: 3px;
+}
+
+
+/* =========================
+   ORGANIZER
+========================= */
+
+.organizer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.organizer-avatar {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(135deg,#2563eb,#7c3aed);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+.organizer-name {
+    font-weight: bold;
+}
+
+.organizer-label {
+    color: #777;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+
+/* =========================
+   ATTENDEES
+========================= */
+
+.attendee-count {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.attendee-text {
+    color: #777;
+    font-size: 13px;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: #f1f5f9;
+
+    color: #555;
+
+    font-size: 13px;
+
+    margin-top: 15px;
+}
+
+.status.going {
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+.status.interested {
+    background: #f5f3ff;
+    color: #6d28d9;
+}
+
+
+/* =========================
+   COMMUNITY
+========================= */
+
+.community-box {
+    background: #eff6ff;
+
+    border-radius: 12px;
+
+    padding: 14px;
+
+    color: #1e40af;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   NOT FOUND
+========================= */
+
+.not-found {
+    display: none;
+
+    background: white;
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    border-radius: 18px;
+}
+
+.not-found-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.home-btn {
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    margin-top: 15px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .container {
+        padding: 13px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .event-hero {
+        min-height: 240px;
+    }
+
+    .event-hero h1 {
+        font-size: 25px;
+    }
+
+    .actions {
+        flex-wrap: wrap;
+    }
+
+    .action-btn {
+        min-width: 30%;
+    }
+
+    .header-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="logo">
+        Gene-rations
+    </div>
+
+    <div class="header-buttons">
+
+        <button
+            class="header-btn"
+            onclick="goHome()">
+
+            Generation Hub
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =========================
+     BACK
+========================= -->
+
+<button
+    class="back-btn"
+    onclick="goBack()">
+
+    ← Back to Events
+
+</button>
+
+
+
+<!-- =========================
+     EVENT CONTENT
+========================= -->
+
+<div id="eventContent">
+
+
+    <!-- HERO -->
+
+    <section class="event-hero">
+
+        <div>
+
+            <div
+                id="eventIcon"
+                class="event-icon">
+
+                📅
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <h1 id="eventTitle">
+
+                Loading...
+
+            </h1>
+
+
+            <div
+                id="eventGeneration"
+                class="hero-generation">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="eventType"
+            class="event-type">
+
+            EVENT
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ACTIONS -->
+
+    <div class="actions">
+
+        <button
+            id="goingButton"
+            class="action-btn going-btn"
+            onclick="toggleGoing()">
+
+            I'm Going
+
+        </button>
+
+
+        <button
+            id="interestedButton"
+            class="action-btn interested-btn"
+            onclick="toggleInterested()">
+
+            ☆ Interested
+
+        </button>
+
+
+        <button
+            class="action-btn share-btn"
+            onclick="shareEvent()">
+
+            ↗ Share
+
+        </button>
+
+    </div>
+
+
+
+    <!-- CONTENT -->
+
+    <div class="content-grid">
+
+
+        <!-- LEFT -->
+
+        <div>
+
+
+            <!-- DESCRIPTION -->
+
+            <section class="card">
+
+                <h2>
+                    About This Event
+                </h2>
+
+                <p
+                    id="eventDescription"
+                    class="description">
+
+                    Loading...
+
+                </p>
+
+            </section>
+
+
+
+            <!-- EVENT INFORMATION -->
+
+            <section class="card">
+
+                <h2>
+                    Event Information
+                </h2>
+
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        📅
+                    </div>
+
+                    <div class="info-text">
+
+                        <strong>
+                            Date
+                        </strong>
+
+                        <span
+                            id="eventDate">
+
+                            Loading...
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        🕐
+                    </div>
+
+                    <div class="info-text">
+
+                        <strong>
+                            Time
+                        </strong>
+
+                        <span
+                            id="eventTime">
+
+                            Loading...
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="info-row">
+
+                    <div
+                        id="locationIcon"
+                        class="info-icon">
+
+                        📍
+
+                    </div>
+
+                    <div class="info-text">
+
+                        <strong>
+                            Location
+                        </strong>
+
+                        <span
+                            id="eventLocation">
+
+                            Loading...
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        👥
+                    </div>
+
+                    <div class="info-text">
+
+                        <strong>
+                            Audience
+                        </strong>
+
+                        <span
+                            id="eventAudience">
+
+                            Loading...
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- COMMUNITY -->
+
+            <section class="card">
+
+                <h2>
+                    Gene-rations Connection
+                </h2>
+
+                <div class="community-box">
+
+                    This event is part of the
+                    Gene-rations community.
+                    Depending on the audience,
+                    members of one or more
+                    generations can participate,
+                    connect and share ideas.
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+
+        <!-- RIGHT -->
+
+        <div>
+
+
+            <!-- ORGANIZER -->
+
+            <section class="card">
+
+                <h2>
+                    Organizer
+                </h2>
+
+
+                <div class="organizer">
+
+                    <div
+                        id="organizerAvatar"
+                        class="organizer-avatar">
+
+                        G
+
+                    </div>
+
+
+                    <div>
+
+                        <div
+                            id="organizerName"
+                            class="organizer-name">
+
+                            Loading...
+
+                        </div>
+
+                        <div class="organizer-label">
+
+                            Event organizer
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ATTENDEES -->
+
+            <section class="card">
+
+                <h2>
+                    Attendance
+                </h2>
+
+
+                <div
+                    id="goingCount"
+                    class="attendee-count">
+
+                    0
+
+                </div>
+
+
+                <div class="attendee-text">
+
+                    people are going
+
+                </div>
+
+
+                <div
+                    id="interestedCount"
+                    style="
+                        margin-top:15px;
+                        font-size:22px;
+                        font-weight:bold;
+                    ">
+
+                    0
+
+                </div>
+
+
+                <div class="attendee-text">
+
+                    people are interested
+
+                </div>
+
+
+                <div
+                    id="userStatus"
+                    class="status">
+
+                    You haven't responded yet.
+
+                </div>
+
+            </section>
+
+
+
+            <!-- GENERATION -->
+
+            <section class="card">
+
+                <h2>
+                    Your Generation
+                </h2>
+
+                <div
+                    id="generationBox"
+                    class="community-box">
+
+                    Loading...
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     NOT FOUND
+========================= -->
+
+<div
+    id="notFound"
+    class="not-found">
+
+    <div class="not-found-icon">
+        📅
+    </div>
+
+    <h2>
+        Event not found
+    </h2>
+
+    <p style="
+        margin-top:8px;
+        color:#777;
+    ">
+
+        The event may have been removed
+        or the link is no longer valid.
+
+    </p>
+
+
+    <button
+        class="home-btn"
+        onclick="goEvents()">
+
+        Back to Events
+
+    </button>
+
+</div>
+
+
+</main>
+
+
+
+<script>
+
+/* ==================================================
+   USER
+================================================== */
+
+const storedUser =
+    localStorage.getItem(
+        "userData"
+    );
+
+
+if (!storedUser) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+const user =
+    JSON.parse(
+        storedUser
+    );
+
+
+const userName =
+    user.fullName ||
+    user.name ||
+    "Gene-rations Member";
+
+
+const generation =
+    user.generation ||
+    "Your Generation";
+
+
+
+/* ==================================================
+   FIND EVENT
+================================================== */
+
+/*
+   The event ID is expected in the URL:
+
+   event-details.html?id=123
+*/
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const eventId =
+    Number(
+        params.get("id")
+    );
+
+
+let events =
+    JSON.parse(
+        localStorage.getItem(
+            "events"
+        )
+    ) || [];
+
+
+let event =
+    events.find(
+        function(item) {
+
+            return item.id ===
+                eventId;
+
+        }
+    );
+
+
+
+/* ==================================================
+   CHECK EVENT
+================================================== */
+
+if (!event) {
+
+    document.getElementById(
+        "eventContent"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "notFound"
+    ).style.display =
+        "block";
+
+}
+
+else {
+
+    renderEvent();
+
+}
+
+
+
+/* ==================================================
+   RENDER
+================================================== */
+
+function renderEvent() {
+
+    const isOnline =
+        event.type ===
+        "online";
+
+
+    document.getElementById(
+        "eventIcon"
+    ).textContent =
+        isOnline
+            ? "💻"
+            : "📍";
+
+
+    document.getElementById(
+        "eventType"
+    ).textContent =
+        isOnline
+            ? "ONLINE EVENT"
+            : "LOCAL EVENT";
+
+
+    document.getElementById(
+        "eventTitle"
+    ).textContent =
+        event.title;
+
+
+    document.getElementById(
+        "eventGeneration"
+    ).textContent =
+        event.generation ||
+        "All Generations";
+
+
+    document.getElementById(
+        "eventDescription"
+    ).textContent =
+        event.description;
+
+
+    document.getElementById(
+        "eventDate"
+    ).textContent =
+        formatDate(
+            event.date
+        );
+
+
+    document.getElementById(
+        "eventTime"
+    ).textContent =
+        formatTime(
+            event.time
+        );
+
+
+    document.getElementById(
+        "eventLocation"
+    ).textContent =
+        event.location;
+
+
+    document.getElementById(
+        "eventAudience"
+    ).textContent =
+        event.audience ===
+        "generation"
+            ? event.generation
+            : "All Generations";
+
+
+    document.getElementById(
+        "organizerName"
+    ).textContent =
+        event.organizer;
+
+
+    document.getElementById(
+        "organizerAvatar"
+    ).textContent =
+        getInitial(
+            event.organizer
+        );
+
+
+    document.getElementById(
+        "goingCount"
+    ).textContent =
+        event.going || 0;
+
+
+    document.getElementById(
+        "interestedCount"
+    ).textContent =
+        event.interested || 0;
+
+
+    document.getElementById(
+        "generationBox"
+    ).textContent =
+        generation;
+
+
+    updateButtons();
+
+}
+
+
+
+/* ==================================================
+   GOING
+================================================== */
+
+function toggleGoing() {
+
+    if (!event)
+        return;
+
+
+    if (event.userGoing) {
+
+        event.going =
+            Math.max(
+                0,
+                (event.going || 0) - 1
+            );
+
+        event.userGoing =
+            false;
+
+    }
+
+    else {
+
+        event.going =
+            (event.going || 0) + 1;
+
+        event.userGoing =
+            true;
+
+
+        addNotification(
+            "📅",
+            "You are going to " +
+            event.title
+        );
+
+    }
+
+
+    saveEvents();
+
+    renderEvent();
+
+}
+
+
+
+/* ==================================================
+   INTERESTED
+================================================== */
+
+function toggleInterested() {
+
+    if (!event)
+        return;
+
+
+    if (event.userInterested) {
+
+        event.interested =
+            Math.max(
+                0,
+                (event.interested || 0) - 1
+            );
+
+        event.userInterested =
+            false;
+
+    }
+
+    else {
+
+        event.interested =
+            (event.interested || 0) + 1;
+
+        event.userInterested =
+            true;
+
+    }
+
+
+    saveEvents();
+
+    renderEvent();
+
+}
+
+
+
+/* ==================================================
+   BUTTON STATE
+================================================== */
+
+function updateButtons() {
+
+    const goingButton =
+        document.getElementById(
+            "goingButton"
+        );
+
+
+    const interestedButton =
+        document.getElementById(
+            "interestedButton"
+        );
+
+
+    const status =
+        document.getElementById(
+            "userStatus"
+        );
+
+
+    if (event.userGoing) {
+
+        goingButton.textContent =
+            "✓ You're Going";
+
+        status.textContent =
+            "You're going to this event.";
+
+        status.className =
+            "status going";
+
+    }
+
+    else if (
+        event.userInterested
+    ) {
+
+        goingButton.textContent =
+            "I'm Going";
+
+
+        status.textContent =
+            "You're interested in this event.";
+
+        status.className =
+            "status interested";
+
+    }
+
+    else {
+
+        goingButton.textContent =
+            "I'm Going";
+
+        status.textContent =
+            "You haven't responded yet.";
+
+        status.className =
+            "status";
+
+    }
+
+
+    interestedButton.textContent =
+        event.userInterested
+            ? "✓ Interested"
+            : "☆ Interested";
+
+}
+
+
+
+/* ==================================================
+   SHARE
+================================================== */
+
+function shareEvent() {
+
+    const shareText =
+        event.title +
+        " — Gene-rations Event";
+
+
+    if (
+        navigator.share
+    ) {
+
+        navigator.share({
+
+            title:
+                event.title,
+
+            text:
+                shareText,
+
+            url:
+                window.location.href
+
+        });
+
+    }
+
+    else {
+
+        navigator.clipboard
+            .writeText(
+                window.location.href
+            )
+            .then(
+                function() {
+
+                    alert(
+                        "Event link copied."
+                    );
+
+                }
+            );
+
+    }
+
+}
+
+
+
+/* ==================================================
+   NOTIFICATION
+================================================== */
+
+function addNotification(
+    icon,
+    text
+) {
+
+    let notifications =
+        JSON.parse(
+            localStorage.getItem(
+                "notifications"
+            )
+        ) || [];
+
+
+    notifications.unshift({
+
+        id:
+            Date.now(),
+
+        type:
+            "event",
+
+        icon:
+            icon,
+
+        text:
+            text,
+
+        read:
+            false,
+
+        time:
+            new Date().toISOString()
+
+    });
+
+
+    localStorage.setItem(
+        "notifications",
+        JSON.stringify(
+            notifications
+        )
+    );
+
+}
+
+
+
+/* ==================================================
+   SAVE
+================================================== */
+
+function saveEvents() {
+
+    localStorage.setItem(
+        "events",
+        JSON.stringify(
+            events
+        )
+    );
+
+}
+
+
+
+/* ==================================================
+   FORMAT DATE
+================================================== */
+
+function formatDate(
+    dateString
+) {
+
+    const date =
+        new Date(
+            dateString
+        );
+
+
+    if (
+        isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return "Date not available";
+
+    }
+
+
+    return date.toLocaleDateString(
+        undefined,
+        {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        }
+    );
+
+}
+
+
+
+/* ==================================================
+   FORMAT TIME
+================================================== */
+
+function formatTime(
+    time
+) {
+
+    if (!time)
+        return "Time not set";
+
+
+    const parts =
+        time.split(":");
+
+
+    let hour =
+        parseInt(
+            parts[0]
+        );
+
+
+    const minute =
+        parts[1] ||
+        "00";
+
+
+    const period =
+        hour >= 12
+            ? "PM"
+            : "AM";
+
+
+    hour =
+        hour % 12 ||
+        12;
+
+
+    return (
+        hour +
+        ":" +
+        minute +
+        " " +
+        period
+    );
+
+}
+
+
+
+/* ==================================================
+   INITIAL
+================================================== */
+
+function getInitial(
+    name
+) {
+
+    return (
+        name ||
+        "G"
+    )
+    .trim()
+    .charAt(0)
+    .toUpperCase();
+
+}
+
+
+
+/* ==================================================
+   NAVIGATION
+================================================== */
+
+function goBack() {
+
+    window.location.href =
+        "events.html";
+
+}
+
+
+function goEvents() {
+
+    window.location.href =
+        "events.html";
+
+}
+
+
+function goHome() {
+
+    window.location.href =
+        "generations.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

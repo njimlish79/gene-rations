@@ -3,385 +3,1346 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gene-rations Marketplace</title>
+
+<title>Gene-rations | Marketplace</title>
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    background:#f4f6f9;
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f5fb;
+    color: #222;
 }
 
-header{
-    background:#2e7d32;
-    color:white;
-    padding:15px 25px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+/* HEADER */
+
+.header {
+    background: linear-gradient(135deg, #2864e8, #7b2ff7);
+    color: white;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-.logo{
-    font-size:28px;
-    font-weight:bold;
+.logo {
+    font-size: 26px;
+    font-weight: bold;
 }
 
-.search-box input{
-    width:350px;
-    padding:10px;
-    border:none;
-    border-radius:25px;
+.header-actions {
+    display: flex;
+    gap: 10px;
 }
 
-.sell-btn{
-    background:white;
-    color:#2e7d32;
-    border:none;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
+.header-btn {
+    border: none;
+    background: rgba(255,255,255,0.18);
+    color: white;
+    padding: 12px 17px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.banner{
-    background:linear-gradient(135deg,#2e7d32,#4caf50);
-    color:white;
-    text-align:center;
-    padding:40px;
+.cart-count {
+    background: #ff3b30;
+    padding: 3px 8px;
+    border-radius: 15px;
+    margin-left: 5px;
 }
 
-.market-container{
-    padding:20px;
+/* MAIN */
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
 }
 
-.categories{
-    display:flex;
-    gap:10px;
-    overflow:auto;
-    margin-bottom:20px;
+/* SEARCH */
+
+.search-box {
+    background: white;
+    border-radius: 18px;
+    padding: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
-.category{
-    background:white;
-    padding:10px 15px;
-    border-radius:20px;
-    cursor:pointer;
-    box-shadow:0 2px 5px rgba(0,0,0,.1);
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 10px;
 }
 
-.category:hover{
-    background:#2e7d32;
-    color:white;
+/* SELL */
+
+.sell-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 17px;
+    border: none;
+    border-radius: 16px;
+    background: #2864e8;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.products{
-    display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+/* CATEGORIES */
+
+.categories {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    margin: 20px 0;
+    padding-bottom: 5px;
 }
 
-.product-card{
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
+.category {
+    white-space: nowrap;
+    padding: 12px 18px;
+    border-radius: 25px;
+    border: none;
+    background: white;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.product-card img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
+.category.active {
+    background: #2864e8;
+    color: white;
 }
 
-.product-info{
-    padding:15px;
+/* TITLE */
+
+.market-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
-.product-title{
-    font-size:18px;
-    font-weight:bold;
-    margin-bottom:10px;
+.market-title h2 {
+    font-size: 25px;
 }
 
-.price{
-    color:#2e7d32;
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:10px;
+.item-count {
+    color: #777;
 }
 
-.seller{
-    color:#777;
-    margin-bottom:15px;
+/* LISTINGS */
+
+.listings {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
 }
 
-.buy-btn{
-    width:100%;
-    padding:10px;
-    background:#2e7d32;
-    color:white;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
+.card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
 }
 
-.sell-form{
-    background:white;
-    margin-top:30px;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
+.product-image {
+    width: 100%;
+    height: 210px;
+    background: #eef0ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.sell-form input,
-.sell-form textarea{
-    width:100%;
-    padding:12px;
-    margin-bottom:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-footer{
-    background:#222;
-    color:white;
-    text-align:center;
-    padding:20px;
-    margin-top:30px;
+.no-image {
+    font-size: 60px;
 }
 
+.card-content {
+    padding: 18px;
+}
+
+.card-content h3 {
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.description {
+    color: #777;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.price {
+    color: #2864e8;
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+}
+
+.category-tag {
+    background: #f1f2f7;
+    padding: 7px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    color: #666;
+}
+
+.seller {
+    color: #666;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 11px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cart-btn {
+    background: #2864e8;
+    color: white;
+}
+
+.delete-btn {
+    background: #ffe8e8;
+    color: #c62828;
+}
+
+/* EMPTY */
+
+.empty {
+    background: white;
+    padding: 50px 20px;
+    border-radius: 20px;
+    text-align: center;
+    grid-column: 1 / -1;
+}
+
+.empty-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.empty h3 {
+    margin-bottom: 8px;
+}
+
+.empty p {
+    color: #777;
+}
+
+/* MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal-box {
+    background: white;
+    max-width: 550px;
+    margin: 30px auto;
+    border-radius: 22px;
+    padding: 22px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close {
+    border: none;
+    background: #eee;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 15px;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.preview {
+    width: 100%;
+    height: 180px;
+    border-radius: 15px;
+    background: #f1f2f7;
+    display: none;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.publish-btn {
+    width: 100%;
+    padding: 15px;
+    background: #2864e8;
+    color: white;
+    border: none;
+    border-radius: 13px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* CART */
+
+.cart-box {
+    max-width: 450px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-total {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .header {
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .header-btn {
+        padding: 10px 12px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .listings {
+        grid-template-columns: 1fr;
+    }
+
+    .product-image {
+        height: 220px;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<header>
+<header class="header">
 
-<div class="logo">
-🛒 Gene-rations Marketplace
-</div>
+    <div class="logo">
+        Gene-rations
+    </div>
 
-<div class="search-box">
-<input type="text" placeholder="Search products and services">
-</div>
+    <div class="header-actions">
 
-<button class="sell-btn">
-Sell Item
-</button>
+        <button class="header-btn" onclick="openCart()">
+            🛒 Cart
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+
+        <button class="header-btn" onclick="goHome()">
+            Generation Hub
+        </button>
+
+    </div>
 
 </header>
 
-<div class="banner">
 
-<h1>Buy, Sell & Grow Together</h1>
+<main class="container">
 
-<p>
-Discover products, services and opportunities from every generation.
-</p>
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="🔎 Search products or services..."
+            oninput="renderListings()"
+        >
+
+    </div>
+
+
+    <!-- SELL -->
+
+    <button class="sell-btn" onclick="openSellModal()">
+        + Sell / Offer
+    </button>
+
+
+    <!-- CATEGORIES -->
+
+    <div class="categories">
+
+        <button
+            class="category active"
+            onclick="selectCategory('All', this)">
+            All
+        </button>
+
+        <button
+            class="category"
+            onclick="selectCategory('Technology', this)">
+            💻 Technology
+        </button>
+
+        <button
+            class="category"
+            onclick="selectCategory('Fashion', this)">
+            👕 Fashion
+        </button>
+
+        <button
+            class="category"
+            onclick="selectCategory('Home', this)">
+            🏠 Home
+        </button>
+
+        <button
+            class="category"
+            onclick="selectCategory('Education', this)">
+            📚 Education
+        </button>
+
+        <button
+            class="category"
+            onclick="selectCategory('Services', this)">
+            🛠️ Services
+        </button>
+
+        <button
+            class="category"
+            onclick="selectCategory('Other', this)">
+            📦 Other
+        </button>
+
+    </div>
+
+
+    <!-- TITLE -->
+
+    <div class="market-title">
+
+        <h2>Marketplace</h2>
+
+        <span
+            class="item-count"
+            id="itemCount">
+            0 items
+        </span>
+
+    </div>
+
+
+    <!-- DYNAMIC LISTINGS -->
+
+    <div
+        class="listings"
+        id="listings">
+    </div>
+
+</main>
+
+
+<!-- SELL MODAL -->
+
+<div class="modal" id="sellModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>Sell / Offer</h2>
+
+            <button
+                class="close"
+                onclick="closeSellModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="sellForm">
+
+            <div class="form-group">
+
+                <label>Product / Service Name</label>
+
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="e.g. Samsung Phone"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Category</label>
+
+                <select id="productCategory" required>
+
+                    <option value="">
+                        Select category
+                    </option>
+
+                    <option value="Technology">
+                        Technology
+                    </option>
+
+                    <option value="Fashion">
+                        Fashion
+                    </option>
+
+                    <option value="Home">
+                        Home
+                    </option>
+
+                    <option value="Education">
+                        Education
+                    </option>
+
+                    <option value="Services">
+                        Services
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Price (KES)</label>
+
+                <input
+                    type="number"
+                    id="productPrice"
+                    min="0"
+                    placeholder="e.g. 3500"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Description</label>
+
+                <textarea
+                    id="productDescription"
+                    placeholder="Describe your product or service..."
+                    required></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Product / Service Image</label>
+
+                <input
+                    type="file"
+                    id="productImage"
+                    accept="image/*">
+
+                <img
+                    id="imagePreview"
+                    class="preview">
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="publish-btn">
+                Publish Listing
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
 
-<div class="market-container">
 
-<div class="categories">
+<!-- CART MODAL -->
 
-<div class="category">Electronics</div>
-<div class="category">Fashion</div>
-<div class="category">Books</div>
-<div class="category">Services</div>
-<div class="category">Education</div>
-<div class="category">Technology</div>
-<div class="category">Agriculture</div>
-<div class="category">Art & Crafts</div>
+<div class="modal" id="cartModal">
 
-</div>
+    <div class="modal-box cart-box">
 
-<div class="products" id="products">
+        <div class="modal-header">
 
-<div class="product-card">
+            <h2>Your Cart</h2>
 
-<img src="https://picsum.photos/400/300?1">
+            <button
+                class="close"
+                onclick="closeCart()">
+                ×
+            </button>
 
-<div class="product-info">
+        </div>
 
-<div class="product-title">
-Laptop Computer
-</div>
+        <div id="cartItems"></div>
 
-<div class="price">
-KSh 45,000
-</div>
+        <div
+            class="cart-total"
+            id="cartTotal">
+            Total: KES 0
+        </div>
 
-<div class="seller">
-Seller: James Tech
-</div>
-
-<button class="buy-btn">
-Buy Now
-</button>
+    </div>
 
 </div>
 
-</div>
-
-<div class="product-card">
-
-<img src="https://picsum.photos/400/300?2">
-
-<div class="product-info">
-
-<div class="product-title">
-Business Coaching
-</div>
-
-<div class="price">
-KSh 5,000
-</div>
-
-<div class="seller">
-Seller: Millennial Hub
-</div>
-
-<button class="buy-btn">
-Book Service
-</button>
-
-</div>
-
-</div>
-
-<div class="product-card">
-
-<img src="https://picsum.photos/400/300?3">
-
-<div class="product-info">
-
-<div class="product-title">
-Family History Book
-</div>
-
-<div class="price">
-KSh 1,500
-</div>
-
-<div class="seller">
-Seller: Heritage Store
-</div>
-
-<button class="buy-btn">
-Buy Now
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="sell-form">
-
-<h2>List New Product</h2>
-
-<br>
-
-<input
-type="text"
-id="itemName"
-placeholder="Product Name">
-
-<input
-type="number"
-id="itemPrice"
-placeholder="Price">
-
-<textarea
-id="itemDescription"
-placeholder="Product Description">
-</textarea>
-
-<button
-class="buy-btn"
-onclick="addProduct()">
-
-Publish Product
-
-</button>
-
-</div>
-
-</div>
-
-<footer>
-© 2026 Gene-rations Marketplace
-</footer>
 
 <script>
 
-function addProduct(){
+/* =========================
+   USER DATA
+========================= */
 
-const name =
-document.getElementById("itemName").value;
+const user =
+    JSON.parse(localStorage.getItem("userData")) || {};
 
-const price =
-document.getElementById("itemPrice").value;
+const currentUser =
+    user.fullName ||
+    user.name ||
+    "Gene-rations Member";
 
-if(name.trim()==="" || price===""){
 
-alert("Fill all required fields");
+/* =========================
+   MARKETPLACE DATA
+========================= */
 
-return;
+let listings =
+    JSON.parse(
+        localStorage.getItem("marketplaceListings")
+    ) || [];
 
+let cart =
+    JSON.parse(
+        localStorage.getItem("marketplaceCart")
+    ) || [];
+
+let selectedCategory = "All";
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+function selectCategory(category, button) {
+
+    selectedCategory = category;
+
+    document
+        .querySelectorAll(".category")
+        .forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+    button.classList.add("active");
+
+    renderListings();
 }
 
-const product =
-document.createElement("div");
 
-product.className = "product-card";
+/* =========================
+   RENDER LISTINGS
+========================= */
 
-product.innerHTML = `
+function renderListings() {
 
-<img src="https://picsum.photos/400/300?random=${Date.now()}">
+    const container =
+        document.getElementById("listings");
 
-<div class="product-info">
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase()
+            .trim();
 
-<div class="product-title">
-${name}
-</div>
+    let filtered =
+        listings.filter(item => {
 
-<div class="price">
-KSh ${price}
-</div>
+            const matchesCategory =
+                selectedCategory === "All" ||
+                item.category === selectedCategory;
 
-<div class="seller">
-Seller: You
-</div>
+            const matchesSearch =
+                item.name
+                    .toLowerCase()
+                    .includes(search) ||
 
-<button class="buy-btn">
-View Product
-</button>
+                item.description
+                    .toLowerCase()
+                    .includes(search);
 
-</div>
+            return matchesCategory && matchesSearch;
+        });
 
-`;
+
+    document.getElementById("itemCount").textContent =
+        filtered.length +
+        (filtered.length === 1 ? " item" : " items");
+
+
+    if (filtered.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🛍️
+                </div>
+
+                <h3>No listings found</h3>
+
+                <p>
+                    Be the first Gene-rations member
+                    to sell a product or offer a service.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        filtered
+        .map(item => createListingCard(item))
+        .join("");
+}
+
+
+/* =========================
+   LISTING CARD
+========================= */
+
+function createListingCard(item) {
+
+    const isOwner =
+        item.sellerEmail &&
+        item.sellerEmail === user.email;
+
+
+    const image =
+        item.image
+        ? `
+            <img
+                src="${item.image}"
+                alt="${escapeHTML(item.name)}">
+          `
+        : `
+            <div class="no-image">
+                📦
+            </div>
+          `;
+
+
+    return `
+
+        <div class="card">
+
+            <div class="product-image">
+                ${image}
+            </div>
+
+            <div class="card-content">
+
+                <h3>
+                    ${escapeHTML(item.name)}
+                </h3>
+
+                <p class="description">
+                    ${escapeHTML(item.description)}
+                </p>
+
+                <div class="price">
+                    KES ${Number(item.price).toLocaleString()}
+                </div>
+
+                <div class="info-row">
+
+                    <span class="category-tag">
+                        ${escapeHTML(item.category)}
+                    </span>
+
+                </div>
+
+                <div class="seller">
+                    👤 ${escapeHTML(item.seller)}
+                </div>
+
+                <div class="card-actions">
+
+                    <button
+                        class="action-btn cart-btn"
+                        onclick="addToCart('${item.id}')">
+                        🛒 Add to Cart
+                    </button>
+
+                    ${
+                        isOwner
+                        ? `
+                        <button
+                            class="action-btn delete-btn"
+                            onclick="deleteListing('${item.id}')">
+                            Delete
+                        </button>
+                        `
+                        : ""
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+}
+
+
+/* =========================
+   SELL MODAL
+========================= */
+
+function openSellModal() {
+
+    document.getElementById("sellModal").style.display =
+        "block";
+}
+
+function closeSellModal() {
+
+    document.getElementById("sellModal").style.display =
+        "none";
+}
+
+
+/* =========================
+   IMAGE PREVIEW
+========================= */
 
 document
-.getElementById("products")
-.prepend(product);
+    .getElementById("productImage")
+    .addEventListener("change", function () {
 
-document.getElementById("itemName").value="";
-document.getElementById("itemPrice").value="";
-document.getElementById("itemDescription").value="";
+        const file = this.files[0];
 
-alert("Product published successfully!");
+        if (!file) return;
 
+        const reader =
+            new FileReader();
+
+        reader.onload = function(e) {
+
+            const preview =
+                document.getElementById("imagePreview");
+
+            preview.src = e.target.result;
+
+            preview.style.display = "block";
+        };
+
+        reader.readAsDataURL(file);
+    });
+
+
+/* =========================
+   CREATE LISTING
+========================= */
+
+document
+    .getElementById("sellForm")
+    .addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+
+        const name =
+            document
+                .getElementById("productName")
+                .value
+                .trim();
+
+        const category =
+            document
+                .getElementById("productCategory")
+                .value;
+
+        const price =
+            document
+                .getElementById("productPrice")
+                .value;
+
+        const description =
+            document
+                .getElementById("productDescription")
+                .value
+                .trim();
+
+        const imageInput =
+            document.getElementById("productImage");
+
+
+        let image = "";
+
+
+        /*
+           Convert uploaded image to
+           temporary localStorage data.
+        */
+
+        if (imageInput.files.length > 0) {
+
+            const file =
+                imageInput.files[0];
+
+            const reader =
+                new FileReader();
+
+            reader.onload = function(e) {
+
+                image = e.target.result;
+
+                saveListing(
+                    name,
+                    category,
+                    price,
+                    description,
+                    image
+                );
+            };
+
+            reader.readAsDataURL(file);
+
+        } else {
+
+            saveListing(
+                name,
+                category,
+                price,
+                description,
+                ""
+            );
+        }
+
+    });
+
+
+/* =========================
+   SAVE LISTING
+========================= */
+
+function saveListing(
+    name,
+    category,
+    price,
+    description,
+    image
+) {
+
+    const listing = {
+
+        id:
+            Date.now().toString(),
+
+        name,
+
+        category,
+
+        price:
+
+            Number(price),
+
+        description,
+
+        image,
+
+        seller:
+
+            currentUser,
+
+        sellerEmail:
+
+            user.email || "",
+
+        createdAt:
+
+            new Date().toISOString()
+    };
+
+
+    listings.unshift(listing);
+
+
+    localStorage.setItem(
+        "marketplaceListings",
+        JSON.stringify(listings)
+    );
+
+
+    document
+        .getElementById("sellForm")
+        .reset();
+
+
+    document
+        .getElementById("imagePreview")
+        .style.display = "none";
+
+
+    closeSellModal();
+
+    renderListings();
+
+
+    alert(
+        "Your listing has been published."
+    );
 }
+
+
+/* =========================
+   DELETE LISTING
+========================= */
+
+function deleteListing(id) {
+
+    const listing =
+        listings.find(item => item.id === id);
+
+    if (!listing) return;
+
+
+    if (
+        listing.sellerEmail !== user.email
+    ) {
+
+        alert(
+            "You can only delete your own listings."
+        );
+
+        return;
+    }
+
+
+    const confirmDelete =
+        confirm(
+            "Delete this marketplace listing?"
+        );
+
+
+    if (!confirmDelete) return;
+
+
+    listings =
+        listings.filter(
+            item => item.id !== id
+        );
+
+
+    localStorage.setItem(
+        "marketplaceListings",
+        JSON.stringify(listings)
+    );
+
+
+    renderListings();
+}
+
+
+/* =========================
+   CART
+========================= */
+
+function addToCart(id) {
+
+    const item =
+        listings.find(
+            product => product.id === id
+        );
+
+    if (!item) return;
+
+
+    cart.push(item);
+
+
+    localStorage.setItem(
+        "marketplaceCart",
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
+
+    alert(
+        item.name +
+        " added to your cart."
+    );
+}
+
+
+function updateCartCount() {
+
+    document.getElementById("cartCount")
+        .textContent = cart.length;
+}
+
+
+function openCart() {
+
+    renderCart();
+
+    document.getElementById("cartModal")
+        .style.display = "block";
+}
+
+
+function closeCart() {
+
+    document.getElementById("cartModal")
+        .style.display = "none";
+}
+
+
+function renderCart() {
+
+    const container =
+        document.getElementById("cartItems");
+
+    if (cart.length === 0) {
+
+        container.innerHTML =
+            `
+            <p style="color:#777">
+                Your cart is empty.
+            </p>
+            `;
+
+        document.getElementById("cartTotal")
+            .textContent =
+            "Total: KES 0";
+
+        return;
+    }
+
+
+    container.innerHTML =
+        cart.map((item, index) => `
+
+            <div class="cart-item">
+
+                <span>
+                    ${escapeHTML(item.name)}
+                </span>
+
+                <strong>
+                    KES ${Number(item.price)
+                        .toLocaleString()}
+                </strong>
+
+                <button
+                    onclick="removeFromCart(${index})"
+                    style="
+                        border:none;
+                        background:none;
+                        color:#c62828;
+                        cursor:pointer;
+                    ">
+                    ×
+                </button>
+
+            </div>
+
+        `).join("");
+
+
+    const total =
+        cart.reduce(
+            (sum, item) =>
+                sum + Number(item.price),
+            0
+        );
+
+
+    document.getElementById("cartTotal")
+        .textContent =
+        "Total: KES " +
+        total.toLocaleString();
+}
+
+
+function removeFromCart(index) {
+
+    cart.splice(index, 1);
+
+    localStorage.setItem(
+        "marketplaceCart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
+
+    renderCart();
+}
+
+
+/* =========================
+   SECURITY / TEXT CLEANING
+========================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function goHome() {
+
+    window.location.href =
+        "generations.html";
+}
+
+
+/* =========================
+   CLOSE MODALS
+========================= */
+
+window.addEventListener(
+    "click",
+    function(e) {
+
+        if (
+            e.target ===
+            document.getElementById("sellModal")
+        ) {
+
+            closeSellModal();
+        }
+
+        if (
+            e.target ===
+            document.getElementById("cartModal")
+        ) {
+
+            closeCart();
+        }
+
+    }
+);
+
+
+/* =========================
+   INITIAL LOAD
+========================= */
+
+renderListings();
+
+updateCartCount();
 
 </script>
 

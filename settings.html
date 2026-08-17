@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations | Settings</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f5fb;
+    color: #222;
+}
+
+/* HEADER */
+
+.header {
+    background: linear-gradient(135deg, #2864e8, #7b2ff7);
+    color: white;
+    padding: 17px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-btn {
+    border: none;
+    background: rgba(255,255,255,0.18);
+    color: white;
+
+    padding: 10px 15px;
+    border-radius: 22px;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* MAIN */
+
+.container {
+    max-width: 850px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* PROFILE SUMMARY */
+
+.profile-summary {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 18px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.profile-photo {
+    width: 65px;
+    height: 65px;
+
+    border-radius: 50%;
+
+    background: #eef0ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+
+    overflow: hidden;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-summary h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.profile-summary p {
+    color: #777;
+    font-size: 14px;
+}
+
+/* SECTION */
+
+.section {
+    background: white;
+    border-radius: 18px;
+
+    margin-bottom: 15px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.section-title {
+    padding: 16px 18px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    color: #777;
+
+    background: #fafaff;
+
+    text-transform: uppercase;
+}
+
+/* SETTING ROW */
+
+.setting {
+    display: flex;
+    align-items: center;
+
+    padding: 17px 18px;
+
+    border-top: 1px solid #eee;
+
+    cursor: pointer;
+}
+
+.setting:hover {
+    background: #fafbff;
+}
+
+.setting-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    background: #eef0ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    margin-right: 13px;
+}
+
+.setting-info {
+    flex: 1;
+}
+
+.setting-name {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.setting-description {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.arrow {
+    color: #aaa;
+    font-size: 20px;
+}
+
+/* TOGGLE */
+
+.toggle {
+    position: relative;
+
+    width: 46px;
+    height: 25px;
+}
+
+.toggle input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+
+    background: #ccc;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.slider:before {
+    content: "";
+
+    position: absolute;
+
+    width: 19px;
+    height: 19px;
+
+    left: 3px;
+    top: 3px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    transition: .2s;
+}
+
+.toggle input:checked + .slider {
+    background: #2864e8;
+}
+
+.toggle input:checked + .slider:before {
+    transform: translateX(21px);
+}
+
+/* SELECT */
+
+.setting-select {
+    border: none;
+    outline: none;
+
+    background: #f1f3ff;
+
+    padding: 8px 10px;
+
+    border-radius: 9px;
+
+    font-weight: bold;
+}
+
+/* DANGER */
+
+.danger .setting-icon {
+    background: #ffe8e8;
+}
+
+.danger .setting-name {
+    color: #c62828;
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+
+    color: #999;
+
+    font-size: 13px;
+
+    padding: 15px 0 30px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .container {
+        padding: 12px;
+    }
+
+    .profile-summary {
+        padding: 16px;
+    }
+
+    .setting {
+        padding: 15px;
+    }
+
+    .setting-description {
+        max-width: 240px;
+    }
+
+    .header-btn {
+        padding: 9px 11px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="logo">
+        Gene-rations
+    </div>
+
+    <button
+        class="header-btn"
+        onclick="goGeneration()">
+
+        Generation Hub
+
+    </button>
+
+</header>
+
+
+<main class="container">
+
+    <!-- PROFILE SUMMARY -->
+
+    <div class="profile-summary">
+
+        <div
+            class="profile-photo"
+            id="profilePhoto">
+
+            👤
+
+        </div>
+
+        <div>
+
+            <h2 id="userName">
+                Loading...
+            </h2>
+
+            <p id="userEmail">
+                Loading...
+            </p>
+
+            <p id="userGeneration">
+                Loading...
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACCOUNT -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Account
+        </div>
+
+
+        <div
+            class="setting"
+            onclick="openPage('edit-profile.html')">
+
+            <div class="setting-icon">
+                👤
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Edit Profile
+                </div>
+
+                <div class="setting-description">
+                    Update your personal information,
+                    bio, skills and profile photo.
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+
+        <div
+            class="setting"
+            onclick="openPage('profile.html')">
+
+            <div class="setting-icon">
+                📋
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    View Profile
+                </div>
+
+                <div class="setting-description">
+                    View your Gene-rations profile.
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRIVACY -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Privacy
+        </div>
+
+
+        <div class="setting">
+
+            <div class="setting-icon">
+                🔒
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Private Profile
+                </div>
+
+                <div class="setting-description">
+                    Limit who can view your profile
+                    and activity.
+                </div>
+
+            </div>
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="privateProfile"
+                    onchange="saveToggle(
+                        'privateProfile',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="setting-icon">
+                👥
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Allow Messages
+                </div>
+
+                <div class="setting-description">
+                    Allow other members to send
+                    you messages.
+                </div>
+
+            </div>
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="allowMessages"
+                    onchange="saveToggle(
+                        'allowMessages',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOTIFICATIONS -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Notifications
+        </div>
+
+
+        <div class="setting">
+
+            <div class="setting-icon">
+                🔔
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Push Notifications
+                </div>
+
+                <div class="setting-description">
+                    Receive notifications about
+                    activity on Gene-rations.
+                </div>
+
+            </div>
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="pushNotifications"
+                    onchange="saveToggle(
+                        'pushNotifications',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="setting-icon">
+                ✉️
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Email Notifications
+                </div>
+
+                <div class="setting-description">
+                    Receive important notifications
+                    by email.
+                </div>
+
+            </div>
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="emailNotifications"
+                    onchange="saveToggle(
+                        'emailNotifications',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECURITY -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Security
+        </div>
+
+
+        <div
+            class="setting"
+            onclick="changePassword()">
+
+            <div class="setting-icon">
+                🔑
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Change Password
+                </div>
+
+                <div class="setting-description">
+                    Change your account password.
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="setting-icon">
+                🛡️
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Two-Factor Authentication
+                </div>
+
+                <div class="setting-description">
+                    Add an extra layer of protection
+                    to your account.
+                </div>
+
+            </div>
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="twoFactor"
+                    onchange="saveToggle(
+                        'twoFactor',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+    <!-- GENERATION -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Generation
+        </div>
+
+
+        <div class="setting">
+
+            <div class="setting-icon">
+                🧬
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Current Generation
+                </div>
+
+                <div class="setting-description">
+                    Your generation is determined
+                    from your date of birth.
+                </div>
+
+            </div>
+
+            <strong id="generationValue">
+                —
+            </strong>
+
+        </div>
+
+
+        <div
+            class="setting"
+            onclick="openPage('notifications.html')">
+
+            <div class="setting-icon">
+                🔔
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Generation Transition
+                </div>
+
+                <div class="setting-description">
+                    Manage notifications about
+                    your upcoming generation transition.
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MARKETPLACE -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Marketplace
+        </div>
+
+
+        <div
+            class="setting"
+            onclick="openPage('marketplace.html')">
+
+            <div class="setting-icon">
+                🛍️
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Marketplace
+                </div>
+
+                <div class="setting-description">
+                    Manage your marketplace
+                    activity and listings.
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AI -->
+
+    <section class="section">
+
+        <div class="section-title">
+            AI Assistant
+        </div>
+
+
+        <div
+            class="setting"
+            onclick="openPage('ai-assistant.html')">
+
+            <div class="setting-icon">
+                🤖
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Gene-rations AI
+                </div>
+
+                <div class="setting-description">
+                    Open your AI assistant.
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- APPEARANCE -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Appearance
+        </div>
+
+
+        <div class="setting">
+
+            <div class="setting-icon">
+                🎨
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Theme
+                </div>
+
+                <div class="setting-description">
+                    Choose how Gene-rations
+                    looks on your device.
+                </div>
+
+            </div>
+
+
+            <select
+                id="theme"
+                class="setting-select"
+                onchange="changeTheme(this.value)">
+
+                <option value="light">
+                    Light
+                </option>
+
+                <option value="dark">
+                    Dark
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- ACCOUNT ACTIONS -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Account Actions
+        </div>
+
+
+        <div
+            class="setting"
+            onclick="logout()">
+
+            <div class="setting-icon">
+                🚪
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Log Out
+                </div>
+
+                <div class="setting-description">
+                    Sign out of this Gene-rations
+                    account.
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+
+        <div
+            class="setting danger"
+            onclick="deleteAccount()">
+
+            <div class="setting-icon">
+                🗑️
+            </div>
+
+            <div class="setting-info">
+
+                <div class="setting-name">
+                    Delete Account
+                </div>
+
+                <div class="setting-description">
+                    Permanently remove your account
+                    from this device.
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="footer">
+
+        Gene-rations Settings
+
+        <br>
+
+        Your generation. Your community.
+        Your future.
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* =====================================
+   USER DATA
+===================================== */
+
+const user =
+    JSON.parse(
+        localStorage.getItem("userData")
+    );
+
+
+/* =====================================
+   REQUIRE LOGIN
+===================================== */
+
+if (!user) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =====================================
+   DISPLAY USER
+===================================== */
+
+if (user) {
+
+    document.getElementById(
+        "userName"
+    ).textContent =
+        user.fullName ||
+        user.name ||
+        "Gene-rations Member";
+
+
+    document.getElementById(
+        "userEmail"
+    ).textContent =
+        user.email || "";
+
+
+    document.getElementById(
+        "userGeneration"
+    ).textContent =
+        user.generation ||
+        "Generation not available";
+
+
+    document.getElementById(
+        "generationValue"
+    ).textContent =
+        user.generation ||
+        "—";
+
+
+    /* PROFILE PHOTO */
+
+    if (user.profilePhoto) {
+
+        document.getElementById(
+            "profilePhoto"
+        ).innerHTML = `
+
+            <img
+                src="${user.profilePhoto}"
+                alt="Profile photo">
+
+        `;
+    }
+
+}
+
+
+/* =====================================
+   SETTINGS STORAGE
+===================================== */
+
+let settings =
+    JSON.parse(
+        localStorage.getItem(
+            "geneRationsSettings"
+        )
+    ) || {
+
+        privateProfile: false,
+
+        allowMessages: true,
+
+        pushNotifications: true,
+
+        emailNotifications: true,
+
+        twoFactor: false,
+
+        theme: "light"
+
+    };
+
+
+/* =====================================
+   LOAD SETTINGS
+===================================== */
+
+function loadSettings() {
+
+    document.getElementById(
+        "privateProfile"
+    ).checked =
+        settings.privateProfile;
+
+
+    document.getElementById(
+        "allowMessages"
+    ).checked =
+        settings.allowMessages;
+
+
+    document.getElementById(
+        "pushNotifications"
+    ).checked =
+        settings.pushNotifications;
+
+
+    document.getElementById(
+        "emailNotifications"
+    ).checked =
+        settings.emailNotifications;
+
+
+    document.getElementById(
+        "twoFactor"
+    ).checked =
+        settings.twoFactor;
+
+
+    document.getElementById(
+        "theme"
+    ).value =
+        settings.theme;
+
+
+    applyTheme(
+        settings.theme
+    );
+
+}
+
+
+/* =====================================
+   SAVE TOGGLE
+===================================== */
+
+function saveToggle(
+    name,
+    value
+) {
+
+    settings[name] =
+        value;
+
+
+    saveSettings();
+}
+
+
+/* =====================================
+   SAVE SETTINGS
+===================================== */
+
+function saveSettings() {
+
+    localStorage.setItem(
+        "geneRationsSettings",
+        JSON.stringify(
+            settings
+        )
+    );
+
+}
+
+
+/* =====================================
+   THEME
+===================================== */
+
+function changeTheme(theme) {
+
+    settings.theme =
+        theme;
+
+    saveSettings();
+
+    applyTheme(theme);
+
+}
+
+
+function applyTheme(theme) {
+
+    if (theme === "dark") {
+
+        document.body.style.background =
+            "#121212";
+
+        document.body.style.color =
+            "#eee";
+
+    } else {
+
+        document.body.style.background =
+            "#f4f5fb";
+
+        document.body.style.color =
+            "#222";
+
+    }
+
+}
+
+
+/* =====================================
+   NAVIGATION
+===================================== */
+
+function openPage(page) {
+
+    window.location.href =
+        page;
+
+}
+
+
+function goGeneration() {
+
+    window.location.href =
+        "generations.html";
+
+}
+
+
+/* =====================================
+   CHANGE PASSWORD
+===================================== */
+
+function changePassword() {
+
+    window.location.href =
+        "forgotpassword.html";
+
+}
+
+
+/* =====================================
+   LOGOUT
+===================================== */
+
+function logout() {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to log out?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    /*
+       We remove the active session.
+
+       User registration data is retained
+       for the current frontend testing stage.
+    */
+
+    localStorage.removeItem(
+        "loggedIn"
+    );
+
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =====================================
+   DELETE ACCOUNT
+===================================== */
+
+function deleteAccount() {
+
+    const first =
+        confirm(
+            "Are you sure you want to delete your account?"
+        );
+
+
+    if (!first) {
+        return;
+    }
+
+
+    const second =
+        confirm(
+            "This will remove your local account data. Continue?"
+        );
+
+
+    if (!second) {
+        return;
+    }
+
+
+    /*
+       FRONTEND TESTING VERSION
+
+       Backend will later permanently
+       delete the account from the database.
+    */
+
+    localStorage.removeItem(
+        "userData"
+    );
+
+    localStorage.removeItem(
+        "loggedIn"
+    );
+
+    localStorage.removeItem(
+        "geneRationsSettings"
+    );
+
+
+    window.location.href =
+        "signup.html";
+
+}
+
+
+/* =====================================
+   INITIALIZE
+===================================== */
+
+loadSettings();
+
+</script>
+
+</body>
+</html>

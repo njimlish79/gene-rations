@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations | Family Member</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f5fb;
+    color: #222;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+
+    padding: 15px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.header-btn {
+    border: none;
+    background: rgba(255,255,255,.18);
+    color: white;
+
+    padding: 9px 14px;
+    border-radius: 20px;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn {
+    border: none;
+    background: white;
+
+    padding: 10px 15px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    margin-bottom: 15px;
+}
+
+/* =========================
+   PROFILE HERO
+========================= */
+
+.profile-card {
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.06);
+
+    margin-bottom: 18px;
+}
+
+.avatar {
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+
+    margin: auto;
+    margin-bottom: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 38px;
+    font-weight: bold;
+
+    border: 5px solid #eef2ff;
+}
+
+.member-name {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.relationship {
+    color: #666;
+    margin-top: 6px;
+}
+
+.generation-badge {
+    display: inline-block;
+
+    margin-top: 12px;
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    background: #ede9fe;
+    color: #6d28d9;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions {
+    display: flex;
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.action-btn {
+    flex: 1;
+
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.connect-btn {
+    background: #2563eb;
+    color: white;
+}
+
+.message-btn {
+    background: #ede9fe;
+    color: #6d28d9;
+}
+
+.remove-btn {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        1.3fr 1fr;
+
+    gap: 18px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.06);
+}
+
+.card h2 {
+    font-size: 19px;
+
+    margin-bottom: 15px;
+}
+
+/* =========================
+   INFORMATION
+========================= */
+
+.info-row {
+    display: flex;
+
+    gap: 12px;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-icon {
+    width: 30px;
+    font-size: 20px;
+}
+
+.info-text strong {
+    display: block;
+
+    font-size: 14px;
+}
+
+.info-text span {
+    display: block;
+
+    color: #777;
+
+    font-size: 13px;
+
+    margin-top: 3px;
+}
+
+/* =========================
+   FAMILY SIDE
+========================= */
+
+.side-box {
+    background: #eff6ff;
+
+    color: #1d4ed8;
+
+    padding: 13px;
+
+    border-radius: 11px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+/* =========================
+   CONNECTION
+========================= */
+
+.connection {
+    text-align: center;
+
+    padding: 15px;
+}
+
+.connection-icon {
+    font-size: 40px;
+
+    margin-bottom: 8px;
+}
+
+.connection p {
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+/* =========================
+   NOT FOUND
+========================= */
+
+.not-found {
+    display: none;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 50px 20px;
+
+    text-align: center;
+}
+
+.not-found-icon {
+    font-size: 50px;
+
+    margin-bottom: 10px;
+}
+
+.home-btn {
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    margin-top: 15px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.6);
+
+    z-index: 500;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 15px;
+}
+
+.modal-box {
+    width: 100%;
+
+    max-width: 430px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 20px;
+}
+
+.modal-box h2 {
+    margin-bottom: 15px;
+}
+
+.modal-box textarea {
+    width: 100%;
+
+    min-height: 120px;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    resize: vertical;
+
+    font-family: inherit;
+}
+
+.modal-actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+.modal-actions button {
+    flex: 1;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .container {
+        padding: 13px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .member-name {
+        font-size: 24px;
+    }
+
+    .actions {
+        flex-wrap: wrap;
+    }
+
+    .action-btn {
+        min-width: 30%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header class="header">
+
+    <div class="logo">
+        Gene-rations
+    </div>
+
+    <button
+        class="header-btn"
+        onclick="goHome()">
+
+        Generation Hub
+
+    </button>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- ==================================================
+     BACK
+================================================== -->
+
+<button
+    class="back-btn"
+    onclick="goBack()">
+
+    ← Family Tree
+
+</button>
+
+
+
+<!-- ==================================================
+     MEMBER CONTENT
+================================================== -->
+
+<div id="memberContent">
+
+
+    <!-- PROFILE -->
+
+    <section class="profile-card">
+
+
+        <div
+            id="memberAvatar"
+            class="avatar">
+
+            G
+
+        </div>
+
+
+        <h1
+            id="memberName"
+            class="member-name">
+
+            Loading...
+
+        </h1>
+
+
+        <div
+            id="memberRelationship"
+            class="relationship">
+
+            Loading...
+
+        </div>
+
+
+        <span
+            id="memberGeneration"
+            class="generation-badge">
+
+            Loading...
+
+        </span>
+
+
+        <div class="actions">
+
+
+            <button
+                id="connectButton"
+                class="action-btn connect-btn"
+                onclick="connectMember()">
+
+                Connect
+
+            </button>
+
+
+            <button
+                class="action-btn message-btn"
+                onclick="openMessage()">
+
+                Message
+
+            </button>
+
+
+            <button
+                class="action-btn remove-btn"
+                onclick="removeMember()">
+
+                Remove
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- INFORMATION -->
+
+    <div class="grid">
+
+
+        <!-- LEFT -->
+
+        <div>
+
+
+            <section class="card">
+
+                <h2>
+                    Family Information
+                </h2>
+
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        👤
+                    </div>
+
+                    <div class="info-text">
+
+                        <strong>
+                            Relationship
+                        </strong>
+
+                        <span
+                            id="relationship">
+
+                            Loading...
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        🌳
+                    </div>
+
+                    <div class="info-text">
+
+                        <strong>
+                            Generation
+                        </strong>
+
+                        <span
+                            id="generation">
+
+                            Loading...
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        👨‍👩‍👧
+                    </div>
+
+                    <div class="info-text">
+
+                        <strong>
+                            Family Side
+                        </strong>
+
+                        <span
+                            id="familySide">
+
+                            Loading...
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        🔗
+                    </div>
+
+                    <div class="info-text">
+
+                        <strong>
+                            Gene-rations Account
+                        </strong>
+
+                        <span
+                            id="accountStatus">
+
+                            Not connected
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <section class="card">
+
+                <h2>
+                    Family Connection
+                </h2>
+
+                <div class="connection">
+
+                    <div class="connection-icon">
+                        🌳
+                    </div>
+
+                    <p
+                        id="connectionText">
+
+                        This person is connected
+                        to your family tree.
+
+                    </p>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+
+        <!-- RIGHT -->
+
+        <div>
+
+
+            <section class="card">
+
+                <h2>
+                    Family Side
+                </h2>
+
+                <div
+                    id="sideBox"
+                    class="side-box">
+
+                    Loading...
+
+                </div>
+
+            </section>
+
+
+            <section class="card">
+
+                <h2>
+                    Privacy
+                </h2>
+
+                <p style="
+                    color:#777;
+                    font-size:13px;
+                    line-height:1.6;
+                ">
+
+                    Family information is currently
+                    stored privately on this device.
+
+                    When Gene-rations has a backend,
+                    family members will be able to
+                    control who can see their
+                    information.
+
+                </p>
+
+            </section>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     NOT FOUND
+================================================== -->
+
+<div
+    id="notFound"
+    class="not-found">
+
+    <div class="not-found-icon">
+        🌳
+    </div>
+
+    <h2>
+        Family member not found
+    </h2>
+
+    <p style="
+        margin-top:8px;
+        color:#777;
+    ">
+
+        This family member may have been
+        removed from your family tree.
+
+    </p>
+
+    <button
+        class="home-btn"
+        onclick="goBack()">
+
+        Back to Family Tree
+
+    </button>
+
+</div>
+
+
+</main>
+
+
+
+<!-- ==================================================
+     MESSAGE MODAL
+================================================== -->
+
+<div
+    id="messageModal"
+    class="modal">
+
+
+<div class="modal-box">
+
+    <h2>
+        Message Family Member
+    </h2>
+
+
+    <textarea
+        id="messageText"
+        placeholder="Write your family message..."></textarea>
+
+
+    <div class="modal-actions">
+
+        <button
+            style="
+                background:#f1f5f9;
+                color:#555;
+            "
+            onclick="closeMessage()">
+
+            Cancel
+
+        </button>
+
+
+        <button
+            style="
+                background:#2563eb;
+                color:white;
+            "
+            onclick="sendMessage()">
+
+            Send Message
+
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+/* ==================================================
+   USER
+================================================== */
+
+const storedUser =
+    localStorage.getItem(
+        "userData"
+    );
+
+
+if (!storedUser) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+const user =
+    JSON.parse(
+        storedUser
+    );
+
+
+/* ==================================================
+   GET MEMBER ID
+================================================== */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const memberId =
+    Number(
+        params.get("id")
+    );
+
+
+/* ==================================================
+   LOAD FAMILY MEMBERS
+================================================== */
+
+let familyMembers =
+    JSON.parse(
+        localStorage.getItem(
+            "familyMembers"
+        )
+    ) || [];
+
+
+let member =
+    familyMembers.find(
+        item =>
+            Number(item.id) ===
+            memberId
+    );
+
+
+/* ==================================================
+   CHECK MEMBER
+================================================== */
+
+if (!member) {
+
+    document.getElementById(
+        "memberContent"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "notFound"
+    ).style.display =
+        "block";
+
+}
+
+else {
+
+    renderMember();
+
+}
+
+
+/* ==================================================
+   RENDER MEMBER
+================================================== */
+
+function renderMember() {
+
+    document.getElementById(
+        "memberAvatar"
+    ).textContent =
+        getInitial(
+            member.name
+        );
+
+
+    document.getElementById(
+        "memberName"
+    ).textContent =
+        member.name;
+
+
+    document.getElementById(
+        "memberRelationship"
+    ).textContent =
+        member.relation +
+        " · " +
+        member.side;
+
+
+    document.getElementById(
+        "memberGeneration"
+    ).textContent =
+        member.generation;
+
+
+    document.getElementById(
+        "relationship"
+    ).textContent =
+        member.relation;
+
+
+    document.getElementById(
+        "generation"
+    ).textContent =
+        member.generation;
+
+
+    document.getElementById(
+        "familySide"
+    ).textContent =
+        member.side;
+
+
+    document.getElementById(
+        "sideBox"
+    ).textContent =
+        getSideDescription(
+            member.side
+        );
+
+
+    if (
+        member.connected
+    ) {
+
+        document.getElementById(
+            "accountStatus"
+        ).textContent =
+            "Connected";
+
+
+        document.getElementById(
+            "connectButton"
+        ).textContent =
+            "✓ Connected";
+
+
+        document.getElementById(
+            "connectButton"
+        ).style.background =
+            "#16a34a";
+
+
+        document.getElementById(
+            "connectionText"
+        ).textContent =
+            member.name +
+            " is connected to your Gene-rations family network.";
+
+    }
+
+}
+
+
+/* ==================================================
+   CONNECT
+================================================== */
+
+function connectMember() {
+
+    if (!member)
+        return;
+
+
+    if (member.connected) {
+
+        member.connected =
+            false;
+
+    }
+
+    else {
+
+        member.connected =
+            true;
+
+
+        addNotification(
+            "👨‍👩‍👧",
+            "Family connection created with " +
+            member.name
+        );
+
+    }
+
+
+    saveMembers();
+
+    renderMember();
+
+}
+
+
+/* ==================================================
+   MESSAGE
+================================================== */
+
+function openMessage() {
+
+    document.getElementById(
+        "messageModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+function closeMessage() {
+
+    document.getElementById(
+        "messageModal"
+    ).style.display =
+        "none";
+
+}
+
+
+function sendMessage() {
+
+    const text =
+        document.getElementById(
+            "messageText"
+        ).value.trim();
+
+
+    if (!text) {
+
+        alert(
+            "Please write a message first."
+        );
+
+        return;
+
+    }
+
+
+    let messages =
+        JSON.parse(
+            localStorage.getItem(
+                "messages"
+            )
+        ) || [];
+
+
+    messages.push({
+
+        id:
+            Date.now(),
+
+        sender:
+            user.fullName ||
+            user.name ||
+            "You",
+
+        receiver:
+            member.name,
+
+        text:
+            text,
+
+        type:
+            "family",
+
+        time:
+            new Date().toISOString(),
+
+        read:
+            false
+
+    });
+
+
+    localStorage.setItem(
+        "messages",
+        JSON.stringify(
+            messages
+        )
+    );
+
+
+    document.getElementById(
+        "messageText"
+    ).value =
+        "";
+
+
+    closeMessage();
+
+
+    addNotification(
+        "💬",
+        "Message sent to " +
+        member.name
+    );
+
+
+    alert(
+        "Message saved. Backend messaging will be connected later."
+    );
+
+}
+
+
+/* ==================================================
+   REMOVE
+================================================== */
+
+function removeMember() {
+
+    if (!member)
+        return;
+
+
+    const answer =
+        confirm(
+            "Remove " +
+            member.name +
+            " from your family tree?"
+        );
+
+
+    if (!answer)
+        return;
+
+
+    familyMembers =
+        familyMembers.filter(
+            item =>
+                Number(item.id) !==
+                memberId
+        );
+
+
+    saveMembers();
+
+
+    window.location.href =
+        "family-tree.html";
+
+}
+
+
+/* ==================================================
+   SAVE
+================================================== */
+
+function saveMembers() {
+
+    localStorage.setItem(
+        "familyMembers",
+        JSON.stringify(
+            familyMembers
+        )
+    );
+
+}
+
+
+/* ==================================================
+   NOTIFICATION
+================================================== */
+
+function addNotification(
+    icon,
+    text
+) {
+
+    let notifications =
+        JSON.parse(
+            localStorage.getItem(
+                "notifications"
+            )
+        ) || [];
+
+
+    notifications.unshift({
+
+        id:
+            Date.now(),
+
+        type:
+            "family",
+
+        icon:
+            icon,
+
+        text:
+            text,
+
+        read:
+            false,
+
+        time:
+            new Date().toISOString()
+
+    });
+
+
+    localStorage.setItem(
+        "notifications",
+        JSON.stringify(
+            notifications
+        )
+    );
+
+}
+
+
+/* ==================================================
+   SIDE DESCRIPTION
+================================================== */
+
+function getSideDescription(
+    side
+) {
+
+    if (
+        side ===
+        "Father's side"
+    ) {
+
+        return "This family member belongs to your father's side of the family.";
+
+    }
+
+
+    if (
+        side ===
+        "Mother's side"
+    ) {
+
+        return "This family member belongs to your mother's side of the family.";
+
+    }
+
+
+    if (
+        side ===
+        "Spouse's side"
+    ) {
+
+        return "This family member belongs to your spouse's side of the family.";
+
+    }
+
+
+    return "Family side has not been specified.";
+
+}
+
+
+/* ==================================================
+   INITIAL
+================================================== */
+
+function getInitial(
+    name
+) {
+
+    return (
+        name ||
+        "G"
+    )
+    .trim()
+    .charAt(0)
+    .toUpperCase();
+
+}
+
+
+/* ==================================================
+   NAVIGATION
+================================================== */
+
+function goBack() {
+
+    window.location.href =
+        "family-tree.html";
+
+}
+
+
+function goHome() {
+
+    window.location.href =
+        "generations.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations | Privacy</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f5fb;
+    color: #222;
+}
+
+/* HEADER */
+
+.header {
+    background: linear-gradient(135deg, #2864e8, #7b2ff7);
+    color: white;
+    padding: 17px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-btn {
+    border: none;
+    background: rgba(255,255,255,0.18);
+    color: white;
+
+    padding: 10px 15px;
+    border-radius: 22px;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* MAIN */
+
+.container {
+    max-width: 850px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* BACK */
+
+.back-btn {
+    border: none;
+    background: transparent;
+
+    color: #2864e8;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+/* INTRO */
+
+.intro {
+    background: white;
+    border-radius: 20px;
+
+    padding: 22px;
+
+    margin-bottom: 16px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.intro h1 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.intro p {
+    color: #777;
+    line-height: 1.5;
+}
+
+/* SECTION */
+
+.section {
+    background: white;
+    border-radius: 18px;
+
+    margin-bottom: 16px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.section-title {
+    padding: 16px 18px;
+
+    background: #fafaff;
+
+    color: #777;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+}
+
+/* ROW */
+
+.setting {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 17px 18px;
+
+    border-top: 1px solid #eee;
+}
+
+.icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    background: #eef0ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    flex-shrink: 0;
+}
+
+.info {
+    flex: 1;
+}
+
+.name {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.description {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* SELECT */
+
+.select {
+    border: 1px solid #ddd;
+    background: #f7f8ff;
+
+    padding: 9px 10px;
+
+    border-radius: 9px;
+
+    font-weight: bold;
+
+    max-width: 150px;
+}
+
+/* TOGGLE */
+
+.toggle {
+    position: relative;
+
+    width: 46px;
+    height: 25px;
+
+    flex-shrink: 0;
+}
+
+.toggle input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+
+    background: #ccc;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.slider:before {
+    content: "";
+
+    position: absolute;
+
+    width: 19px;
+    height: 19px;
+
+    left: 3px;
+    top: 3px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    transition: .2s;
+}
+
+.toggle input:checked + .slider {
+    background: #2864e8;
+}
+
+.toggle input:checked + .slider:before {
+    transform: translateX(21px);
+}
+
+/* INFO BOX */
+
+.info-box {
+    background: #eef4ff;
+
+    color: #31558f;
+
+    padding: 16px;
+
+    border-radius: 13px;
+
+    margin-bottom: 16px;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+}
+
+/* DATA BUTTONS */
+
+.data-button {
+    border: none;
+
+    background: #eef0ff;
+
+    color: #2864e8;
+
+    padding: 10px 13px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.delete-button {
+    background: #ffe8e8;
+    color: #c62828;
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+
+    color: #999;
+
+    font-size: 13px;
+
+    padding: 10px 0 30px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .container {
+        padding: 12px;
+    }
+
+    .intro {
+        padding: 18px;
+    }
+
+    .intro h1 {
+        font-size: 24px;
+    }
+
+    .setting {
+        padding: 15px;
+    }
+
+    .select {
+        max-width: 125px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .header-btn {
+        padding: 9px 11px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="logo">
+        Gene-rations
+    </div>
+
+    <button
+        class="header-btn"
+        onclick="goSettings()">
+
+        Settings
+
+    </button>
+
+</header>
+
+
+<main class="container">
+
+    <!-- BACK -->
+
+    <button
+        class="back-btn"
+        onclick="goSettings()">
+
+        ← Back to Settings
+
+    </button>
+
+
+    <!-- INTRO -->
+
+    <section class="intro">
+
+        <h1>
+            Privacy
+        </h1>
+
+        <p>
+            Control who can see your information,
+            contact you and discover your activity
+            across Gene-rations.
+        </p>
+
+    </section>
+
+
+    <!-- PROFILE VISIBILITY -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Profile Visibility
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                👤
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Profile Visibility
+                </div>
+
+                <div class="description">
+                    Choose who can view your
+                    Gene-rations profile.
+                </div>
+
+            </div>
+
+            <select
+                id="profileVisibility"
+                class="select"
+                onchange="saveSelect(
+                    'profileVisibility',
+                    this.value
+                )">
+
+                <option value="everyone">
+                    Everyone
+                </option>
+
+                <option value="generation">
+                    My Generation
+                </option>
+
+                <option value="members">
+                    Members
+                </option>
+
+                <option value="private">
+                    Only Me
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                📸
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Profile Photo
+                </div>
+
+                <div class="description">
+                    Control who can see your
+                    profile photo.
+                </div>
+
+            </div>
+
+            <select
+                id="photoVisibility"
+                class="select"
+                onchange="saveSelect(
+                    'photoVisibility',
+                    this.value
+                )">
+
+                <option value="everyone">
+                    Everyone
+                </option>
+
+                <option value="generation">
+                    My Generation
+                </option>
+
+                <option value="members">
+                    Members
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Contact & Communication
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                💬
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Allow Messages
+                </div>
+
+                <div class="description">
+                    Allow other members to send
+                    you direct messages.
+                </div>
+
+            </div>
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="allowMessages"
+                    onchange="saveToggle(
+                        'allowMessages',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                👥
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Generation Members
+                </div>
+
+                <div class="description">
+                    Allow members of your generation
+                    to contact you.
+                </div>
+
+            </div>
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="generationMessages"
+                    onchange="saveToggle(
+                        'generationMessages',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+    <!-- ACTIVITY -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Activity
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                📝
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Posts
+                </div>
+
+                <div class="description">
+                    Choose who can see your
+                    posts and activity.
+                </div>
+
+            </div>
+
+            <select
+                id="postVisibility"
+                class="select"
+                onchange="saveSelect(
+                    'postVisibility',
+                    this.value
+                )">
+
+                <option value="everyone">
+                    Everyone
+                </option>
+
+                <option value="generation">
+                    My Generation
+                </option>
+
+                <option value="members">
+                    Members
+                </option>
+
+                <option value="private">
+                    Only Me
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                ❤️
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Likes & Comments
+                </div>
+
+                <div class="description">
+                    Control whether your activity
+                    can appear to other members.
+                </div>
+
+            </div>
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="activityVisibility"
+                    onchange="saveToggle(
+                        'activityVisibility',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                👁️
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Profile Views
+                </div>
+
+                <div class="description">
+                    Allow your profile visit
+                    activity to be recorded.
+                </div>
+
+            </div>
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="profileViews"
+                    onchange="saveToggle(
+                        'profileViews',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+    <!-- DISCOVERY -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Discovery
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                🔎
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Search Visibility
+                </div>
+
+                <div class="description">
+                    Allow other members to find
+                    your profile in searches.
+                </div>
+
+            </div>
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="searchVisibility"
+                    onchange="saveToggle(
+                        'searchVisibility',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                🌍
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Generation Discovery
+                </div>
+
+                <div class="description">
+                    Allow your profile to appear
+                    in generation member discovery.
+                </div>
+
+            </div>
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="generationDiscovery"
+                    onchange="saveToggle(
+                        'generationDiscovery',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+    <!-- FAMILY -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Family Tree
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                🌳
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Family Information
+                </div>
+
+                <div class="description">
+                    Control who can see your
+                    family-tree information.
+                </div>
+
+            </div>
+
+            <select
+                id="familyVisibility"
+                class="select"
+                onchange="saveSelect(
+                    'familyVisibility',
+                    this.value
+                )">
+
+                <option value="family">
+                    Family Only
+                </option>
+
+                <option value="generation">
+                    My Generation
+                </option>
+
+                <option value="members">
+                    Members
+                </option>
+
+                <option value="private">
+                    Only Me
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- MARKETPLACE -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Marketplace
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                🛍️
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Seller Profile
+                </div>
+
+                <div class="description">
+                    Allow buyers to see your
+                    public seller information.
+                </div>
+
+            </div>
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="sellerVisibility"
+                    onchange="saveToggle(
+                        'sellerVisibility',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+    <!-- DATA -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Your Data
+        </div>
+
+
+        <div class="info-box">
+
+            <strong>
+                Your privacy matters.
+            </strong>
+
+            <br>
+
+            During the current frontend testing
+            stage, these preferences are stored
+            on this device. When Gene-rations
+            gets its backend, these settings will
+            be securely associated with your
+            account.
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                💾
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Export My Data
+                </div>
+
+                <div class="description">
+                    Download the information currently
+                    stored for your Gene-rations account.
+                </div>
+
+            </div>
+
+            <button
+                class="data-button"
+                onclick="exportData()">
+
+                Export
+
+            </button>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="icon">
+                🗑️
+            </div>
+
+            <div class="info">
+
+                <div class="name">
+                    Clear Local Data
+                </div>
+
+                <div class="description">
+                    Remove locally stored Gene-rations
+                    data from this device.
+                </div>
+
+            </div>
+
+            <button
+                class="data-button delete-button"
+                onclick="clearLocalData()">
+
+                Clear
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <div class="footer">
+
+        Gene-rations Privacy Center
+
+        <br>
+
+        Your generation. Your community.
+        Your privacy.
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* =====================================
+   USER
+===================================== */
+
+const user =
+    JSON.parse(
+        localStorage.getItem("userData")
+    );
+
+
+if (!user) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =====================================
+   PRIVACY SETTINGS
+===================================== */
+
+let privacy =
+    JSON.parse(
+        localStorage.getItem(
+            "geneRationsPrivacy"
+        )
+    ) || {
+
+        profileVisibility: "everyone",
+
+        photoVisibility: "everyone",
+
+        allowMessages: true,
+
+        generationMessages: true,
+
+        postVisibility: "everyone",
+
+        activityVisibility: true,
+
+        profileViews: true,
+
+        searchVisibility: true,
+
+        generationDiscovery: true,
+
+        familyVisibility: "family",
+
+        sellerVisibility: true
+
+    };
+
+
+/* =====================================
+   LOAD SETTINGS
+===================================== */
+
+function loadPrivacy() {
+
+    const selects = [
+
+        "profileVisibility",
+        "photoVisibility",
+        "postVisibility",
+        "familyVisibility"
+
+    ];
+
+
+    selects.forEach(
+        function(id) {
+
+            document.getElementById(
+                id
+            ).value =
+                privacy[id];
+
+        }
+    );
+
+
+    const toggles = [
+
+        "allowMessages",
+        "generationMessages",
+        "activityVisibility",
+        "profileViews",
+        "searchVisibility",
+        "generationDiscovery",
+        "sellerVisibility"
+
+    ];
+
+
+    toggles.forEach(
+        function(id) {
+
+            document.getElementById(
+                id
+            ).checked =
+                privacy[id];
+
+        }
+    );
+
+}
+
+
+/* =====================================
+   SAVE TOGGLE
+===================================== */
+
+function saveToggle(
+    name,
+    value
+) {
+
+    privacy[name] =
+        value;
+
+    savePrivacy();
+
+}
+
+
+/* =====================================
+   SAVE SELECT
+===================================== */
+
+function saveSelect(
+    name,
+    value
+) {
+
+    privacy[name] =
+        value;
+
+    savePrivacy();
+
+}
+
+
+/* =====================================
+   SAVE
+===================================== */
+
+function savePrivacy() {
+
+    localStorage.setItem(
+        "geneRationsPrivacy",
+        JSON.stringify(
+            privacy
+        )
+    );
+
+}
+
+
+/* =====================================
+   SETTINGS
+===================================== */
+
+function goSettings() {
+
+    window.location.href =
+        "settings.html";
+
+}
+
+
+/* =====================================
+   EXPORT DATA
+===================================== */
+
+function exportData() {
+
+    const data = {
+
+        userData:
+            JSON.parse(
+                localStorage.getItem(
+                    "userData"
+                )
+            ),
+
+        privacy:
+            privacy,
+
+        settings:
+            JSON.parse(
+                localStorage.getItem(
+                    "geneRationsSettings"
+                )
+            )
+
+    };
+
+
+    const file =
+        new Blob(
+            [
+                JSON.stringify(
+                    data,
+                    null,
+                    2
+                )
+            ],
+            {
+                type:
+                    "application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(
+            file
+        );
+
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+
+    link.href =
+        url;
+
+    link.download =
+        "gene-rations-data.json";
+
+
+    link.click();
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+}
+
+
+/* =====================================
+   CLEAR LOCAL DATA
+===================================== */
+
+function clearLocalData() {
+
+    const confirmed =
+        confirm(
+            "This will remove locally stored Gene-rations data from this device. Continue?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    localStorage.clear();
+
+
+    alert(
+        "Local Gene-rations data has been cleared."
+    );
+
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =====================================
+   INITIALIZE
+===================================== */
+
+loadPrivacy();
+
+</script>
+
+</body>
+</html>

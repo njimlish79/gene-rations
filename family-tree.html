@@ -1,274 +1,1849 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gene-rations Family Tree</title>
+
+<title>Gene-rations | Family Tree</title>
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    background:#f4f6f9;
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f5fb;
+    color: #222;
 }
 
-header{
-    background:#2e7d32;
-    color:white;
-    text-align:center;
-    padding:20px;
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    padding: 15px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.container{
-    max-width:1200px;
-    margin:20px auto;
-    padding:20px;
+.logo {
+    font-size: 22px;
+    font-weight: bold;
 }
 
-.controls{
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    margin-bottom:20px;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
+.header-buttons {
+    display: flex;
+    gap: 8px;
 }
 
-.controls input,
-.controls select{
-    padding:10px;
-    margin:5px;
-    border:1px solid #ccc;
-    border-radius:8px;
+.header-btn {
+    border: none;
+    background: rgba(255,255,255,.18);
+    color: white;
+
+    padding: 9px 14px;
+    border-radius: 20px;
+
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.controls button{
-    padding:10px 15px;
-    border:none;
-    background:#2e7d32;
-    color:white;
-    border-radius:8px;
-    cursor:pointer;
+/* =========================
+   MAIN
+========================= */
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
 }
 
-.tree-container{
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
-    overflow-x:auto;
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    background: white;
+    border-radius: 18px;
+
+    padding: 20px;
+    margin-bottom: 18px;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,.06);
 }
 
-.tree{
-    text-align:center;
-    min-width:800px;
+.intro h1 {
+    font-size: 28px;
+    margin-bottom: 7px;
 }
 
-.person{
-    display:inline-block;
-    padding:15px 20px;
-    margin:10px;
-    background:#2e7d32;
-    color:white;
-    border-radius:12px;
-    min-width:150px;
+.intro p {
+    color: #777;
+    line-height: 1.5;
 }
 
-.person small{
-    display:block;
-    margin-top:5px;
+.generation-badge {
+    display: inline-block;
+
+    margin-top: 10px;
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    background: #ede9fe;
+    color: #6d28d9;
+
+    font-size: 13px;
+    font-weight: bold;
 }
 
-.line{
-    font-size:30px;
-    color:#666;
+/* =========================
+   ACTION BAR
+========================= */
+
+.action-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
 }
 
-.family-gallery{
-    margin-top:20px;
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
+.action-btn {
+    border: none;
+    padding: 12px 16px;
+    border-radius: 10px;
+
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.gallery-grid{
-    display:grid;
+.add-btn {
+    background: #2563eb;
+    color: white;
+}
+
+.reset-btn {
+    background: white;
+    color: #555;
+}
+
+/* =========================
+   TREE CARD
+========================= */
+
+.tree-card {
+    background: white;
+    border-radius: 18px;
+
+    padding: 20px;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,.06);
+
+    overflow-x: auto;
+}
+
+.tree-title {
+    font-size: 20px;
+    margin-bottom: 18px;
+}
+
+/* =========================
+   TREE
+========================= */
+
+.tree {
+    min-width: 750px;
+    padding: 20px 10px 40px;
+}
+
+.tree-level {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+
+    position: relative;
+    margin-bottom: 55px;
+}
+
+.tree-level:last-child {
+    margin-bottom: 0;
+}
+
+.tree-level-title {
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+/* =========================
+   FAMILY MEMBER
+========================= */
+
+.member {
+    width: 170px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 15px;
+
+    padding: 14px;
+
+    text-align: center;
+
+    position: relative;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,.05);
+}
+
+.member.me {
+    border: 2px solid #2563eb;
+    background: #eff6ff;
+}
+
+.member-avatar {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    margin: auto;
+    margin-bottom: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.member-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.member-relation {
+    color: #777;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.member-generation {
+    display: inline-block;
+
+    margin-top: 7px;
+
+    background: #f1f5f9;
+    color: #555;
+
+    padding: 4px 7px;
+
+    border-radius: 10px;
+
+    font-size: 10px;
+}
+
+/* =========================
+   CONNECTOR VISUALS
+========================= */
+
+.connector-down {
+    position: absolute;
+
+    width: 2px;
+    height: 45px;
+
+    background: #cbd5e1;
+
+    left: 50%;
+    bottom: -45px;
+}
+
+.connector-horizontal {
+    position: absolute;
+
+    height: 2px;
+
+    background: #cbd5e1;
+
+    left: 25%;
+    right: 25%;
+
+    bottom: -25px;
+}
+
+/* =========================
+   FAMILY STATS
+========================= */
+
+.stats {
+    display: grid;
+
     grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
-    gap:15px;
-    margin-top:15px;
+        repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-top: 18px;
 }
 
-.gallery-item img{
-    width:100%;
-    border-radius:10px;
+.stat {
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 16px;
+
+    text-align: center;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,.05);
 }
 
-footer{
-    background:#222;
-    color:white;
-    text-align:center;
-    padding:20px;
-    margin-top:30px;
+.stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.stat-label {
+    color: #777;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.6);
+
+    z-index: 500;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px;
+}
+
+.modal-box {
+    background: white;
+
+    width: 100%;
+    max-width: 550px;
+
+    max-height: 90vh;
+    overflow-y: auto;
+
+    border-radius: 18px;
+
+    padding: 20px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.close-btn {
+    border: none;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: #f1f5f9;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+
+    font-weight: bold;
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #2563eb;
+}
+
+.save-btn {
+    width: 100%;
+
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+/* =========================
+   MEMBER LIST
+========================= */
+
+.member-list {
+    margin-top: 18px;
+}
+
+.member-list h2 {
+    font-size: 19px;
+    margin-bottom: 12px;
+}
+
+.list-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 12px;
+
+    margin-bottom: 8px;
+
+    border: 1px solid #eee;
+}
+
+.list-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.small-avatar {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #ede9fe;
+    color: #6d28d9;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+.delete-btn {
+    border: none;
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+
+    padding: 7px 9px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty {
+    text-align: center;
+
+    padding: 30px;
+
+    color: #777;
+}
+
+.empty-icon {
+    font-size: 45px;
+    margin-bottom: 8px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .container {
+        padding: 13px;
+    }
+
+    .stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .header-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<header>
-    <h1>Gene-rations Family Tree</h1>
-    <p>Preserving Family History Across Generations</p>
-</header>
 
-<div class="container">
+<!-- ==================================================
+     HEADER
+================================================== -->
 
-    <div class="controls">
+<header class="header">
 
-        <h2>Add Family Member</h2>
+    <div class="logo">
+        Gene-rations
+    </div>
 
-        <br>
+    <div class="header-buttons">
 
-        <input
-        type="text"
-        id="memberName"
-        placeholder="Family Member Name">
+        <button
+            class="header-btn"
+            onclick="goHome()">
 
-        <select id="relationship">
-            <option>Father</option>
-            <option>Mother</option>
-            <option>Grandfather</option>
-            <option>Grandmother</option>
-            <option>Brother</option>
-            <option>Sister</option>
-            <option>Son</option>
-            <option>Daughter</option>
-        </select>
+            Generation Hub
 
-        <button onclick="addMember()">
-            Add Member
         </button>
 
     </div>
 
-    <div class="tree-container">
+</header>
 
-        <h2 style="text-align:center;">
-            My Family Tree
-        </h2>
 
-        <br>
 
-        <div class="tree" id="tree">
+<main class="container">
 
-            <div class="person">
-                Grandfather
-                <small>Silent Generation</small>
-            </div>
 
-            <div class="person">
-                Grandmother
-                <small>Silent Generation</small>
-            </div>
+<!-- ==================================================
+     INTRO
+================================================== -->
 
-            <div class="line">↓</div>
+<section class="intro">
 
-            <div class="person">
-                Father
-                <small>Baby Boomer</small>
-            </div>
+    <h1>
+        🌳 Family Tree
+    </h1>
 
-            <div class="person">
-                Mother
-                <small>Generation X</small>
-            </div>
+    <p>
+        Build your family connection tree,
+        preserve family relationships and
+        discover how generations connect.
+    </p>
 
-            <div class="line">↓</div>
+    <span
+        id="generationBadge"
+        class="generation-badge">
 
-            <div class="person">
-                You
-                <small>Generation Z</small>
-            </div>
+        Loading...
 
+    </span>
+
+</section>
+
+
+
+<!-- ==================================================
+     ACTIONS
+================================================== -->
+
+<div class="action-bar">
+
+    <button
+        class="action-btn add-btn"
+        onclick="openAddMember()">
+
+        + Add Family Member
+
+    </button>
+
+    <button
+        class="action-btn reset-btn"
+        onclick="confirmReset()">
+
+        Reset Tree
+
+    </button>
+
+</div>
+
+
+
+<!-- ==================================================
+     TREE
+================================================== -->
+
+<section class="tree-card">
+
+    <h2 class="tree-title">
+        My Family
+    </h2>
+
+
+    <div
+        id="tree"
+        class="tree">
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     STATS
+================================================== -->
+
+<div class="stats">
+
+    <div class="stat">
+
+        <div
+            id="totalMembers"
+            class="stat-number">
+
+            0
+
+        </div>
+
+        <div class="stat-label">
+            Family Members
         </div>
 
     </div>
 
-    <div class="family-gallery">
 
-        <h2>Family Memories</h2>
+    <div class="stat">
 
-        <div class="gallery-grid">
+        <div
+            id="parentsCount"
+            class="stat-number">
 
-            <div class="gallery-item">
-                <img src="https://picsum.photos/300/200?1">
-            </div>
+            0
 
-            <div class="gallery-item">
-                <img src="https://picsum.photos/300/200?2">
-            </div>
+        </div>
 
-            <div class="gallery-item">
-                <img src="https://picsum.photos/300/200?3">
-            </div>
+        <div class="stat-label">
+            Parents
+        </div>
 
-            <div class="gallery-item">
-                <img src="https://picsum.photos/300/200?4">
-            </div>
+    </div>
 
+
+    <div class="stat">
+
+        <div
+            id="childrenCount"
+            class="stat-number">
+
+            0
+
+        </div>
+
+        <div class="stat-label">
+            Children
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div
+            id="generationsCount"
+            class="stat-number">
+
+            0
+
+        </div>
+
+        <div class="stat-label">
+            Generations
         </div>
 
     </div>
 
 </div>
 
-<footer>
-    © 2026 Gene-rations Family Tree
-</footer>
+
+
+<!-- ==================================================
+     MEMBER LIST
+================================================== -->
+
+<section class="member-list">
+
+    <h2>
+        Family Members
+    </h2>
+
+
+    <div
+        id="memberList">
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- ==================================================
+     ADD MEMBER MODAL
+================================================== -->
+
+<div
+    id="addModal"
+    class="modal">
+
+
+<div class="modal-box">
+
+
+<div class="modal-header">
+
+    <h2>
+        Add Family Member
+    </h2>
+
+
+    <button
+        class="close-btn"
+        onclick="closeAddMember()">
+
+        ✕
+
+    </button>
+
+</div>
+
+
+
+<div class="form-group">
+
+    <label>
+        Full name
+    </label>
+
+    <input
+        id="memberName"
+        type="text"
+        maxlength="80"
+        placeholder="Enter family member's name">
+
+</div>
+
+
+
+<div class="form-group">
+
+    <label>
+        Relationship to you
+    </label>
+
+    <select id="memberRelation">
+
+        <option value="">
+            Select relationship
+        </option>
+
+        <option value="Father">
+            Father
+        </option>
+
+        <option value="Mother">
+            Mother
+        </option>
+
+        <option value="Grandfather">
+            Grandfather
+        </option>
+
+        <option value="Grandmother">
+            Grandmother
+        </option>
+
+        <option value="Great-grandfather">
+            Great-grandfather
+        </option>
+
+        <option value="Great-grandmother">
+            Great-grandmother
+        </option>
+
+        <option value="Brother">
+            Brother
+        </option>
+
+        <option value="Sister">
+            Sister
+        </option>
+
+        <option value="Spouse">
+            Spouse
+        </option>
+
+        <option value="Son">
+            Son
+        </option>
+
+        <option value="Daughter">
+            Daughter
+        </option>
+
+        <option value="Grandson">
+            Grandson
+        </option>
+
+        <option value="Granddaughter">
+            Granddaughter
+        </option>
+
+        <option value="Uncle">
+            Uncle
+        </option>
+
+        <option value="Aunt">
+            Aunt
+        </option>
+
+        <option value="Cousin">
+            Cousin
+        </option>
+
+        <option value="Other">
+            Other
+        </option>
+
+    </select>
+
+</div>
+
+
+
+<div class="form-group">
+
+    <label>
+        Generation
+    </label>
+
+    <select id="memberGeneration">
+
+        <option value="Older Generation">
+            Older Generation
+        </option>
+
+        <option value="My Generation">
+            My Generation
+        </option>
+
+        <option value="Younger Generation">
+            Younger Generation
+        </option>
+
+    </select>
+
+</div>
+
+
+
+<div class="form-group">
+
+    <label>
+        Family side
+    </label>
+
+    <select id="familySide">
+
+        <option value="Not specified">
+            Not specified
+        </option>
+
+        <option value="Father's side">
+            Father's side
+        </option>
+
+        <option value="Mother's side">
+            Mother's side
+        </option>
+
+        <option value="Spouse's side">
+            Spouse's side
+        </option>
+
+    </select>
+
+</div>
+
+
+
+<button
+    class="save-btn"
+    onclick="addMember()">
+
+    Add Family Member
+
+</button>
+
+
+</div>
+
+</div>
+
+
 
 <script>
 
-function addMember(){
+/* ==================================================
+   USER DATA
+================================================== */
 
-    const name =
-    document.getElementById("memberName").value;
+const storedUser =
+    localStorage.getItem(
+        "userData"
+    );
 
-    const relation =
-    document.getElementById("relationship").value;
 
-    if(name.trim() === ""){
-        alert("Enter a name.");
-        return;
+if (!storedUser) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+const user =
+    JSON.parse(
+        storedUser
+    );
+
+
+const userName =
+    user.fullName ||
+    user.name ||
+    "Gene-rations Member";
+
+
+const generation =
+    user.generation ||
+    "Your Generation";
+
+
+document.getElementById(
+    "generationBadge"
+).textContent =
+    generation;
+
+
+/* ==================================================
+   FAMILY DATA
+================================================== */
+
+let familyMembers =
+    JSON.parse(
+        localStorage.getItem(
+            "familyMembers"
+        )
+    ) || [];
+
+
+/* ==================================================
+   CREATE DEFAULT USER
+================================================== */
+
+function getCurrentUser() {
+
+    return {
+
+        id: "me",
+
+        name: userName,
+
+        relation: "Me",
+
+        generation: "My Generation",
+
+        side: "My Family",
+
+        isMe: true
+
+    };
+
+}
+
+
+/* ==================================================
+   RENDER TREE
+================================================== */
+
+function renderTree() {
+
+    const tree =
+        document.getElementById(
+            "tree"
+        );
+
+
+    tree.innerHTML =
+        "";
+
+
+    const allMembers = [
+
+        getCurrentUser(),
+
+        ...familyMembers
+
+    ];
+
+
+    const older =
+        allMembers.filter(
+            member =>
+
+                member.generation ===
+                "Older Generation"
+
+        );
+
+
+    const current =
+        allMembers.filter(
+            member =>
+
+                member.generation ===
+                "My Generation"
+
+        );
+
+
+    const younger =
+        allMembers.filter(
+            member =>
+
+                member.generation ===
+                "Younger Generation"
+
+        );
+
+
+    if (older.length) {
+
+        tree.appendChild(
+            createLevel(
+                "Older Generation",
+                older
+            )
+        );
+
     }
 
-    const member =
-    document.createElement("div");
 
-    member.className = "person";
+    tree.appendChild(
+        createLevel(
+            "My Generation",
+            current
+        )
+    );
 
-    member.innerHTML =
-        relation +
-        "<br><small>" +
-        name +
-        "</small>";
 
-    document
-    .getElementById("tree")
-    .appendChild(member);
+    if (younger.length) {
 
-    document
-    .getElementById("memberName")
-    .value = "";
+        tree.appendChild(
+            createLevel(
+                "Younger Generation",
+                younger
+            )
+        );
+
+    }
+
+
+    updateStats();
+
+    renderMemberList();
+
 }
+
+
+/* ==================================================
+   CREATE LEVEL
+================================================== */
+
+function createLevel(
+    title,
+    members
+) {
+
+    const wrapper =
+        document.createElement(
+            "div"
+        );
+
+
+    const titleElement =
+        document.createElement(
+            "div"
+        );
+
+
+    titleElement.className =
+        "tree-level-title";
+
+
+    titleElement.textContent =
+        title;
+
+
+    wrapper.appendChild(
+        titleElement
+    );
+
+
+    const level =
+        document.createElement(
+            "div"
+        );
+
+
+    level.className =
+        "tree-level";
+
+
+    members.forEach(
+        member => {
+
+            level.appendChild(
+                createMemberCard(
+                    member
+                )
+            );
+
+        }
+    );
+
+
+    wrapper.appendChild(
+        level
+    );
+
+
+    return wrapper;
+
+}
+
+
+/* ==================================================
+   MEMBER CARD
+================================================== */
+
+function createMemberCard(
+    member
+) {
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+
+    card.className =
+        "member";
+
+
+    if (member.isMe) {
+
+        card.classList.add(
+            "me"
+        );
+
+    }
+
+
+    card.innerHTML = `
+
+        <div class="member-avatar">
+
+            ${getInitial(
+                member.name
+            )}
+
+        </div>
+
+
+        <div class="member-name">
+
+            ${escapeHTML(
+                member.name
+            )}
+
+        </div>
+
+
+        <div class="member-relation">
+
+            ${escapeHTML(
+                member.relation
+            )}
+
+        </div>
+
+
+        <span class="member-generation">
+
+            ${escapeHTML(
+                member.generation
+            )}
+
+        </span>
+
+    `;
+
+
+    return card;
+
+}
+
+
+/* ==================================================
+   ADD MEMBER
+================================================== */
+
+function openAddMember() {
+
+    document.getElementById(
+        "addModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+function closeAddMember() {
+
+    document.getElementById(
+        "addModal"
+    ).style.display =
+        "none";
+
+}
+
+
+function addMember() {
+
+    const name =
+        document.getElementById(
+            "memberName"
+        ).value.trim();
+
+
+    const relation =
+        document.getElementById(
+            "memberRelation"
+        ).value;
+
+
+    const memberGeneration =
+        document.getElementById(
+            "memberGeneration"
+        ).value;
+
+
+    const side =
+        document.getElementById(
+            "familySide"
+        ).value;
+
+
+    if (!name) {
+
+        alert(
+            "Please enter the family member's name."
+        );
+
+        return;
+
+    }
+
+
+    if (!relation) {
+
+        alert(
+            "Please select the relationship."
+        );
+
+        return;
+
+    }
+
+
+    const newMember = {
+
+        id:
+            Date.now(),
+
+        name:
+            name,
+
+        relation:
+            relation,
+
+        generation:
+            memberGeneration,
+
+        side:
+            side,
+
+        isMe:
+            false
+
+    };
+
+
+    familyMembers.push(
+        newMember
+    );
+
+
+    saveFamily();
+
+
+    clearForm();
+
+    closeAddMember();
+
+    renderTree();
+
+
+    addNotification(
+        "🌳",
+        name +
+        " was added to your family tree."
+    );
+
+}
+
+
+/* ==================================================
+   MEMBER LIST
+================================================== */
+
+function renderMemberList() {
+
+    const list =
+        document.getElementById(
+            "memberList"
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    if (
+        familyMembers.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🌱
+                </div>
+
+                <p>
+                    Your family tree is ready.
+                    Add your first family member.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    familyMembers.forEach(
+        member => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "list-item";
+
+
+            item.innerHTML = `
+
+                <div class="list-left">
+
+                    <div class="small-avatar">
+
+                        ${getInitial(
+                            member.name
+                        )}
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+
+                            ${escapeHTML(
+                                member.name
+                            )}
+
+                        </strong>
+
+
+                        <div style="
+                            color:#777;
+                            font-size:12px;
+                            margin-top:3px;
+                        ">
+
+                            ${escapeHTML(
+                                member.relation
+                            )}
+                            ·
+                            ${escapeHTML(
+                                member.side
+                            )}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="delete-btn"
+                    onclick="removeMember(${member.id})">
+
+                    Remove
+
+                </button>
+
+            `;
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   REMOVE MEMBER
+================================================== */
+
+function removeMember(
+    id
+) {
+
+    const member =
+        familyMembers.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!member)
+        return;
+
+
+    const confirmDelete =
+        confirm(
+            "Remove " +
+            member.name +
+            " from your family tree?"
+        );
+
+
+    if (!confirmDelete)
+        return;
+
+
+    familyMembers =
+        familyMembers.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    saveFamily();
+
+    renderTree();
+
+}
+
+
+/* ==================================================
+   RESET
+================================================== */
+
+function confirmReset() {
+
+    const answer =
+        confirm(
+            "Are you sure you want to remove all family members from this test family tree?"
+        );
+
+
+    if (!answer)
+        return;
+
+
+    familyMembers =
+        [];
+
+
+    saveFamily();
+
+    renderTree();
+
+}
+
+
+/* ==================================================
+   STATS
+================================================== */
+
+function updateStats() {
+
+    document.getElementById(
+        "totalMembers"
+    ).textContent =
+        familyMembers.length + 1;
+
+
+    const parents =
+        familyMembers.filter(
+            member =>
+
+                member.relation ===
+                "Father" ||
+
+                member.relation ===
+                "Mother"
+
+        ).length;
+
+
+    document.getElementById(
+        "parentsCount"
+    ).textContent =
+        parents;
+
+
+    const children =
+        familyMembers.filter(
+            member =>
+
+                member.relation ===
+                "Son" ||
+
+                member.relation ===
+                "Daughter"
+
+        ).length;
+
+
+    document.getElementById(
+        "childrenCount"
+    ).textContent =
+        children;
+
+
+    const generations =
+        new Set(
+
+            familyMembers.map(
+                member =>
+                    member.generation
+            )
+
+        );
+
+
+    generations.add(
+        "My Generation"
+    );
+
+
+    document.getElementById(
+        "generationsCount"
+    ).textContent =
+        generations.size;
+
+}
+
+
+/* ==================================================
+   SAVE
+================================================== */
+
+function saveFamily() {
+
+    localStorage.setItem(
+        "familyMembers",
+        JSON.stringify(
+            familyMembers
+        )
+    );
+
+}
+
+
+/* ==================================================
+   NOTIFICATION
+================================================== */
+
+function addNotification(
+    icon,
+    text
+) {
+
+    let notifications =
+        JSON.parse(
+            localStorage.getItem(
+                "notifications"
+            )
+        ) || [];
+
+
+    notifications.unshift({
+
+        id:
+            Date.now(),
+
+        type:
+            "family",
+
+        icon:
+            icon,
+
+        text:
+            text,
+
+        read:
+            false,
+
+        time:
+            new Date().toISOString()
+
+    });
+
+
+    localStorage.setItem(
+        "notifications",
+        JSON.stringify(
+            notifications
+        )
+    );
+
+}
+
+
+/* ==================================================
+   INITIAL FORM
+================================================== */
+
+function clearForm() {
+
+    document.getElementById(
+        "memberName"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "memberRelation"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "memberGeneration"
+    ).value =
+        "Older Generation";
+
+
+    document.getElementById(
+        "familySide"
+    ).value =
+        "Not specified";
+
+}
+
+
+/* ==================================================
+   HELPERS
+================================================== */
+
+function getInitial(
+    name
+) {
+
+    return (
+        name ||
+        "G"
+    )
+    .trim()
+    .charAt(0)
+    .toUpperCase();
+
+}
+
+
+function escapeHTML(
+    value
+) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ==================================================
+   NAVIGATION
+================================================== */
+
+function goHome() {
+
+    window.location.href =
+        "generations.html";
+
+}
+
+
+/* ==================================================
+   START
+================================================== */
+
+renderTree();
 
 </script>
 
 </body>
+
 </html>

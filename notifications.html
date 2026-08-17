@@ -1,279 +1,1117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gene-rations Notifications</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations | Notifications</title>
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    background:#f4f6f9;
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f5fb;
+    color: #222;
 }
 
-header{
-    background:#2e7d32;
-    color:white;
-    padding:20px;
-    text-align:center;
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+
+    padding: 15px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.container{
-    max-width:1000px;
-    margin:30px auto;
-    padding:20px;
+.logo {
+    font-size: 22px;
+    font-weight: bold;
 }
 
-.notification-panel{
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
+.home-btn {
+    border: none;
+    background: rgba(255,255,255,.2);
+    color: white;
+
+    padding: 9px 15px;
+    border-radius: 20px;
+
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.panel-header{
-    background:#f8f8f8;
-    padding:20px;
-    border-bottom:1px solid #ddd;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+
+/* =========================
+   MAIN
+========================= */
+
+.container {
+    max-width: 750px;
+    margin: auto;
+    padding: 20px;
 }
 
-.clear-btn{
-    background:#e53935;
-    color:white;
-    border:none;
-    padding:8px 15px;
-    border-radius:6px;
-    cursor:pointer;
+
+/* =========================
+   TITLE
+========================= */
+
+.title-card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    margin-bottom: 15px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.06);
 }
 
-.notification{
-    display:flex;
-    gap:15px;
-    padding:20px;
-    border-bottom:1px solid #eee;
-    transition:.3s;
+.title-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
 }
 
-.notification:hover{
-    background:#f9f9f9;
+.title-card h1 {
+    font-size: 26px;
 }
 
-.icon{
-    font-size:28px;
+.title-card p {
+    color: #777;
+
+    margin-top: 7px;
+
+    line-height: 1.5;
 }
 
-.content h4{
-    margin-bottom:5px;
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls {
+    display: flex;
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+
+    overflow-x: auto;
 }
 
-.time{
-    color:#777;
-    font-size:13px;
-    margin-top:5px;
+.control-btn {
+    border: none;
+
+    background: white;
+
+    color: #555;
+
+    padding: 10px 15px;
+
+    border-radius: 20px;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    font-weight: bold;
 }
 
-.unread{
-    border-left:5px solid #2e7d32;
+.control-btn.active {
+    background: #2563eb;
+
+    color: white;
 }
 
-.empty{
-    text-align:center;
-    padding:40px;
-    color:#888;
-    display:none;
+.mark-read-btn {
+    border: none;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    padding: 9px 12px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: bold;
 }
 
-.filter-bar{
-    margin-bottom:20px;
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
+
+/* =========================
+   NOTIFICATION CARD
+========================= */
+
+.notification {
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 16px;
+
+    margin-bottom: 10px;
+
+    display: flex;
+
+    gap: 13px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.05);
+
+    border-left: 4px solid transparent;
 }
 
-.filter-btn{
-    padding:10px 15px;
-    border:none;
-    border-radius:20px;
-    background:white;
-    cursor:pointer;
-    box-shadow:0 2px 5px rgba(0,0,0,.1);
+.notification:hover {
+    background: #fafcff;
 }
 
-.filter-btn:hover{
-    background:#2e7d32;
-    color:white;
+.notification.unread {
+    background: #eff6ff;
+
+    border-left-color: #2563eb;
 }
 
-footer{
-    margin-top:30px;
-    background:#222;
-    color:white;
-    text-align:center;
-    padding:20px;
+.notification-icon {
+    width: 45px;
+
+    height: 45px;
+
+    min-width: 45px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+
+    background: #ede9fe;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-text {
+    line-height: 1.45;
+
+    font-size: 14px;
+}
+
+.notification-time {
+    color: #999;
+
+    font-size: 11px;
+
+    margin-top: 6px;
+}
+
+.unread-dot {
+    width: 9px;
+
+    height: 9px;
+
+    background: #2563eb;
+
+    border-radius: 50%;
+
+    margin-top: 6px;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 50px 20px;
+
+    text-align: center;
+
+    color: #777;
+
+    display: none;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.05);
+}
+
+.empty-icon {
+    font-size: 48px;
+
+    margin-bottom: 12px;
+}
+
+.empty h2 {
+    color: #333;
+
+    margin-bottom: 7px;
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+.clear-btn {
+    border: none;
+
+    background: transparent;
+
+    color: #dc2626;
+
+    padding: 9px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        padding: 14px;
+    }
+
+    .title-card h1 {
+        font-size: 23px;
+    }
+
+    .title-row {
+        align-items: flex-start;
+    }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<header>
-    <h1>🔔 Notification Center</h1>
-    <p>Stay connected across every generation</p>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="logo">
+        Gene-rations
+    </div>
+
+    <button
+        class="home-btn"
+        onclick="goHome()">
+
+        ← Generation Hub
+
+    </button>
+
 </header>
 
-<div class="container">
 
-    <div class="filter-bar">
 
-        <button class="filter-btn">All</button>
-        <button class="filter-btn">Messages</button>
-        <button class="filter-btn">Communities</button>
-        <button class="filter-btn">Videos</button>
-        <button class="filter-btn">Family Tree</button>
+<main class="container">
 
-    </div>
 
-    <div class="notification-panel">
+<!-- =========================
+     TITLE
+========================= -->
 
-        <div class="panel-header">
+<section class="title-card">
 
-            <h2>Recent Notifications</h2>
+    <div class="title-row">
 
-            <button
-            class="clear-btn"
-            onclick="clearNotifications()">
-                Clear All
-            </button>
+        <h1>
+            Notifications
+        </h1>
 
-        </div>
+        <button
+            class="mark-read-btn"
+            onclick="markAllRead()">
 
-        <div id="notifications">
+            Mark all read
 
-            <div class="notification unread">
-
-                <div class="icon">💬</div>
-
-                <div class="content">
-                    <h4>New Message</h4>
-                    <p>
-                        James sent you a new message.
-                    </p>
-                    <div class="time">
-                        2 minutes ago
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="notification unread">
-
-                <div class="icon">🎥</div>
-
-                <div class="content">
-                    <h4>Video Comment</h4>
-                    <p>
-                        Someone commented on your video.
-                    </p>
-                    <div class="time">
-                        15 minutes ago
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="notification">
-
-                <div class="icon">👥</div>
-
-                <div class="content">
-                    <h4>Community Invitation</h4>
-                    <p>
-                        You've been invited to join
-                        Generation Z Lounge.
-                    </p>
-                    <div class="time">
-                        1 hour ago
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="notification">
-
-                <div class="icon">🌳</div>
-
-                <div class="content">
-                    <h4>Family Tree Update</h4>
-                    <p>
-                        A new family member was added
-                        to your tree.
-                    </p>
-                    <div class="time">
-                        Yesterday
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="notification">
-
-                <div class="icon">⭐</div>
-
-                <div class="content">
-                    <h4>New Follower</h4>
-                    <p>
-                        Sarah started following you.
-                    </p>
-                    <div class="time">
-                        Yesterday
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div
-        id="emptyMessage"
-        class="empty">
-
-            No notifications available.
-
-        </div>
+        </button>
 
     </div>
+
+    <p id="notificationSubtitle">
+        Loading your latest Gene-rations activity...
+    </p>
+
+</section>
+
+
+
+<!-- =========================
+     FILTERS
+========================= -->
+
+<div class="controls">
+
+    <button
+        class="control-btn active"
+        onclick="setFilter('all', this)">
+
+        All
+
+    </button>
+
+    <button
+        class="control-btn"
+        onclick="setFilter('unread', this)">
+
+        Unread
+
+    </button>
+
+    <button
+        class="control-btn"
+        onclick="setFilter('social', this)">
+
+        Social
+
+    </button>
+
+    <button
+        class="control-btn"
+        onclick="setFilter('community', this)">
+
+        Communities
+
+    </button>
+
+    <button
+        class="control-btn"
+        onclick="setFilter('system', this)">
+
+        System
+
+    </button>
 
 </div>
 
-<footer>
-    © 2026 Gene-rations Notification Center
-</footer>
+
+
+<!-- =========================
+     NOTIFICATIONS
+========================= -->
+
+<div id="notificationsContainer">
+
+</div>
+
+
+
+<!-- =========================
+     EMPTY
+========================= -->
+
+<div
+    id="empty"
+    class="empty">
+
+    <div class="empty-icon">
+        🔔
+    </div>
+
+    <h2>
+        You're all caught up
+    </h2>
+
+    <p>
+        There are no notifications to show.
+    </p>
+
+</div>
+
+
+
+<!-- =========================
+     CLEAR ALL
+========================= -->
+
+<div style="text-align:center; margin-top:15px;">
+
+    <button
+        class="clear-btn"
+        onclick="clearAll()">
+
+        Clear all notifications
+
+    </button>
+
+</div>
+
+
+</main>
+
+
 
 <script>
 
-function clearNotifications(){
+/* ==================================================
+   USER
+================================================== */
 
-    document
-    .getElementById("notifications")
-    .innerHTML = "";
+const storedUser =
+    localStorage.getItem("userData");
 
-    document
-    .getElementById("emptyMessage")
-    .style.display = "block";
+
+if (!storedUser) {
+
+    window.location.href =
+        "login.html";
+
 }
+
+
+const user =
+    JSON.parse(storedUser);
+
+
+const userName =
+    user.fullName ||
+    user.name ||
+    "Gene-rations Member";
+
+
+const generation =
+    user.generation ||
+    "Your Generation";
+
+
+/* ==================================================
+   NOTIFICATIONS
+================================================== */
+
+let notifications =
+    JSON.parse(
+        localStorage.getItem(
+            "notifications"
+        )
+    ) || [];
+
+
+/* ==================================================
+   DEMO NOTIFICATIONS
+================================================== */
+
+if (notifications.length === 0) {
+
+    notifications = [
+
+        {
+            id: 1,
+
+            type: "social",
+
+            icon: "👍",
+
+            text:
+                "Welcome to Gene-rations. Your generation hub is ready for you.",
+
+            read: false,
+
+            time:
+                new Date().toISOString()
+
+        },
+
+        {
+            id: 2,
+
+            type: "community",
+
+            icon: "👥",
+
+            text:
+                "Your " +
+                generation +
+                " community is ready. Start connecting with your generation.",
+
+            read: false,
+
+            time:
+                new Date().toISOString()
+
+        },
+
+        {
+            id: 3,
+
+            type: "system",
+
+            icon: "🎉",
+
+            text:
+                "Welcome " +
+                userName +
+                "! Complete your profile to help other members know you better.",
+
+            read: false,
+
+            time:
+                new Date().toISOString()
+
+        }
+
+    ];
+
+
+    saveNotifications();
+
+}
+
+
+/* ==================================================
+   FILTER
+================================================== */
+
+let currentFilter =
+    "all";
+
+
+/* ==================================================
+   RENDER
+================================================== */
+
+function renderNotifications() {
+
+    const container =
+        document.getElementById(
+            "notificationsContainer"
+        );
+
+
+    container.innerHTML =
+        "";
+
+
+    let filtered =
+        notifications;
+
+
+    if (
+        currentFilter ===
+        "unread"
+    ) {
+
+        filtered =
+            notifications.filter(
+                function(notification) {
+
+                    return !notification.read;
+
+                }
+            );
+
+    }
+
+
+    if (
+        currentFilter ===
+        "social"
+    ) {
+
+        filtered =
+            notifications.filter(
+                function(notification) {
+
+                    return notification.type ===
+                        "social";
+
+                }
+            );
+
+    }
+
+
+    if (
+        currentFilter ===
+        "community"
+    ) {
+
+        filtered =
+            notifications.filter(
+                function(notification) {
+
+                    return notification.type ===
+                        "community";
+
+                }
+            );
+
+    }
+
+
+    if (
+        currentFilter ===
+        "system"
+    ) {
+
+        filtered =
+            notifications.filter(
+                function(notification) {
+
+                    return notification.type ===
+                        "system";
+
+                }
+            );
+
+    }
+
+
+    if (filtered.length === 0) {
+
+        document.getElementById(
+            "empty"
+        ).style.display =
+            "block";
+
+        updateSubtitle();
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "empty"
+    ).style.display =
+        "none";
+
+
+    filtered.forEach(
+        function(notification) {
+
+            container.appendChild(
+                createNotification(
+                    notification
+                )
+            );
+
+        }
+    );
+
+
+    updateSubtitle();
+
+}
+
+
+/* ==================================================
+   CREATE NOTIFICATION
+================================================== */
+
+function createNotification(
+    notification
+) {
+
+    const item =
+        document.createElement(
+            "div"
+        );
+
+
+    item.className =
+        "notification " +
+        (
+            notification.read
+                ? ""
+                : "unread"
+        );
+
+
+    item.innerHTML = `
+
+        <div class="notification-icon">
+
+            ${escapeHTML(
+                notification.icon ||
+                "🔔"
+            )}
+
+        </div>
+
+
+        <div class="notification-content">
+
+            <div class="notification-text">
+
+                ${escapeHTML(
+                    notification.text
+                )}
+
+            </div>
+
+            <div class="notification-time">
+
+                ${formatTime(
+                    notification.time
+                )}
+
+            </div>
+
+        </div>
+
+
+        ${
+            notification.read
+                ? ""
+                : '<div class="unread-dot"></div>'
+        }
+
+    `;
+
+
+    item.onclick =
+        function() {
+
+            markRead(
+                notification.id
+            );
+
+        };
+
+
+    return item;
+
+}
+
+
+/* ==================================================
+   MARK ONE READ
+================================================== */
+
+function markRead(id) {
+
+    const notification =
+        notifications.find(
+            function(item) {
+
+                return item.id === id;
+
+            }
+        );
+
+
+    if (!notification)
+        return;
+
+
+    notification.read =
+        true;
+
+
+    saveNotifications();
+
+    renderNotifications();
+
+}
+
+
+/* ==================================================
+   MARK ALL READ
+================================================== */
+
+function markAllRead() {
+
+    notifications.forEach(
+        function(notification) {
+
+            notification.read =
+                true;
+
+        }
+    );
+
+
+    saveNotifications();
+
+    renderNotifications();
+
+}
+
+
+/* ==================================================
+   FILTER
+================================================== */
+
+function setFilter(
+    filter,
+    button
+) {
+
+    currentFilter =
+        filter;
+
+
+    document.querySelectorAll(
+        ".control-btn"
+    ).forEach(
+        function(btn) {
+
+            btn.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    renderNotifications();
+
+}
+
+
+/* ==================================================
+   CLEAR ALL
+================================================== */
+
+function clearAll() {
+
+    if (
+        notifications.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    const confirmClear =
+        confirm(
+            "Clear all notifications?"
+        );
+
+
+    if (!confirmClear)
+        return;
+
+
+    notifications =
+        [];
+
+
+    saveNotifications();
+
+    renderNotifications();
+
+}
+
+
+/* ==================================================
+   SAVE
+================================================== */
+
+function saveNotifications() {
+
+    localStorage.setItem(
+        "notifications",
+        JSON.stringify(
+            notifications
+        )
+    );
+
+}
+
+
+/* ==================================================
+   SUBTITLE
+================================================== */
+
+function updateSubtitle() {
+
+    const unread =
+        notifications.filter(
+            function(notification) {
+
+                return !notification.read;
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "notificationSubtitle"
+    ).textContent =
+        unread === 0
+
+            ? "You're all caught up."
+
+            : unread +
+              " unread notification" +
+              (
+                  unread === 1
+                      ? ""
+                      : "s"
+              );
+
+}
+
+
+/* ==================================================
+   TIME
+================================================== */
+
+function formatTime(
+    dateString
+) {
+
+    const date =
+        new Date(dateString);
+
+
+    const now =
+        new Date();
+
+
+    const seconds =
+        Math.floor(
+            (now - date) / 1000
+        );
+
+
+    if (seconds < 60)
+        return "Just now";
+
+
+    const minutes =
+        Math.floor(
+            seconds / 60
+        );
+
+
+    if (minutes < 60)
+        return minutes + " min ago";
+
+
+    const hours =
+        Math.floor(
+            minutes / 60
+        );
+
+
+    if (hours < 24)
+        return hours + " hr ago";
+
+
+    const days =
+        Math.floor(
+            hours / 24
+        );
+
+
+    if (days < 7)
+        return days + " day(s) ago";
+
+
+    return date.toLocaleDateString();
+
+}
+
+
+/* ==================================================
+   SECURITY
+================================================== */
+
+function escapeHTML(
+    value
+) {
+
+    return String(value)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* ==================================================
+   HOME
+================================================== */
+
+function goHome() {
+
+    window.location.href =
+        "generations.html";
+
+}
+
+
+/* ==================================================
+   START
+================================================== */
+
+renderNotifications();
 
 </script>
 
 </body>
+
 </html>

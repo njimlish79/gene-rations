@@ -1,607 +1,1461 @@
-<!DOCTYPE html><html lang="en">
-<head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Edit Profile | Gene-rations</title><style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations | Edit Profile</title>
+
+<style>
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
 }
 
 body {
-    background: #06a52b;
-    color: #222;
+    font-family: Arial, sans-serif;
+    background: #f4f6fb;
+    color: #202124;
+    min-height: 100vh;
 }
 
-/* HEADER */
 
-header {
-    background: #1877f2;
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    background: #2563eb;
     color: white;
-    padding: 18px;
-    text-align: center;
+
+    padding: 15px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 100;
 }
 
-header h1 {
+.logo {
     font-size: 22px;
+    font-weight: bold;
 }
 
-/* MAIN */
-
-.container {
-    max-width: 700px;
-    margin: 20px auto;
-    padding: 12px;
-}
-
-.card {
-    background: white;
-    border-radius: 16px;
-    padding: 22px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.10);
-}
-
-/* SECTION */
-
-.section {
-    margin-bottom: 28px;
-}
-
-.section-title {
-    font-size: 19px;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 8px;
-}
-
-/* PROFILE PHOTO */
-
-.photo-section {
-    text-align: center;
-    margin-bottom: 28px;
-}
-
-.profile-photo {
-    width: 125px;
-    height: 125px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid #1877f2;
-    background: #ddd;
-}
-
-.photo-button {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 10px 16px;
-    background: #1877f2;
+.back-btn {
+    border: none;
+    background: rgba(255,255,255,.18);
     color: white;
-    border-radius: 8px;
+
+    padding: 9px 15px;
+    border-radius: 20px;
+
+    font-weight: bold;
     cursor: pointer;
 }
 
-#photoInput {
-    display: none;
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    max-width: 750px;
+    margin: auto;
+    padding: 20px;
 }
 
-/* FORM */
+
+/* =========================
+   TITLE
+========================= */
+
+.page-title {
+    margin-bottom: 5px;
+    font-size: 28px;
+}
+
+.page-description {
+    color: #777;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 4px 16px rgba(0,0,0,.06);
+}
+
+.card-title {
+    color: #1e3a8a;
+    font-size: 19px;
+    margin-bottom: 16px;
+}
+
+
+/* =========================
+   PROTECTED INFORMATION
+========================= */
+
+.protected {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+}
+
+.protected-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.protected-row:last-child {
+    border-bottom: none;
+}
+
+.protected-label {
+    color: #777;
+}
+
+.protected-value {
+    font-weight: bold;
+    text-align: right;
+}
+
+.lock {
+    color: #888;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+
+/* =========================
+   FORM
+========================= */
 
 .form-group {
-    margin-bottom: 17px;
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
     font-weight: bold;
-    margin-bottom: 7px;
+    margin-bottom: 8px;
 }
 
-input,
 textarea,
+input,
 select {
+
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+
+    padding: 13px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 11px;
+
     font-size: 15px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    background: white;
 }
 
 textarea {
-    min-height: 100px;
+    min-height: 120px;
     resize: vertical;
 }
 
-/* PROTECTED */
-
-.protected {
-    background: #eeeeee;
-    color: #666;
-    cursor: not-allowed;
+textarea:focus,
+input:focus,
+select:focus {
+    border-color: #2563eb;
 }
 
-.protected-note {
-    font-size: 12px;
-    color: #777;
-    margin-top: 5px;
-}
 
-/* GENERATION */
+/* =========================
+   SELECT BUTTON
+========================= */
 
-.generation-box {
-    background: #f0f6ff;
-    border-left: 4px solid #1877f2;
-    padding: 16px;
-    border-radius: 10px;
-}
+.selector-button {
 
-.generation-name {
-    font-size: 19px;
-    font-weight: bold;
-}
-
-.generation-badge {
-    display: inline-block;
-    margin-top: 9px;
-    padding: 7px 13px;
-    border-radius: 20px;
-    background: #1877f2;
-    color: white;
-    font-size: 13px;
-}
-
-.generation-description {
-    margin-top: 10px;
-    line-height: 1.5;
-}
-
-/* SKILLS BUTTON */
-
-.skills-button {
     width: 100%;
-    padding: 15px;
-    border: 2px dashed #1877f2;
-    background: #f7fbff;
-    color: #1877f2;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
 
-.skills-button:hover {
-    background: #eaf4ff;
-}
+    background: #f8fafc;
 
-/* SELECTED SKILLS */
+    border: 1px solid #d1d5db;
 
-.selected-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 13px;
-}
-
-.skill-chip {
-    background: #1877f2;
-    color: white;
-    padding: 8px 11px;
-    border-radius: 20px;
-    font-size: 13px;
-}
-
-/* BUTTONS */
-
-.action-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 25px;
-}
-
-.action-buttons button {
-    flex: 1;
     padding: 14px;
+
+    border-radius: 11px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+.selector-button:hover {
+    border-color: #2563eb;
+}
+
+
+/* =========================
+   SELECTED TAGS
+========================= */
+
+.selected-tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+.tag {
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.remove-tag {
+
+    margin-left: 5px;
+
+    cursor: pointer;
+
+    color: #dc2626;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.save-btn {
+
+    width: 100%;
+
     border: none;
-    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
     font-size: 16px;
+
+    font-weight: bold;
+
     cursor: pointer;
 }
 
-.cancel {
-    background: #ddd;
+.save-btn:hover {
+    background: #1d4ed8;
 }
 
-.save {
-    background: #1877f2;
-    color: white;
+.cancel-btn {
+
+    width: 100%;
+
+    border: none;
+
+    background: #e5e7eb;
+
+    color: #333;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-top: 10px;
 }
 
-/* MESSAGE */
+
+/* =========================
+   MESSAGE
+========================= */
 
 .message {
+
+    display: none;
+
+    background: #dcfce7;
+
+    color: #166534;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    margin-bottom: 15px;
+
     text-align: center;
-    margin-top: 15px;
+
     font-weight: bold;
 }
 
-/* =====================================
-   SKILLS MODAL
-===================================== */
+
+/* =========================
+   SKILL MODAL
+========================= */
 
 .modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.55);
-    z-index: 100;
-    padding: 15px;
-}
 
-.modal.active {
-    display: flex;
-    align-items: center;
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.55);
+
+    z-index: 500;
+
+    align-items: flex-end;
+
     justify-content: center;
 }
 
 .modal-box {
-    width: 100%;
-    max-width: 650px;
-    max-height: 90vh;
-    overflow-y: auto;
+
     background: white;
-    border-radius: 16px;
+
+    width: 100%;
+
+    max-width: 700px;
+
+    max-height: 90vh;
+
+    border-radius: 22px 22px 0 0;
+
     padding: 20px;
+
+    overflow-y: auto;
 }
 
 .modal-header {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
-    margin-bottom: 18px;
+
+    margin-bottom: 15px;
 }
 
-.close-button {
+.modal-title {
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+.close-btn {
+
     border: none;
-    background: none;
-    font-size: 28px;
+
+    background: #f1f5f9;
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
     cursor: pointer;
+
+    font-size: 18px;
 }
 
-/* SEARCH */
 
-.skill-search {
-    margin-bottom: 18px;
+/* =========================
+   SEARCH
+========================= */
+
+.search {
+
+    margin-bottom: 15px;
 }
 
-.skill-search input {
-    width: 100%;
-}
 
-/* CATEGORY */
+/* =========================
+   SKILL CATEGORIES
+========================= */
 
-.skill-category {
+.category {
+
     margin-bottom: 20px;
 }
 
-.category-button {
-    width: 100%;
-    text-align: left;
-    padding: 14px;
-    background: #f5f7f9;
-    border: 1px solid #ddd;
-    border-radius: 9px;
+.category-title {
+
     font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 8px;
+
+    color: #1e3a8a;
+
+    margin-bottom: 10px;
 }
 
-.category-button:hover {
-    background: #eaf4ff;
-}
 
-/* CATEGORY CONTENT */
+/* =========================
+   SKILL OPTIONS
+========================= */
 
-.category-content {
-    display: none;
-    padding: 8px 0 10px;
-}
+.skill-grid {
 
-.category-content.open {
-    display: block;
-}
-
-/* SKILLS */
-
-.skill-list {
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 8px;
 }
 
-.skill-item {
-    border: 1px solid #ccc;
+.skill-option {
+
+    border: 1px solid #d1d5db;
+
     background: white;
-    padding: 9px 11px;
+
+    padding: 9px 12px;
+
     border-radius: 20px;
+
     cursor: pointer;
+
     font-size: 13px;
 }
 
-.skill-item.selected {
-    background: #1877f2;
+.skill-option.selected {
+
+    background: #2563eb;
+
     color: white;
-    border-color: #1877f2;
+
+    border-color: #2563eb;
 }
 
-/* CUSTOM */
 
-.custom-skill {
-    display: flex;
-    gap: 8px;
-    margin-top: 18px;
-}
+/* =========================
+   MODAL DONE
+========================= */
 
-.custom-skill input {
-    flex: 1;
-}
+.done-btn {
 
-.custom-skill button {
-    border: none;
-    background: #1877f2;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 8px;
-}
-
-/* DONE */
-
-.done-button {
     width: 100%;
-    margin-top: 20px;
-    padding: 14px;
+
     border: none;
-    border-radius: 9px;
-    background: #1877f2;
+
+    background: #2563eb;
+
     color: white;
-    font-size: 16px;
+
+    padding: 14px;
+
+    border-radius: 11px;
+
+    font-weight: bold;
+
+    margin-top: 10px;
+
+    cursor: pointer;
 }
 
-/* MOBILE */
 
-@media(max-width:600px) {
+/* =========================
+   MOBILE
+========================= */
 
-    .card {
-        padding: 17px;
+@media (max-width: 600px) {
+
+    .container {
+        padding: 14px;
     }
 
-    .action-buttons {
+    .protected-row {
         flex-direction: column;
+        gap: 4px;
     }
 
-    .custom-skill {
-        flex-direction: column;
+    .protected-value {
+        text-align: left;
     }
 
 }
 
-</style></head><body><header><h1>Edit Profile</h1></header><div class="container"><div class="card">
-<!-- =================================
-     PROFILE PHOTO
-================================= -->
-<div class="photo-section"><img
-id="profilePhoto"
-class="profile-photo"
-src=""
-alt="Profile Photo"
+</style>
 
-«»
+</head>
 
-<br><label
-for="photoInput"
-class="photo-button"
 
-«»
+<body>
 
-Change Profile Photo
 
-</label><input
-type="file"
-id="photoInput"
-accept="image/*"
+<!-- =========================
+     HEADER
+========================= -->
 
-«»
+<header class="header">
 
-</div><!-- =================================
-     EDITABLE INFORMATION
-================================= --><div class="section"><h2 class="section-title">
-    Profile Information
-</h2><div class="form-group"><label>
-    Full Name
-</label><input
-type="text"
-id="fullName"
+    <div class="logo">
+        Gene-rations
+    </div>
 
-«»
+    <button
+        class="back-btn"
+        onclick="goBack()">
 
-</div><div class="form-group"><label>
-    Phone
-</label><input
-type="tel"
-id="phone"
+        ← Profile
 
-«»
+    </button>
 
-</div><div class="form-group"><label>
-    Gender
-</label><select id="gender"><option value="">
-    Select gender
-</option><option value="Male">
-    Male
-</option><option value="Female">
-    Female
-</option><option value="Other">
-    Other
-</option><option value="Prefer not to say">
-    Prefer not to say
-</option></select></div></div><!-- =================================
-     PROTECTED SIGNUP INFORMATION
-================================= --><div class="section"><h2 class="section-title">
-    Account Information
-</h2><div class="form-group"><label>
-    Email
-</label><input
-type="email"
-id="email"
-class="protected"
-readonly
+</header>
 
-«»
 
-<div class="protected-note">
-    Email is linked to your account and cannot be edited here.
-</div></div><div class="form-group"><label>
-    Date of Birth
-</label><input
-type="date"
-id="dob"
-class="protected"
-readonly
 
-«»
+<main class="container">
 
-<div class="protected-note">
-    Date of birth is used to determine your generation.
-</div></div><div class="generation-box"><div class="generation-name"
-     id="generation">
-    Loading...
-</div><div
-    class="generation-badge"
-    id="generationBadge"
->
-    Loading...
-</div><p
-    class="generation-description"
-    id="generationDescription"
->
-    Loading...
-</p></div></div><!-- =================================
-     ABOUT ME
-================================= --><div class="section"><h2 class="section-title">
-    About Me
-</h2><div class="form-group"><label>
-    Bio
-</label><textarea
-    id="bio"
-    placeholder="Tell people about yourself..."
-></textarea></div><div class="form-group"><label>
-    Interests
-</label><textarea
-    id="interests"
-    placeholder="What are you interested in?"
-></textarea></div><div class="form-group"><label>
-    Hobbies
-</label><textarea
-    id="hobbies"
-    placeholder="What do you enjoy doing?"
-></textarea></div></div><!-- =================================
-     SKILLS
-================================= --><div class="section"><h2 class="section-title">
-    Skills
-</h2><button
-type="button"
-class="skills-button"
-onclick="openSkillsSelector()"
 
-«»
+<h1 class="page-title">
+    Edit Profile
+</h1>
 
-＋ Select Your Skills
+<p class="page-description">
+    Update the information you want other
+    Gene-rations members to see.
+</p>
 
-</button><div
-    id="selectedSkills"
-    class="selected-skills"
-></div></div><!-- =================================
-     SAVE
-================================= --><div class="action-buttons"><button
-class="cancel"
-onclick="goBack()"
 
-«»
-
-Cancel
-
-</button><button
-class="save"
-onclick="saveProfile()"
-
-«»
-
-Save Changes
-
-</button></div><div
+<div
     id="message"
-    class="message"
-></div></div></div><!-- =================================
+    class="message">
+
+    Profile updated successfully.
+
+</div>
+
+
+
+<!-- =========================
+     PROTECTED ACCOUNT DATA
+========================= -->
+
+<section class="card">
+
+    <h2 class="card-title">
+        Account Information
+    </h2>
+
+
+    <div class="protected">
+
+        <div class="protected-row">
+
+            <span class="protected-label">
+                Full Name
+            </span>
+
+            <span
+                id="fullName"
+                class="protected-value">
+
+                -
+
+            </span>
+
+        </div>
+
+
+        <div class="protected-row">
+
+            <span class="protected-label">
+                Email
+            </span>
+
+            <span
+                id="email"
+                class="protected-value">
+
+                -
+
+            </span>
+
+        </div>
+
+
+        <div class="protected-row">
+
+            <span class="protected-label">
+                Phone
+            </span>
+
+            <span
+                id="phone"
+                class="protected-value">
+
+                -
+
+            </span>
+
+        </div>
+
+
+        <div class="protected-row">
+
+            <span class="protected-label">
+                Date of Birth
+            </span>
+
+            <span
+                id="dob"
+                class="protected-value">
+
+                -
+
+            </span>
+
+        </div>
+
+
+        <div class="protected-row">
+
+            <span class="protected-label">
+                Age
+            </span>
+
+            <span
+                id="age"
+                class="protected-value">
+
+                -
+
+            </span>
+
+        </div>
+
+
+        <div class="protected-row">
+
+            <span class="protected-label">
+                Gender
+            </span>
+
+            <span
+                id="gender"
+                class="protected-value">
+
+                -
+
+            </span>
+
+        </div>
+
+
+        <div class="protected-row">
+
+            <span class="protected-label">
+                Generation
+            </span>
+
+            <span
+                id="generation"
+                class="protected-value">
+
+                -
+
+            </span>
+
+        </div>
+
+
+        <div class="protected-row">
+
+            <span class="protected-label">
+                Generation Badge
+            </span>
+
+            <span
+                id="generationBadge"
+                class="protected-value">
+
+                -
+
+            </span>
+
+        </div>
+
+        <div class="lock">
+            🔒 These details come from your account
+            and generation calculation.
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     EDITABLE INFORMATION
+========================= -->
+
+<section class="card">
+
+    <h2 class="card-title">
+        About Me
+    </h2>
+
+
+    <div class="form-group">
+
+        <label for="bio">
+            Bio
+        </label>
+
+        <textarea
+            id="bio"
+            maxlength="500"
+            placeholder="Tell your generation community something about yourself..."></textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="country">
+            Country
+        </label>
+
+        <select id="country">
+
+            <option value="">
+                Select country
+            </option>
+
+            <option>Kenya</option>
+            <option>Uganda</option>
+            <option>Tanzania</option>
+            <option>Rwanda</option>
+            <option>Ethiopia</option>
+            <option>Nigeria</option>
+            <option>Ghana</option>
+            <option>South Africa</option>
+            <option>United States</option>
+            <option>Canada</option>
+            <option>United Kingdom</option>
+            <option>India</option>
+            <option>Australia</option>
+            <option>Other</option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="hobbies">
+            Hobbies
+        </label>
+
+        <input
+            id="hobbies"
+            type="text"
+            placeholder="e.g. Football, Reading, Music">
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section class="card">
+
+    <h2 class="card-title">
+        Skills
+    </h2>
+
+
+    <div class="form-group">
+
+        <label>
+            Select your skills
+        </label>
+
+
+        <button
+            type="button"
+            class="selector-button"
+            onclick="openSkills()">
+
+            🌍 Choose from international skills
+
+        </button>
+
+
+        <div
+            id="selectedSkills"
+            class="selected-tags">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     INTERESTS
+========================= -->
+
+<section class="card">
+
+    <h2 class="card-title">
+        Interests
+    </h2>
+
+
+    <div class="form-group">
+
+        <label>
+            What interests you?
+        </label>
+
+
+        <button
+            type="button"
+            class="selector-button"
+            onclick="openInterests()">
+
+            🌎 Choose your interests
+
+        </button>
+
+
+        <div
+            id="selectedInterests"
+            class="selected-tags">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     SAVE
+========================= -->
+
+<section class="card">
+
+    <button
+        class="save-btn"
+        onclick="saveProfile()">
+
+        Save Changes
+
+    </button>
+
+
+    <button
+        class="cancel-btn"
+        onclick="goBack()">
+
+        Cancel
+
+    </button>
+
+</section>
+
+
+</main>
+
+
+
+<!-- ==================================================
      SKILLS MODAL
-================================= --><div
+================================================== -->
+
+<div
     id="skillsModal"
-    class="modal"
-><div class="modal-box"><div class="modal-header"><h2>
-    Select Your Skills
-</h2><button
-class="close-button"
-onclick="closeSkillsSelector()"
+    class="modal">
 
-«»
-
-×
-
-</button></div><div class="skill-search"><input
-type="search"
-id="skillSearch"
-placeholder="Search international skills..."
-
-«»
-
-</div><div id="skillsContainer"></div><div class="custom-skill"><input
-type="text"
-id="customSkill"
-placeholder="Add a skill not listed..."
-
-«»
-
-<button
-onclick="addCustomSkill()"
-
-«»
-
-Add
-
-</button></div><button
-class="done-button"
-onclick="closeSkillsSelector()"
-
-«»
-
-Done
-
-</button></div></div><script>
-
-/* ==========================================
-   LOAD SIGNUP DATA
-========================================== */
-
-let userData =
-    JSON.parse(
-        localStorage.getItem("userData")
-    );
+    <div class="modal-box">
 
 
-/* USER MUST BE LOGGED IN */
+        <div class="modal-header">
 
-if (!userData) {
+            <div class="modal-title">
+                Select Skills
+            </div>
+
+            <button
+                class="close-btn"
+                onclick="closeSkills()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+
+        <input
+            id="skillSearch"
+            class="search"
+            type="search"
+            placeholder="Search skills...">
+
+
+        <div id="skillList">
+
+
+            <!-- TECHNOLOGY -->
+
+            <div
+                class="category"
+                data-category="Technology">
+
+                <div class="category-title">
+                    💻 Technology & Digital
+                </div>
+
+                <div class="skill-grid">
+
+                    <button class="skill-option">
+                        Web Development
+                    </button>
+
+                    <button class="skill-option">
+                        Mobile App Development
+                    </button>
+
+                    <button class="skill-option">
+                        Software Development
+                    </button>
+
+                    <button class="skill-option">
+                        Data Analysis
+                    </button>
+
+                    <button class="skill-option">
+                        Artificial Intelligence
+                    </button>
+
+                    <button class="skill-option">
+                        Cybersecurity
+                    </button>
+
+                    <button class="skill-option">
+                        Cloud Computing
+                    </button>
+
+                    <button class="skill-option">
+                        Graphic Design
+                    </button>
+
+                    <button class="skill-option">
+                        UI/UX Design
+                    </button>
+
+                    <button class="skill-option">
+                        Digital Marketing
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BUSINESS -->
+
+            <div
+                class="category">
+
+                <div class="category-title">
+                    💼 Business & Finance
+                </div>
+
+                <div class="skill-grid">
+
+                    <button class="skill-option">
+                        Entrepreneurship
+                    </button>
+
+                    <button class="skill-option">
+                        Accounting
+                    </button>
+
+                    <button class="skill-option">
+                        Business Management
+                    </button>
+
+                    <button class="skill-option">
+                        Sales
+                    </button>
+
+                    <button class="skill-option">
+                        Marketing
+                    </button>
+
+                    <button class="skill-option">
+                        Project Management
+                    </button>
+
+                    <button class="skill-option">
+                        Financial Planning
+                    </button>
+
+                    <button class="skill-option">
+                        Investing
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EDUCATION -->
+
+            <div
+                class="category">
+
+                <div class="category-title">
+                    🎓 Education & Research
+                </div>
+
+                <div class="skill-grid">
+
+                    <button class="skill-option">
+                        Teaching
+                    </button>
+
+                    <button class="skill-option">
+                        Research
+                    </button>
+
+                    <button class="skill-option">
+                        Mathematics
+                    </button>
+
+                    <button class="skill-option">
+                        Science
+                    </button>
+
+                    <button class="skill-option">
+                        Languages
+                    </button>
+
+                    <button class="skill-option">
+                        Writing
+                    </button>
+
+                    <button class="skill-option">
+                        Public Speaking
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CREATIVE -->
+
+            <div
+                class="category">
+
+                <div class="category-title">
+                    🎨 Creative & Media
+                </div>
+
+                <div class="skill-grid">
+
+                    <button class="skill-option">
+                        Photography
+                    </button>
+
+                    <button class="skill-option">
+                        Videography
+                    </button>
+
+                    <button class="skill-option">
+                        Music
+                    </button>
+
+                    <button class="skill-option">
+                        Singing
+                    </button>
+
+                    <button class="skill-option">
+                        Acting
+                    </button>
+
+                    <button class="skill-option">
+                        Dancing
+                    </button>
+
+                    <button class="skill-option">
+                        Content Creation
+                    </button>
+
+                    <button class="skill-option">
+                        Journalism
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRACTICAL -->
+
+            <div
+                class="category">
+
+                <div class="category-title">
+                    🔧 Practical & Technical
+                </div>
+
+                <div class="skill-grid">
+
+                    <button class="skill-option">
+                        Electrical Work
+                    </button>
+
+                    <button class="skill-option">
+                        Electronics
+                    </button>
+
+                    <button class="skill-option">
+                        Plumbing
+                    </button>
+
+                    <button class="skill-option">
+                        Carpentry
+                    </button>
+
+                    <button class="skill-option">
+                        Welding
+                    </button>
+
+                    <button class="skill-option">
+                        Automotive Repair
+                    </button>
+
+                    <button class="skill-option">
+                        Construction
+                    </button>
+
+                    <button class="skill-option">
+                        Agriculture
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HEALTH -->
+
+            <div
+                class="category">
+
+                <div class="category-title">
+                    🩺 Health & Wellness
+                </div>
+
+                <div class="skill-grid">
+
+                    <button class="skill-option">
+                        Nursing
+                    </button>
+
+                    <button class="skill-option">
+                        Healthcare
+                    </button>
+
+                    <button class="skill-option">
+                        Fitness
+                    </button>
+
+                    <button class="skill-option">
+                        Nutrition
+                    </button>
+
+                    <button class="skill-option">
+                        Sports
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SOCIAL -->
+
+            <div
+                class="category">
+
+                <div class="category-title">
+                    🤝 Social & Community
+                </div>
+
+                <div class="skill-grid">
+
+                    <button class="skill-option">
+                        Leadership
+                    </button>
+
+                    <button class="skill-option">
+                        Community Development
+                    </button>
+
+                    <button class="skill-option">
+                        Mentoring
+                    </button>
+
+                    <button class="skill-option">
+                        Counseling
+                    </button>
+
+                    <button class="skill-option">
+                        Humanitarian Work
+                    </button>
+
+                    <button class="skill-option">
+                        Conflict Resolution
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            class="done-btn"
+            onclick="closeSkills()">
+
+            Done
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     INTERESTS MODAL
+================================================== -->
+
+<div
+    id="interestsModal"
+    class="modal">
+
+    <div class="modal-box">
+
+
+        <div class="modal-header">
+
+            <div class="modal-title">
+                Select Interests
+            </div>
+
+            <button
+                class="close-btn"
+                onclick="closeInterests()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+
+        <input
+            id="interestSearch"
+            class="search"
+            type="search"
+            placeholder="Search interests...">
+
+
+        <div class="skill-grid">
+
+
+            <button class="skill-option interest-option">
+                Technology
+            </button>
+
+            <button class="skill-option interest-option">
+                Business
+            </button>
+
+            <button class="skill-option interest-option">
+                Education
+            </button>
+
+            <button class="skill-option interest-option">
+                Music
+            </button>
+
+            <button class="skill-option interest-option">
+                Movies
+            </button>
+
+            <button class="skill-option interest-option">
+                Sports
+            </button>
+
+            <button class="skill-option interest-option">
+                Travel
+            </button>
+
+            <button class="skill-option interest-option">
+                Photography
+            </button>
+
+            <button class="skill-option interest-option">
+                Politics
+            </button>
+
+            <button class="skill-option interest-option">
+                Science
+            </button>
+
+            <button class="skill-option interest-option">
+                Environment
+            </button>
+
+            <button class="skill-option interest-option">
+                Agriculture
+            </button>
+
+            <button class="skill-option interest-option">
+                Entrepreneurship
+            </button>
+
+            <button class="skill-option interest-option">
+                Family
+            </button>
+
+            <button class="skill-option interest-option">
+                Community
+            </button>
+
+            <button class="skill-option interest-option">
+                Fitness
+            </button>
+
+            <button class="skill-option interest-option">
+                Art
+            </button>
+
+            <button class="skill-option interest-option">
+                Gaming
+            </button>
+
+            <button class="skill-option interest-option">
+                Books
+            </button>
+
+            <button class="skill-option interest-option">
+                Innovation
+            </button>
+
+
+        </div>
+
+
+        <button
+            class="done-btn"
+            onclick="closeInterests()">
+
+            Done
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* ==================================================
+   LOAD USER
+================================================== */
+
+const storedUser =
+    localStorage.getItem("userData");
+
+
+if (!storedUser) {
 
     window.location.href =
         "login.html";
@@ -609,681 +1463,463 @@ if (!userData) {
 }
 
 
-/* ==========================================
-   INTERNATIONAL SKILL DATABASE
-========================================== */
-
-const skillCategories = {
-
-"Technology & Digital": [
-
-"Web Development",
-"Mobile App Development",
-"Software Engineering",
-"Programming",
-"Artificial Intelligence",
-"Machine Learning",
-"Data Science",
-"Data Analysis",
-"Cybersecurity",
-"Cloud Computing",
-"Database Management",
-"Blockchain",
-"Robotics",
-"Computer Networking",
-"IT Support",
-"DevOps",
-"Game Development",
-"UI/UX Design",
-"Graphic Design",
-"Digital Literacy"
-
-],
-
-"Business & Finance": [
-
-"Entrepreneurship",
-"Business Management",
-"Business Strategy",
-"Accounting",
-"Finance",
-"Banking",
-"Investment",
-"Economics",
-"Marketing",
-"Digital Marketing",
-"Sales",
-"Customer Service",
-"Project Management",
-"Product Management",
-"Human Resources",
-"Leadership",
-"Negotiation",
-"Business Development",
-"Procurement",
-"Supply Chain Management"
-
-],
-
-"Education & Languages": [
-
-"Teaching",
-"Training",
-"Coaching",
-"Mentoring",
-"Research",
-"Academic Writing",
-"Public Speaking",
-"Presentation",
-"Curriculum Development",
-"Translation",
-"Interpretation",
-"English",
-"French",
-"Spanish",
-"Arabic",
-"Chinese",
-"German",
-"Portuguese",
-"Swahili",
-"Japanese",
-"Korean"
-
-],
-
-"Creative Arts & Media": [
-
-"Photography",
-"Videography",
-"Film Production",
-"Video Editing",
-"Music Production",
-"Singing",
-"Songwriting",
-"Instrumental Music",
-"Acting",
-"Theatre",
-"Writing",
-"Creative Writing",
-"Journalism",
-"Blogging",
-"Content Creation",
-"Podcasting",
-"Animation",
-"Illustration",
-"Fashion Design",
-"Interior Design",
-"Painting",
-"Drawing",
-"Sculpture"
-
-],
-
-"Trades & Technical": [
-
-"Electrical Work",
-"Electronics",
-"Plumbing",
-"Carpentry",
-"Welding",
-"Masonry",
-"Construction",
-"Roofing",
-"Automotive Repair",
-"Motorcycle Repair",
-"Machining",
-"Metalwork",
-"Mechanical Engineering",
-"Civil Engineering",
-"Architecture",
-"Surveying",
-"Tailoring",
-"Shoe Making",
-"Craftsmanship"
-
-],
-
-"Agriculture & Environment": [
-
-"Farming",
-"Crop Production",
-"Animal Husbandry",
-"Agribusiness",
-"Horticulture",
-"Organic Farming",
-"Aquaculture",
-"Forestry",
-"Environmental Management",
-"Conservation",
-"Climate Awareness",
-"Agricultural Technology",
-"Food Processing",
-"Land Management"
-
-],
-
-"Health & Wellness": [
-
-"Nursing",
-"First Aid",
-"Fitness Training",
-"Personal Training",
-"Nutrition",
-"Health Education",
-"Community Health",
-"Mental Wellness",
-"Yoga",
-"Meditation",
-"Healthcare Management"
-
-],
-
-"Sports & Recreation": [
-
-"Football",
-"Basketball",
-"Volleyball",
-"Tennis",
-"Athletics",
-"Swimming",
-"Cycling",
-"Boxing",
-"Martial Arts",
-"Cricket",
-"Rugby",
-"Golf",
-"Chess",
-"Esports",
-"Sports Coaching",
-"Sports Management"
-
-],
-
-"Social & Community": [
-
-"Community Leadership",
-"Volunteering",
-"Social Work",
-"Mentoring",
-"Advocacy",
-"Conflict Resolution",
-"Mediation",
-"Fundraising",
-"Community Development",
-"Public Relations",
-"Event Organization",
-"Civic Engagement",
-"Youth Leadership"
-
-],
-
-"Hospitality & Lifestyle": [
-
-"Cooking",
-"Baking",
-"Catering",
-"Food Service",
-"Hotel Management",
-"Travel Planning",
-"Tourism",
-"Hairdressing",
-"Barbering",
-"Makeup",
-"Beauty Therapy",
-"Skincare",
-"Personal Styling",
-"Event Planning"
-
-],
-
-"Transport & Logistics": [
-
-"Driving",
-"Motorcycle Riding",
-"Fleet Management",
-"Logistics",
-"Transportation Management",
-"Warehousing",
-"Inventory Management",
-"Delivery Services",
-"Navigation",
-"Freight Management"
-
-]
-
-};
+const user =
+    JSON.parse(storedUser);
 
 
-/* ==========================================
-   SELECTED SKILLS
-========================================== */
+/* ==================================================
+   HELPERS
+================================================== */
 
-let selectedSkills = [];
-
-
-if (Array.isArray(userData.skills)) {
-
-    selectedSkills =
-        [...userData.skills];
-
-}
-
-else if (
-    typeof userData.skills === "string"
+function valueOrDefault(
+    value,
+    fallback = "-"
 ) {
 
-    selectedSkills =
-        userData.skills
-        .split(",")
-        .map(skill => skill.trim())
-        .filter(Boolean);
+    return (
+        value !== undefined &&
+        value !== null &&
+        value !== ""
+    )
+        ? value
+        : fallback;
 
 }
 
 
-/* ==========================================
-   LOAD EDITABLE DATA
-========================================== */
-
-document.getElementById("fullName").value =
-    userData.fullName ||
-    userData.name ||
-    "";
-
-document.getElementById("phone").value =
-    userData.phone ||
-    "";
-
-document.getElementById("gender").value =
-    userData.gender ||
-    "";
-
-document.getElementById("bio").value =
-    userData.bio ||
-    "";
-
-document.getElementById("interests").value =
-    userData.interests ||
-    "";
-
-document.getElementById("hobbies").value =
-    userData.hobbies ||
-    "";
-
-
-/* ==========================================
-   LOAD PROTECTED SIGNUP DATA
-========================================== */
-
-document.getElementById("email").value =
-    userData.email ||
-    "";
-
-document.getElementById("dob").value =
-    userData.dob ||
-    "";
-
-document.getElementById("generation").textContent =
-    userData.generation ||
-    "Generation unavailable";
-
-document.getElementById("generationBadge").textContent =
-    userData.generationBadge ||
-    userData.generation ||
-    "Generation Badge";
-
-document.getElementById("generationDescription").textContent =
-    userData.generationDescription ||
-    "Welcome to your Gene-rations community.";
-
-
-/* ==========================================
-   PROFILE PHOTO
-========================================== */
-
-const photo =
-    document.getElementById("profilePhoto");
-
-
-if (userData.profilePhoto) {
-
-    photo.src =
-        userData.profilePhoto;
-
-}
-
-else {
-
-    photo.src =
-        "images/default-profile.png";
-
-}
-
-
-/* ==========================================
-   CHANGE PROFILE PHOTO
-========================================== */
+/* ==================================================
+   DISPLAY PROTECTED DATA
+================================================== */
 
 document.getElementById(
-    "photoInput"
-).addEventListener(
-    "change",
-    function(event) {
+    "fullName"
+).textContent =
+    valueOrDefault(
+        user.fullName ||
+        user.name
+    );
 
-        const file =
-            event.target.files[0];
 
-        if (!file) return;
+document.getElementById(
+    "email"
+).textContent =
+    valueOrDefault(
+        user.email
+    );
 
-        const reader =
-            new FileReader();
 
-        reader.onload =
-            function(e) {
+document.getElementById(
+    "phone"
+).textContent =
+    valueOrDefault(
+        user.phone ||
+        user.internationalPhone
+    );
 
-                photo.src =
-                    e.target.result;
 
-                userData.profilePhoto =
-                    e.target.result;
+document.getElementById(
+    "gender"
+).textContent =
+    valueOrDefault(
+        user.gender
+    );
 
-            };
 
-        reader.readAsDataURL(file);
+/* ==================================================
+   DOB + AGE
+================================================== */
 
-    }
-);
+if (user.dob) {
 
+    const dob =
+        new Date(user.dob);
 
-/* ==========================================
-   OPEN SKILLS SELECTOR
-========================================== */
 
-function openSkillsSelector() {
+    document.getElementById(
+        "dob"
+    ).textContent =
+        dob.toLocaleDateString();
 
-    document
-        .getElementById("skillsModal")
-        .classList.add("active");
 
-}
+    const today =
+        new Date();
 
 
-/* ==========================================
-   CLOSE SKILLS SELECTOR
-========================================== */
+    let age =
+        today.getFullYear()
+        -
+        dob.getFullYear();
 
-function closeSkillsSelector() {
 
-    document
-        .getElementById("skillsModal")
-        .classList.remove("active");
+    const month =
+        today.getMonth()
+        -
+        dob.getMonth();
 
-    displaySelectedSkills();
 
-}
+    if (
+        month < 0 ||
+        (
+            month === 0 &&
+            today.getDate()
+            < dob.getDate()
+        )
+    ) {
 
-
-/* ==========================================
-   LOAD SKILL CATEGORIES
-========================================== */
-
-function loadSkillCategories() {
-
-    const container =
-        document.getElementById(
-            "skillsContainer"
-        );
-
-    container.innerHTML = "";
-
-
-    Object.keys(skillCategories)
-    .forEach(category => {
-
-        const categoryBox =
-            document.createElement("div");
-
-        categoryBox.className =
-            "skill-category";
-
-
-        const categoryButton =
-            document.createElement("button");
-
-        categoryButton.type =
-            "button";
-
-        categoryButton.className =
-            "category-button";
-
-        categoryButton.textContent =
-            "▸ " + category;
-
-
-        const content =
-            document.createElement("div");
-
-        content.className =
-            "category-content";
-
-
-        categoryButton.onclick =
-            function() {
-
-                content.classList.toggle(
-                    "open"
-                );
-
-                categoryButton.textContent =
-                    content.classList.contains("open")
-                    ? "▾ " + category
-                    : "▸ " + category;
-
-            };
-
-
-        const list =
-            document.createElement("div");
-
-        list.className =
-            "skill-list";
-
-
-        skillCategories[category]
-        .forEach(skill => {
-
-            const skillButton =
-                document.createElement("button");
-
-            skillButton.type =
-                "button";
-
-            skillButton.className =
-                "skill-item";
-
-            skillButton.textContent =
-                skill;
-
-
-            if (
-                selectedSkills.includes(skill)
-            ) {
-
-                skillButton.classList.add(
-                    "selected"
-                );
-
-            }
-
-
-            skillButton.onclick =
-                function() {
-
-                    toggleSkill(
-                        skill,
-                        skillButton
-                    );
-
-                };
-
-
-            list.appendChild(
-                skillButton
-            );
-
-        });
-
-
-        content.appendChild(list);
-
-        categoryBox.appendChild(
-            categoryButton
-        );
-
-        categoryBox.appendChild(
-            content
-        );
-
-        container.appendChild(
-            categoryBox
-        );
-
-    });
-
-}
-
-
-/* ==========================================
-   TOGGLE SKILL
-========================================== */
-
-function toggleSkill(
-    skill,
-    button
-) {
-
-    const index =
-        selectedSkills.indexOf(skill);
-
-
-    if (index === -1) {
-
-        selectedSkills.push(skill);
-
-        button.classList.add(
-            "selected"
-        );
-
-    }
-
-    else {
-
-        selectedSkills.splice(
-            index,
-            1
-        );
-
-        button.classList.remove(
-            "selected"
-        );
+        age--;
 
     }
 
 
-    displaySelectedSkills();
+    document.getElementById(
+        "age"
+    ).textContent =
+        age + " years";
 
 }
 
 
-/* ==========================================
-   DISPLAY SELECTED SKILLS
-========================================== */
+/* ==================================================
+   GENERATION
+================================================== */
 
-function displaySelectedSkills() {
+document.getElementById(
+    "generation"
+).textContent =
+    valueOrDefault(
+        user.generation
+    );
+
+
+document.getElementById(
+    "generationBadge"
+).textContent =
+    valueOrDefault(
+        user.generationBadge ||
+        user.generation
+    );
+
+
+/* ==================================================
+   EDITABLE DATA
+================================================== */
+
+document.getElementById(
+    "bio"
+).value =
+    user.bio || "";
+
+
+document.getElementById(
+    "country"
+).value =
+    user.country || "";
+
+
+document.getElementById(
+    "hobbies"
+).value =
+    user.hobbies || "";
+
+
+
+/* ==================================================
+   ARRAYS
+================================================== */
+
+let selectedSkills =
+    Array.isArray(user.skills)
+        ? [...user.skills]
+        : [];
+
+
+let selectedInterests =
+    Array.isArray(user.interests)
+        ? [...user.interests]
+        : [];
+
+
+
+/* ==================================================
+   DISPLAY SKILLS
+================================================== */
+
+function renderSkills() {
 
     const container =
         document.getElementById(
             "selectedSkills"
         );
 
+
     container.innerHTML = "";
 
 
-    if (
-        selectedSkills.length === 0
-    ) {
+    selectedSkills.forEach(
+        function(skill, index) {
 
-        container.innerHTML =
-            "<span style='color:#777;'>No skills selected yet.</span>";
+            const tag =
+                document.createElement(
+                    "span"
+                );
 
-        return;
+            tag.className =
+                "tag";
 
-    }
+
+            tag.innerHTML =
+                skill +
+                ' <span class="remove-tag" ' +
+                'onclick="removeSkill(' +
+                index +
+                ')">✕</span>';
 
 
-    selectedSkills.forEach(skill => {
+            container.appendChild(
+                tag
+            );
 
-        const chip =
-            document.createElement("span");
-
-        chip.className =
-            "skill-chip";
-
-        chip.textContent =
-            skill;
-
-        container.appendChild(chip);
-
-    });
+        }
+    );
 
 }
 
 
-/* ==========================================
-   CUSTOM SKILL
-========================================== */
+function removeSkill(index) {
 
-function addCustomSkill() {
+    selectedSkills.splice(
+        index,
+        1
+    );
 
-    const input =
+    renderSkills();
+
+    updateSkillButtons();
+
+}
+
+
+/* ==================================================
+   DISPLAY INTERESTS
+================================================== */
+
+function renderInterests() {
+
+    const container =
         document.getElementById(
-            "customSkill"
-        );
-
-    const skill =
-        input.value.trim();
-
-
-    if (!skill) return;
-
-
-    const alreadyExists =
-        selectedSkills.some(
-            existing =>
-                existing.toLowerCase() ===
-                skill.toLowerCase()
+            "selectedInterests"
         );
 
 
-    if (!alreadyExists) {
-
-        selectedSkills.push(skill);
-
-    }
+    container.innerHTML = "";
 
 
-    input.value = "";
+    selectedInterests.forEach(
+        function(interest, index) {
 
-    loadSkillCategories();
+            const tag =
+                document.createElement(
+                    "span"
+                );
 
-    displaySelectedSkills();
+            tag.className =
+                "tag";
+
+
+            tag.innerHTML =
+                interest +
+                ' <span class="remove-tag" ' +
+                'onclick="removeInterest(' +
+                index +
+                ')">✕</span>';
+
+
+            container.appendChild(
+                tag
+            );
+
+        }
+    );
 
 }
 
 
-/* ==========================================
-   SEARCH SKILLS
-========================================== */
+function removeInterest(index) {
+
+    selectedInterests.splice(
+        index,
+        1
+    );
+
+    renderInterests();
+
+    updateInterestButtons();
+
+}
+
+
+
+/* ==================================================
+   SKILL BUTTONS
+================================================== */
+
+document.querySelectorAll(
+    ".skill-option"
+).forEach(
+    function(button) {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                const value =
+                    this.textContent.trim();
+
+
+                if (
+                    selectedSkills.includes(
+                        value
+                    )
+                ) {
+
+                    selectedSkills =
+                        selectedSkills.filter(
+                            function(skill) {
+
+                                return skill !== value;
+
+                            }
+                        );
+
+                }
+
+                else {
+
+                    selectedSkills.push(
+                        value
+                    );
+
+                }
+
+
+                renderSkills();
+
+                updateSkillButtons();
+
+            }
+        );
+
+    }
+);
+
+
+function updateSkillButtons() {
+
+    document.querySelectorAll(
+        "#skillList .skill-option"
+    ).forEach(
+        function(button) {
+
+            const value =
+                button.textContent.trim();
+
+
+            button.classList.toggle(
+                "selected",
+                selectedSkills.includes(
+                    value
+                )
+            );
+
+        }
+    );
+
+}
+
+
+
+/* ==================================================
+   INTEREST BUTTONS
+================================================== */
+
+document.querySelectorAll(
+    ".interest-option"
+).forEach(
+    function(button) {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                const value =
+                    this.textContent.trim();
+
+
+                if (
+                    selectedInterests.includes(
+                        value
+                    )
+                ) {
+
+                    selectedInterests =
+                        selectedInterests.filter(
+                            function(item) {
+
+                                return item !== value;
+
+                            }
+                        );
+
+                }
+
+                else {
+
+                    selectedInterests.push(
+                        value
+                    );
+
+                }
+
+
+                renderInterests();
+
+                updateInterestButtons();
+
+            }
+        );
+
+    }
+);
+
+
+function updateInterestButtons() {
+
+    document.querySelectorAll(
+        ".interest-option"
+    ).forEach(
+        function(button) {
+
+            const value =
+                button.textContent.trim();
+
+
+            button.classList.toggle(
+                "selected",
+                selectedInterests.includes(
+                    value
+                )
+            );
+
+        }
+    );
+
+}
+
+
+
+/* ==================================================
+   SKILL SEARCH
+================================================== */
 
 document.getElementById(
     "skillSearch"
@@ -1292,130 +1928,205 @@ document.getElementById(
     function() {
 
         const search =
-            this.value
-            .toLowerCase()
-            .trim();
+            this.value.toLowerCase();
 
 
-        document
-        .querySelectorAll(
-            ".skill-category"
-        )
-        .forEach(category => {
+        document.querySelectorAll(
+            "#skillList .category"
+        ).forEach(
+            function(category) {
 
-            let matches = 0;
-
-
-            category
-            .querySelectorAll(
-                ".skill-item"
-            )
-            .forEach(item => {
-
-                const skill =
-                    item.textContent
-                    .toLowerCase();
+                let visible = false;
 
 
-                if (
-                    skill.includes(search)
-                ) {
+                category.querySelectorAll(
+                    ".skill-option"
+                ).forEach(
+                    function(button) {
 
-                    item.style.display =
-                        "inline-block";
-
-                    matches++;
-
-                }
-
-                else {
-
-                    item.style.display =
-                        "none";
-
-                }
-
-            });
+                        const text =
+                            button.textContent
+                            .toLowerCase();
 
 
-            category.style.display =
-                matches > 0
-                ? "block"
-                : "none";
+                        const match =
+                            text.includes(
+                                search
+                            );
 
-        });
+
+                        button.style.display =
+                            match
+                                ? "inline-block"
+                                : "none";
+
+
+                        if (match) {
+
+                            visible = true;
+
+                        }
+
+                    }
+                );
+
+
+                category.style.display =
+                    visible
+                        ? "block"
+                        : "none";
+
+            }
+        );
 
     }
 );
 
 
-/* ==========================================
+
+/* ==================================================
+   INTEREST SEARCH
+================================================== */
+
+document.getElementById(
+    "interestSearch"
+).addEventListener(
+    "input",
+    function() {
+
+        const search =
+            this.value.toLowerCase();
+
+
+        document.querySelectorAll(
+            ".interest-option"
+        ).forEach(
+            function(button) {
+
+                const text =
+                    button.textContent
+                    .toLowerCase();
+
+
+                button.style.display =
+                    text.includes(search)
+                        ? "inline-block"
+                        : "none";
+
+            }
+        );
+
+    }
+);
+
+
+
+/* ==================================================
+   OPEN / CLOSE SKILLS
+================================================== */
+
+function openSkills() {
+
+    document.getElementById(
+        "skillsModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+function closeSkills() {
+
+    document.getElementById(
+        "skillsModal"
+    ).style.display =
+        "none";
+
+}
+
+
+
+/* ==================================================
+   OPEN / CLOSE INTERESTS
+================================================== */
+
+function openInterests() {
+
+    document.getElementById(
+        "interestsModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+function closeInterests() {
+
+    document.getElementById(
+        "interestsModal"
+    ).style.display =
+        "none";
+
+}
+
+
+
+/* ==================================================
    SAVE PROFILE
-========================================== */
+================================================== */
 
 function saveProfile() {
 
-
-    /* EDITABLE DATA ONLY */
-
-    userData.fullName =
-        document.getElementById(
-            "fullName"
-        ).value.trim();
-
-
-    userData.phone =
-        document.getElementById(
-            "phone"
-        ).value.trim();
-
-
-    userData.gender =
-        document.getElementById(
-            "gender"
-        ).value;
-
-
-    userData.bio =
+    user.bio =
         document.getElementById(
             "bio"
         ).value.trim();
 
 
-    userData.interests =
+    user.country =
         document.getElementById(
-            "interests"
-        ).value.trim();
+            "country"
+        ).value;
 
 
-    userData.hobbies =
+    user.hobbies =
         document.getElementById(
             "hobbies"
         ).value.trim();
 
 
-    userData.skills =
-        [...selectedSkills];
+    user.skills =
+        selectedSkills;
 
 
-    /* SAVE SAME USER OBJECT */
+    user.interests =
+        selectedInterests;
+
+
+    /*
+       Save the updated user object.
+    */
 
     localStorage.setItem(
         "userData",
-        JSON.stringify(userData)
+        JSON.stringify(user)
     );
 
 
-    document.getElementById(
-        "message"
-    ).textContent =
-        "Profile updated successfully!";
+    const message =
+        document.getElementById(
+            "message"
+        );
 
 
-    document.getElementById(
-        "message"
-    ).style.color =
-        "green";
+    message.style.display =
+        "block";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 
     setTimeout(
@@ -1431,9 +2142,10 @@ function saveProfile() {
 }
 
 
-/* ==========================================
-   CANCEL
-========================================== */
+
+/* ==================================================
+   NAVIGATION
+================================================== */
 
 function goBack() {
 
@@ -1443,13 +2155,21 @@ function goBack() {
 }
 
 
-/* ==========================================
-   START
-========================================== */
+/* ==================================================
+   INITIAL RENDER
+================================================== */
 
-loadSkillCategories();
+renderSkills();
 
-displaySelectedSkills();
+renderInterests();
 
-</script></body>
+updateSkillButtons();
+
+updateInterestButtons();
+
+</script>
+
+
+</body>
+
 </html>

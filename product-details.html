@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations | Product Details</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f5fb;
+    color: #222;
+}
+
+/* HEADER */
+
+.header {
+    background: linear-gradient(135deg, #2864e8, #7b2ff7);
+    color: white;
+    padding: 17px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.header-btn {
+    border: none;
+    background: rgba(255,255,255,0.18);
+    color: white;
+
+    padding: 11px 15px;
+    border-radius: 25px;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* PAGE */
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* BACK */
+
+.back-btn {
+    border: none;
+    background: transparent;
+
+    color: #2864e8;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+/* PRODUCT */
+
+.product-card {
+    background: white;
+    border-radius: 22px;
+    overflow: hidden;
+
+    box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+}
+
+/* IMAGE */
+
+.product-image {
+    width: 100%;
+    height: 390px;
+
+    background: #eef0ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image {
+    font-size: 90px;
+}
+
+/* CONTENT */
+
+.product-content {
+    padding: 25px;
+}
+
+.category {
+    display: inline-block;
+
+    background: #eef0ff;
+    color: #555;
+
+    padding: 7px 12px;
+    border-radius: 20px;
+
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.product-name {
+    font-size: 29px;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #2864e8;
+    font-size: 27px;
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+.description-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+/* SELLER */
+
+.seller-box {
+    background: #f6f7fb;
+    border-radius: 15px;
+    padding: 16px;
+
+    margin-bottom: 20px;
+}
+
+.seller-title {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.seller-name {
+    color: #2864e8;
+    font-weight: bold;
+}
+
+.date {
+    color: #777;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* ACTIONS */
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    flex: 1;
+    min-width: 150px;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 13px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.cart-btn {
+    background: #2864e8;
+    color: white;
+}
+
+.contact-btn {
+    background: #e9ecff;
+    color: #2864e8;
+}
+
+.delete-btn {
+    background: #ffe7e7;
+    color: #c62828;
+}
+
+/* ERROR */
+
+.error {
+    background: white;
+    border-radius: 20px;
+    padding: 50px 20px;
+
+    text-align: center;
+}
+
+.error-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.error h2 {
+    margin-bottom: 10px;
+}
+
+.error p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.error button {
+    background: #2864e8;
+    color: white;
+
+    border: none;
+    padding: 13px 20px;
+
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .header {
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .header-btn {
+        padding: 9px 11px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .product-image {
+        height: 300px;
+    }
+
+    .product-name {
+        font-size: 25px;
+    }
+
+    .price {
+        font-size: 24px;
+    }
+
+    .product-content {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="logo">
+        Gene-rations
+    </div>
+
+    <div class="header-actions">
+
+        <button
+            class="header-btn"
+            onclick="openCart()">
+
+            🛒 Cart
+            <span id="cartCount">0</span>
+
+        </button>
+
+        <button
+            class="header-btn"
+            onclick="goMarketplace()">
+
+            Marketplace
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <button
+        class="back-btn"
+        onclick="goMarketplace()">
+
+        ← Back to Marketplace
+
+    </button>
+
+
+    <!-- DYNAMIC PRODUCT -->
+
+    <div id="productArea"></div>
+
+</main>
+
+
+<script>
+
+/* =================================
+   USER
+================================= */
+
+const user =
+    JSON.parse(
+        localStorage.getItem("userData")
+    ) || {};
+
+
+/* =================================
+   LISTINGS
+================================= */
+
+const listings =
+    JSON.parse(
+        localStorage.getItem(
+            "marketplaceListings"
+        )
+    ) || [];
+
+
+/* =================================
+   CART
+================================= */
+
+let cart =
+    JSON.parse(
+        localStorage.getItem(
+            "marketplaceCart"
+        )
+    ) || [];
+
+
+/* =================================
+   GET PRODUCT ID
+================================= */
+
+/*
+   Marketplace will eventually open
+   this page using:
+
+   product-details.html?id=PRODUCT_ID
+*/
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const productId =
+    params.get("id");
+
+
+/* =================================
+   FIND PRODUCT
+================================= */
+
+const product =
+    listings.find(
+        item => item.id === productId
+    );
+
+
+/* =================================
+   DISPLAY PRODUCT
+================================= */
+
+function renderProduct() {
+
+    const area =
+        document.getElementById(
+            "productArea"
+        );
+
+
+    if (!product) {
+
+        area.innerHTML = `
+
+            <div class="error">
+
+                <div class="error-icon">
+                    🔍
+                </div>
+
+                <h2>
+                    Product Not Found
+                </h2>
+
+                <p>
+                    This listing may have been
+                    removed or is no longer available.
+                </p>
+
+                <button
+                    onclick="goMarketplace()">
+
+                    Return to Marketplace
+
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    const image =
+        product.image
+
+        ? `
+
+            <img
+                src="${product.image}"
+                alt="${escapeHTML(product.name)}">
+
+          `
+
+        : `
+
+            <div class="no-image">
+                📦
+            </div>
+
+          `;
+
+
+    const date =
+        product.createdAt
+        ? new Date(
+            product.createdAt
+          ).toLocaleDateString()
+        : "Recently";
+
+
+    const isOwner =
+        product.sellerEmail &&
+        product.sellerEmail === user.email;
+
+
+    area.innerHTML = `
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                ${image}
+
+            </div>
+
+
+            <div class="product-content">
+
+                <span class="category">
+
+                    ${escapeHTML(
+                        product.category
+                    )}
+
+                </span>
+
+
+                <h1 class="product-name">
+
+                    ${escapeHTML(
+                        product.name
+                    )}
+
+                </h1>
+
+
+                <div class="price">
+
+                    KES
+                    ${Number(
+                        product.price
+                    ).toLocaleString()}
+
+                </div>
+
+
+                <h3 class="description-title">
+
+                    Description
+
+                </h3>
+
+
+                <p class="description">
+
+                    ${escapeHTML(
+                        product.description
+                    )}
+
+                </p>
+
+
+                <div class="seller-box">
+
+                    <div class="seller-title">
+
+                        Seller
+
+                    </div>
+
+                    <div class="seller-name">
+
+                        👤
+                        ${escapeHTML(
+                            product.seller
+                        )}
+
+                    </div>
+
+                    <div class="date">
+
+                        Posted:
+                        ${date}
+
+                    </div>
+
+                </div>
+
+
+                <div class="actions">
+
+                    <button
+                        class="action-btn cart-btn"
+                        onclick="addToCart()">
+
+                        🛒 Add to Cart
+
+                    </button>
+
+
+                    <button
+                        class="action-btn contact-btn"
+                        onclick="contactSeller()">
+
+                        💬 Contact Seller
+
+                    </button>
+
+
+                    ${
+                        isOwner
+
+                        ? `
+
+                        <button
+                            class="action-btn delete-btn"
+                            onclick="deleteProduct()">
+
+                            🗑️ Delete Listing
+
+                        </button>
+
+                        `
+
+                        : ""
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+}
+
+
+/* =================================
+   ADD TO CART
+================================= */
+
+function addToCart() {
+
+    if (!product) return;
+
+
+    cart.push(product);
+
+
+    localStorage.setItem(
+        "marketplaceCart",
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
+
+    alert(
+        product.name +
+        " has been added to your cart."
+    );
+}
+
+
+/* =================================
+   CART COUNT
+================================= */
+
+function updateCartCount() {
+
+    document.getElementById(
+        "cartCount"
+    ).textContent = cart.length;
+}
+
+
+/* =================================
+   CONTACT SELLER
+================================= */
+
+function contactSeller() {
+
+    if (!product) return;
+
+
+    /*
+       For now this opens the
+       Gene-rations messages page.
+
+       Later the backend can create
+       a conversation automatically.
+    */
+
+    localStorage.setItem(
+        "messageRecipient",
+        JSON.stringify({
+
+            name: product.seller,
+
+            email:
+                product.sellerEmail || ""
+
+        })
+    );
+
+
+    window.location.href =
+        "messages.html";
+}
+
+
+/* =================================
+   DELETE PRODUCT
+================================= */
+
+function deleteProduct() {
+
+    if (!product) return;
+
+
+    if (
+        product.sellerEmail !==
+        user.email
+    ) {
+
+        alert(
+            "You can only delete your own listing."
+        );
+
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "Delete this marketplace listing?"
+        );
+
+
+    if (!confirmed) return;
+
+
+    let updatedListings =
+        listings.filter(
+            item =>
+                item.id !== product.id
+        );
+
+
+    localStorage.setItem(
+        "marketplaceListings",
+        JSON.stringify(
+            updatedListings
+        )
+    );
+
+
+    alert(
+        "Listing deleted."
+    );
+
+
+    goMarketplace();
+}
+
+
+/* =================================
+   MARKETPLACE
+================================= */
+
+function goMarketplace() {
+
+    window.location.href =
+        "marketplace.html";
+}
+
+
+/* =================================
+   CART
+================================= */
+
+function openCart() {
+
+    alert(
+        "Cart contains " +
+        cart.length +
+        " item(s)."
+    );
+
+    /*
+       Later this button can open
+       a dedicated cart.html page.
+    */
+}
+
+
+/* =================================
+   TEXT SAFETY
+================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+}
+
+
+/* =================================
+   INITIALIZE
+================================= */
+
+renderProduct();
+
+updateCartCount();
+
+</script>
+
+</body>
+</html>
