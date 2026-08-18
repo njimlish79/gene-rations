@@ -5,16 +5,28 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Gene-rations | Generation Hub</title>
 
+
+<!-- ==================================================
+     GENERATION DATA
+================================================== -->
+
+<script src="generation-data.js"></script>
+
+<script src="generation-engine.js"></script>
+
+
 <style>
 
-/* =========================================
+/* ==================================================
    RESET
-========================================= */
+================================================== */
 
 * {
     box-sizing: border-box;
@@ -22,85 +34,46 @@
     padding: 0;
 }
 
+
 body {
-    font-family: Arial, sans-serif;
-    background: var(--background);
-    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f4f3ff;
+
+    color: #252525;
+
     min-height: 100vh;
-    transition: 0.3s;
 }
 
 
-/* =========================================
-   GENERATION THEMES
-========================================= */
-
-body.silent {
-    --primary: #6b7280;
-    --secondary: #e5e7eb;
-    --background: #f3f4f6;
-    --card: #ffffff;
-    --text: #1f2937;
-}
-
-body.boomer {
-    --primary: #b45309;
-    --secondary: #fde68a;
-    --background: #fffbeb;
-    --card: #ffffff;
-    --text: #292524;
-}
-
-body.genx {
-    --primary: #7c3aed;
-    --secondary: #ddd6fe;
-    --background: #f5f3ff;
-    --card: #ffffff;
-    --text: #2e1065;
-}
-
-body.millennial {
-    --primary: #db2777;
-    --secondary: #fbcfe8;
-    --background: #fdf2f8;
-    --card: #ffffff;
-    --text: #500724;
-}
-
-body.genZ {
-    --primary: #2563eb;
-    --secondary: #bfdbfe;
-    --background: #eff6ff;
-    --card: #ffffff;
-    --text: #172554;
-}
-
-body.alpha {
-    --primary: #0891b2;
-    --secondary: #a5f3fc;
-    --background: #ecfeff;
-    --card: #ffffff;
-    --text: #164e63;
-}
-
-
-/* =========================================
+/* ==================================================
    HEADER
-========================================= */
+================================================== */
 
 .header {
 
-    background: var(--primary);
+    background:
+        linear-gradient(
+            135deg,
+            #1769e0,
+            #8137e8
+        );
 
     color: white;
 
-    padding: 15px 20px;
+    padding: 18px 24px;
 
     display: flex;
 
     align-items: center;
 
     justify-content: space-between;
+
+    gap: 15px;
 
     position: sticky;
 
@@ -112,15 +85,17 @@ body.alpha {
 
 .logo {
 
-    font-size: 22px;
+    font-size: 25px;
 
-    font-weight: bold;
+    font-weight: 800;
 }
 
 
 .header-actions {
 
     display: flex;
+
+    align-items: center;
 
     gap: 10px;
 }
@@ -130,123 +105,142 @@ body.alpha {
 
     border: none;
 
-    background: rgba(255,255,255,0.18);
+    background: rgba(
+        255,
+        255,
+        255,
+        0.18
+    );
 
     color: white;
 
-    width: 40px;
+    padding: 12px 16px;
 
-    height: 40px;
+    border-radius: 30px;
 
-    border-radius: 50%;
+    font-weight: bold;
 
     cursor: pointer;
-
-    font-size: 18px;
 }
 
 
-/* =========================================
+.header-btn:hover {
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.3
+    );
+}
+
+
+.profile-btn {
+
+    background: white;
+
+    color: #7138dd;
+}
+
+
+/* ==================================================
    MAIN
-========================================= */
+================================================== */
 
 .container {
 
     width: 100%;
 
-    max-width: 1100px;
+    max-width: 1050px;
 
     margin: auto;
 
-    padding: 20px;
+    padding: 25px 18px 50px;
 }
 
 
-/* =========================================
-   WELCOME
-========================================= */
+/* ==================================================
+   HERO
+================================================== */
 
-.welcome-card {
-
-    background: var(--primary);
-
-    color: white;
-
-    border-radius: 20px;
-
-    padding: 28px 22px;
-
-    margin-bottom: 20px;
+.generation-hero {
 
     position: relative;
 
     overflow: hidden;
+
+    border-radius: 30px;
+
+    padding: 38px 28px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7138e8,
+            #883de9
+        );
+
+    margin-bottom: 22px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(70, 40, 150, 0.18);
 }
 
 
-.welcome-card::after {
-
-    content: "";
+.hero-circle {
 
     position: absolute;
 
-    width: 180px;
+    width: 300px;
 
-    height: 180px;
+    height: 300px;
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,0.08);
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
 
-    right: -50px;
+    right: -80px;
 
-    top: -60px;
+    top: -120px;
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
 }
 
 
 .welcome {
 
-    font-size: 15px;
+    font-size: 18px;
+
+    margin-bottom: 8px;
 
     opacity: 0.9;
-
-    margin-bottom: 5px;
 }
 
 
 .full-name {
 
-    font-size: 29px;
+    font-size: 34px;
 
-    font-weight: bold;
+    font-weight: 800;
 
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
-
-.generation-name {
-
-    font-size: 20px;
-
-    font-weight: bold;
-
-    margin-bottom: 12px;
-}
-
-
-.description {
-
-    font-size: 14px;
-
-    line-height: 1.5;
-
-    max-width: 700px;
-}
-
-
-/* =========================================
-   BADGE
-========================================= */
 
 .generation-badge {
 
@@ -256,25 +250,66 @@ body.alpha {
 
     gap: 8px;
 
-    background: rgba(255,255,255,0.18);
-
-    border: 1px solid rgba(255,255,255,0.3);
-
-    padding: 9px 14px;
+    padding: 11px 18px;
 
     border-radius: 30px;
 
-    margin-bottom: 15px;
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
 
-    font-size: 14px;
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.35
+        );
 
     font-weight: bold;
+
+    margin-bottom: 22px;
 }
 
 
-/* =========================================
-   QUICK STATS
-========================================= */
+.generation-name {
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    margin-bottom: 12px;
+}
+
+
+.generation-welcome {
+
+    font-size: 18px;
+
+    margin-bottom: 10px;
+}
+
+
+.generation-description {
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    opacity: 0.92;
+
+    max-width: 700px;
+}
+
+
+/* ==================================================
+   STATISTICS
+================================================== */
 
 .stats {
 
@@ -283,39 +318,42 @@ body.alpha {
     grid-template-columns:
         repeat(4, 1fr);
 
-    gap: 12px;
+    gap: 15px;
 
-    margin-bottom: 20px;
+    margin-bottom: 35px;
 }
 
 
 .stat-card {
 
-    background: var(--card);
+    background: white;
 
-    border-radius: 15px;
+    border-radius: 22px;
 
-    padding: 18px 10px;
+    padding: 25px 15px;
 
     text-align: center;
 
     box-shadow:
-        0 4px 15px
-        rgba(0,0,0,0.06);
+        0 8px 25px
+        rgba(
+            50,
+            30,
+            100,
+            0.08
+        );
 }
 
 
 .stat-number {
 
-    display: block;
+    font-size: 28px;
 
-    color: var(--primary);
+    font-weight: 800;
 
-    font-size: 22px;
+    color: #7439df;
 
-    font-weight: bold;
-
-    margin-bottom: 5px;
+    margin-bottom: 7px;
 }
 
 
@@ -323,54 +361,61 @@ body.alpha {
 
     color: #777;
 
-    font-size: 12px;
+    font-size: 15px;
 }
 
 
-/* =========================================
-   SECTION TITLE
-========================================= */
+/* ==================================================
+   SECTION
+================================================== */
 
 .section-title {
 
-    font-size: 21px;
+    font-size: 27px;
 
-    margin:
-        25px 0
-        14px;
+    color: #35165d;
+
+    margin-bottom: 18px;
 }
 
 
-/* =========================================
-   FEATURE GRID
-========================================= */
+/* ==================================================
+   MENU GRID
+================================================== */
 
-.features {
+.menu-grid {
 
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(2, 1fr);
 
-    gap: 14px;
+    gap: 16px;
 }
 
 
-.feature-card {
+.menu-card {
 
-    background: var(--card);
+    background: white;
 
-    border-radius: 16px;
+    border-radius: 24px;
 
-    padding: 20px;
-
-    min-height: 130px;
+    padding: 25px;
 
     cursor: pointer;
 
+    border: none;
+
+    text-align: left;
+
     box-shadow:
-        0 4px 15px
-        rgba(0,0,0,0.06);
+        0 8px 25px
+        rgba(
+            50,
+            30,
+            100,
+            0.08
+        );
 
     transition:
         transform 0.2s,
@@ -378,25 +423,28 @@ body.alpha {
 }
 
 
-.feature-card:hover {
+.menu-card:hover {
 
     transform: translateY(-3px);
 
     box-shadow:
-        0 7px 20px
-        rgba(0,0,0,0.1);
+        0 12px 30px
+        rgba(
+            50,
+            30,
+            100,
+            0.14
+        );
 }
 
 
-.feature-icon {
+.menu-icon {
 
-    width: 45px;
+    width: 55px;
 
-    height: 45px;
+    height: 55px;
 
-    border-radius: 12px;
-
-    background: var(--secondary);
+    border-radius: 17px;
 
     display: flex;
 
@@ -404,113 +452,94 @@ body.alpha {
 
     justify-content: center;
 
-    font-size: 22px;
+    background: #e5dcff;
 
-    margin-bottom: 12px;
+    font-size: 27px;
+
+    margin-bottom: 17px;
 }
 
 
-.feature-title {
+.menu-title {
 
-    font-weight: bold;
+    font-size: 19px;
 
-    margin-bottom: 6px;
+    font-weight: 800;
+
+    color: #321657;
+
+    margin-bottom: 8px;
 }
 
 
-.feature-description {
+.menu-description {
 
     color: #777;
 
-    font-size: 13px;
-
-    line-height: 1.4;
-}
-
-
-/* =========================================
-   GENERATION COMMUNITY
-========================================= */
-
-.community-card {
-
-    background: var(--card);
-
-    border-radius: 18px;
-
-    padding: 22px;
-
-    margin-top: 20px;
-
-    box-shadow:
-        0 4px 15px
-        rgba(0,0,0,0.06);
-}
-
-
-.community-header {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 15px;
-}
-
-
-.community-title {
-
-    font-size: 18px;
-
-    font-weight: bold;
-}
-
-
-.view-button {
-
-    border: none;
-
-    background: var(--secondary);
-
-    color: var(--primary);
-
-    padding: 8px 13px;
-
-    border-radius: 20px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-
-.community-content {
-
-    color: #666;
+    line-height: 1.5;
 
     font-size: 14px;
-
-    line-height: 1.6;
 }
 
 
-/* =========================================
-   PROFILE BUTTON
-========================================= */
+/* ==================================================
+   QUICK ACTIONS
+================================================== */
 
-.profile-button {
+.quick-actions {
+
+    margin-top: 35px;
 
     background: white;
 
-    color: var(--primary);
+    border-radius: 25px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(
+            50,
+            30,
+            100,
+            0.08
+        );
+}
+
+
+.quick-title {
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    margin-bottom: 18px;
+
+    color: #35165d;
+}
+
+
+.quick-buttons {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+
+.quick-button {
 
     border: none;
 
-    padding: 9px 14px;
+    padding: 12px 17px;
 
-    border-radius: 20px;
+    border-radius: 25px;
+
+    background: #eee9ff;
+
+    color: #6632c5;
 
     font-weight: bold;
 
@@ -518,88 +547,179 @@ body.alpha {
 }
 
 
-/* =========================================
+/* ==================================================
    LOGOUT
-========================================= */
+================================================== */
+
+.logout-section {
+
+    margin-top: 30px;
+
+    text-align: center;
+}
+
 
 .logout {
 
-    width: 100%;
-
-    margin-top: 25px;
-
     border: none;
 
-    background: var(--card);
+    background: #e53935;
 
-    color: #d93025;
+    color: white;
 
-    padding: 15px;
+    padding: 14px 35px;
 
-    border-radius: 13px;
+    border-radius: 30px;
 
     font-weight: bold;
+
+    font-size: 15px;
 
     cursor: pointer;
 }
 
 
-/* =========================================
+/* ==================================================
    FOOTER
-========================================= */
+================================================== */
 
 .footer {
 
     text-align: center;
 
-    padding: 30px 10px;
+    padding: 30px 20px;
 
-    color: #888;
+    color: #777;
 
-    font-size: 13px;
+    font-size: 14px;
 }
 
 
-/* =========================================
+/* ==================================================
+   LOADING
+================================================== */
+
+.loading {
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+    color: #777;
+}
+
+
+/* ==================================================
    MOBILE
-========================================= */
+================================================== */
 
 @media (max-width: 700px) {
 
-    .stats {
+    .header {
 
-        grid-template-columns:
-            repeat(2, 1fr);
+        padding: 15px;
+
     }
 
 
-    .features {
+    .logo {
 
-        grid-template-columns:
-            repeat(2, 1fr);
+        font-size: 21px;
+
     }
 
-}
 
+    .header-btn {
 
-@media (max-width: 430px) {
+        padding: 10px 12px;
+
+        font-size: 13px;
+
+    }
+
 
     .container {
 
-        padding: 14px;
+        padding:
+            18px 14px 40px;
+
     }
 
 
-    .features {
+    .generation-hero {
 
-        grid-template-columns:
-            1fr;
+        padding:
+            30px 22px;
+
+        border-radius: 25px;
+
     }
 
 
     .full-name {
 
-        font-size: 25px;
+        font-size: 29px;
+
+    }
+
+
+    .generation-name {
+
+        font-size: 24px;
+
+    }
+
+
+    .stats {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .menu-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+/* ==================================================
+   SMALL PHONES
+================================================== */
+
+@media (max-width: 400px) {
+
+    .header-actions {
+
+        gap: 5px;
+
+    }
+
+
+    .header-btn {
+
+        padding:
+            9px 10px;
+
+    }
+
+
+    .stats {
+
+        gap: 10px;
+
+    }
+
+
+    .stat-card {
+
+        padding:
+            20px 10px;
+
     }
 
 }
@@ -612,9 +732,9 @@ body.alpha {
 <body>
 
 
-<!-- =========================================
+<!-- ==================================================
      HEADER
-========================================= -->
+================================================== -->
 
 <header class="header">
 
@@ -628,29 +748,24 @@ body.alpha {
         <button
             class="header-btn"
             onclick="openPage('notifications.html')"
-            title="Notifications">
-
+        >
             🔔
-
         </button>
 
 
         <button
             class="header-btn"
             onclick="openPage('messages.html')"
-            title="Messages">
-
+        >
             💬
-
         </button>
 
 
         <button
-            class="profile-button"
-            onclick="openPage('profile.html')">
-
+            class="header-btn profile-btn"
+            onclick="openPage('profile.html')"
+        >
             Profile
-
         </button>
 
     </div>
@@ -659,416 +774,489 @@ body.alpha {
 
 
 
-<!-- =========================================
+<!-- ==================================================
      MAIN
-========================================= -->
+================================================== -->
 
 <main class="container">
 
 
-    <!-- =====================================
-         WELCOME CARD
-    ====================================== -->
+    <!-- ==================================================
+         GENERATION HERO
+    ================================================== -->
 
-    <section class="welcome-card">
+    <section class="generation-hero">
+
+        <div class="hero-circle"></div>
 
 
-        <div class="welcome">
-            Welcome back
+        <div class="hero-content">
+
+            <div
+                class="welcome"
+                id="welcome"
+            >
+                Welcome back
+            </div>
+
+
+            <div
+                class="full-name"
+                id="fullName"
+            >
+                Loading...
+            </div>
+
+
+            <div
+                class="generation-badge"
+                id="generationBadge"
+            >
+                🏷️ Loading...
+            </div>
+
+
+            <div
+                class="generation-name"
+                id="generationName"
+            >
+                Loading...
+            </div>
+
+
+            <div
+                class="generation-welcome"
+                id="generationWelcome"
+            >
+                Welcome to your generation community.
+            </div>
+
+
+            <div
+                class="generation-description"
+                id="generationDescription"
+            >
+                Loading generation information...
+            </div>
+
         </div>
-
-
-        <div
-            class="full-name"
-            id="fullName">
-
-            Loading...
-
-        </div>
-
-
-        <div
-            class="generation-badge"
-            id="generationBadge">
-
-            🏷️ Loading...
-
-        </div>
-
-
-        <div
-            class="generation-name"
-            id="generationName">
-
-            Loading...
-
-        </div>
-
-
-        <p
-            class="description"
-            id="generationDescription">
-
-            Loading your generation community...
-
-        </p>
-
 
     </section>
 
 
 
-    <!-- =====================================
-         STATS
-    ====================================== -->
+    <!-- ==================================================
+         STATISTICS
+    ================================================== -->
 
     <section class="stats">
 
 
         <div class="stat-card">
 
-            <span
+            <div
                 class="stat-number"
-                id="followers">
-
+                id="followersCount"
+            >
                 0
+            </div>
 
-            </span>
-
-            <span class="stat-label">
+            <div class="stat-label">
                 Followers
-            </span>
+            </div>
 
         </div>
 
 
+
         <div class="stat-card">
 
-            <span
+            <div
                 class="stat-number"
-                id="following">
-
+                id="followingCount"
+            >
                 0
+            </div>
 
-            </span>
-
-            <span class="stat-label">
+            <div class="stat-label">
                 Following
-            </span>
+            </div>
 
         </div>
 
 
+
         <div class="stat-card">
 
-            <span
+            <div
                 class="stat-number"
-                id="posts">
-
+                id="postsCount"
+            >
                 0
+            </div>
 
-            </span>
-
-            <span class="stat-label">
+            <div class="stat-label">
                 Posts
-            </span>
+            </div>
 
         </div>
+
 
 
         <div class="stat-card">
 
-            <span
+            <div
                 class="stat-number"
-                id="communities">
-
+                id="communitiesCount"
+            >
                 0
+            </div>
 
-            </span>
-
-            <span class="stat-label">
+            <div class="stat-label">
                 Communities
-            </span>
+            </div>
 
         </div>
-
 
     </section>
 
 
 
-    <!-- =====================================
-         GENERATION FEATURES
-    ====================================== -->
+    <!-- ==================================================
+         YOUR GENERATION
+    ================================================== -->
 
     <h2 class="section-title">
         Your Generation
     </h2>
 
 
-    <section class="features">
+    <section class="menu-grid">
 
 
         <!-- PROFILE -->
 
-        <div
-            class="feature-card"
-            onclick="openPage('profile.html')">
+        <button
+            class="menu-card"
+            onclick="openPage('profile.html')"
+        >
 
-            <div class="feature-icon">
+            <div class="menu-icon">
                 👤
             </div>
 
-            <div class="feature-title">
+            <div class="menu-title">
                 My Profile
             </div>
 
-            <div class="feature-description">
+            <div class="menu-description">
                 Manage your profile, skills,
                 interests and personal information.
             </div>
 
-        </div>
+        </button>
+
 
 
         <!-- POSTS -->
 
-        <div
-            class="feature-card"
-            onclick="openPage('posts.html')">
+        <button
+            class="menu-card"
+            onclick="openPage('posts.html')"
+        >
 
-            <div class="feature-icon">
+            <div class="menu-icon">
                 📝
             </div>
 
-            <div class="feature-title">
+            <div class="menu-title">
                 Posts
             </div>
 
-            <div class="feature-description">
-                Share ideas, opinions and
-                experiences with your generation.
+            <div class="menu-description">
+                Share your ideas, experiences
+                and opinions with your generation.
             </div>
 
-        </div>
+        </button>
+
 
 
         <!-- COMMUNITIES -->
 
-        <div
-            class="feature-card"
-            onclick="openPage('communities.html')">
+        <button
+            class="menu-card"
+            onclick="openPage('communities.html')"
+        >
 
-            <div class="feature-icon">
+            <div class="menu-icon">
                 👥
             </div>
 
-            <div class="feature-title">
+            <div class="menu-title">
                 Communities
             </div>
 
-            <div class="feature-description">
-                Create or join communities
-                with your generation and others.
+            <div class="menu-description">
+                Join or create communities
+                and connect with other generations.
             </div>
 
-        </div>
+        </button>
+
 
 
         <!-- MESSAGES -->
 
-        <div
-            class="feature-card"
-            onclick="openPage('messages.html')">
+        <button
+            class="menu-card"
+            onclick="openPage('messages.html')"
+        >
 
-            <div class="feature-icon">
+            <div class="menu-icon">
                 💬
             </div>
 
-            <div class="feature-title">
+            <div class="menu-title">
                 Messages
             </div>
 
-            <div class="feature-description">
-                Connect privately with friends,
-                family and other members.
+            <div class="menu-description">
+                Send and receive messages
+                from other Gene-rations members.
             </div>
 
-        </div>
+        </button>
+
 
 
         <!-- VIDEOS -->
 
-        <div
-            class="feature-card"
-            onclick="openPage('videos.html')">
+        <button
+            class="menu-card"
+            onclick="openPage('videos.html')"
+        >
 
-            <div class="feature-icon">
-                🎬
+            <div class="menu-icon">
+                🎥
             </div>
 
-            <div class="feature-title">
+            <div class="menu-title">
                 Videos
             </div>
 
-            <div class="feature-description">
-                Watch and share videos from
-                your generation community.
+            <div class="menu-description">
+                Watch and discover videos
+                from your community.
             </div>
 
-        </div>
+        </button>
+
 
 
         <!-- EVENTS -->
 
-        <div
-            class="feature-card"
-            onclick="openPage('events.html')">
+        <button
+            class="menu-card"
+            onclick="openPage('events.html')"
+        >
 
-            <div class="feature-icon">
+            <div class="menu-icon">
                 📅
             </div>
 
-            <div class="feature-title">
+            <div class="menu-title">
                 Events
             </div>
 
-            <div class="feature-description">
-                Discover upcoming events,
-                meetings and activities.
+            <div class="menu-description">
+                Discover events, meetings
+                and activities.
             </div>
 
-        </div>
+        </button>
+
 
 
         <!-- FAMILY -->
 
-        <div
-            class="feature-card"
-            onclick="openPage('family-tree.html')">
+        <button
+            class="menu-card"
+            onclick="openPage('family-tree.html')"
+        >
 
-            <div class="feature-icon">
+            <div class="menu-icon">
                 🌳
             </div>
 
-            <div class="feature-title">
+            <div class="menu-title">
                 Family Tree
             </div>
 
-            <div class="feature-description">
-                Connect family members across
-                generations.
+            <div class="menu-description">
+                Build and manage your
+                family connections.
             </div>
 
-        </div>
+        </button>
+
 
 
         <!-- MARKETPLACE -->
 
-        <div
-            class="feature-card"
-            onclick="openPage('marketplace.html')">
+        <button
+            class="menu-card"
+            onclick="openPage('marketplace.html')"
+        >
 
-            <div class="feature-icon">
-                🛍️
+            <div class="menu-icon">
+                🛒
             </div>
 
-            <div class="feature-title">
+            <div class="menu-title">
                 Marketplace
             </div>
 
-            <div class="feature-description">
-                Discover products and services
-                from the Gene-rations community.
+            <div class="menu-description">
+                Buy, sell and offer products
+                and services.
             </div>
 
-        </div>
+        </button>
+
 
 
         <!-- AI -->
 
-        <div
-            class="feature-card"
-            onclick="openPage('ai-assistant.html')">
+        <button
+            class="menu-card"
+            onclick="openPage('ai-assistant.html')"
+        >
 
-            <div class="feature-icon">
+            <div class="menu-icon">
                 🤖
             </div>
 
-            <div class="feature-title">
+            <div class="menu-title">
                 AI Assistant
             </div>
 
-            <div class="feature-description">
+            <div class="menu-description">
                 Get help, ideas and guidance
-                from the Gene-rations assistant.
+                from the Gene-rations AI assistant.
             </div>
 
-        </div>
+        </button>
 
+
+
+        <!-- SETTINGS -->
+
+        <button
+            class="menu-card"
+            onclick="openPage('settings.html')"
+        >
+
+            <div class="menu-icon">
+                ⚙️
+            </div>
+
+            <div class="menu-title">
+                Settings
+            </div>
+
+            <div class="menu-description">
+                Manage your account,
+                preferences and settings.
+            </div>
+
+        </button>
 
     </section>
 
 
 
-    <!-- =====================================
-         COMMUNITY
-    ====================================== -->
+    <!-- ==================================================
+         QUICK ACTIONS
+    ================================================== -->
 
-    <section class="community-card">
+    <section class="quick-actions">
+
+        <div class="quick-title">
+            Quick Actions
+        </div>
 
 
-        <div class="community-header">
+        <div class="quick-buttons">
 
-            <div class="community-title">
-
-                Your Generation Community
-
-            </div>
+            <button
+                class="quick-button"
+                onclick="openPage('posts.html')"
+            >
+                ➕ Create Post
+            </button>
 
 
             <button
-                class="view-button"
-                onclick="openPage('communities.html')">
+                class="quick-button"
+                onclick="openPage('videos-creator.html')"
+            >
+                🎥 Create Video
+            </button>
 
-                Explore
 
+            <button
+                class="quick-button"
+                onclick="openPage('events.html')"
+            >
+                📅 Create Event
+            </button>
+
+
+            <button
+                class="quick-button"
+                onclick="openPage('communities.html')"
+            >
+                👥 Create Community
+            </button>
+
+
+            <button
+                class="quick-button"
+                onclick="openPage('marketplace.html')"
+            >
+                🛒 Sell / Offer
             </button>
 
         </div>
 
-
-        <div
-            class="community-content"
-            id="communityText">
-
-            Connect with people in your generation,
-            exchange ideas, create communities and
-            build meaningful connections across generations.
-
-        </div>
-
-
     </section>
 
 
 
-    <!-- =====================================
+    <!-- ==================================================
          LOGOUT
-    ====================================== -->
+    ================================================== -->
 
-    <button
-        class="logout"
-        id="logoutButton">
+    <section class="logout-section">
 
-        Log Out
+        <button
+            class="logout"
+            id="logoutButton"
+        >
+            Log Out
+        </button>
 
-    </button>
+    </section>
 
 
 </main>
 
 
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
 
 <footer class="footer">
 
@@ -1078,294 +1266,590 @@ body.alpha {
 
 
 
+<!-- ==================================================
+     PAGE JAVASCRIPT
+================================================== -->
+
 <script>
 
-/* =========================================
-   GET USER DATA
-========================================= */
-
-const storedUser =
-    localStorage.getItem("userData");
-
-
-/*
-   If there is no account,
-   return to signup.
-*/
-
-if (!storedUser) {
-
-    window.location.href =
-        "signup.html";
-
-}
-
-
-/* =========================================
-   LOAD USER
-========================================= */
-
-const user =
-    JSON.parse(storedUser);
-
-
-/* =========================================
-   BASIC INFORMATION
-========================================= */
-
-const fullName =
-    user.fullName ||
-    user.name ||
-    "Gene-rations Member";
-
-
-const generation =
-    user.generation ||
-    "Generation Z";
-
-
-/* =========================================
-   GENERATION DESCRIPTIONS
-========================================= */
-
-const descriptions = {
-
-    "Silent Generation":
-        "Welcome to the Silent Generation community. Share wisdom, experiences and perspectives with generations around you.",
-
-    "Baby Boomer":
-        "Welcome to the Baby Boomer community. Connect, share experiences and contribute your knowledge across generations.",
-
-    "Generation X":
-        "Welcome to Generation X. Connect with your generation, share ideas and build meaningful relationships.",
-
-    "Millennial":
-        "Welcome to the Millennial community. Share ideas, experiences, creativity and opportunities.",
-
-    "Generation Z":
-        "Welcome to Generation Z. Connect, create, discuss ideas and shape the future together.",
-
-    "Generation Alpha":
-        "Welcome to Generation Alpha. Discover, learn, create and connect with the generations around you."
-
-};
-
-
-const description =
-    user.generationDescription ||
-    descriptions[generation] ||
-    "Welcome to your Gene-rations community.";
-
-
-/* =========================================
-   DISPLAY DATA
-========================================= */
-
-document.getElementById(
-    "fullName"
-).textContent =
-    fullName;
-
-
-document.getElementById(
-    "generationName"
-).textContent =
-    generation;
-
-
-document.getElementById(
-    "generationBadge"
-).textContent =
-    "🏷️ " +
-    (
-        user.generationBadge ||
-        generation
-    );
-
-
-document.getElementById(
-    "generationDescription"
-).textContent =
-    description;
-
-
-/* =========================================
-   STATS
-========================================= */
-
-const followers =
-    Array.isArray(user.followers)
-        ? user.followers.length
-        : Number(user.followers) || 0;
-
-
-const following =
-    Array.isArray(user.following)
-        ? user.following.length
-        : Number(user.following) || 0;
-
-
-const posts =
-    Array.isArray(user.posts)
-        ? user.posts.length
-        : Number(user.posts) || 0;
-
-
-const communities =
-    Array.isArray(user.communities)
-        ? user.communities.length
-        : Number(user.communities) || 0;
-
-
-document.getElementById(
-    "followers"
-).textContent =
-    followers;
-
-
-document.getElementById(
-    "following"
-).textContent =
-    following;
-
-
-document.getElementById(
-    "posts"
-).textContent =
-    posts;
-
-
-document.getElementById(
-    "communities"
-).textContent =
-    communities;
-
-
-/* =========================================
-   GENERATION THEME
-========================================= */
-
-function applyGenerationTheme(
-    generation
-) {
-
-    document.body.classList.remove(
-        "silent",
-        "boomer",
-        "genx",
-        "millennial",
-        "genZ",
-        "alpha"
-    );
-
-
-    if (
-        generation ===
-        "Silent Generation"
-    ) {
-
-        document.body.classList.add(
-            "silent"
-        );
-
-    }
-
-    else if (
-        generation ===
-        "Baby Boomer"
-    ) {
-
-        document.body.classList.add(
-            "boomer"
-        );
-
-    }
-
-    else if (
-        generation ===
-        "Generation X"
-    ) {
-
-        document.body.classList.add(
-            "genx"
-        );
-
-    }
-
-    else if (
-        generation ===
-        "Millennial"
-    ) {
-
-        document.body.classList.add(
-            "millennial"
-        );
-
-    }
-
-    else if (
-        generation ===
-        "Generation Z"
-    ) {
-
-        document.body.classList.add(
-            "genZ"
-        );
-
-    }
-
-    else {
-
-        document.body.classList.add(
-            "alpha"
-        );
-
-    }
-
-}
-
-
-applyGenerationTheme(
-    generation
-);
-
-
-/* =========================================
+/* ==================================================
    NAVIGATION
-========================================= */
+================================================== */
 
 function openPage(page) {
 
-    window.location.href =
-        page;
+    window.location.href = page;
 
 }
 
 
-/* =========================================
-   LOGOUT
-========================================= */
+/* ==================================================
+   GET USER DATA
+================================================== */
 
-document.getElementById(
-    "logoutButton"
-).addEventListener(
-    "click",
-    function () {
+function getStoredUser() {
 
-        localStorage.removeItem(
-            "loginSession"
+    const storedUser =
+        localStorage.getItem("userData");
+
+
+    if (!storedUser) {
+
+        return null;
+
+    }
+
+
+    try {
+
+        return JSON.parse(
+            storedUser
         );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Invalid userData:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+/* ==================================================
+   GENERATION FALLBACK
+   Used only if generation-engine.js
+   is unavailable.
+================================================== */
+
+function calculateGeneration(age) {
+
+    age = Number(age);
+
+
+    if (age >= 65) {
+
+        return "Silent Generation";
+
+    }
+
+
+    if (age >= 45) {
+
+        return "Generation X";
+
+    }
+
+
+    if (age >= 29) {
+
+        return "Millennial";
+
+    }
+
+
+    if (age >= 13) {
+
+        return "Generation Z";
+
+    }
+
+
+    return "Generation Alpha";
+
+}
+
+
+/* ==================================================
+   LOAD DYNAMIC GENERATION
+================================================== */
+
+function loadDynamicGeneration() {
+
+
+    /* ------------------------------------------
+       GET USER
+    ------------------------------------------ */
+
+    let user = null;
+
+
+    if (
+        typeof updateUserGeneration ===
+        "function"
+    ) {
+
+        user =
+            updateUserGeneration();
+
+    }
+
+
+    /*
+       If generation-engine.js did not
+       return the user, load directly.
+    */
+
+    if (!user) {
+
+        user =
+            getStoredUser();
+
+    }
+
+
+    /* ------------------------------------------
+       NO USER
+    ------------------------------------------ */
+
+    if (!user) {
 
         window.location.href =
             "login.html";
+
+        return;
+
+    }
+
+
+    /* ------------------------------------------
+       GENERATION
+    ------------------------------------------ */
+
+    let generation =
+        user.generation;
+
+
+    /*
+       Fallback if generation is missing.
+    */
+
+    if (!generation) {
+
+        generation =
+            calculateGeneration(
+                user.age
+            );
+
+        user.generation =
+            generation;
+
+        localStorage.setItem(
+            "userData",
+            JSON.stringify(user)
+        );
+
+    }
+
+
+    /* ------------------------------------------
+       GENERATION DATA
+    ------------------------------------------ */
+
+    let generationInfo = null;
+
+
+    if (
+        typeof getGenerationData ===
+        "function"
+    ) {
+
+        generationInfo =
+            getGenerationData(
+                generation
+            );
+
+    }
+
+
+    /*
+       Safe fallback.
+    */
+
+    if (!generationInfo) {
+
+        generationInfo = {
+
+            name:
+                generation,
+
+            badge:
+                "🏷️ " + generation,
+
+            welcome:
+                `Welcome to the ${generation} community.`,
+
+            description:
+                `Connect, share ideas and build meaningful relationships with members of ${generation}.`
+
+        };
+
+    }
+
+
+    /* ==================================================
+       USER NAME
+    ================================================== */
+
+    const fullName =
+        document.getElementById(
+            "fullName"
+        );
+
+
+    if (fullName) {
+
+        fullName.textContent =
+            user.fullName ||
+            user.name ||
+            "Gene-rations Member";
+
+    }
+
+
+    /* ==================================================
+       WELCOME
+    ================================================== */
+
+    const welcome =
+        document.getElementById(
+            "welcome"
+        );
+
+
+    if (welcome) {
+
+        welcome.textContent =
+            `Welcome back, ${
+                user.fullName ||
+                user.name ||
+                "Member"
+            }`;
+
+    }
+
+
+    /* ==================================================
+       GENERATION NAME
+    ================================================== */
+
+    const generationName =
+        document.getElementById(
+            "generationName"
+        );
+
+
+    if (generationName) {
+
+        generationName.textContent =
+            generationInfo.name ||
+            generation;
+
+    }
+
+
+    /* ==================================================
+       GENERATION BADGE
+    ================================================== */
+
+    const badge =
+        document.getElementById(
+            "generationBadge"
+        );
+
+
+    if (badge) {
+
+        badge.textContent =
+            generationInfo.badge ||
+            `🏷️ ${generation}`;
+
+    }
+
+
+    /* ==================================================
+       GENERATION WELCOME
+    ================================================== */
+
+    const generationWelcome =
+        document.getElementById(
+            "generationWelcome"
+        );
+
+
+    if (generationWelcome) {
+
+        generationWelcome.textContent =
+            generationInfo.welcome ||
+            `Welcome to the ${generation} community.`;
+
+    }
+
+
+    /* ==================================================
+       DESCRIPTION
+    ================================================== */
+
+    const description =
+        document.getElementById(
+            "generationDescription"
+        );
+
+
+    if (description) {
+
+        description.textContent =
+            generationInfo.description ||
+            "";
+
+    }
+
+
+    /* ==================================================
+       AGE
+    ================================================== */
+
+    const ageElement =
+        document.getElementById(
+            "age"
+        );
+
+
+    if (ageElement) {
+
+        ageElement.textContent =
+            user.age ?? "—";
+
+    }
+
+
+    /* ==================================================
+       PROFILE PHOTO
+    ================================================== */
+
+    const profilePhoto =
+        document.getElementById(
+            "profilePhoto"
+        );
+
+
+    if (
+        profilePhoto &&
+        user.profilePhoto
+    ) {
+
+        profilePhoto.src =
+            user.profilePhoto;
+
+    }
+
+
+    /* ==================================================
+       FOLLOWERS
+    ================================================== */
+
+    const followers =
+        document.getElementById(
+            "followersCount"
+        );
+
+
+    if (followers) {
+
+        followers.textContent =
+            Array.isArray(
+                user.followers
+            )
+                ? user.followers.length
+                : 0;
+
+    }
+
+
+    /* ==================================================
+       FOLLOWING
+    ================================================== */
+
+    const following =
+        document.getElementById(
+            "followingCount"
+        );
+
+
+    if (following) {
+
+        following.textContent =
+            Array.isArray(
+                user.following
+            )
+                ? user.following.length
+                : 0;
+
+    }
+
+
+    /* ==================================================
+       POSTS
+    ================================================== */
+
+    const posts =
+        document.getElementById(
+            "postsCount"
+        );
+
+
+    if (posts) {
+
+        posts.textContent =
+            Array.isArray(
+                user.posts
+            )
+                ? user.posts.length
+                : 0;
+
+    }
+
+
+    /* ==================================================
+       COMMUNITIES
+    ================================================== */
+
+    const communities =
+        document.getElementById(
+            "communitiesCount"
+        );
+
+
+    if (communities) {
+
+        communities.textContent =
+            Array.isArray(
+                user.communities
+            )
+                ? user.communities.length
+                : 0;
+
+    }
+
+
+    /* ==================================================
+       APPLY GENERATION THEME
+    ================================================== */
+
+    if (
+        typeof applyGenerationTheme ===
+        "function"
+    ) {
+
+        try {
+
+            applyGenerationTheme(
+                generation
+            );
+
+        }
+
+        catch (error) {
+
+            console.warn(
+                "Generation theme error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* ==================================================
+       SAVE UPDATED USER
+    ================================================== */
+
+    localStorage.setItem(
+        "userData",
+        JSON.stringify(user)
+    );
+
+
+    console.log(
+        "Gene-rations user loaded:",
+        user
+    );
+
+    console.log(
+        "Current generation:",
+        generation
+    );
+
+}
+
+
+/* ==================================================
+   LOGOUT
+================================================== */
+
+const logoutButton =
+    document.getElementById(
+        "logoutButton"
+    );
+
+
+if (logoutButton) {
+
+    logoutButton.addEventListener(
+        "click",
+        function () {
+
+
+            const confirmLogout =
+                confirm(
+                    "Are you sure you want to log out?"
+                );
+
+
+            if (!confirmLogout) {
+
+                return;
+
+            }
+
+
+            localStorage.removeItem(
+                "loginSession"
+            );
+
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   START PAGE
+================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadDynamicGeneration();
 
     }
 );
 
 </script>
 
-  <script src="generation-data.js"></script>
-  <script src="generation-engine.js"</script>
 
 </body>
+
 </html>
