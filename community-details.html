@@ -1,0 +1,2954 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Gene-rations | Community</title>
+
+<style>
+
+/* =================================================
+   RESET
+================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f5f3ff;
+
+    color: #29194d;
+
+    min-height: 100vh;
+}
+
+
+/* =================================================
+   HEADER
+================================================= */
+
+.header {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color: white;
+
+    padding: 14px 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+.header-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+}
+
+
+.back-button {
+
+    border: none;
+
+    background:
+        rgba(255,255,255,.16);
+
+    color: white;
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+
+.header-title {
+
+    min-width: 0;
+}
+
+
+.header-title h1 {
+
+    font-size: 19px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.header-title p {
+
+    font-size: 12px;
+
+    opacity: .85;
+
+    margin-top: 3px;
+}
+
+
+.header-actions {
+
+    display: flex;
+
+    gap: 7px;
+}
+
+
+.header-action {
+
+    border: none;
+
+    background:
+        rgba(255,255,255,.16);
+
+    color: white;
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+
+/* =================================================
+   CONTAINER
+================================================= */
+
+.container {
+
+    max-width: 900px;
+
+    margin: auto;
+
+    padding:
+        18px 12px
+        50px;
+}
+
+
+/* =================================================
+   COMMUNITY HERO
+================================================= */
+
+.community-hero {
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 6px 20px
+        rgba(70,50,120,.07);
+
+    margin-bottom: 15px;
+}
+
+
+.hero-top {
+
+    display: flex;
+
+    gap: 14px;
+
+    align-items: flex-start;
+}
+
+
+.community-icon {
+
+    width: 65px;
+
+    height: 65px;
+
+    min-width: 65px;
+
+    border-radius: 18px;
+
+    background: #eee7ff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+}
+
+
+.hero-info {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.hero-info h2 {
+
+    font-size: 23px;
+
+    margin-bottom: 6px;
+}
+
+
+.category {
+
+    display: inline-block;
+
+    background: #f0ebff;
+
+    color: #6d3eb2;
+
+    padding: 5px 10px;
+
+    border-radius: 15px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.description {
+
+    color: #666;
+
+    line-height: 1.5;
+
+    margin-top: 12px;
+
+    font-size: 14px;
+}
+
+
+.community-meta {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-top: 15px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+/* =================================================
+   TABS
+================================================= */
+
+.tabs {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 5px;
+
+    display: flex;
+
+    gap: 4px;
+
+    margin-bottom: 15px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(70,50,120,.05);
+}
+
+
+.tab {
+
+    flex: 1;
+
+    border: none;
+
+    background: transparent;
+
+    padding: 11px 8px;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    color: #777;
+}
+
+
+.tab.active {
+
+    background: #7c3aed;
+
+    color: white;
+}
+
+
+/* =================================================
+   WRITE POST
+================================================= */
+
+.write-card {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 16px;
+
+    margin-bottom: 15px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(70,50,120,.06);
+}
+
+
+.write-top {
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+    margin-bottom: 12px;
+}
+
+
+.avatar {
+
+    width: 43px;
+
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: #e8e0ff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    font-weight: 800;
+
+    color: #6840a5;
+}
+
+
+.avatar img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.write-name {
+
+    font-weight: 800;
+}
+
+
+.write-generation {
+
+    font-size: 12px;
+
+    color: #888;
+
+    margin-top: 3px;
+}
+
+
+#postText {
+
+    width: 100%;
+
+    min-height: 100px;
+
+    resize: vertical;
+
+    border: 1px solid #ddd;
+
+    border-radius: 15px;
+
+    padding: 13px;
+
+    outline: none;
+
+    font-size: 15px;
+}
+
+
+#postText:focus {
+
+    border-color: #7c3aed;
+}
+
+
+.write-bottom {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 10px;
+
+    gap: 10px;
+}
+
+
+.char-count {
+
+    color: #888;
+
+    font-size: 12px;
+}
+
+
+.post-button {
+
+    border: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+    color: white;
+
+    padding: 11px 20px;
+
+    border-radius: 20px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+
+/* =================================================
+   MESSAGE
+================================================= */
+
+#message {
+
+    display: none;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    margin-bottom: 15px;
+
+    text-align: center;
+
+    font-weight: 700;
+}
+
+
+.success {
+
+    background: #dcfce7;
+
+    color: #166534;
+}
+
+
+.error {
+
+    background: #fee2e2;
+
+    color: #991b1b;
+}
+
+
+/* =================================================
+   DISCUSSIONS
+================================================= */
+
+.post-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+.post-card {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 17px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(70,50,120,.06);
+}
+
+
+.post-header {
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+
+.post-user {
+
+    flex: 1;
+}
+
+
+.post-user-name {
+
+    font-weight: 800;
+}
+
+
+.post-user-meta {
+
+    color: #888;
+
+    font-size: 12px;
+
+    margin-top: 3px;
+}
+
+
+.post-content {
+
+    margin-top: 14px;
+
+    color: #444;
+
+    line-height: 1.55;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+}
+
+
+.post-actions {
+
+    display: flex;
+
+    gap: 7px;
+
+    margin-top: 15px;
+
+    border-top: 1px solid #eee;
+
+    padding-top: 11px;
+}
+
+
+.post-action {
+
+    flex: 1;
+
+    border: none;
+
+    background: #f5f2fa;
+
+    color: #655477;
+
+    padding: 9px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+
+.post-action.liked {
+
+    background: #ede5ff;
+
+    color: #6d28d9;
+}
+
+
+/* =================================================
+   COMMENTS
+================================================= */
+
+.comments {
+
+    display: none;
+
+    margin-top: 13px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #eee;
+}
+
+
+.comment {
+
+    background: #f7f5fa;
+
+    border-radius: 12px;
+
+    padding: 9px;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+}
+
+
+.comment strong {
+
+    display: block;
+
+    margin-bottom: 3px;
+}
+
+
+.comment-form {
+
+    display: flex;
+
+    gap: 7px;
+
+    margin-top: 8px;
+}
+
+
+.comment-input {
+
+    flex: 1;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    padding: 9px;
+
+    outline: none;
+}
+
+
+.comment-button {
+
+    border: none;
+
+    background: #7c3aed;
+
+    color: white;
+
+    padding: 9px 13px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+
+/* =================================================
+   MEMBERS
+================================================= */
+
+#membersSection {
+
+    display: none;
+}
+
+
+.member-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.member {
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    box-shadow:
+        0 4px 14px
+        rgba(70,50,120,.05);
+}
+
+
+.member-info {
+
+    flex: 1;
+}
+
+
+.member-name {
+
+    font-weight: 800;
+}
+
+
+.member-role {
+
+    font-size: 12px;
+
+    color: #777;
+
+    margin-top: 3px;
+}
+
+
+.leader-badge {
+
+    background: #fff3c4;
+
+    color: #8a6500;
+
+    padding: 5px 9px;
+
+    border-radius: 12px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+/* =================================================
+   COMMUNITY INFO
+================================================= */
+
+#aboutSection {
+
+    display: none;
+}
+
+
+.info-card {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(70,50,120,.06);
+}
+
+
+.info-row {
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+
+.info-row:last-child {
+
+    border-bottom: none;
+}
+
+
+.info-label {
+
+    color: #888;
+
+    font-size: 12px;
+
+    margin-bottom: 4px;
+}
+
+
+.info-value {
+
+    font-weight: 700;
+}
+
+
+/* =================================================
+   EMPTY
+================================================= */
+
+.empty {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 50px 20px;
+
+    text-align: center;
+
+    color: #777;
+}
+
+
+.empty-icon {
+
+    font-size: 45px;
+
+    margin-bottom: 10px;
+}
+
+
+/* =================================================
+   MODAL
+================================================= */
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 300;
+
+    background:
+        rgba(20,10,40,.55);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 15px;
+}
+
+
+.modal.show {
+
+    display: flex;
+}
+
+
+.modal-card {
+
+    width: 100%;
+
+    max-width: 500px;
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 22px;
+}
+
+
+.modal-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+
+.close-button {
+
+    width: 35px;
+
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #eee;
+
+    cursor: pointer;
+
+    font-size: 20px;
+}
+
+
+.modal-button {
+
+    width: 100%;
+
+    border: none;
+
+    background: #7c3aed;
+
+    color: white;
+
+    padding: 12px;
+
+    border-radius: 18px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+
+/* =================================================
+   MOBILE
+================================================= */
+
+@media(max-width:600px) {
+
+    .header-title h1 {
+
+        font-size: 16px;
+    }
+
+
+    .community-hero {
+
+        padding: 16px;
+    }
+
+
+    .hero-info h2 {
+
+        font-size: 20px;
+    }
+
+
+    .tab {
+
+        font-size: 12px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =================================================
+     HEADER
+================================================= -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <button
+            class="back-button"
+            onclick="goBack()">
+
+            ←
+
+        </button>
+
+
+        <div class="header-title">
+
+            <h1 id="headerCommunityName">
+                Community
+            </h1>
+
+            <p>
+                Gene-rations Discussion Group
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="header-actions">
+
+        <button
+            class="header-action"
+            onclick="goToHub()">
+
+            🏠
+
+        </button>
+
+
+        <button
+            class="header-action"
+            onclick="goToNotifications()">
+
+            🔔
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =================================================
+     COMMUNITY HERO
+================================================= -->
+
+<section class="community-hero">
+
+    <div class="hero-top">
+
+        <div
+            class="community-icon"
+            id="communityIcon">
+
+            👥
+
+        </div>
+
+
+        <div class="hero-info">
+
+            <h2 id="communityName">
+                Loading...
+            </h2>
+
+
+            <span
+                class="category"
+                id="communityCategory">
+
+                Community
+
+            </span>
+
+
+            <p
+                class="description"
+                id="communityDescription">
+
+                Loading community...
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="community-meta">
+
+        <span id="memberCount">
+            👥 0 members
+        </span>
+
+
+        <span id="communityGeneration">
+            🧬 All Generations
+        </span>
+
+
+        <span id="communityPrivacy">
+            🌍 Public
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =================================================
+     MESSAGE
+================================================= -->
+
+<div id="message"></div>
+
+
+
+<!-- =================================================
+     TABS
+================================================= -->
+
+<div class="tabs">
+
+    <button
+        class="tab active"
+        onclick="showTab('discussion', this)">
+
+        💬 Discussion
+
+    </button>
+
+
+    <button
+        class="tab"
+        onclick="showTab('members', this)">
+
+        👥 Members
+
+    </button>
+
+
+    <button
+        class="tab"
+        onclick="showTab('about', this)">
+
+        ℹ️ About
+
+    </button>
+
+</div>
+
+
+
+<!-- =================================================
+     DISCUSSION SECTION
+================================================= -->
+
+<section id="discussionSection">
+
+
+    <!-- WRITE POST -->
+
+    <div
+        class="write-card"
+        id="writeCard">
+
+
+        <div class="write-top">
+
+            <div
+                class="avatar"
+                id="userAvatar">
+
+            </div>
+
+
+            <div>
+
+                <div
+                    class="write-name"
+                    id="userName">
+
+                    Member
+
+                </div>
+
+
+                <div
+                    class="write-generation"
+                    id="userGeneration">
+
+                    Generation
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <textarea
+            id="postText"
+            maxlength="2000"
+            placeholder="Start a discussion with the community..."></textarea>
+
+
+        <div class="write-bottom">
+
+            <span
+                class="char-count"
+                id="charCount">
+
+                0 / 2000
+
+            </span>
+
+
+            <button
+                class="post-button"
+                onclick="createPost()">
+
+                Post Discussion
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- POSTS -->
+
+    <div
+        class="post-list"
+        id="postList">
+
+    </div>
+
+
+    <div
+        class="empty"
+        id="postEmpty"
+        style="display:none;">
+
+        <div class="empty-icon">
+            💬
+        </div>
+
+        <h3>
+            Start the conversation
+        </h3>
+
+        <p>
+            Be the first person to post a discussion
+            in this community.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =================================================
+     MEMBERS
+================================================= -->
+
+<section id="membersSection">
+
+    <div
+        class="member-list"
+        id="memberList">
+
+    </div>
+
+</section>
+
+
+
+<!-- =================================================
+     ABOUT
+================================================= -->
+
+<section id="aboutSection">
+
+    <div class="info-card">
+
+        <div class="info-row">
+
+            <div class="info-label">
+                Community
+            </div>
+
+            <div
+                class="info-value"
+                id="aboutName">
+
+            </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <div class="info-label">
+                Description
+            </div>
+
+            <div
+                class="info-value"
+                id="aboutDescription">
+
+            </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <div class="info-label">
+                Category
+            </div>
+
+            <div
+                class="info-value"
+                id="aboutCategory">
+
+            </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <div class="info-label">
+                Generation
+            </div>
+
+            <div
+                class="info-value"
+                id="aboutGeneration">
+
+            </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <div class="info-label">
+                Community Leader
+            </div>
+
+            <div
+                class="info-value"
+                id="aboutLeader">
+
+            </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <div class="info-label">
+                Created
+            </div>
+
+            <div
+                class="info-value"
+                id="aboutCreated">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =================================================
+     REPORT MODAL
+================================================= -->
+
+<div
+    class="modal"
+    id="reportModal">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h3>
+                Report Discussion
+            </h3>
+
+
+            <button
+                class="close-button"
+                onclick="closeReport()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <p style="color:#777;margin-bottom:15px;">
+
+            Help us understand why you are reporting
+            this discussion.
+
+        </p>
+
+
+        <select
+            id="reportReason"
+            style="
+                width:100%;
+                padding:12px;
+                border:1px solid #ddd;
+                border-radius:12px;
+                margin-bottom:15px;
+            ">
+
+            <option value="spam">
+                Spam
+            </option>
+
+            <option value="harassment">
+                Harassment
+            </option>
+
+            <option value="misinformation">
+                Misinformation
+            </option>
+
+            <option value="inappropriate">
+                Inappropriate content
+            </option>
+
+            <option value="other">
+                Other
+            </option>
+
+        </select>
+
+
+        <button
+            class="modal-button"
+            onclick="submitReport()">
+
+            Submit Report
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =================================================
+   GENE-RATIONS COMMUNITY DETAILS ENGINE
+================================================= */
+
+
+/* =================================================
+   USER
+================================================= */
+
+let userData =
+    JSON.parse(
+        localStorage.getItem(
+            "userData"
+        )
+    );
+
+
+if (!userData) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =================================================
+   SELECTED COMMUNITY
+================================================= */
+
+const selectedCommunityId =
+    localStorage.getItem(
+        "selectedCommunityId"
+    );
+
+
+if (!selectedCommunityId) {
+
+    window.location.href =
+        "communities.html";
+
+}
+
+
+/* =================================================
+   LOAD COMMUNITIES
+================================================= */
+
+const storageKey =
+    "geneRationsCommunities";
+
+
+let communities =
+    JSON.parse(
+        localStorage.getItem(
+            storageKey
+        )
+    );
+
+
+if (!Array.isArray(communities)) {
+
+    communities = [];
+
+}
+
+
+/* =================================================
+   FIND COMMUNITY
+================================================= */
+
+let community =
+    communities.find(
+        function(item) {
+
+            return String(item.id) ===
+                String(selectedCommunityId);
+
+        }
+    );
+
+
+if (!community) {
+
+    alert(
+        "Community could not be found."
+    );
+
+    window.location.href =
+        "communities.html";
+
+}
+
+
+/* =================================================
+   NORMALIZE
+================================================= */
+
+if (!Array.isArray(community.members)) {
+
+    community.members = [];
+
+}
+
+
+if (!Array.isArray(community.posts)) {
+
+    community.posts = [];
+
+}
+
+
+/* =================================================
+   CHECK MEMBERSHIP
+================================================= */
+
+const isMember =
+    community.members.includes(
+        userData.email
+    );
+
+
+if (!isMember) {
+
+    document.getElementById(
+        "writeCard"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =================================================
+   COMMUNITY HEADER
+================================================= */
+
+document.getElementById(
+    "headerCommunityName"
+).textContent =
+    community.name;
+
+
+document.getElementById(
+    "communityName"
+).textContent =
+    community.name;
+
+
+document.getElementById(
+    "communityCategory"
+).textContent =
+    community.category;
+
+
+document.getElementById(
+    "communityDescription"
+).textContent =
+    community.description;
+
+
+document.getElementById(
+    "memberCount"
+).textContent =
+    `👥 ${community.members.length} members`;
+
+
+document.getElementById(
+    "communityGeneration"
+).textContent =
+    `🧬 ${community.generation}`;
+
+
+document.getElementById(
+    "communityPrivacy"
+).textContent =
+    community.privacy === "public"
+        ? "🌍 Public"
+        : community.privacy === "private"
+            ? "🔒 Private"
+            : "✉️ Invite only";
+
+
+document.getElementById(
+    "communityIcon"
+).textContent =
+    getCategoryIcon(
+        community.category
+    );
+
+
+/* =================================================
+   USER
+================================================= */
+
+document.getElementById(
+    "userName"
+).textContent =
+    userData.fullName ||
+    "Gene-rations Member";
+
+
+document.getElementById(
+    "userGeneration"
+).textContent =
+    userData.generation ||
+    "Gene-rations Member";
+
+
+const avatar =
+    document.getElementById(
+        "userAvatar"
+    );
+
+
+if (userData.profilePhoto) {
+
+    avatar.innerHTML =
+        `<img src="${escapeAttribute(
+            userData.profilePhoto
+        )}" alt="Profile photo">`;
+
+}
+
+else {
+
+    avatar.textContent =
+        getInitials(
+            userData.fullName
+        );
+
+}
+
+
+/* =================================================
+   CHARACTER COUNTER
+================================================= */
+
+document.getElementById(
+    "postText"
+).addEventListener(
+    "input",
+    function() {
+
+        document.getElementById(
+            "charCount"
+        ).textContent =
+            `${this.value.length} / 2000`;
+
+    }
+);
+
+
+/* =================================================
+   CREATE DISCUSSION
+================================================= */
+
+function createPost() {
+
+    if (!isMember) {
+
+        showMessage(
+            "You must be a community member to post.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const textarea =
+        document.getElementById(
+            "postText"
+        );
+
+
+    const text =
+        textarea.value.trim();
+
+
+    if (!text) {
+
+        showMessage(
+            "Write something before posting.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const post = {
+
+        id:
+            Date.now() +
+            Math.random(),
+
+        authorEmail:
+            userData.email,
+
+        authorName:
+            userData.fullName ||
+            "Gene-rations Member",
+
+        authorGeneration:
+            userData.generation ||
+            "",
+
+        authorPhoto:
+            userData.profilePhoto ||
+            "",
+
+        content:
+            text,
+
+        likes:
+            [],
+
+        comments:
+            [],
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    community.posts.unshift(
+        post
+    );
+
+
+    saveCommunities();
+
+
+    textarea.value =
+        "";
+
+
+    document.getElementById(
+        "charCount"
+    ).textContent =
+        "0 / 2000";
+
+
+    showMessage(
+        "Discussion posted successfully.",
+        "success"
+    );
+
+
+    renderPosts();
+
+}
+
+
+/* =================================================
+   SAVE COMMUNITIES
+================================================= */
+
+function saveCommunities() {
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(
+            communities
+        )
+    );
+
+}
+
+
+/* =================================================
+   RENDER POSTS
+================================================= */
+
+function renderPosts() {
+
+    const list =
+        document.getElementById(
+            "postList"
+        );
+
+
+    const empty =
+        document.getElementById(
+            "postEmpty"
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    if (
+        community.posts.length ===
+        0
+    ) {
+
+        empty.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    empty.style.display =
+        "none";
+
+
+    community.posts.forEach(
+        function(post) {
+
+            list.appendChild(
+                createPostElement(
+                    post
+                )
+            );
+
+        }
+    );
+
+}
+
+
+/* =================================================
+   POST ELEMENT
+================================================= */
+
+function createPostElement(
+    post
+) {
+
+    const card =
+        document.createElement(
+            "article"
+        );
+
+
+    card.className =
+        "post-card";
+
+
+    const liked =
+        Array.isArray(post.likes) &&
+        post.likes.includes(
+            userData.email
+        );
+
+
+    const comments =
+        Array.isArray(post.comments)
+            ? post.comments
+            : [];
+
+
+    const postAvatar =
+        post.authorPhoto
+            ?
+            `<img
+                src="${escapeAttribute(
+                    post.authorPhoto
+                )}"
+                alt="Profile photo">`
+            :
+            getInitials(
+                post.authorName
+            );
+
+
+    card.innerHTML = `
+
+        <div class="post-header">
+
+            <div class="avatar">
+
+                ${postAvatar}
+
+            </div>
+
+
+            <div class="post-user">
+
+                <div class="post-user-name">
+
+                    ${escapeHTML(
+                        post.authorName
+                    )}
+
+                </div>
+
+
+                <div class="post-user-meta">
+
+                    ${
+                        escapeHTML(
+                            post.authorGeneration ||
+                            "Gene-rations Member"
+                        )
+                    }
+
+                    •
+
+                    ${formatDate(
+                        post.createdAt
+                    )}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="post-content">
+
+            ${escapeHTML(
+                post.content
+            )}
+
+        </div>
+
+
+        <div class="post-actions">
+
+            <button
+                class="post-action ${
+                    liked
+                        ? "liked"
+                        : ""
+                }"
+                onclick="toggleLike('${post.id}')">
+
+                ${
+                    liked
+                        ? "❤️"
+                        : "🤍"
+                }
+
+                ${post.likes.length}
+
+            </button>
+
+
+            <button
+                class="post-action"
+                onclick="toggleComments('${post.id}')">
+
+                💬 ${comments.length}
+
+            </button>
+
+
+            <button
+                class="post-action"
+                onclick="openReport('${post.id}')">
+
+                ⚑ Report
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="comments"
+            id="comments-${post.id}">
+
+            ${renderComments(
+                comments
+            )}
+
+
+            ${
+                isMember
+                    ?
+                    `
+                    <div class="comment-form">
+
+                        <input
+                            class="comment-input"
+                            id="comment-${post.id}"
+                            placeholder="Write a comment...">
+
+                        <button
+                            class="comment-button"
+                            onclick="addComment('${post.id}')">
+
+                            Send
+
+                        </button>
+
+                    </div>
+                    `
+                    :
+                    ""
+            }
+
+        </div>
+
+    `;
+
+
+    return card;
+
+}
+
+
+/* =================================================
+   RENDER COMMENTS
+================================================= */
+
+function renderComments(
+    comments
+) {
+
+    if (
+        !comments.length
+    ) {
+
+        return `
+            <p style="
+                color:#888;
+                font-size:13px;
+                margin-bottom:8px;
+            ">
+                No comments yet.
+            </p>
+        `;
+
+    }
+
+
+    return comments.map(
+        function(comment) {
+
+            return `
+
+                <div class="comment">
+
+                    <strong>
+                        ${escapeHTML(
+                            comment.authorName
+                        )}
+                    </strong>
+
+                    ${escapeHTML(
+                        comment.text
+                    )}
+
+                </div>
+
+            `;
+
+        }
+    ).join("");
+
+}
+
+
+/* =================================================
+   LIKE
+================================================= */
+
+function toggleLike(
+    postId
+) {
+
+    const post =
+        findPost(
+            postId
+        );
+
+
+    if (!post) {
+        return;
+    }
+
+
+    if (!Array.isArray(post.likes)) {
+
+        post.likes = [];
+
+    }
+
+
+    const index =
+        post.likes.indexOf(
+            userData.email
+        );
+
+
+    if (index === -1) {
+
+        post.likes.push(
+            userData.email
+        );
+
+    }
+
+    else {
+
+        post.likes.splice(
+            index,
+            1
+        );
+
+    }
+
+
+    saveCommunities();
+
+    renderPosts();
+
+}
+
+
+/* =================================================
+   COMMENTS TOGGLE
+================================================= */
+
+function toggleComments(
+    postId
+) {
+
+    const element =
+        document.getElementById(
+            `comments-${postId}`
+        );
+
+
+    if (!element) {
+        return;
+    }
+
+
+    element.style.display =
+        element.style.display ===
+        "block"
+            ? "none"
+            : "block";
+
+}
+
+
+/* =================================================
+   ADD COMMENT
+================================================= */
+
+function addComment(
+    postId
+) {
+
+    const input =
+        document.getElementById(
+            `comment-${postId}`
+        );
+
+
+    if (!input) {
+        return;
+    }
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+
+        showMessage(
+            "Write a comment first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const post =
+        findPost(
+            postId
+        );
+
+
+    if (!post) {
+        return;
+    }
+
+
+    if (!Array.isArray(post.comments)) {
+
+        post.comments = [];
+
+    }
+
+
+    post.comments.push({
+
+        id:
+            Date.now() +
+            Math.random(),
+
+        authorEmail:
+            userData.email,
+
+        authorName:
+            userData.fullName ||
+            "Gene-rations Member",
+
+        text:
+            text,
+
+        createdAt:
+            new Date().toISOString()
+
+    });
+
+
+    saveCommunities();
+
+
+    renderPosts();
+
+
+    setTimeout(
+        function() {
+
+            const comments =
+                document.getElementById(
+                    `comments-${postId}`
+                );
+
+            if (comments) {
+
+                comments.style.display =
+                    "block";
+
+            }
+
+        },
+        50
+    );
+
+}
+
+
+/* =================================================
+   FIND POST
+================================================= */
+
+function findPost(
+    postId
+) {
+
+    return community.posts.find(
+        function(post) {
+
+            return String(post.id) ===
+                String(postId);
+
+        }
+    );
+
+}
+
+
+/* =================================================
+   MEMBERS
+================================================= */
+
+function renderMembers() {
+
+    const list =
+        document.getElementById(
+            "memberList"
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    community.members.forEach(
+        function(email) {
+
+            const member =
+                document.createElement(
+                    "div"
+                );
+
+
+            member.className =
+                "member";
+
+
+            const isLeader =
+                email ===
+                community.creatorEmail;
+
+
+            const name =
+                isLeader
+                    ? community.creatorName
+                    : email === userData.email
+                        ? userData.fullName
+                        : email;
+
+
+            member.innerHTML = `
+
+                <div class="avatar">
+
+                    ${
+                        getInitials(
+                            name
+                        )
+                    }
+
+                </div>
+
+
+                <div class="member-info">
+
+                    <div class="member-name">
+
+                        ${escapeHTML(
+                            name
+                        )}
+
+                    </div>
+
+
+                    <div class="member-role">
+
+                        ${
+                            isLeader
+                                ? "Community Leader"
+                                : "Member"
+                        }
+
+                    </div>
+
+                </div>
+
+
+                ${
+                    isLeader
+                        ?
+                        `
+                            <span class="leader-badge">
+                                👑 Leader
+                            </span>
+                        `
+                        :
+                        ""
+                }
+
+            `;
+
+
+            list.appendChild(
+                member
+            );
+
+        }
+    );
+
+}
+
+
+/* =================================================
+   ABOUT
+================================================= */
+
+document.getElementById(
+    "aboutName"
+).textContent =
+    community.name;
+
+
+document.getElementById(
+    "aboutDescription"
+).textContent =
+    community.description;
+
+
+document.getElementById(
+    "aboutCategory"
+).textContent =
+    community.category;
+
+
+document.getElementById(
+    "aboutGeneration"
+).textContent =
+    community.generation;
+
+
+document.getElementById(
+    "aboutLeader"
+).textContent =
+    community.creatorName;
+
+
+document.getElementById(
+    "aboutCreated"
+).textContent =
+    formatDate(
+        community.createdAt
+    );
+
+
+/* =================================================
+   TABS
+================================================= */
+
+function showTab(
+    tab,
+    button
+) {
+
+    document
+        .querySelectorAll(
+            ".tab"
+        )
+        .forEach(
+            function(item) {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    document.getElementById(
+        "discussionSection"
+    ).style.display =
+        tab === "discussion"
+            ? "block"
+            : "none";
+
+
+    document.getElementById(
+        "membersSection"
+    ).style.display =
+        tab === "members"
+            ? "block"
+            : "none";
+
+
+    document.getElementById(
+        "aboutSection"
+    ).style.display =
+        tab === "about"
+            ? "block"
+            : "none";
+
+
+    if (
+        tab === "members"
+    ) {
+
+        renderMembers();
+
+    }
+
+}
+
+
+/* =================================================
+   REPORT
+================================================= */
+
+let reportPostId =
+    null;
+
+
+function openReport(
+    postId
+) {
+
+    reportPostId =
+        postId;
+
+
+    document.getElementById(
+        "reportModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+function closeReport() {
+
+    reportPostId =
+        null;
+
+
+    document.getElementById(
+        "reportModal"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+function submitReport() {
+
+    if (!reportPostId) {
+        return;
+    }
+
+
+    const reportsKey =
+        "geneRationsReports";
+
+
+    let reports =
+        JSON.parse(
+            localStorage.getItem(
+                reportsKey
+            )
+        );
+
+
+    if (!Array.isArray(reports)) {
+
+        reports = [];
+
+    }
+
+
+    reports.push({
+
+        id:
+            Date.now() +
+            Math.random(),
+
+        type:
+            "community-post",
+
+        postId:
+            reportPostId,
+
+        communityId:
+            community.id,
+
+        reportedBy:
+            userData.email,
+
+        reason:
+            document.getElementById(
+                "reportReason"
+            ).value,
+
+        createdAt:
+            new Date().toISOString()
+
+    });
+
+
+    localStorage.setItem(
+        reportsKey,
+        JSON.stringify(
+            reports
+        )
+    );
+
+
+    closeReport();
+
+
+    showMessage(
+        "Thank you. Your report has been submitted.",
+        "success"
+    );
+
+}
+
+
+/* =================================================
+   MESSAGE
+================================================= */
+
+function showMessage(
+    text,
+    type
+) {
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        type;
+
+
+    message.style.display =
+        "block";
+
+
+    setTimeout(
+        function() {
+
+            message.style.display =
+                "none";
+
+        },
+        2500
+    );
+
+}
+
+
+/* =================================================
+   NAVIGATION
+================================================= */
+
+function goBack() {
+
+    window.location.href =
+        "communities.html";
+
+}
+
+
+function goToHub() {
+
+    window.location.href =
+        "generations.html";
+
+}
+
+
+function goToNotifications() {
+
+    window.location.href =
+        "notifications.html";
+
+}
+
+
+/* =================================================
+   HELPERS
+================================================= */
+
+function getInitials(
+    name
+) {
+
+    if (!name) {
+        return "G";
+    }
+
+
+    return name
+        .trim()
+        .split(/\s+/)
+        .slice(0, 2)
+        .map(
+            function(part) {
+
+                return part
+                    .charAt(0)
+                    .toUpperCase();
+
+            }
+        )
+        .join("");
+
+}
+
+
+function formatDate(
+    date
+) {
+
+    if (!date) {
+        return "Unknown";
+    }
+
+
+    const d =
+        new Date(date);
+
+
+    if (
+        Number.isNaN(
+            d.getTime()
+        )
+    ) {
+
+        return "Unknown";
+
+    }
+
+
+    return d.toLocaleDateString(
+        undefined,
+        {
+            year: "numeric",
+            month: "short",
+            day: "numeric"
+        }
+    );
+
+}
+
+
+function escapeHTML(
+    value
+) {
+
+    return String(
+        value ?? ""
+    )
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+function escapeAttribute(
+    value
+) {
+
+    return String(
+        value ?? ""
+    )
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        );
+
+}
+
+
+function getCategoryIcon(
+    category
+) {
+
+    const icons = {
+
+        Business: "💼",
+
+        Education: "🎓",
+
+        Technology: "💻",
+
+        Family: "👨‍👩‍👧‍👦",
+
+        Health: "❤️",
+
+        Sports: "⚽",
+
+        "Arts & Culture": "🎨",
+
+        Career: "🚀",
+
+        Social: "💬",
+
+        Other: "👥"
+
+    };
+
+
+    return (
+        icons[category] ||
+        "👥"
+    );
+
+}
+
+
+/* =================================================
+   INITIALIZE
+================================================= */
+
+renderPosts();
+
+</script>
+
+</body>
+
+</html>

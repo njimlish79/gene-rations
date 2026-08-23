@@ -1,351 +1,3083 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gene-rations TV</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations | Videos</title>
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    background:#f5f5f5;
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f3fb;
+    color: #29213d;
 }
 
-header{
-    background:white;
-    padding:15px 25px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
+
+/* ================================
+   HEADER
+================================ */
+
+.header {
+    min-height: 95px;
+    padding: 20px;
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
 }
 
-.logo{
-    font-size:28px;
-    font-weight:bold;
-    color:#2e7d32;
+.logo {
+    font-size: 24px;
+    font-weight: 800;
 }
 
-.search-bar input{
-    width:350px;
-    padding:10px;
-    border:1px solid #ccc;
-    border-radius:25px;
+.header-buttons {
+    display: flex;
+    gap: 10px;
 }
 
-.upload-btn{
-    background:#2e7d32;
-    color:white;
-    border:none;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
+.header button {
+    border: none;
+    background: rgba(255,255,255,0.18);
+    color: white;
+
+    padding: 13px 18px;
+
+    border-radius: 30px;
+
+    font-weight: bold;
+    font-size: 14px;
+
+    cursor: pointer;
 }
 
-.banner{
-    background:linear-gradient(135deg,#2e7d32,#66bb6a);
-    color:white;
-    text-align:center;
-    padding:30px;
+
+/* ================================
+   MAIN
+================================ */
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px 18px 50px;
 }
 
-.banner h1{
-    margin-bottom:10px;
+
+/* ================================
+   PAGE INTRO
+================================ */
+
+.page-intro {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.06);
 }
 
-.categories{
-    display:flex;
-    gap:10px;
-    overflow:auto;
-    padding:15px;
-    background:white;
+.page-intro h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
 }
 
-.category{
-    background:#eeeeee;
-    padding:10px 15px;
-    border-radius:20px;
-    cursor:pointer;
-    white-space:nowrap;
+.page-intro p {
+    color: #777;
+    line-height: 1.5;
 }
 
-.category:hover{
-    background:#2e7d32;
-    color:white;
+.generation-label {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 9px 15px;
+
+    border-radius: 25px;
+
+    background: #eee8ff;
+    color: #6d28d9;
+
+    font-weight: bold;
 }
 
-.video-grid{
-    display:grid;
+
+/* ================================
+   CREATE BUTTON
+================================ */
+
+.create-video {
+    width: 100%;
+
+    border: none;
+
+    padding: 17px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-bottom: 20px;
+}
+
+
+/* ================================
+   SEARCH
+================================ */
+
+.search-box {
+    background: white;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.05);
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #7c3aed;
+}
+
+
+/* ================================
+   FILTERS
+================================ */
+
+.filters {
+    display: flex;
+
+    gap: 10px;
+
+    overflow-x: auto;
+
+    padding-bottom: 10px;
+
+    margin-bottom: 20px;
+}
+
+.filter {
+    white-space: nowrap;
+
+    border: none;
+
+    padding: 11px 18px;
+
+    border-radius: 25px;
+
+    background: white;
+
+    color: #555;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.filter.active {
+    background: #6d28d9;
+    color: white;
+}
+
+
+/* ================================
+   SECTION HEADER
+================================ */
+
+.section-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    font-size: 22px;
+}
+
+.video-count {
+    color: #777;
+}
+
+
+/* ================================
+   VIDEO GRID
+================================ */
+
+.video-grid {
+
+    display: grid;
+
     grid-template-columns:
-    repeat(auto-fit,minmax(300px,1fr));
-    gap:20px;
-    padding:20px;
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 20px;
 }
 
-.video-card{
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
+
+/* ================================
+   VIDEO CARD
+================================ */
+
+.video-card {
+
+    background: white;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.07);
+
+    cursor: pointer;
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
 }
 
-.video-card img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
+.video-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.10);
 }
 
-.video-info{
-    padding:15px;
+
+/* ================================
+   THUMBNAIL
+================================ */
+
+.thumbnail {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 190px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e9e5ff,
+            #f3f4ff
+        );
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
 }
 
-.video-title{
-    font-weight:bold;
-    margin-bottom:10px;
+.thumbnail img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
 }
 
-.creator{
-    color:#666;
-    margin-bottom:10px;
+.thumbnail-placeholder {
+
+    font-size: 55px;
 }
 
-.video-actions{
-    display:flex;
-    justify-content:space-between;
-    margin-top:10px;
+
+/* PLAY BUTTON */
+
+.play-button {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background:
+        rgba(255,255,255,0.95);
+
+    color: #6d28d9;
+
+    font-size: 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.2);
+
+    cursor: pointer;
 }
 
-.video-actions button{
-    border:none;
-    background:none;
-    cursor:pointer;
-    font-weight:bold;
+
+/* ================================
+   VIDEO INFO
+================================ */
+
+.video-info {
+    padding: 17px;
 }
 
-.featured{
-    margin:20px;
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
+.video-title {
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+    line-height: 1.3;
 }
 
-.featured video{
-    width:100%;
+.video-description {
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    margin-bottom: 12px;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
 }
 
-.featured-content{
-    padding:20px;
+.creator {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    margin-bottom: 12px;
 }
 
-footer{
-    background:#222;
-    color:white;
-    text-align:center;
-    padding:20px;
-    margin-top:30px;
+.creator-avatar {
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    background: #eee8ff;
 }
 
-@media(max-width:768px){
 
-.search-bar input{
-    width:180px;
+/* ================================
+   VIDEO META
+================================ */
+
+.video-meta {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #888;
+
+    font-size: 13px;
 }
+
+
+/* ================================
+   EMPTY STATE
+================================ */
+
+.empty-state {
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 50px 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.05);
+}
+
+.empty-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.empty-state h3 {
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.empty-state button {
+
+    border: none;
+
+    padding: 13px 22px;
+
+    border-radius: 25px;
+
+    background: #7c3aed;
+
+    color: white;
+
+    font-weight: bold;
+}
+
+
+/* ================================
+   TOAST
+================================ */
+
+.toast {
+
+    position: fixed;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        translateY(100px);
+
+    background: #29213d;
+
+    color: white;
+
+    padding: 13px 20px;
+
+    border-radius: 25px;
+
+    transition: .3s;
+
+    z-index: 999;
+}
+
+.toast.show {
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:600px) {
+
+    .header {
+        padding: 16px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .header button {
+        padding: 11px 13px;
+    }
+
+    main {
+        padding: 18px 12px 40px;
+    }
+
+    .page-intro h1 {
+        font-size: 25px;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<header>
 
-<div class="logo">
-<img src="/images/gene-rations.png" alt="Gene-rations" style="width:80px;height:35px;">
-</div>
+<!-- =================================
+     HEADER
+================================= -->
 
-<div class="search-bar">
-<input
-type="text"
-placeholder="Search videos...">
-</div>
+<header class="header">
 
-<button class="upload-btn">
-Upload Video
-</button>
+    <div class="logo">
+        Gene-rations
+    </div>
+
+    <div class="header-buttons">
+
+        <button
+            onclick="goToHub()">
+
+            🏠 Generation Hub
+
+        </button>
+
+    </div>
 
 </header>
 
-<div class="banner">
 
-<h1>Welcome to Gene-rations TV</h1>
+<!-- =================================
+     MAIN
+================================= -->
 
-<p>
-Watch, learn, create and share stories across generations.
-</p>
+<main>
+
+
+    <!-- INTRO -->
+
+    <section class="page-intro">
+
+        <h1>
+            🎬 Videos
+        </h1>
+
+        <p id="introText">
+            Discover videos shared by the
+            Gene-rations community.
+        </p>
+
+        <div
+            class="generation-label"
+            id="generationLabel">
+
+            Loading generation...
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATE VIDEO -->
+
+    <button
+        class="create-video"
+        onclick="createVideo()">
+
+        🎥 + Create / Upload Video
+
+    </button>
+
+
+    <!-- SEARCH -->
+
+    <section class="search-box">
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="🔍 Search videos..."
+            autocomplete="off">
+
+    </section>
+
+
+    <!-- FILTERS -->
+
+    <div class="filters">
+
+        <button
+            class="filter active"
+            data-category="all">
+
+            All
+
+        </button>
+
+        <button
+            class="filter"
+            data-category="generation">
+
+            My Generation
+
+        </button>
+
+        <button
+            class="filter"
+            data-category="education">
+
+            Education
+
+        </button>
+
+        <button
+            class="filter"
+            data-category="entertainment">
+
+            Entertainment
+
+        </button>
+
+        <button
+            class="filter"
+            data-category="community">
+
+            Community
+
+        </button>
+
+    </div>
+
+
+    <!-- SECTION -->
+
+    <div class="section-header">
+
+        <h2>
+            Community Videos
+        </h2>
+
+        <span
+            class="video-count"
+            id="videoCount">
+
+            0 videos
+
+        </span>
+
+    </div>
+
+
+    <!-- VIDEO LIST -->
+
+    <section
+        class="video-grid"
+        id="videoGrid">
+
+    </section>
+
+
+    <!-- EMPTY STATE -->
+
+    <section
+        class="empty-state"
+        id="emptyState"
+        style="display:none;">
+
+        <div class="empty-icon">
+            🎬
+        </div>
+
+        <h3>
+            No videos found
+        </h3>
+
+        <p>
+            Be the first Gene-rations member
+            to share a video.
+        </p>
+
+        <button
+            onclick="createVideo()">
+
+            Create Your First Video
+
+        </button>
+
+    </section>
+
+
+</main>
+
+
+<div
+    class="toast"
+    id="toast">
 
 </div>
 
-<div class="categories">
 
-<div class="category">Trending</div>
-<div class="category">Education</div>
-<div class="category">Technology</div>
-<div class="category">Business</div>
-<div class="category">Family</div>
-<div class="category">History</div>
-<div class="category">Gaming</div>
-<div class="category">Music</div>
+<!-- =================================
+     GENERATION DATA
+================================= -->
 
-</div>
+<script src="generation-data.js"></script>
 
-<div class="featured">
+<script src="generation-engine.js"></script>
 
-<video controls poster="https://picsum.photos/1200/500">
-<source src="" type="video/mp4">
-</video>
-
-<div class="featured-content">
-
-<h2>Featured Story of the Week</h2>
-
-<p>
-A powerful story connecting three generations of one family.
-</p>
-
-</div>
-
-</div>
-
-<div class="video-grid">
-
-<div class="video-card">
-
-<img src="https://picsum.photos/500/300?1">
-
-<div class="video-info">
-
-<div class="video-title">
-Technology Trends 2026
-</div>
-
-<div class="creator">
-By Gene-rations Tech
-</div>
-
-<div class="video-actions">
-<button>👍 1.2K</button>
-<button>💬 250</button>
-<button>🔔 Subscribe</button>
-</div>
-
-</div>
-
-</div>
-
-<div class="video-card">
-
-<img src="https://picsum.photos/500/300?2">
-
-<div class="video-info">
-
-<div class="video-title">
-Family Heritage Stories
-</div>
-
-<div class="creator">
-By Family Roots
-</div>
-
-<div class="video-actions">
-<button>👍 980</button>
-<button>💬 180</button>
-<button>🔔 Subscribe</button>
-</div>
-
-</div>
-
-</div>
-
-<div class="video-card">
-
-<img src="https://picsum.photos/500/300?3">
-
-<div class="video-info">
-
-<div class="video-title">
-Business Success Secrets
-</div>
-
-<div class="creator">
-By Millennial Network
-</div>
-
-<div class="video-actions">
-<button>👍 2.1K</button>
-<button>💬 540</button>
-<button>🔔 Subscribe</button>
-</div>
-
-</div>
-
-</div>
-
-<div class="video-card">
-
-<img src="https://picsum.photos/500/300?4">
-
-<div class="video-info">
-
-<div class="video-title">
-Gen Alpha Gaming World
-</div>
-
-<div class="creator">
-By Alpha Gamers
-</div>
-
-<div class="video-actions">
-<button>👍 5.8K</button>
-<button>💬 1.4K</button>
-<button>🔔 Subscribe</button>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<footer>
-
-<p>
-© 2026 Gene-rations TV | Connecting Every Generation
-</p>
-
-</footer>
 
 <script>
 
-document
-.querySelector(".upload-btn")
-.addEventListener("click", function(){
+/* ==========================================
+   USER
+========================================== */
 
-    alert(
-        "Video upload page coming next."
+let user = null;
+
+try {
+
+    const stored =
+        localStorage.getItem("userData");
+
+    if (stored) {
+
+        user =
+            JSON.parse(stored);
+
+    }
+
+} catch(error) {
+
+    console.error(
+        "Could not load user data",
+        error
     );
 
-});
+}
+
+
+/* ==========================================
+   LOGIN CHECK
+========================================== */
+
+if (!user) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* ==========================================
+   GENERATION
+========================================== */
+
+const currentGeneration =
+    user?.generation || "Generation Z";
+
+
+/* ==========================================
+   GENERATION LABEL
+========================================== */
+
+document.getElementById(
+    "generationLabel"
+).textContent =
+    currentGeneration;
+
+
+/* ==========================================
+   INTRO
+========================================== */
+
+document.getElementById(
+    "introText"
+).textContent =
+
+    `Discover videos from ${
+        currentGeneration
+    } and the wider Gene-rations community.`;
+
+
+/* ==========================================
+   VIDEO STORAGE
+========================================== */
+
+function getVideos() {
+
+    try {
+
+        const stored =
+            localStorage.getItem(
+                "geneRationsVideos"
+            );
+
+        if (!stored) {
+
+            return [];
+
+        }
+
+        const videos =
+            JSON.parse(stored);
+
+        return Array.isArray(videos)
+            ? videos
+            : [];
+
+    } catch(error) {
+
+        console.error(
+            "Could not load videos",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* ==========================================
+   SAVE VIDEOS
+========================================== */
+
+function saveVideos(videos) {
+
+    try {
+
+        localStorage.setItem(
+            "geneRationsVideos",
+            JSON.stringify(videos)
+        );
+
+        return true;
+
+    } catch(error) {
+
+        console.error(
+            "Could not save videos",
+            error
+        );
+
+        showToast(
+            "Storage is full. Large video files should not be saved directly in localStorage."
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* ==========================================
+   FORMAT DATE
+========================================== */
+
+function formatDate(date) {
+
+    if (!date) {
+
+        return "";
+
+    }
+
+    try {
+
+        return new Date(date)
+            .toLocaleDateString(
+                undefined,
+                {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric"
+                }
+            );
+
+    } catch(error) {
+
+        return "";
+
+    }
+
+}
+
+
+/* ==========================================
+   ESCAPE HTML
+========================================== */
+
+function escapeHTML(value) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value ?? "";
+
+    return div.innerHTML;
+
+}
+
+
+/* ==========================================
+   THUMBNAIL
+========================================== */
+
+function thumbnailHTML(video) {
+
+    if (video.thumbnail) {
+
+        return `
+
+            <img
+                src="${escapeHTML(video.thumbnail)}"
+                alt="${escapeHTML(video.title || "Video")}">
+
+        `;
+
+    }
+
+    return `
+
+        <div class="thumbnail-placeholder">
+            🎬
+        </div>
+
+    `;
+
+}
+
+
+/* ==========================================
+   RENDER VIDEOS
+========================================== */
+
+let activeCategory = "all";
+
+
+function renderVideos() {
+
+    const grid =
+        document.getElementById(
+            "videoGrid"
+        );
+
+    const empty =
+        document.getElementById(
+            "emptyState"
+        );
+
+    const count =
+        document.getElementById(
+            "videoCount"
+        );
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .trim()
+        .toLowerCase();
+
+
+    let videos =
+        getVideos();
+
+
+    /* ================================
+       SEARCH
+    ================================= */
+
+    if (search) {
+
+        videos =
+            videos.filter(
+                video => {
+
+                    const text = [
+
+                        video.title,
+
+                        video.description,
+
+                        video.category,
+
+                        video.creatorName,
+
+                        video.generation
+
+                    ]
+                    .filter(Boolean)
+                    .join(" ")
+                    .toLowerCase();
+
+                    return text.includes(
+                        search
+                    );
+
+                }
+            );
+
+    }
+
+
+    /* ================================
+       CATEGORY
+    ================================= */
+
+    if (
+        activeCategory ===
+        "generation"
+    ) {
+
+        videos =
+            videos.filter(
+                video =>
+                    video.generation ===
+                    currentGeneration
+            );
+
+    }
+
+    else if (
+        activeCategory !== "all"
+    ) {
+
+        videos =
+            videos.filter(
+                video =>
+                    String(
+                        video.category || ""
+                    ).toLowerCase() ===
+                    activeCategory
+            );
+
+    }
+
+
+    /* ================================
+       COUNT
+    ================================= */
+
+    count.textContent =
+
+        `${videos.length} ${
+            videos.length === 1
+                ? "video"
+                : "videos"
+        }`;
+
+
+    /* ================================
+       EMPTY
+    ================================= */
+
+    if (!videos.length) {
+
+        grid.innerHTML = "";
+
+        empty.style.display =
+            "block";
+
+        return;
+
+    }
+
+    empty.style.display =
+        "none";
+
+
+    /* ================================
+       CARDS
+    ================================= */
+
+    grid.innerHTML =
+        videos.map(
+            video =>
+                createVideoCard(video)
+        ).join("");
+
+}
+
+
+/* ==========================================
+   VIDEO CARD
+========================================== */
+
+function createVideoCard(video) {
+
+    const id =
+        video.id ||
+        video.createdAt ||
+        Date.now();
+
+
+    const title =
+        escapeHTML(
+            video.title ||
+            "Untitled Video"
+        );
+
+
+    const description =
+        escapeHTML(
+            video.description ||
+            "No description provided."
+        );
+
+
+    const creator =
+        escapeHTML(
+            video.creatorName ||
+            "Gene-rations Member"
+        );
+
+
+    const generation =
+        escapeHTML(
+            video.generation ||
+            ""
+        );
+
+
+    const views =
+        Number(
+            video.views || 0
+        );
+
+
+    const likes =
+        Number(
+            video.likes || 0
+        );
+
+
+    return `
+
+        <article
+            class="video-card"
+            onclick="openVideo('${String(id)}')">
+
+
+            <div class="thumbnail">
+
+                ${thumbnailHTML(video)}
+
+                <button
+                    class="play-button"
+                    onclick="
+                        event.stopPropagation();
+                        openVideo('${String(id)}');
+                    ">
+
+                    ▶
+
+                </button>
+
+            </div>
+
+
+            <div class="video-info">
+
+                <div class="video-title">
+
+                    ${title}
+
+                </div>
+
+
+                <div class="video-description">
+
+                    ${description}
+
+                </div>
+
+
+                <div class="creator">
+
+                    <div
+                        class="creator-avatar">
+
+                        👤
+
+                    </div>
+
+                    <span>
+
+                        ${creator}
+
+                    </span>
+
+                </div>
+
+
+                <div class="video-meta">
+
+                    <span>
+                        👁 ${views} views
+                    </span>
+
+                    <span>
+                        ❤️ ${likes}
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="video-meta"
+                    style="margin-top:8px;">
+
+                    <span>
+
+                        ${generation}
+
+                    </span>
+
+                    <span>
+
+                        ${formatDate(
+                            video.createdAt
+                        )}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* ==========================================
+   OPEN VIDEO
+========================================== */
+
+function openVideo(id) {
+
+    const videos =
+        getVideos();
+
+    const video =
+        videos.find(
+            item =>
+                String(
+                    item.id ||
+                    item.createdAt
+                ) === String(id)
+        );
+
+
+    if (!video) {
+
+        showToast(
+            "Video could not be found."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Save selected video so
+       video-details.html can load it.
+    */
+
+    localStorage.setItem(
+        "selectedVideo",
+        JSON.stringify(video)
+    );
+
+
+    /*
+       Also keep the ID in the URL.
+    */
+
+    window.location.href =
+        "video-details.html?id=" +
+        encodeURIComponent(id);
+
+}
+
+
+/* ==========================================
+   CREATE VIDEO
+========================================== */
+
+function createVideo() {
+
+    window.location.href =
+        "videos-creator.html";
+
+}
+
+
+/* ==========================================
+   GENERATION HUB
+========================================== */
+
+function goToHub() {
+
+    window.location.href =
+        "generations.html";
+
+}
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+document.getElementById(
+    "searchInput"
+).addEventListener(
+    "input",
+    renderVideos
+);
+
+
+/* ==========================================
+   FILTER BUTTONS
+========================================== */
+
+document
+    .querySelectorAll(".filter")
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    document
+                        .querySelectorAll(
+                            ".filter"
+                        )
+                        .forEach(
+                            item =>
+                                item.classList
+                                    .remove(
+                                        "active"
+                                    )
+                        );
+
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    activeCategory =
+                        this.dataset.category;
+
+
+                    renderVideos();
+
+                }
+            );
+
+        }
+    );
+
+
+/* ==========================================
+   TOAST
+========================================== */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+    toast.textContent =
+        message;
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        function() {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        3000
+    );
+
+}
+
+
+/* ==========================================
+   GENERATION THEME
+========================================== */
+
+if (
+    typeof applyGenerationTheme ===
+    "function"
+) {
+
+    applyGenerationTheme(
+        currentGeneration
+    );
+
+}
+
+
+/* ==========================================
+   START
+========================================== */
+
+renderVideos();
+
+
+/*
+   If another page creates a video
+   while this page is open, refresh
+   when the tab becomes active.
+*/
+
+document.addEventListener(
+    "visibilitychange",
+    function() {
+
+        if (
+            document.visibilityState ===
+            "visible"
+        ) {
+
+            renderVideos();
+
+        }
+
+    }
+);
 
 </script>
+
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Gene-rations | Videos</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f3fb;
+    color: #29213d;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.header {
+    min-height: 95px;
+    padding: 20px;
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header button {
+    border: none;
+    background: rgba(255,255,255,0.18);
+    color: white;
+
+    padding: 13px 18px;
+
+    border-radius: 30px;
+
+    font-weight: bold;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+/* ================================
+   MAIN
+================================ */
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px 18px 50px;
+}
+
+
+/* ================================
+   PAGE INTRO
+================================ */
+
+.page-intro {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.06);
+}
+
+.page-intro h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.page-intro p {
+    color: #777;
+    line-height: 1.5;
+}
+
+.generation-label {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 9px 15px;
+
+    border-radius: 25px;
+
+    background: #eee8ff;
+    color: #6d28d9;
+
+    font-weight: bold;
+}
+
+
+/* ================================
+   CREATE BUTTON
+================================ */
+
+.create-video {
+    width: 100%;
+
+    border: none;
+
+    padding: 17px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-bottom: 20px;
+}
+
+
+/* ================================
+   SEARCH
+================================ */
+
+.search-box {
+    background: white;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.05);
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #7c3aed;
+}
+
+
+/* ================================
+   FILTERS
+================================ */
+
+.filters {
+    display: flex;
+
+    gap: 10px;
+
+    overflow-x: auto;
+
+    padding-bottom: 10px;
+
+    margin-bottom: 20px;
+}
+
+.filter {
+    white-space: nowrap;
+
+    border: none;
+
+    padding: 11px 18px;
+
+    border-radius: 25px;
+
+    background: white;
+
+    color: #555;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.filter.active {
+    background: #6d28d9;
+    color: white;
+}
+
+
+/* ================================
+   SECTION HEADER
+================================ */
+
+.section-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    font-size: 22px;
+}
+
+.video-count {
+    color: #777;
+}
+
+
+/* ================================
+   VIDEO GRID
+================================ */
+
+.video-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 20px;
+}
+
+
+/* ================================
+   VIDEO CARD
+================================ */
+
+.video-card {
+
+    background: white;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.07);
+
+    cursor: pointer;
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+}
+
+.video-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.10);
+}
+
+
+/* ================================
+   THUMBNAIL
+================================ */
+
+.thumbnail {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 190px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e9e5ff,
+            #f3f4ff
+        );
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.thumbnail img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.thumbnail-placeholder {
+
+    font-size: 55px;
+}
+
+
+/* PLAY BUTTON */
+
+.play-button {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background:
+        rgba(255,255,255,0.95);
+
+    color: #6d28d9;
+
+    font-size: 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.2);
+
+    cursor: pointer;
+}
+
+
+/* ================================
+   VIDEO INFO
+================================ */
+
+.video-info {
+    padding: 17px;
+}
+
+.video-title {
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+    line-height: 1.3;
+}
+
+.video-description {
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    margin-bottom: 12px;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+.creator {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    margin-bottom: 12px;
+}
+
+.creator-avatar {
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    background: #eee8ff;
+}
+
+
+/* ================================
+   VIDEO META
+================================ */
+
+.video-meta {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+/* ================================
+   EMPTY STATE
+================================ */
+
+.empty-state {
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 50px 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.05);
+}
+
+.empty-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.empty-state h3 {
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.empty-state button {
+
+    border: none;
+
+    padding: 13px 22px;
+
+    border-radius: 25px;
+
+    background: #7c3aed;
+
+    color: white;
+
+    font-weight: bold;
+}
+
+
+/* ================================
+   TOAST
+================================ */
+
+.toast {
+
+    position: fixed;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        translateY(100px);
+
+    background: #29213d;
+
+    color: white;
+
+    padding: 13px 20px;
+
+    border-radius: 25px;
+
+    transition: .3s;
+
+    z-index: 999;
+}
+
+.toast.show {
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:600px) {
+
+    .header {
+        padding: 16px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .header button {
+        padding: 11px 13px;
+    }
+
+    main {
+        padding: 18px 12px 40px;
+    }
+
+    .page-intro h1 {
+        font-size: 25px;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     HEADER
+================================= -->
+
+<header class="header">
+
+    <div class="logo">
+        Gene-rations
+    </div>
+
+    <div class="header-buttons">
+
+        <button
+            onclick="goToHub()">
+
+            🏠 Generation Hub
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =================================
+     MAIN
+================================= -->
+
+<main>
+
+
+    <!-- INTRO -->
+
+    <section class="page-intro">
+
+        <h1>
+            🎬 Videos
+        </h1>
+
+        <p id="introText">
+            Discover videos shared by the
+            Gene-rations community.
+        </p>
+
+        <div
+            class="generation-label"
+            id="generationLabel">
+
+            Loading generation...
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATE VIDEO -->
+
+    <button
+        class="create-video"
+        onclick="createVideo()">
+
+        🎥 + Create / Upload Video
+
+    </button>
+
+
+    <!-- SEARCH -->
+
+    <section class="search-box">
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="🔍 Search videos..."
+            autocomplete="off">
+
+    </section>
+
+
+    <!-- FILTERS -->
+
+    <div class="filters">
+
+        <button
+            class="filter active"
+            data-category="all">
+
+            All
+
+        </button>
+
+        <button
+            class="filter"
+            data-category="generation">
+
+            My Generation
+
+        </button>
+
+        <button
+            class="filter"
+            data-category="education">
+
+            Education
+
+        </button>
+
+        <button
+            class="filter"
+            data-category="entertainment">
+
+            Entertainment
+
+        </button>
+
+        <button
+            class="filter"
+            data-category="community">
+
+            Community
+
+        </button>
+
+    </div>
+
+
+    <!-- SECTION -->
+
+    <div class="section-header">
+
+        <h2>
+            Community Videos
+        </h2>
+
+        <span
+            class="video-count"
+            id="videoCount">
+
+            0 videos
+
+        </span>
+
+    </div>
+
+
+    <!-- VIDEO LIST -->
+
+    <section
+        class="video-grid"
+        id="videoGrid">
+
+    </section>
+
+
+    <!-- EMPTY STATE -->
+
+    <section
+        class="empty-state"
+        id="emptyState"
+        style="display:none;">
+
+        <div class="empty-icon">
+            🎬
+        </div>
+
+        <h3>
+            No videos found
+        </h3>
+
+        <p>
+            Be the first Gene-rations member
+            to share a video.
+        </p>
+
+        <button
+            onclick="createVideo()">
+
+            Create Your First Video
+
+        </button>
+
+    </section>
+
+
+</main>
+
+
+<div
+    class="toast"
+    id="toast">
+
+</div>
+
+
+<!-- =================================
+     GENERATION DATA
+================================= -->
+
+<script src="generation-data.js"></script>
+
+<script src="generation-engine.js"></script>
+
+
+<script>
+
+/* ==========================================
+   USER
+========================================== */
+
+let user = null;
+
+try {
+
+    const stored =
+        localStorage.getItem("userData");
+
+    if (stored) {
+
+        user =
+            JSON.parse(stored);
+
+    }
+
+} catch(error) {
+
+    console.error(
+        "Could not load user data",
+        error
+    );
+
+}
+
+
+/* ==========================================
+   LOGIN CHECK
+========================================== */
+
+if (!user) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* ==========================================
+   GENERATION
+========================================== */
+
+const currentGeneration =
+    user?.generation || "Generation Z";
+
+
+/* ==========================================
+   GENERATION LABEL
+========================================== */
+
+document.getElementById(
+    "generationLabel"
+).textContent =
+    currentGeneration;
+
+
+/* ==========================================
+   INTRO
+========================================== */
+
+document.getElementById(
+    "introText"
+).textContent =
+
+    `Discover videos from ${
+        currentGeneration
+    } and the wider Gene-rations community.`;
+
+
+/* ==========================================
+   VIDEO STORAGE
+========================================== */
+
+function getVideos() {
+
+    try {
+
+        const stored =
+            localStorage.getItem(
+                "geneRationsVideos"
+            );
+
+        if (!stored) {
+
+            return [];
+
+        }
+
+        const videos =
+            JSON.parse(stored);
+
+        return Array.isArray(videos)
+            ? videos
+            : [];
+
+    } catch(error) {
+
+        console.error(
+            "Could not load videos",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* ==========================================
+   SAVE VIDEOS
+========================================== */
+
+function saveVideos(videos) {
+
+    try {
+
+        localStorage.setItem(
+            "geneRationsVideos",
+            JSON.stringify(videos)
+        );
+
+        return true;
+
+    } catch(error) {
+
+        console.error(
+            "Could not save videos",
+            error
+        );
+
+        showToast(
+            "Storage is full. Large video files should not be saved directly in localStorage."
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* ==========================================
+   FORMAT DATE
+========================================== */
+
+function formatDate(date) {
+
+    if (!date) {
+
+        return "";
+
+    }
+
+    try {
+
+        return new Date(date)
+            .toLocaleDateString(
+                undefined,
+                {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric"
+                }
+            );
+
+    } catch(error) {
+
+        return "";
+
+    }
+
+}
+
+
+/* ==========================================
+   ESCAPE HTML
+========================================== */
+
+function escapeHTML(value) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value ?? "";
+
+    return div.innerHTML;
+
+}
+
+
+/* ==========================================
+   THUMBNAIL
+========================================== */
+
+function thumbnailHTML(video) {
+
+    if (video.thumbnail) {
+
+        return `
+
+            <img
+                src="${escapeHTML(video.thumbnail)}"
+                alt="${escapeHTML(video.title || "Video")}">
+
+        `;
+
+    }
+
+    return `
+
+        <div class="thumbnail-placeholder">
+            🎬
+        </div>
+
+    `;
+
+}
+
+
+/* ==========================================
+   RENDER VIDEOS
+========================================== */
+
+let activeCategory = "all";
+
+
+function renderVideos() {
+
+    const grid =
+        document.getElementById(
+            "videoGrid"
+        );
+
+    const empty =
+        document.getElementById(
+            "emptyState"
+        );
+
+    const count =
+        document.getElementById(
+            "videoCount"
+        );
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .trim()
+        .toLowerCase();
+
+
+    let videos =
+        getVideos();
+
+
+    /* ================================
+       SEARCH
+    ================================= */
+
+    if (search) {
+
+        videos =
+            videos.filter(
+                video => {
+
+                    const text = [
+
+                        video.title,
+
+                        video.description,
+
+                        video.category,
+
+                        video.creatorName,
+
+                        video.generation
+
+                    ]
+                    .filter(Boolean)
+                    .join(" ")
+                    .toLowerCase();
+
+                    return text.includes(
+                        search
+                    );
+
+                }
+            );
+
+    }
+
+
+    /* ================================
+       CATEGORY
+    ================================= */
+
+    if (
+        activeCategory ===
+        "generation"
+    ) {
+
+        videos =
+            videos.filter(
+                video =>
+                    video.generation ===
+                    currentGeneration
+            );
+
+    }
+
+    else if (
+        activeCategory !== "all"
+    ) {
+
+        videos =
+            videos.filter(
+                video =>
+                    String(
+                        video.category || ""
+                    ).toLowerCase() ===
+                    activeCategory
+            );
+
+    }
+
+
+    /* ================================
+       COUNT
+    ================================= */
+
+    count.textContent =
+
+        `${videos.length} ${
+            videos.length === 1
+                ? "video"
+                : "videos"
+        }`;
+
+
+    /* ================================
+       EMPTY
+    ================================= */
+
+    if (!videos.length) {
+
+        grid.innerHTML = "";
+
+        empty.style.display =
+            "block";
+
+        return;
+
+    }
+
+    empty.style.display =
+        "none";
+
+
+    /* ================================
+       CARDS
+    ================================= */
+
+    grid.innerHTML =
+        videos.map(
+            video =>
+                createVideoCard(video)
+        ).join("");
+
+}
+
+
+/* ==========================================
+   VIDEO CARD
+========================================== */
+
+function createVideoCard(video) {
+
+    const id =
+        video.id ||
+        video.createdAt ||
+        Date.now();
+
+
+    const title =
+        escapeHTML(
+            video.title ||
+            "Untitled Video"
+        );
+
+
+    const description =
+        escapeHTML(
+            video.description ||
+            "No description provided."
+        );
+
+
+    const creator =
+        escapeHTML(
+            video.creatorName ||
+            "Gene-rations Member"
+        );
+
+
+    const generation =
+        escapeHTML(
+            video.generation ||
+            ""
+        );
+
+
+    const views =
+        Number(
+            video.views || 0
+        );
+
+
+    const likes =
+        Number(
+            video.likes || 0
+        );
+
+
+    return `
+
+        <article
+            class="video-card"
+            onclick="openVideo('${String(id)}')">
+
+
+            <div class="thumbnail">
+
+                ${thumbnailHTML(video)}
+
+                <button
+                    class="play-button"
+                    onclick="
+                        event.stopPropagation();
+                        openVideo('${String(id)}');
+                    ">
+
+                    ▶
+
+                </button>
+
+            </div>
+
+
+            <div class="video-info">
+
+                <div class="video-title">
+
+                    ${title}
+
+                </div>
+
+
+                <div class="video-description">
+
+                    ${description}
+
+                </div>
+
+
+                <div class="creator">
+
+                    <div
+                        class="creator-avatar">
+
+                        👤
+
+                    </div>
+
+                    <span>
+
+                        ${creator}
+
+                    </span>
+
+                </div>
+
+
+                <div class="video-meta">
+
+                    <span>
+                        👁 ${views} views
+                    </span>
+
+                    <span>
+                        ❤️ ${likes}
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="video-meta"
+                    style="margin-top:8px;">
+
+                    <span>
+
+                        ${generation}
+
+                    </span>
+
+                    <span>
+
+                        ${formatDate(
+                            video.createdAt
+                        )}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* ==========================================
+   OPEN VIDEO
+========================================== */
+
+function openVideo(id) {
+
+    const videos =
+        getVideos();
+
+    const video =
+        videos.find(
+            item =>
+                String(
+                    item.id ||
+                    item.createdAt
+                ) === String(id)
+        );
+
+
+    if (!video) {
+
+        showToast(
+            "Video could not be found."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Save selected video so
+       video-details.html can load it.
+    */
+
+    localStorage.setItem(
+        "selectedVideo",
+        JSON.stringify(video)
+    );
+
+
+    /*
+       Also keep the ID in the URL.
+    */
+
+    window.location.href =
+        "video-details.html?id=" +
+        encodeURIComponent(id);
+
+}
+
+
+/* ==========================================
+   CREATE VIDEO
+========================================== */
+
+function createVideo() {
+
+    window.location.href =
+        "videos-creator.html";
+
+}
+
+
+/* ==========================================
+   GENERATION HUB
+========================================== */
+
+function goToHub() {
+
+    window.location.href =
+        "generations.html";
+
+}
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+document.getElementById(
+    "searchInput"
+).addEventListener(
+    "input",
+    renderVideos
+);
+
+
+/* ==========================================
+   FILTER BUTTONS
+========================================== */
+
+document
+    .querySelectorAll(".filter")
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    document
+                        .querySelectorAll(
+                            ".filter"
+                        )
+                        .forEach(
+                            item =>
+                                item.classList
+                                    .remove(
+                                        "active"
+                                    )
+                        );
+
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    activeCategory =
+                        this.dataset.category;
+
+
+                    renderVideos();
+
+                }
+            );
+
+        }
+    );
+
+
+/* ==========================================
+   TOAST
+========================================== */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+    toast.textContent =
+        message;
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        function() {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        3000
+    );
+
+}
+
+
+/* ==========================================
+   GENERATION THEME
+========================================== */
+
+if (
+    typeof applyGenerationTheme ===
+    "function"
+) {
+
+    applyGenerationTheme(
+        currentGeneration
+    );
+
+}
+
+
+/* ==========================================
+   START
+========================================== */
+
+renderVideos();
+
+
+/*
+   If another page creates a video
+   while this page is open, refresh
+   when the tab becomes active.
+*/
+
+document.addEventListener(
+    "visibilitychange",
+    function() {
+
+        if (
+            document.visibilityState ===
+            "visible"
+        ) {
+
+            renderVideos();
+
+        }
+
+    }
+);
+
+</script>
+
 
 </body>
 </html>

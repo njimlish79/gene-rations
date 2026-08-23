@@ -5,16 +5,27 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Gene-rations | Profile</title>
 
+
+<!-- ==================================================
+     GENE-RATIONS DATA ENGINE
+================================================== -->
+
+<script src="generation-data.js"></script>
+<script src="generation-engine.js"></script>
+
+
 <style>
 
-/* ==============================
+/* ==================================================
    RESET
-============================== */
+================================================== */
 
 * {
     box-sizing: border-box;
@@ -22,220 +33,703 @@
     padding: 0;
 }
 
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f6fb;
-    color: #202124;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f4f3ff;
+
+    color: #252525;
+
     min-height: 100vh;
+
 }
 
 
-/* ==============================
+/* ==================================================
    HEADER
-============================== */
+================================================== */
 
 .header {
-    background: #2563eb;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1769e0,
+            #8137e8
+        );
+
     color: white;
 
-    padding: 15px 20px;
+    padding:
+        15px 20px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
+    gap: 15px;
+
     position: sticky;
+
     top: 0;
-    z-index: 100;
+
+    z-index: 1000;
+
 }
+
 
 .logo {
-    font-size: 22px;
-    font-weight: bold;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
 }
 
-.home-btn {
-    background: rgba(255,255,255,0.18);
-    color: white;
+
+.header-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.header-btn {
 
     border: none;
-    border-radius: 20px;
 
-    padding: 9px 16px;
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
+
+    color: white;
+
+    padding:
+        10px 14px;
+
+    border-radius: 25px;
+
+    cursor: pointer;
 
     font-weight: bold;
-    cursor: pointer;
+
 }
 
 
-/* ==============================
-   CONTAINER
-============================== */
+.header-btn:hover {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.3
+        );
+
+}
+
+
+/* ==================================================
+   PAGE CONTAINER
+================================================== */
 
 .container {
-    max-width: 850px;
+
+    width: 100%;
+
+    max-width: 1050px;
+
     margin: auto;
-    padding: 20px;
+
+    padding:
+        25px 16px 50px;
+
 }
 
 
-/* ==============================
+/* ==================================================
    PROFILE HEADER
-============================== */
+================================================== */
 
 .profile-header {
+
     background: white;
 
-    border-radius: 22px;
+    border-radius: 28px;
 
-    padding: 30px 20px;
+    padding: 30px;
 
-    text-align: center;
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
 
     box-shadow:
-        0 5px 20px rgba(0,0,0,0.07);
+        0 8px 28px
+        rgba(
+            50,
+            30,
+            100,
+            0.08
+        );
 
-    margin-bottom: 18px;
+    margin-bottom: 20px;
+
 }
 
 
-/* ==============================
-   PROFILE PHOTO
-============================== */
+.profile-photo-wrapper {
 
-.photo-container {
-    position: relative;
+    flex-shrink: 0;
 
-    width: 125px;
-    height: 125px;
-
-    margin: 0 auto 15px;
 }
+
 
 .profile-photo {
+
     width: 125px;
+
     height: 125px;
 
     border-radius: 50%;
 
     object-fit: cover;
 
-    background: #e5e7eb;
+    border:
+        5px solid #eee7ff;
 
-    border: 5px solid #eff6ff;
+    background: #e8e1ff;
+
 }
 
-.photo-upload {
-    position: absolute;
 
-    right: 0;
-    bottom: 2px;
+.profile-main {
 
-    width: 40px;
-    height: 40px;
+    flex: 1;
 
-    border-radius: 50%;
-
-    background: #2563eb;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-    border: 3px solid white;
-
-    font-size: 18px;
-}
-
-#photoInput {
-    display: none;
 }
 
 
 .profile-name {
-    font-size: 27px;
-    font-weight: bold;
+
+    font-size: 31px;
+
+    font-weight: 800;
+
+    color: #321657;
 
     margin-bottom: 7px;
+
 }
 
-.generation {
-    color: #2563eb;
+
+.profile-generation {
+
+    color: #7439df;
+
+    font-weight: bold;
 
     font-size: 17px;
 
-    font-weight: bold;
+    margin-bottom: 10px;
 
-    margin-bottom: 12px;
 }
 
 
-.badge {
+.profile-badge {
+
     display: inline-block;
 
-    background: #dbeafe;
+    background: #eee8ff;
 
-    color: #1d4ed8;
+    color: #6632c5;
 
-    padding: 8px 15px;
+    padding:
+        9px 15px;
 
     border-radius: 25px;
 
     font-weight: bold;
 
-    font-size: 14px;
+    margin-bottom: 12px;
+
 }
 
 
-/* ==============================
-   BUTTONS
-============================== */
+.member-since {
 
-.actions {
+    color: #777;
+
+    font-size: 14px;
+
+}
+
+
+.profile-actions {
+
     display: flex;
 
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-top: 18px;
-
     flex-wrap: wrap;
+
+    gap: 9px;
+
 }
+
 
 .primary-btn,
 .secondary-btn {
 
     border: none;
 
-    padding: 11px 20px;
+    padding:
+        12px 18px;
 
-    border-radius: 10px;
+    border-radius: 25px;
 
     font-weight: bold;
 
     cursor: pointer;
+
 }
+
 
 .primary-btn {
-    background: #2563eb;
+
+    background: #7138df;
+
     color: white;
+
 }
+
 
 .secondary-btn {
-    background: #eef2ff;
-    color: #2563eb;
+
+    background: #eee9ff;
+
+    color: #6731c8;
+
 }
 
 
-/* ==============================
-   STATS
-============================== */
+/* ==================================================
+   STATISTICS
+================================================== */
 
 .stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.stat {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding:
+        20px 8px;
+
+    text-align: center;
+
+    box-shadow:
+        0 7px 20px
+        rgba(
+            50,
+            30,
+            100,
+            0.07
+        );
+
+}
+
+
+.stat-number {
+
+    color: #7138df;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    margin-bottom: 5px;
+
+}
+
+
+.stat-label {
+
+    color: #777;
+
+    font-size: 13px;
+
+}
+
+
+/* ==================================================
+   CONTENT GRID
+================================================== */
+
+.content-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+
+}
+
+
+.card {
+
+    background: white;
+
+    border-radius: 24px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 7px 23px
+        rgba(
+            50,
+            30,
+            100,
+            0.07
+        );
+
+}
+
+
+.card.full {
+
+    grid-column:
+        1 / -1;
+
+}
+
+
+.card-title {
+
+    color: #321657;
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* ==================================================
+   PERSONAL INFORMATION
+================================================== */
+
+.info-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+
+}
+
+
+.info-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 20px;
+
+    padding-bottom: 11px;
+
+    border-bottom:
+        1px solid #eee;
+
+}
+
+
+.info-label {
+
+    color: #777;
+
+    font-size: 14px;
+
+}
+
+
+.info-value {
+
+    font-weight: bold;
+
+    text-align: right;
+
+    word-break: break-word;
+
+}
+
+
+/* ==================================================
+   GENERATION INFORMATION
+================================================== */
+
+.generation-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            #7138df,
+            #8b42e8
+        );
+
+    color: white;
+
+    border-radius: 24px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(
+            90,
+            50,
+            180,
+            0.15
+        );
+
+}
+
+
+.generation-card-title {
+
+    font-size: 14px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    opacity: .8;
+
+    margin-bottom: 10px;
+
+}
+
+
+.generation-card-name {
+
+    font-size: 27px;
+
+    font-weight: 800;
+
+    margin-bottom: 12px;
+
+}
+
+
+.generation-card-badge {
+
+    display: inline-block;
+
+    padding:
+        9px 14px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.25
+        );
+
+    border-radius: 25px;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+
+}
+
+
+.generation-card-welcome {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+
+}
+
+
+.generation-card-description {
+
+    line-height: 1.6;
+
+    opacity: .92;
+
+}
+
+
+/* ==================================================
+   ABOUT
+================================================== */
+
+.about-text {
+
+    line-height: 1.7;
+
+    color: #555;
+
+}
+
+
+.empty {
+
+    color: #888;
+
+    font-size: 14px;
+
+}
+
+
+/* ==================================================
+   TAGS
+================================================== */
+
+.tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+}
+
+
+.tag {
+
+    padding:
+        9px 13px;
+
+    background: #eee9ff;
+
+    color: #6632c5;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+}
+
+
+/* ==================================================
+   ACTIVITY
+================================================== */
+
+.activity-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+
+}
+
+
+.activity {
+
+    border: none;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background: #f5f2ff;
+
+    text-align: center;
+
+    cursor: pointer;
+
+}
+
+
+.activity:hover {
+
+    background: #ebe4ff;
+
+}
+
+
+.activity-icon {
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.activity-title {
+
+    font-weight: bold;
+
+    color: #43206e;
+
+    font-size: 14px;
+
+}
+
+
+/* ==================================================
+   SETTINGS
+================================================== */
+
+.settings-grid {
 
     display: grid;
 
@@ -244,248 +738,187 @@ body {
 
     gap: 12px;
 
-    margin-bottom: 18px;
-}
-
-.stat {
-    background: white;
-
-    border-radius: 15px;
-
-    padding: 18px 10px;
-
-    text-align: center;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,0.05);
-}
-
-.stat-number {
-    display: block;
-
-    color: #2563eb;
-
-    font-size: 22px;
-
-    font-weight: bold;
-
-    margin-bottom: 5px;
-}
-
-.stat-label {
-    color: #777;
-
-    font-size: 13px;
 }
 
 
-/* ==============================
-   CARDS
-============================== */
-
-.card {
-    background: white;
-
-    border-radius: 18px;
-
-    padding: 22px;
-
-    margin-bottom: 18px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,0.05);
-}
-
-.card-title {
-    font-size: 19px;
-
-    font-weight: bold;
-
-    margin-bottom: 16px;
-
-    color: #1e3a8a;
-}
-
-
-/* ==============================
-   INFORMATION
-============================== */
-
-.info-row {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-    padding: 13px 0;
-
-    border-bottom: 1px solid #eee;
-}
-
-.info-row:last-child {
-    border-bottom: none;
-}
-
-.info-label {
-    color: #777;
-}
-
-.info-value {
-    font-weight: 600;
-
-    text-align: right;
-
-    word-break: break-word;
-}
-
-
-/* ==============================
-   BIO
-============================== */
-
-.bio {
-    color: #555;
-
-    line-height: 1.6;
-
-    font-size: 15px;
-}
-
-
-/* ==============================
-   TAGS
-============================== */
-
-.tags {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 8px;
-}
-
-.tag {
-    background: #eff6ff;
-
-    color: #2563eb;
-
-    padding: 8px 12px;
-
-    border-radius: 20px;
-
-    font-size: 13px;
-
-    font-weight: 600;
-}
-
-
-/* ==============================
-   MENU
-============================== */
-
-.menu {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 10px;
-}
-
-.menu-btn {
+.settings-btn {
 
     border: none;
 
-    background: #f8fafc;
+    background: #f4f0ff;
 
-    padding: 16px;
+    padding: 17px;
 
-    border-radius: 12px;
-
-    text-align: left;
-
-    font-weight: bold;
+    border-radius: 18px;
 
     cursor: pointer;
 
-    color: #333;
-}
+    color: #4c2382;
 
-.menu-btn:hover {
-    background: #eef2ff;
-}
+    font-weight: bold;
 
+    font-size: 14px;
 
-/* ==============================
-   PHOTO MESSAGE
-============================== */
-
-.photo-message {
-
-    text-align: center;
-
-    color: #16a34a;
-
-    font-size: 13px;
-
-    margin-top: 10px;
-
-    display: none;
 }
 
 
-/* ==============================
+.settings-btn:hover {
+
+    background: #e9e0ff;
+
+}
+
+
+/* ==================================================
    FOOTER
-============================== */
+================================================== */
 
 .footer {
 
     text-align: center;
 
-    padding: 25px;
+    color: #777;
 
-    color: #888;
+    padding:
+        30px 15px;
 
-    font-size: 13px;
+    font-size: 14px;
+
 }
 
 
-/* ==============================
+/* ==================================================
    MOBILE
-============================== */
+================================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
 
-    .container {
-        padding: 14px;
+    .profile-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
     }
+
+
+    .profile-actions {
+
+        width: 100%;
+
+    }
+
 
     .stats {
+
         grid-template-columns:
             repeat(3, 1fr);
+
     }
 
-    .stat {
-        padding: 15px 5px;
-    }
 
-    .stat-number {
-        font-size: 19px;
-    }
+    .content-grid {
 
-    .info-row {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .info-value {
-        text-align: left;
-    }
-
-    .menu {
         grid-template-columns: 1fr;
+
+    }
+
+
+    .card.full {
+
+        grid-column: auto;
+
+    }
+
+
+    .activity-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .settings-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .header {
+
+        padding:
+            13px 12px;
+
+    }
+
+
+    .logo {
+
+        font-size: 20px;
+
+    }
+
+
+    .header-btn {
+
+        padding:
+            9px 10px;
+
+        font-size: 12px;
+
+    }
+
+
+    .container {
+
+        padding:
+            15px 10px 35px;
+
+    }
+
+
+    .profile-header {
+
+        padding: 22px;
+
+    }
+
+
+    .profile-photo {
+
+        width: 105px;
+
+        height: 105px;
+
+    }
+
+
+    .profile-name {
+
+        font-size: 26px;
+
+    }
+
+
+    .stats {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .settings-grid {
+
+        grid-template-columns: 1fr;
+
     }
 
 }
@@ -498,9 +931,9 @@ body {
 <body>
 
 
-<!-- ==============================
+<!-- ==================================================
      HEADER
-============================== -->
+================================================== -->
 
 <header class="header">
 
@@ -508,13 +941,25 @@ body {
         Gene-rations
     </div>
 
-    <button
-        class="home-btn"
-        onclick="goHome()">
 
-        Generation Hub
+    <div class="header-actions">
 
-    </button>
+        <button
+            class="header-btn"
+            onclick="goTo('generations.html')"
+        >
+            🏠 Generation Hub
+        </button>
+
+
+        <button
+            class="header-btn"
+            onclick="goTo('settings.html')"
+        >
+            ⚙️
+        </button>
+
+    </div>
 
 </header>
 
@@ -523,474 +968,610 @@ body {
 <main class="container">
 
 
-<!-- ==============================
+<!-- ==================================================
      PROFILE HEADER
-============================== -->
+================================================== -->
 
 <section class="profile-header">
 
 
-    <div class="photo-container">
+    <div class="profile-photo-wrapper">
 
         <img
             id="profilePhoto"
             class="profile-photo"
-            src=""
-            alt="Profile photo">
-
-
-        <label
-            class="photo-upload"
-            for="photoInput"
-            title="Change profile photo">
-
-            📷
-
-        </label>
-
-
-        <input
-            type="file"
-            id="photoInput"
-            accept="image/*">
+            alt="Profile photo"
+        >
 
     </div>
 
 
-    <div
-        id="photoMessage"
-        class="photo-message">
+    <div class="profile-main">
 
-        Profile photo updated.
+        <div
+            id="profileName"
+            class="profile-name"
+        >
+            Loading...
+        </div>
+
+
+        <div
+            id="profileGeneration"
+            class="profile-generation"
+        >
+            Loading...
+        </div>
+
+
+        <div
+            id="profileBadge"
+            class="profile-badge"
+        >
+            Loading...
+        </div>
+
+
+        <div
+            id="memberSince"
+            class="member-since"
+        >
+            Member since: Loading...
+        </div>
 
     </div>
 
 
-    <h1
-        id="fullName"
-        class="profile-name">
-
-        Loading...
-
-    </h1>
-
-
-    <div
-        id="generation"
-        class="generation">
-
-        Loading...
-
-    </div>
-
-
-    <div
-        id="generationBadge"
-        class="badge">
-
-        Loading...
-
-    </div>
-
-
-    <div class="actions">
+    <div class="profile-actions">
 
         <button
             class="primary-btn"
-            onclick="editProfile()">
-
-            Edit Profile
-
+            onclick="goTo('edit-profile.html')"
+        >
+            ✏️ Edit Profile
         </button>
 
 
         <button
             class="secondary-btn"
-            onclick="goHome()">
-
+            onclick="goTo('generations.html')"
+        >
             Generation Hub
-
         </button>
 
     </div>
-
 
 </section>
 
 
 
-<!-- ==============================
+<!-- ==================================================
      STATISTICS
-============================== -->
+================================================== -->
 
 <section class="stats">
 
 
     <div class="stat">
 
-        <span
-            id="followers"
-            class="stat-number">
-
+        <div
+            id="followersCount"
+            class="stat-number"
+        >
             0
+        </div>
 
-        </span>
-
-        <span class="stat-label">
+        <div class="stat-label">
             Followers
-        </span>
+        </div>
 
     </div>
 
 
     <div class="stat">
 
-        <span
-            id="following"
-            class="stat-number">
-
+        <div
+            id="followingCount"
+            class="stat-number"
+        >
             0
+        </div>
 
-        </span>
-
-        <span class="stat-label">
+        <div class="stat-label">
             Following
-        </span>
+        </div>
 
     </div>
 
 
     <div class="stat">
 
-        <span
-            id="posts"
-            class="stat-number">
-
+        <div
+            id="postsCount"
+            class="stat-number"
+        >
             0
+        </div>
 
-        </span>
-
-        <span class="stat-label">
+        <div class="stat-label">
             Posts
-        </span>
+        </div>
 
     </div>
 
+
+    <div class="stat">
+
+        <div
+            id="eventsCount"
+            class="stat-number"
+        >
+            0
+        </div>
+
+        <div class="stat-label">
+            Events
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div
+            id="familyCount"
+            class="stat-number"
+        >
+            0
+        </div>
+
+        <div class="stat-label">
+            Family
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div
+            id="profileViews"
+            class="stat-number"
+        >
+            0
+        </div>
+
+        <div class="stat-label">
+            Views
+        </div>
+
+    </div>
 
 </section>
 
 
 
-<!-- ==============================
+<!-- ==================================================
+     CONTENT
+================================================== -->
+
+<section class="content-grid">
+
+
+<!-- ==================================================
      PERSONAL INFORMATION
-============================== -->
+================================================== -->
 
-<section class="card">
+<div class="card">
 
-    <h2 class="card-title">
+    <div class="card-title">
         Personal Information
-    </h2>
-
-
-    <div class="info-row">
-
-        <span class="info-label">
-            Full Name
-        </span>
-
-        <span
-            id="infoName"
-            class="info-value">
-
-            -
-
-        </span>
-
     </div>
 
 
-    <div class="info-row">
+    <div class="info-list">
 
-        <span class="info-label">
-            Email
-        </span>
 
-        <span
-            id="email"
-            class="info-value">
+        <div class="info-row">
 
-            -
+            <span class="info-label">
+                Full Name
+            </span>
 
-        </span>
+            <span
+                id="infoFullName"
+                class="info-value"
+            >
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <span class="info-label">
+                Email
+            </span>
+
+            <span
+                id="infoEmail"
+                class="info-value"
+            >
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <span class="info-label">
+                Phone
+            </span>
+
+            <span
+                id="infoPhone"
+                class="info-value"
+            >
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <span class="info-label">
+                Date of Birth
+            </span>
+
+            <span
+                id="infoDob"
+                class="info-value"
+            >
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <span class="info-label">
+                Age
+            </span>
+
+            <span
+                id="infoAge"
+                class="info-value"
+            >
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <span class="info-label">
+                Gender
+            </span>
+
+            <span
+                id="infoGender"
+                class="info-value"
+            >
+                —
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <span class="info-label">
+                Country
+            </span>
+
+            <span
+                id="infoCountry"
+                class="info-value"
+            >
+                —
+            </span>
+
+        </div>
+
 
     </div>
 
+</div>
 
-    <div class="info-row">
 
-        <span class="info-label">
-            Phone
-        </span>
 
-        <span
-            id="phone"
-            class="info-value">
+<!-- ==================================================
+     GENERATION INFORMATION
+================================================== -->
 
-            -
+<section class="generation-card">
 
-        </span>
 
+    <div class="generation-card-title">
+        Generation Information
     </div>
-
-
-    <div class="info-row">
-
-        <span class="info-label">
-            Date of Birth
-        </span>
-
-        <span
-            id="dob"
-            class="info-value">
-
-            -
-
-        </span>
-
-    </div>
-
-
-    <div class="info-row">
-
-        <span class="info-label">
-            Age
-        </span>
-
-        <span
-            id="age"
-            class="info-value">
-
-            -
-
-        </span>
-
-    </div>
-
-
-    <div class="info-row">
-
-        <span class="info-label">
-            Gender
-        </span>
-
-        <span
-            id="gender"
-            class="info-value">
-
-            -
-
-        </span>
-
-    </div>
-
-
-    <div class="info-row">
-
-        <span class="info-label">
-            Generation
-        </span>
-
-        <span
-            id="generationInfo"
-            class="info-value">
-
-            -
-
-        </span>
-
-    </div>
-
-
-    <div class="info-row">
-
-        <span class="info-label">
-            Member Since
-        </span>
-
-        <span
-            id="memberSince"
-            class="info-value">
-
-            -
-
-        </span>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==============================
-     GENERATION
-============================== -->
-
-<section class="card">
-
-    <h2 class="card-title">
-        My Generation
-    </h2>
-
-
-    <div class="info-row">
-
-        <span class="info-label">
-            Generation
-        </span>
-
-        <span
-            id="generationName2"
-            class="info-value">
-
-            -
-
-        </span>
-
-    </div>
-
-
-    <p
-        id="generationDescription"
-        class="bio"
-        style="margin-top:15px;">
-
-        -
-
-    </p>
-
-</section>
-
-
-
-<!-- ==============================
-     ABOUT ME
-============================== -->
-
-<section class="card">
-
-    <h2 class="card-title">
-        About Me
-    </h2>
-
-
-    <p
-        id="bio"
-        class="bio">
-
-        No bio added yet.
-
-    </p>
-
-</section>
-
-
-
-<!-- ==============================
-     SKILLS
-============================== -->
-
-<section class="card">
-
-    <h2 class="card-title">
-        Skills
-    </h2>
 
 
     <div
-        id="skills"
-        class="tags">
+        id="generationCardName"
+        class="generation-card-name"
+    >
+        Loading...
+    </div>
 
+
+    <div
+        id="generationCardBadge"
+        class="generation-card-badge"
+    >
+        Loading...
+    </div>
+
+
+    <div
+        id="generationCardWelcome"
+        class="generation-card-welcome"
+    >
+        Loading...
+    </div>
+
+
+    <div
+        id="generationCardDescription"
+        class="generation-card-description"
+    >
+        Loading...
     </div>
 
 </section>
 
 
 
-<!-- ==============================
+<!-- ==================================================
+     ABOUT ME
+================================================== -->
+
+<div class="card">
+
+    <div class="card-title">
+        About Me
+    </div>
+
+
+    <div
+        id="bio"
+        class="about-text"
+    >
+        No bio added yet.
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
      INTERESTS
-============================== -->
+================================================== -->
 
-<section class="card">
+<div class="card">
 
-    <h2 class="card-title">
+    <div class="card-title">
         Interests
-    </h2>
+    </div>
 
 
     <div
         id="interests"
-        class="tags">
+        class="tags"
+    >
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     HOBBIES
+================================================== -->
+
+<div class="card">
+
+    <div class="card-title">
+        Hobbies
+    </div>
+
+
+    <div
+        id="hobbies"
+        class="tags"
+    >
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     SKILLS
+================================================== -->
+
+<div class="card">
+
+    <div class="card-title">
+        Skills
+    </div>
+
+
+    <div
+        id="skills"
+        class="tags"
+    >
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     ACTIVITY
+================================================== -->
+
+<div class="card full">
+
+    <div class="card-title">
+        Activity
+    </div>
+
+
+    <div class="activity-grid">
+
+
+        <button
+            class="activity"
+            onclick="goTo('posts.html')"
+        >
+
+            <div class="activity-icon">
+                📝
+            </div>
+
+            <div class="activity-title">
+                My Posts
+            </div>
+
+        </button>
+
+
+        <button
+            class="activity"
+            onclick="goTo('events.html')"
+        >
+
+            <div class="activity-icon">
+                📅
+            </div>
+
+            <div class="activity-title">
+                Events
+            </div>
+
+        </button>
+
+
+        <button
+            class="activity"
+            onclick="goTo('communities.html')"
+        >
+
+            <div class="activity-icon">
+                👥
+            </div>
+
+            <div class="activity-title">
+                Communities
+            </div>
+
+        </button>
+
+
+        <button
+            class="activity"
+            onclick="goTo('family-tree.html')"
+        >
+
+            <div class="activity-icon">
+                🌳
+            </div>
+
+            <div class="activity-title">
+                Family Tree
+            </div>
+
+        </button>
 
     </div>
 
-</section>
+</div>
 
 
 
-<!-- ==============================
-     PROFILE MENU
-============================== -->
+<!-- ==================================================
+     ACCOUNT & SECURITY
+================================================== -->
 
-<section class="card">
+<div class="card full">
 
-    <h2 class="card-title">
-        More
-    </h2>
+    <div class="card-title">
+        Account & Security
+    </div>
 
 
-    <div class="menu">
+    <div class="settings-grid">
 
 
         <button
-            class="menu-btn"
-            onclick="openPage('family-tree.html')">
-
-            🌳 Family Tree
-
+            class="settings-btn"
+            onclick="goTo('edit-profile.html')"
+        >
+            ✏️ Edit Profile
         </button>
 
 
         <button
-            class="menu-btn"
-            onclick="openPage('posts.html')">
-
-            📝 My Posts
-
-        </button>
-
-
-        <button
-            class="menu-btn"
-            onclick="openPage('ai-assistant.html')">
-
-            🤖 AI Assistant
-
-        </button>
-
-
-        <button
-            class="menu-btn"
-            onclick="openPage('settings.html')">
-
+            class="settings-btn"
+            onclick="goTo('settings.html')"
+        >
             ⚙️ Settings
-
         </button>
 
 
+        <button
+            class="settings-btn"
+            onclick="goTo('privacy.html')"
+        >
+            🔒 Privacy
+        </button>
+
+
+        <button
+            class="settings-btn"
+            onclick="goTo('security.html')"
+        >
+            🛡️ Security
+        </button>
+
+
+        <button
+            class="settings-btn"
+            onclick="goTo('notifications.html')"
+        >
+            🔔 Notifications
+        </button>
+
+
+        <button
+            class="settings-btn"
+            onclick="goTo('messages.html')"
+        >
+            💬 Messages
+        </button>
+
     </div>
 
-</section>
+</div>
 
+
+</section>
 
 </main>
 
@@ -1006,582 +1587,714 @@ body {
 
 <script>
 
-/* =========================================
-   LOAD USER DATA
-========================================= */
+/* ==================================================
+   NAVIGATION
+================================================== */
 
-const storedUser =
-    localStorage.getItem("userData");
+function goTo(page) {
 
-
-if (!storedUser) {
-
-    window.location.href =
-        "login.html";
+    window.location.href = page;
 
 }
 
 
-const user =
-    JSON.parse(storedUser);
+/* ==================================================
+   READ USER DATA
+================================================== */
+
+function readUserData() {
+
+    const storedUser =
+        localStorage.getItem(
+            "userData"
+        );
 
 
+    if (!storedUser) {
 
-/* =========================================
-   HELPER
-========================================= */
-
-function safeValue(value, fallback = "-") {
-
-    if (
-        value === undefined ||
-        value === null ||
-        value === ""
-    ) {
-
-        return fallback;
-
-    }
-
-    return value;
-
-}
-
-
-
-/* =========================================
-   BASIC INFORMATION
-========================================= */
-
-const fullName =
-    safeValue(
-        user.fullName ||
-        user.name,
-        "Gene-rations Member"
-    );
-
-
-const generation =
-    safeValue(
-        user.generation,
-        "Generation Z"
-    );
-
-
-document.getElementById(
-    "fullName"
-).textContent =
-    fullName;
-
-
-document.getElementById(
-    "infoName"
-).textContent =
-    fullName;
-
-
-document.getElementById(
-    "generation"
-).textContent =
-    generation;
-
-
-document.getElementById(
-    "generationInfo"
-).textContent =
-    generation;
-
-
-document.getElementById(
-    "generationName2"
-).textContent =
-    generation;
-
-
-document.getElementById(
-    "generationBadge"
-).textContent =
-    "🏷️ " +
-    safeValue(
-        user.generationBadge,
-        generation
-    );
-
-
-
-/* =========================================
-   CONTACT INFORMATION
-========================================= */
-
-document.getElementById(
-    "email"
-).textContent =
-    safeValue(user.email);
-
-
-document.getElementById(
-    "phone"
-).textContent =
-    safeValue(
-        user.phone ||
-        user.internationalPhone
-    );
-
-
-
-/* =========================================
-   DOB
-========================================= */
-
-const dob =
-    user.dob || "";
-
-
-if (dob) {
-
-    const date =
-        new Date(dob);
-
-
-    document.getElementById(
-        "dob"
-    ).textContent =
-        date.toLocaleDateString();
-
-
-    /* Calculate age */
-
-    const today =
-        new Date();
-
-    let age =
-        today.getFullYear()
-        -
-        date.getFullYear();
-
-
-    const month =
-        today.getMonth()
-        -
-        date.getMonth();
-
-
-    if (
-        month < 0 ||
-        (
-            month === 0 &&
-            today.getDate()
-            <
-            date.getDate()
-        )
-    ) {
-
-        age--;
+        return null;
 
     }
 
 
-    document.getElementById(
-        "age"
-    ).textContent =
-        age + " years";
+    try {
+
+        return JSON.parse(
+            storedUser
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Unable to read userData:",
+            error
+        );
+
+        return null;
+
+    }
 
 }
 
-else {
 
-    document.getElementById(
-        "dob"
-    ).textContent =
-        "-";
+/* ==================================================
+   TEXT HELPER
+================================================== */
+
+function setText(
+    id,
+    value
+) {
+
+    const element =
+        document.getElementById(id);
 
 
-    document.getElementById(
-        "age"
-    ).textContent =
-        "-";
+    if (element) {
+
+        element.textContent =
+            value ?? "—";
+
+    }
 
 }
 
 
+/* ==================================================
+   ARRAY COUNT
+================================================== */
 
-/* =========================================
-   GENDER
-========================================= */
+function getCount(value) {
 
-document.getElementById(
-    "gender"
-).textContent =
-    safeValue(user.gender);
+    if (
+        Array.isArray(value)
+    ) {
 
+        return value.length;
 
-
-/* =========================================
-   MEMBER SINCE
-========================================= */
-
-document.getElementById(
-    "memberSince"
-).textContent =
-    safeValue(
-        user.memberSince,
-        "Recently joined"
-    );
+    }
 
 
+    if (
+        typeof value === "number"
+    ) {
 
-/* =========================================
-   GENERATION DESCRIPTION
-========================================= */
+        return value;
 
-const generationDescriptions = {
-
-    "Silent Generation":
-        "A generation rich in experience, wisdom and life lessons. Connect and share knowledge across generations.",
-
-    "Baby Boomer":
-        "A generation with valuable experiences, perspectives and contributions to society.",
-
-    "Generation X":
-        "A generation known for independence, adaptability and valuable life experiences.",
-
-    "Millennial":
-        "A generation shaped by technology, creativity, entrepreneurship and social change.",
-
-    "Generation Z":
-        "A connected generation bringing new ideas, creativity and perspectives into the future.",
-
-    "Generation Alpha":
-        "A young generation growing up in a highly connected and rapidly changing digital world."
-
-};
+    }
 
 
-document.getElementById(
-    "generationDescription"
-).textContent =
+    return 0;
 
-    safeValue(
-        user.generationDescription,
-        generationDescriptions[generation] ||
-        "Welcome to your generation community."
-    );
+}
 
 
-
-/* =========================================
-   BIO
-========================================= */
-
-document.getElementById(
-    "bio"
-).textContent =
-
-    safeValue(
-        user.bio,
-        "No bio added yet."
-    );
-
-
-
-/* =========================================
-   SKILLS
-========================================= */
+/* ==================================================
+   TAG DISPLAY
+================================================== */
 
 function displayTags(
-    elementId,
+    id,
     values,
-    emptyText
+    emptyMessage
 ) {
 
     const container =
-        document.getElementById(
-            elementId
-        );
+        document.getElementById(id);
+
+
+    if (!container) {
+
+        return;
+
+    }
 
 
     container.innerHTML = "";
 
 
     if (
-        Array.isArray(values) &&
-        values.length > 0
+        !Array.isArray(values) ||
+        values.length === 0
     ) {
 
-        values.forEach(
-            function(value) {
-
-                const tag =
-                    document.createElement(
-                        "span"
-                    );
-
-                tag.className =
-                    "tag";
-
-                tag.textContent =
-                    value;
-
-                container.appendChild(
-                    tag
-                );
-
-            }
-        );
-
-    }
-
-    else {
-
-        const tag =
+        const empty =
             document.createElement(
                 "span"
             );
 
-        tag.className =
-            "tag";
+        empty.className =
+            "empty";
 
-        tag.textContent =
-            emptyText;
+        empty.textContent =
+            emptyMessage;
 
         container.appendChild(
-            tag
+            empty
         );
 
-    }
-
-}
-
-
-displayTags(
-    "skills",
-    user.skills,
-    "No skills added yet"
-);
-
-
-displayTags(
-    "interests",
-    user.interests,
-    "No interests added yet"
-);
-
-
-
-/* =========================================
-   STATISTICS
-========================================= */
-
-function countData(value) {
-
-    if (Array.isArray(value)) {
-
-        return value.length;
+        return;
 
     }
 
-    return Number(value) || 0;
 
-}
+    values.forEach(
+        function(value) {
 
+            const tag =
+                document.createElement(
+                    "span"
+                );
 
-document.getElementById(
-    "followers"
-).textContent =
-    countData(user.followers);
+            tag.className =
+                "tag";
 
+            tag.textContent =
+                value;
 
-document.getElementById(
-    "following"
-).textContent =
-    countData(user.following);
+            container.appendChild(
+                tag
+            );
 
-
-document.getElementById(
-    "posts"
-).textContent =
-    countData(user.posts);
-
-
-
-/* =========================================
-   PROFILE PHOTO
-========================================= */
-
-const photo =
-    document.getElementById(
-        "profilePhoto"
+        }
     );
 
-
-const savedPhoto =
-    user.profilePhoto || "";
-
-
-if (savedPhoto) {
-
-    photo.src =
-        savedPhoto;
-
 }
 
-else {
+
+/* ==================================================
+   DEFAULT PROFILE IMAGE
+================================================== */
+
+function setDefaultPhoto() {
+
+    const photo =
+        document.getElementById(
+            "profilePhoto"
+        );
+
+
+    if (!photo) {
+
+        return;
+
+    }
+
 
     photo.src =
         "data:image/svg+xml;charset=UTF-8," +
         encodeURIComponent(`
 
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="200"
-            height="200">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="200"
+                height="200"
+                viewBox="0 0 200 200"
+            >
 
-            <rect
-                width="100%"
-                height="100%"
-                fill="#e5e7eb"/>
+                <rect
+                    width="200"
+                    height="200"
+                    rx="100"
+                    fill="#e8e1ff"
+                />
 
-            <text
-                x="50%"
-                y="53%"
-                text-anchor="middle"
-                font-size="70">
+                <circle
+                    cx="100"
+                    cy="76"
+                    r="38"
+                    fill="#8d73c7"
+                />
 
-                👤
+                <path
+                    d="
+                        M35 190
+                        C40 138
+                        70 115
+                        100 115
+                        C130 115
+                        160 138
+                        165 190
+                        Z
+                    "
+                    fill="#8d73c7"
+                />
 
-            </text>
-
-        </svg>
+            </svg>
 
         `);
 
 }
 
 
+/* ==================================================
+   LOAD PROFILE
+================================================== */
 
-/* =========================================
-   UPLOAD PROFILE PHOTO
-========================================= */
-
-document.getElementById(
-    "photoInput"
-).addEventListener(
-    "change",
-    function(event) {
-
-        const file =
-            event.target.files[0];
+function loadProfile() {
 
 
-        if (!file) {
+    /* ------------------------------------------
+       GET USER
+    ------------------------------------------ */
 
-            return;
+    let user = null;
+
+
+    /*
+       Use the generation engine if available.
+    */
+
+    if (
+        typeof updateUserGeneration ===
+        "function"
+    ) {
+
+        try {
+
+            user =
+                updateUserGeneration();
 
         }
 
+        catch (error) {
 
-        /* Limit image size */
-
-        if (
-            file.size >
-            2 * 1024 * 1024
-        ) {
-
-            alert(
-                "Please choose an image smaller than 2MB."
+            console.warn(
+                "Generation engine error:",
+                error
             );
 
-            return;
+        }
+
+    }
+
+
+    /*
+       Fallback to localStorage.
+    */
+
+    if (!user) {
+
+        user =
+            readUserData();
+
+    }
+
+
+    /* ------------------------------------------
+       NO USER
+    ------------------------------------------ */
+
+    if (!user) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    /* ==================================================
+       GENERATION
+    ================================================== */
+
+    const generation =
+        user.generation ||
+        "Unknown Generation";
+
+
+    let generationInfo =
+        null;
+
+
+    if (
+        typeof getGenerationData ===
+        "function"
+    ) {
+
+        try {
+
+            generationInfo =
+                getGenerationData(
+                    generation
+                );
 
         }
 
+        catch (error) {
 
-        const reader =
-            new FileReader();
+            console.warn(
+                "Generation data error:",
+                error
+            );
 
+        }
 
-        reader.onload =
-            function(e) {
-
-                const imageData =
-                    e.target.result;
-
-
-                photo.src =
-                    imageData;
+    }
 
 
-                /*
-                   Save photo inside
-                   userData.
-                */
+    /*
+       Fallback information.
+    */
 
-                user.profilePhoto =
-                    imageData;
+    if (!generationInfo) {
+
+        generationInfo = {
+
+            name:
+                generation,
+
+            badge:
+                "🏷️ " + generation,
+
+            welcome:
+                `Welcome to the ${generation} community.`,
+
+            description:
+                `Connect, share ideas and build meaningful relationships with members of ${generation}.`
+
+        };
+
+    }
 
 
-                localStorage.setItem(
-                    "userData",
-                    JSON.stringify(user)
+    /* ==================================================
+       PROFILE HEADER
+    ================================================== */
+
+    setText(
+        "profileName",
+        user.fullName ||
+        user.name ||
+        "Gene-rations Member"
+    );
+
+
+    setText(
+        "profileGeneration",
+        generationInfo.name
+    );
+
+
+    setText(
+        "profileBadge",
+        generationInfo.badge
+    );
+
+
+    /* ==================================================
+       MEMBER SINCE
+    ================================================== */
+
+    let memberSince =
+        user.memberSince ||
+        "";
+
+
+    if (memberSince) {
+
+        const date =
+            new Date(
+                memberSince
+            );
+
+
+        if (
+            !isNaN(
+                date.getTime()
+            )
+        ) {
+
+            memberSince =
+                date.toLocaleDateString(
+                    undefined,
+                    {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                    }
                 );
 
+        }
 
-                const message =
-                    document.getElementById(
-                        "photoMessage"
-                    );
+    }
 
 
-                message.style.display =
-                    "block";
+    setText(
+        "memberSince",
+        memberSince
+            ? "Member since: " +
+              memberSince
+            : "Member since: —"
+    );
 
 
-                setTimeout(
-                    function() {
+    /* ==================================================
+       PROFILE PHOTO
+    ================================================== */
 
-                        message.style.display =
-                            "none";
-
-                    },
-                    2500
-                );
-
-            };
+    const profilePhoto =
+        document.getElementById(
+            "profilePhoto"
+        );
 
 
-        reader.readAsDataURL(file);
+    if (
+        profilePhoto &&
+        user.profilePhoto
+    ) {
+
+        profilePhoto.src =
+            user.profilePhoto;
+
+    }
+
+    else {
+
+        setDefaultPhoto();
+
+    }
+
+
+    /* ==================================================
+       PERSONAL INFORMATION
+    ================================================== */
+
+    setText(
+        "infoFullName",
+        user.fullName ||
+        user.name ||
+        "—"
+    );
+
+
+    setText(
+        "infoEmail",
+        user.email ||
+        "—"
+    );
+
+
+    setText(
+        "infoPhone",
+        user.phone ||
+        "—"
+    );
+
+
+    setText(
+        "infoDob",
+        user.dob ||
+        "—"
+    );
+
+
+    setText(
+        "infoAge",
+        user.age ??
+        "—"
+    );
+
+
+    setText(
+        "infoGender",
+        user.gender ||
+        "—"
+    );
+
+
+    setText(
+        "infoCountry",
+        user.country ||
+        "—"
+    );
+
+
+    /* ==================================================
+       GENERATION INFORMATION
+    ================================================== */
+
+    setText(
+        "generationCardName",
+        generationInfo.name
+    );
+
+
+    setText(
+        "generationCardBadge",
+        generationInfo.badge
+    );
+
+
+    setText(
+        "generationCardWelcome",
+        generationInfo.welcome
+    );
+
+
+    setText(
+        "generationCardDescription",
+        generationInfo.description
+    );
+
+
+    /* ==================================================
+       ABOUT
+    ================================================== */
+
+    setText(
+        "bio",
+        user.bio ||
+        "No bio added yet."
+    );
+
+
+    /* ==================================================
+       INTERESTS
+    ================================================== */
+
+    displayTags(
+        "interests",
+        user.interests,
+        "No interests added yet."
+    );
+
+
+    /* ==================================================
+       HOBBIES
+    ================================================== */
+
+    displayTags(
+        "hobbies",
+        user.hobbies,
+        "No hobbies added yet."
+    );
+
+
+    /* ==================================================
+       SKILLS
+    ================================================== */
+
+    displayTags(
+        "skills",
+        user.skills,
+        "No skills added yet."
+    );
+
+
+    /* ==================================================
+       STATISTICS
+    ================================================== */
+
+    setText(
+        "followersCount",
+        getCount(
+            user.followers
+        )
+    );
+
+
+    setText(
+        "followingCount",
+        getCount(
+            user.following
+        )
+    );
+
+
+    setText(
+        "postsCount",
+        getCount(
+            user.posts
+        )
+    );
+
+
+    setText(
+        "eventsCount",
+        getCount(
+            user.events
+        )
+    );
+
+
+    setText(
+        "familyCount",
+        getCount(
+            user.familyMembers
+        )
+    );
+
+
+    setText(
+        "profileViews",
+        user.profileViews ??
+        0
+    );
+
+
+    /* ==================================================
+       GENERATION THEME
+    ================================================== */
+
+    if (
+        typeof applyGenerationTheme ===
+        "function"
+    ) {
+
+        try {
+
+            applyGenerationTheme(
+                generation
+            );
+
+        }
+
+        catch (error) {
+
+            console.warn(
+                "Theme could not be applied:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* ==================================================
+       SAVE CURRENT DATA
+    ================================================== */
+
+    localStorage.setItem(
+        "userData",
+        JSON.stringify(user)
+    );
+
+
+    console.log(
+        "Dynamic profile loaded successfully:",
+        user
+    );
+
+}
+
+
+/* ==================================================
+   START
+================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadProfile();
 
     }
 );
-
-
-
-/* =========================================
-   NAVIGATION
-========================================= */
-
-function openPage(page) {
-
-    window.location.href =
-        page;
-
-}
-
-
-function goHome() {
-
-    window.location.href =
-        "generations.html";
-
-}
-
-
-function editProfile() {
-
-    window.location.href =
-        "edit-profile.html";
-
-}
 
 </script>
 

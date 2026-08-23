@@ -3,11 +3,19 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Gene-rations | Communities</title>
 
 <style>
+
+/* ==========================================
+   RESET
+========================================== */
 
 * {
     box-sizing: border-box;
@@ -17,279 +25,475 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #f4f6ff;
-    color: #222;
+    background: #f5f3ff;
+    color: #2d174f;
+    min-height: 100vh;
 }
 
-/* HEADER */
+
+/* ==========================================
+   HEADER
+========================================== */
 
 .header {
-    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+
     color: white;
-    padding: 15px 20px;
+
+    padding: 18px 22px;
 
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
 
     position: sticky;
     top: 0;
+
     z-index: 100;
 }
 
 .logo {
-    font-size: 22px;
+    font-size: 25px;
     font-weight: bold;
 }
 
-.back-btn {
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-btn {
     border: none;
-    background: rgba(255,255,255,.2);
+    background: rgba(255,255,255,0.18);
     color: white;
-    padding: 9px 15px;
-    border-radius: 20px;
+
+    padding: 12px 16px;
+
+    border-radius: 30px;
+
     font-weight: bold;
+
     cursor: pointer;
 }
 
-/* MAIN */
+.header-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+
+/* ==========================================
+   MAIN
+========================================== */
 
 .container {
-    max-width: 850px;
+    width: 94%;
+    max-width: 1100px;
+
     margin: auto;
-    padding: 20px;
+
+    padding: 25px 0 50px;
 }
 
-h1 {
-    font-size: 28px;
-    margin-bottom: 6px;
-}
 
-.subtitle {
-    color: #666;
-    margin-bottom: 20px;
-    line-height: 1.5;
-}
+/* ==========================================
+   WELCOME
+========================================== */
 
-/* GENERATION BANNER */
+.welcome-card {
+    background: linear-gradient(
+        135deg,
+        #7c3aed,
+        #9333ea
+    );
 
-.generation-banner {
-    background: linear-gradient(135deg, #7c3aed, #9333ea);
     color: white;
-    border-radius: 20px;
-    padding: 25px;
-    margin-bottom: 20px;
 
-    box-shadow: 0 8px 25px rgba(124,58,237,.2);
+    padding: 28px;
+
+    border-radius: 25px;
+
+    margin-bottom: 22px;
+
+    box-shadow:
+        0 12px 30px rgba(70,40,130,0.15);
 }
 
-.generation-banner h2 {
-    margin-top: 8px;
-    font-size: 25px;
+.welcome-card h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
 }
 
-.generation-banner p {
-    margin-top: 8px;
+.welcome-card p {
     opacity: .9;
 }
 
-/* SEARCH */
+.generation-badge {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    background: rgba(255,255,255,.2);
+
+    padding: 9px 15px;
+
+    border-radius: 25px;
+
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   ACTIONS
+========================================== */
+
+.actions {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+}
+
+.action-btn {
+    border: none;
+
+    padding: 17px;
+
+    border-radius: 18px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.create-btn {
+    background: #7c3aed;
+    color: white;
+}
+
+.my-btn {
+    background: white;
+    color: #6d28d9;
+}
+
+.action-btn:hover {
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   SEARCH
+========================================== */
 
 .search-box {
-    margin-bottom: 20px;
+    background: white;
+
+    padding: 15px;
+
+    border-radius: 18px;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 5px 20px rgba(60,40,100,.07);
 }
 
 .search-box input {
     width: 100%;
-    padding: 14px 16px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    font-size: 15px;
+
+    border: none;
     outline: none;
+
+    font-size: 16px;
+
+    padding: 10px;
 }
 
-.search-box input:focus {
-    border-color: #7c3aed;
-}
 
-/* CREATE */
+/* ==========================================
+   FILTERS
+========================================== */
 
-.create-card {
-    background: white;
-    border-radius: 18px;
-    padding: 20px;
+.filters {
+    display: flex;
+
+    gap: 10px;
+
+    overflow-x: auto;
+
+    padding-bottom: 10px;
+
     margin-bottom: 20px;
-
-    box-shadow: 0 4px 15px rgba(0,0,0,.06);
 }
 
-.create-card h2 {
-    margin-bottom: 8px;
+.filter-btn {
+    border: none;
+
+    background: white;
+
+    padding: 10px 17px;
+
+    border-radius: 25px;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    color: #555;
 }
 
-.create-card p {
-    color: #777;
+.filter-btn.active {
+    background: #7c3aed;
+    color: white;
+}
+
+
+/* ==========================================
+   SECTION HEADER
+========================================== */
+
+.section-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
     margin-bottom: 15px;
 }
 
-.create-btn {
-    background: #2563eb;
-    color: white;
-    border: none;
-
-    padding: 13px 20px;
-    border-radius: 10px;
-
-    font-weight: bold;
-    cursor: pointer;
+.section-header h2 {
+    font-size: 23px;
 }
 
-/* SECTION */
-
-.section-title {
-    font-size: 21px;
-    margin: 25px 0 12px;
+.community-count {
+    color: #777;
 }
 
-/* COMMUNITY CARD */
+
+/* ==========================================
+   COMMUNITY GRID
+========================================== */
+
+.community-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
 
 .community-card {
     background: white;
-    border-radius: 18px;
-    padding: 20px;
-    margin-bottom: 15px;
 
-    box-shadow: 0 4px 15px rgba(0,0,0,.06);
+    border-radius: 22px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 7px 25px rgba(50,30,90,.08);
+
+    cursor: pointer;
+
+    transition: .2s;
 }
 
-.community-top {
-    display: flex;
-    gap: 15px;
-    align-items: center;
+.community-card:hover {
+    transform: translateY(-3px);
 }
 
 .community-icon {
-    width: 55px;
-    height: 55px;
+    width: 58px;
+    height: 58px;
 
-    border-radius: 15px;
+    border-radius: 17px;
 
-    background: #ede9fe;
+    background: #eee7ff;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 25px;
-}
-
-.community-info {
-    flex: 1;
-}
-
-.community-info h3 {
-    margin-bottom: 5px;
-}
-
-.community-info p {
-    color: #777;
-    font-size: 14px;
-}
-
-.community-description {
-    color: #666;
-    margin: 15px 0;
-    line-height: 1.5;
-}
-
-.community-meta {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-
-    color: #777;
-    font-size: 13px;
+    font-size: 29px;
 
     margin-bottom: 15px;
 }
 
-.join-btn {
-    width: 100%;
+.community-card h3 {
+    font-size: 19px;
 
-    padding: 12px;
+    margin-bottom: 7px;
+}
 
-    border: none;
-    border-radius: 10px;
+.community-description {
+    color: #777;
 
-    background: #2563eb;
-    color: white;
+    line-height: 1.5;
+
+    margin-bottom: 14px;
+}
+
+.community-meta {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 14px;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+.generation-tag {
+    background: #f0eaff;
+
+    color: #6d28d9;
+
+    padding: 6px 9px;
+
+    border-radius: 15px;
+
+    font-size: 12px;
 
     font-weight: bold;
+}
+
+.community-actions {
+    display: flex;
+
+    gap: 8px;
+}
+
+.community-actions button {
+    flex: 1;
+
+    border: none;
+
+    padding: 10px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
     cursor: pointer;
 }
 
-.join-btn.joined {
-    background: #dcfce7;
-    color: #166534;
+.open-btn {
+    background: #7c3aed;
+    color: white;
 }
 
-/* EMPTY */
+.join-btn {
+    background: #eee7ff;
+    color: #6d28d9;
+}
+
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
 
 .empty {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 45px 20px;
+
     text-align: center;
+
     color: #777;
-    padding: 30px;
-    display: none;
 }
 
-/* MODAL */
+.empty-icon {
+    font-size: 50px;
+
+    margin-bottom: 12px;
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
 
 .modal {
     display: none;
 
     position: fixed;
+
     inset: 0;
 
     background: rgba(0,0,0,.55);
 
     z-index: 500;
 
-    align-items: flex-end;
+    padding: 20px;
+
+    align-items: center;
     justify-content: center;
 }
 
-.modal-box {
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
     background: white;
 
     width: 100%;
-    max-width: 650px;
 
-    border-radius: 22px 22px 0 0;
-
-    padding: 22px;
+    max-width: 500px;
 
     max-height: 90vh;
+
     overflow-y: auto;
+
+    border-radius: 25px;
+
+    padding: 25px;
 }
 
 .modal-header {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     margin-bottom: 20px;
 }
 
-.close {
+.close-btn {
+    border: none;
+
+    background: #eee;
+
     width: 38px;
     height: 38px;
 
-    border: none;
     border-radius: 50%;
 
-    background: #f1f5f9;
-
-    font-size: 18px;
+    font-size: 20px;
 
     cursor: pointer;
 }
@@ -300,8 +504,10 @@ h1 {
 
 .form-group label {
     display: block;
-    font-weight: bold;
+
     margin-bottom: 7px;
+
+    font-weight: bold;
 }
 
 .form-group input,
@@ -309,77 +515,99 @@ h1 {
 .form-group select {
     width: 100%;
 
+    border: 1px solid #ddd;
+
+    border-radius: 13px;
+
     padding: 13px;
 
-    border: 1px solid #d1d5db;
-
-    border-radius: 10px;
-
     font-size: 15px;
-
-    font-family: inherit;
 
     outline: none;
 }
 
 .form-group textarea {
     min-height: 100px;
+
     resize: vertical;
 }
 
-.create-community {
+.submit-btn {
     width: 100%;
 
     border: none;
 
-    background: #2563eb;
+    background: #7c3aed;
+
     color: white;
 
-    padding: 14px;
+    padding: 15px;
 
-    border-radius: 11px;
+    border-radius: 14px;
+
+    font-size: 16px;
 
     font-weight: bold;
 
     cursor: pointer;
 }
 
-.message {
-    display: none;
 
-    background: #dcfce7;
-    color: #166534;
+/* ==========================================
+   FOOTER
+========================================== */
 
-    padding: 12px;
-
-    border-radius: 10px;
-
-    margin-bottom: 15px;
-
+.footer {
     text-align: center;
+
+    color: #888;
+
+    padding: 30px;
 }
 
-/* MOBILE */
 
-@media (max-width:600px) {
+/* ==========================================
+   MOBILE
+========================================== */
 
-    .container {
+@media (max-width: 700px) {
+
+    .header {
         padding: 15px;
     }
 
-    .community-top {
-        align-items: flex-start;
+    .logo {
+        font-size: 21px;
     }
 
+    .header-btn {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+
+    .community-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-card h1 {
+        font-size: 24px;
+    }
 }
 
 </style>
 </head>
 
+
 <body>
 
 
-<!-- HEADER -->
+<!-- ==========================================
+     HEADER
+========================================== -->
 
 <header class="header">
 
@@ -387,238 +615,311 @@ h1 {
         Gene-rations
     </div>
 
-    <button
-        class="back-btn"
-        onclick="goHome()">
+    <div class="header-right">
 
-        ← Generation Hub
+        <button
+            class="header-btn"
+            onclick="goHome()"
+        >
+            🏠 Generation Hub
+        </button>
 
-    </button>
+        <button
+            class="header-btn"
+            onclick="goProfile()"
+        >
+            👤
+        </button>
+
+    </div>
 
 </header>
 
 
+<!-- ==========================================
+     MAIN
+========================================== -->
+
 <main class="container">
 
 
-<h1>Communities</h1>
+    <!-- WELCOME -->
 
-<p class="subtitle">
-    Connect with people in your generation,
-    your age group, and other generations.
-</p>
+    <section class="welcome-card">
 
+        <h1 id="welcome">
+            Welcome to Communities
+        </h1>
 
-<!-- GENERATION -->
+        <p>
+            Connect, discuss ideas and build
+            meaningful conversations across
+            generations.
+        </p>
 
-<section class="generation-banner">
+        <div
+            class="generation-badge"
+            id="generationBadge"
+        >
+            Your Generation
+        </div>
 
-    <small>
-        YOUR GENERATION
-    </small>
-
-    <h2 id="generationName">
-        Loading...
-    </h2>
-
-    <p id="generationWelcome">
-        Welcome to your generation community.
-    </p>
-
-</section>
+    </section>
 
 
-<!-- SEARCH -->
+    <!-- ACTIONS -->
 
-<div class="search-box">
+    <section class="actions">
 
-    <input
-        type="search"
-        id="searchCommunity"
-        placeholder="Search communities...">
+        <button
+            class="action-btn create-btn"
+            onclick="openCreateModal()"
+        >
+            ＋ Create Discussion Group
+        </button>
 
-</div>
+        <button
+            class="action-btn my-btn"
+            onclick="showMyCommunities()"
+        >
+            👥 My Communities
+        </button>
 
-
-<!-- CREATE -->
-
-<section class="create-card">
-
-    <h2>
-        Create a Community
-    </h2>
-
-    <p>
-        Create a space for your generation,
-        age mates, interests, or discussions
-        between generations.
-    </p>
-
-    <button
-        class="create-btn"
-        onclick="openCreate()">
-
-        + Create Community
-
-    </button>
-
-</section>
+    </section>
 
 
-<!-- MY GENERATION -->
+    <!-- SEARCH -->
 
-<h2 class="section-title">
-    Communities for Your Generation
-</h2>
+    <section class="search-box">
 
-<div id="generationCommunities">
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="🔍 Search communities..."
+        >
 
-</div>
-
-
-<!-- CROSS GENERATION -->
-
-<h2 class="section-title">
-    Cross-Generation Communities
-</h2>
-
-<div id="crossCommunities">
-
-</div>
+    </section>
 
 
-<div
-    id="empty"
-    class="empty">
+    <!-- FILTERS -->
 
-    No communities found.
+    <div class="filters">
 
-</div>
+        <button
+            class="filter-btn active"
+            data-filter="all"
+        >
+            All
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="generation"
+        >
+            My Generation
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="business"
+        >
+            💼 Business
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="family"
+        >
+            👨‍👩‍👧 Family
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="education"
+        >
+            📚 Education
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="technology"
+        >
+            💻 Technology
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="social"
+        >
+            💬 Social
+        </button>
+
+    </div>
+
+
+    <!-- SECTION HEADER -->
+
+    <section class="section-header">
+
+        <h2>
+            Communities
+        </h2>
+
+        <span
+            class="community-count"
+            id="communityCount"
+        >
+            0 communities
+        </span>
+
+    </section>
+
+
+    <!-- COMMUNITY LIST -->
+
+    <section
+        class="community-grid"
+        id="communityGrid"
+    ></section>
 
 
 </main>
 
 
+<footer class="footer">
 
-<!-- CREATE MODAL -->
+    Gene-rations © 2026
+
+</footer>
+
+
+<!-- ==========================================
+     CREATE COMMUNITY MODAL
+========================================== -->
 
 <div
+    class="modal"
     id="createModal"
-    class="modal">
+>
 
-    <div class="modal-box">
-
+    <div class="modal-content">
 
         <div class="modal-header">
 
             <h2>
-                Create Community
+                Create Discussion Group
             </h2>
 
             <button
-                class="close"
-                onclick="closeCreate()">
-
-                ✕
-
+                class="close-btn"
+                onclick="closeCreateModal()"
+            >
+                ×
             </button>
 
         </div>
 
 
-        <div
-            id="message"
-            class="message">
-
-            Community created successfully.
-
-        </div>
+        <form id="communityForm">
 
 
-        <div class="form-group">
+            <div class="form-group">
 
-            <label>
-                Community Name
-            </label>
+                <label>
+                    Community Name
+                </label>
 
-            <input
-                id="communityName"
-                type="text"
-                placeholder="e.g. Generation X Entrepreneurs">
+                <input
+                    type="text"
+                    id="communityName"
+                    placeholder="e.g. Generation X Entrepreneurs"
+                    required
+                >
 
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Description
-            </label>
-
-            <textarea
-                id="communityDescription"
-                placeholder="What is this community about?"></textarea>
-
-        </div>
+            </div>
 
 
-        <div class="form-group">
+            <div class="form-group">
 
-            <label>
-                Community Type
-            </label>
+                <label>
+                    Description
+                </label>
 
-            <select id="communityType">
+                <textarea
+                    id="communityDescription"
+                    placeholder="What is this community about?"
+                    required
+                ></textarea>
 
-                <option value="generation">
-                    My Generation
-                </option>
-
-                <option value="cross">
-                    Cross-Generation
-                </option>
-
-                <option value="interest">
-                    Interest / Skills
-                </option>
-
-            </select>
-
-        </div>
+            </div>
 
 
-        <div class="form-group">
+            <div class="form-group">
 
-            <label>
-                Who can join?
-            </label>
+                <label>
+                    Category
+                </label>
 
-            <select id="communityAccess">
+                <select
+                    id="communityCategory"
+                    required
+                >
 
-                <option>
-                    Everyone
-                </option>
+                    <option value="social">
+                        💬 Social
+                    </option>
 
-                <option>
-                    My Generation
-                </option>
+                    <option value="business">
+                        💼 Business
+                    </option>
 
-                <option>
-                    Selected Generations
-                </option>
+                    <option value="family">
+                        👨‍👩‍👧 Family
+                    </option>
 
-            </select>
+                    <option value="education">
+                        📚 Education
+                    </option>
 
-        </div>
+                    <option value="technology">
+                        💻 Technology
+                    </option>
+
+                </select>
+
+            </div>
 
 
-        <button
-            class="create-community"
-            onclick="createCommunity()">
+            <div class="form-group">
 
-            Create Community
+                <label>
+                    Community Type
+                </label>
 
-        </button>
+                <select id="communityType">
+
+                    <option value="generation">
+                        My Generation
+                    </option>
+
+                    <option value="all">
+                        All Generations
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                Create Community
+            </button>
+
+
+        </form>
 
     </div>
 
@@ -629,14 +930,20 @@ h1 {
 <script>
 
 /* ==========================================
-   USER
+   USER DATA
 ========================================== */
 
-const storedUser =
-    localStorage.getItem("userData");
+let userData =
+    JSON.parse(
+        localStorage.getItem("userData")
+    );
 
 
-if (!storedUser) {
+/* ==========================================
+   LOGIN CHECK
+========================================== */
+
+if (!userData) {
 
     window.location.href =
         "login.html";
@@ -644,13 +951,13 @@ if (!storedUser) {
 }
 
 
-const user =
-    JSON.parse(storedUser);
+/* ==========================================
+   USER GENERATION
+========================================== */
 
-
-const generation =
-    user.generation ||
-    "Your Generation";
+const userGeneration =
+    userData?.generation ||
+    "Unknown";
 
 
 /* ==========================================
@@ -658,33 +965,42 @@ const generation =
 ========================================== */
 
 document.getElementById(
-    "generationName"
+    "welcome"
 ).textContent =
-    generation;
-
+    `Welcome, ${
+        userData?.fullName ||
+        "Gene-rations Member"
+    }`;
 
 document.getElementById(
-    "generationWelcome"
+    "generationBadge"
 ).textContent =
-    "Welcome to the " +
-    generation +
-    " community.";
+    `🏷️ ${userGeneration}`;
 
 
 /* ==========================================
-   COMMUNITY DATA
+   STORAGE KEY
+========================================== */
+
+const COMMUNITY_STORAGE_KEY =
+    "geneRationsCommunities";
+
+
+/* ==========================================
+   LOAD COMMUNITIES
 ========================================== */
 
 let communities =
     JSON.parse(
         localStorage.getItem(
-            "communities"
+            COMMUNITY_STORAGE_KEY
         )
     ) || [];
 
 
 /* ==========================================
-   DEFAULT COMMUNITIES
+   CREATE STARTER COMMUNITIES
+   ONLY IF NONE EXIST
 ========================================== */
 
 if (communities.length === 0) {
@@ -692,84 +1008,136 @@ if (communities.length === 0) {
     communities = [
 
         {
-            id: 1,
+            id: "community_" + Date.now() + "_1",
 
             name:
-                generation +
-                " Community",
+                `${userGeneration} Community`,
 
             description:
-                "Connect, share ideas and discuss issues affecting your generation.",
+                `A discussion space for ${
+                    userGeneration
+                } members to connect,
+                share ideas and support one another.`,
+
+            category:
+                "social",
 
             type:
                 "generation",
 
             generation:
-                generation,
+                userGeneration,
 
-            members: 1,
+            icon:
+                "👥",
 
-            joined: true,
+            creator:
+                "Gene-rations",
 
-            leader:
-                user.fullName ||
-                user.name ||
-                "Community Leader"
+            creatorId:
+                "system",
 
+            members:
+                [],
+
+            discussions:
+                [],
+
+            createdAt:
+                new Date().toISOString()
         },
 
         {
-            id: 2,
+            id: "community_" + Date.now() + "_2",
 
             name:
-                "Young Entrepreneurs",
+                "Gene-rations Business Network",
 
             description:
-                "A space for entrepreneurs from different generations to exchange ideas and experience.",
+                "Discuss entrepreneurship, business ideas, opportunities and professional growth.",
+
+            category:
+                "business",
 
             type:
-                "cross",
+                "all",
 
             generation:
                 "All Generations",
 
-            members: 0,
+            icon:
+                "💼",
 
-            joined: false,
+            creator:
+                "Gene-rations",
 
-            leader:
-                "Gene-rations Member"
+            creatorId:
+                "system",
 
+            members:
+                [],
+
+            discussions:
+                [],
+
+            createdAt:
+                new Date().toISOString()
         },
 
         {
-            id: 3,
+            id:
+                "community_" + Date.now() + "_3",
 
             name:
-                "Technology & Innovation",
+                "Family & Generations",
 
             description:
-                "Discuss technology, innovation, digital skills and the future.",
+                "A place to discuss family connections, traditions and relationships between generations.",
+
+            category:
+                "family",
 
             type:
-                "cross",
+                "all",
 
             generation:
                 "All Generations",
 
-            members: 0,
+            icon:
+                "👨‍👩‍👧",
 
-            joined: false,
+            creator:
+                "Gene-rations",
 
-            leader:
-                "Gene-rations Member"
+            creatorId:
+                "system",
 
+            members:
+                [],
+
+            discussions:
+                [],
+
+            createdAt:
+                new Date().toISOString()
         }
 
     ];
 
+
+    saveCommunities();
+
+}
+
+
+/* ==========================================
+   SAVE COMMUNITIES
+========================================== */
+
+function saveCommunities() {
+
     localStorage.setItem(
-        "communities",
+        COMMUNITY_STORAGE_KEY,
         JSON.stringify(communities)
     );
 
@@ -777,217 +1145,330 @@ if (communities.length === 0) {
 
 
 /* ==========================================
-   RENDER
+   RENDER COMMUNITIES
 ========================================== */
 
 function renderCommunities(
+    filter = "all",
     search = ""
 ) {
 
-    const generationContainer =
+    const grid =
         document.getElementById(
-            "generationCommunities"
+            "communityGrid"
         );
 
-
-    const crossContainer =
-        document.getElementById(
-            "crossCommunities"
-        );
+    grid.innerHTML = "";
 
 
-    generationContainer.innerHTML =
-        "";
-
-    crossContainer.innerHTML =
-        "";
+    const searchTerm =
+        search.toLowerCase().trim();
 
 
-    let found = false;
+    let filtered =
+        communities.filter(
+            function (community) {
+
+                const matchesSearch =
+
+                    community.name
+                        .toLowerCase()
+                        .includes(searchTerm)
+
+                    ||
+
+                    community.description
+                        .toLowerCase()
+                        .includes(searchTerm);
 
 
-    communities.forEach(
-        function(community) {
+                if (!matchesSearch) {
+
+                    return false;
+
+                }
 
 
-            const searchable =
-                (
-                    community.name +
-                    " " +
-                    community.description +
-                    " " +
-                    community.generation
-                ).toLowerCase();
+                if (filter === "all") {
+
+                    return true;
+
+                }
 
 
-            if (
-                !searchable.includes(
-                    search.toLowerCase()
-                )
-            ) {
+                if (
+                    filter ===
+                    "generation"
+                ) {
 
-                return;
+                    return (
+                        community.generation ===
+                        userGeneration
+                    );
 
-            }
+                }
 
 
-            const card =
-                createCommunityCard(
-                    community
+                return (
+                    community.category ===
+                    filter
                 );
 
-
-            if (
-                community.type ===
-                "generation"
-            ) {
-
-                generationContainer
-                    .appendChild(card);
-
             }
-
-            else {
-
-                crossContainer
-                    .appendChild(card);
-
-            }
-
-
-            found = true;
-
-        }
-    );
+        );
 
 
     document.getElementById(
-        "empty"
-    ).style.display =
-        found
-            ? "none"
-            : "block";
-
-}
-
-
-/* ==========================================
-   COMMUNITY CARD
-========================================== */
-
-function createCommunityCard(
-    community
-) {
-
-    const card =
-        document.createElement(
-            "div"
-        );
+        "communityCount"
+    ).textContent =
+        `${filtered.length} ${
+            filtered.length === 1
+                ? "community"
+                : "communities"
+        }`;
 
 
-    card.className =
-        "community-card";
+    if (filtered.length === 0) {
 
+        grid.innerHTML = `
 
-    card.innerHTML = `
+            <div class="empty">
 
-        <div class="community-top">
-
-            <div class="community-icon">
-                👥
-            </div>
-
-            <div class="community-info">
+                <div class="empty-icon">
+                    🔍
+                </div>
 
                 <h3>
-                    ${escapeHTML(community.name)}
+                    No communities found
                 </h3>
 
                 <p>
-                    ${escapeHTML(community.generation)}
+                    Try another search or
+                    create your own discussion group.
                 </p>
 
             </div>
 
-        </div>
+        `;
+
+        return;
+
+    }
 
 
-        <div class="community-description">
+    filtered.forEach(
+        function (community) {
 
-            ${escapeHTML(community.description)}
+            const card =
+                document.createElement(
+                    "article"
+                );
 
-        </div>
-
-
-        <div class="community-meta">
-
-            <span>
-                👥 ${community.members} members
-            </span>
-
-            <span>
-                👑 ${escapeHTML(community.leader)}
-            </span>
-
-        </div>
+            card.className =
+                "community-card";
 
 
-        <button
-            class="join-btn ${community.joined ? "joined" : ""}"
-            onclick="toggleJoin(${community.id})">
-
-            ${community.joined
-                ? "✓ Joined Community"
-                : "Join Community"}
-
-        </button>
-
-    `;
+            const isMember =
+                Array.isArray(
+                    community.members
+                ) &&
+                community.members.includes(
+                    userData.email
+                );
 
 
-    return card;
+            const memberCount =
+                Array.isArray(
+                    community.members
+                )
+                    ? community.members.length
+                    : 0;
+
+
+            card.innerHTML = `
+
+                <div class="community-icon">
+                    ${
+                        community.icon ||
+                        "👥"
+                    }
+                </div>
+
+                <h3>
+                    ${escapeHTML(
+                        community.name
+                    )}
+                </h3>
+
+                <p class="community-description">
+                    ${escapeHTML(
+                        community.description
+                    )}
+                </p>
+
+                <div class="community-meta">
+
+                    <span>
+                        👥 ${memberCount} members
+                    </span>
+
+                    <span class="generation-tag">
+                        ${
+                            community.generation ||
+                            "All Generations"
+                        }
+                    </span>
+
+                </div>
+
+                <div class="community-actions">
+
+                    <button
+                        class="open-btn"
+                        onclick="openCommunity('${community.id}')"
+                    >
+                        Open
+                    </button>
+
+                    <button
+                        class="join-btn"
+                        onclick="toggleMembership(
+                            '${community.id}',
+                            event
+                        )"
+                    >
+                        ${
+                            isMember
+                                ? "Leave"
+                                : "Join"
+                        }
+                    </button>
+
+                </div>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        }
+    );
 
 }
 
 
 /* ==========================================
-   JOIN / LEAVE
+   OPEN COMMUNITY
 ========================================== */
 
-function toggleJoin(id) {
+function openCommunity(
+    communityId
+) {
 
     const community =
         communities.find(
-            function(item) {
+            function (item) {
 
-                return item.id === id;
+                return item.id ===
+                    communityId;
 
             }
         );
 
 
-    if (!community) return;
+    if (!community) {
 
+        alert(
+            "Community could not be found."
+        );
 
-    if (community.joined) {
-
-        community.joined =
-            false;
-
-        community.members =
-            Math.max(
-                0,
-                community.members - 1
-            );
+        return;
 
     }
 
-    else {
 
-        community.joined =
-            true;
+    /* IMPORTANT:
+       Save the exact community ID
+       before opening details page.
+    */
 
-        community.members++;
+    localStorage.setItem(
+        "selectedCommunityId",
+        community.id
+    );
+
+
+    window.location.href =
+        "communities-details.html";
+
+}
+
+
+/* ==========================================
+   JOIN / LEAVE COMMUNITY
+========================================== */
+
+function toggleMembership(
+    communityId,
+    event
+) {
+
+    if (event) {
+
+        event.stopPropagation();
+
+    }
+
+
+    const community =
+        communities.find(
+            function (item) {
+
+                return item.id ===
+                    communityId;
+
+            }
+        );
+
+
+    if (!community) {
+
+        return;
+
+    }
+
+
+    if (!Array.isArray(
+        community.members
+    )) {
+
+        community.members = [];
+
+    }
+
+
+    const email =
+        userData.email;
+
+
+    const index =
+        community.members.indexOf(
+            email
+        );
+
+
+    if (index === -1) {
+
+        community.members.push(
+            email
+        );
+
+    } else {
+
+        community.members.splice(
+            index,
+            1
+        );
 
     }
 
@@ -995,10 +1476,33 @@ function toggleJoin(id) {
     saveCommunities();
 
     renderCommunities(
+        currentFilter,
         document.getElementById(
-            "searchCommunity"
+            "searchInput"
         ).value
     );
+
+}
+
+
+/* ==========================================
+   CREATE MODAL
+========================================== */
+
+function openCreateModal() {
+
+    document.getElementById(
+        "createModal"
+    ).classList.add("show");
+
+}
+
+
+function closeCreateModal() {
+
+    document.getElementById(
+        "createModal"
+    ).classList.remove("show");
 
 }
 
@@ -1007,148 +1511,167 @@ function toggleJoin(id) {
    CREATE COMMUNITY
 ========================================== */
 
-function openCreate() {
+document.getElementById(
+    "communityForm"
+).addEventListener(
+    "submit",
+    function (event) {
 
-    document.getElementById(
-        "createModal"
-    ).style.display =
-        "flex";
-
-}
-
-
-function closeCreate() {
-
-    document.getElementById(
-        "createModal"
-    ).style.display =
-        "none";
-
-}
+        event.preventDefault();
 
 
-function createCommunity() {
-
-    const name =
-        document.getElementById(
-            "communityName"
-        ).value.trim();
+        const name =
+            document.getElementById(
+                "communityName"
+            ).value.trim();
 
 
-    const description =
-        document.getElementById(
-            "communityDescription"
-        ).value.trim();
+        const description =
+            document.getElementById(
+                "communityDescription"
+            ).value.trim();
 
 
-    const type =
-        document.getElementById(
-            "communityType"
-        ).value;
+        const category =
+            document.getElementById(
+                "communityCategory"
+            ).value;
 
 
-    if (
-        name === "" ||
-        description === ""
-    ) {
+        const type =
+            document.getElementById(
+                "communityType"
+            ).value;
 
-        alert(
-            "Please enter a community name and description."
+
+        if (
+            !name ||
+            !description
+        ) {
+
+            return;
+
+        }
+
+
+        const newCommunity = {
+
+            id:
+                "community_" +
+                Date.now() +
+                "_" +
+                Math.random()
+                    .toString(36)
+                    .substring(2, 8),
+
+            name:
+                name,
+
+            description:
+                description,
+
+            category:
+                category,
+
+            type:
+                type,
+
+            generation:
+                type === "generation"
+                    ? userGeneration
+                    : "All Generations",
+
+            icon:
+                getCategoryIcon(
+                    category
+                ),
+
+            creator:
+                userData.fullName ||
+                "Gene-rations Member",
+
+            creatorId:
+                userData.email,
+
+            members:
+                [
+                    userData.email
+                ],
+
+            discussions:
+                [],
+
+            createdAt:
+                new Date().toISOString()
+
+        };
+
+
+        communities.unshift(
+            newCommunity
         );
 
-        return;
+
+        saveCommunities();
+
+
+        document.getElementById(
+            "communityForm"
+        ).reset();
+
+
+        closeCreateModal();
+
+
+        currentFilter =
+            "all";
+
+
+        renderCommunities();
+
+
+        /* Automatically open
+           the new community */
+
+        localStorage.setItem(
+            "selectedCommunityId",
+            newCommunity.id
+        );
+
+
+        window.location.href =
+            "communities-details.html";
 
     }
+);
 
 
-    const newCommunity = {
+/* ==========================================
+   CATEGORY ICON
+========================================== */
 
-        id:
-            Date.now(),
+function getCategoryIcon(
+    category
+) {
 
-        name:
-            name,
+    const icons = {
 
-        description:
-            description,
+        business: "💼",
 
-        type:
-            type,
+        family: "👨‍👩‍👧",
 
-        generation:
-            type === "generation"
-                ? generation
-                : "All Generations",
+        education: "📚",
 
-        members:
-            1,
+        technology: "💻",
 
-        joined:
-            true,
-
-        leader:
-            user.fullName ||
-            user.name ||
-            "Community Leader"
+        social: "💬"
 
     };
 
 
-    communities.push(
-        newCommunity
-    );
-
-
-    saveCommunities();
-
-
-    document.getElementById(
-        "communityName"
-    ).value = "";
-
-
-    document.getElementById(
-        "communityDescription"
-    ).value = "";
-
-
-    document.getElementById(
-        "message"
-    ).style.display =
-        "block";
-
-
-    renderCommunities();
-
-
-    setTimeout(
-        function() {
-
-            closeCreate();
-
-            document.getElementById(
-                "message"
-            ).style.display =
-                "none";
-
-        },
-        1200
-    );
-
-}
-
-
-/* ==========================================
-   SAVE
-========================================== */
-
-function saveCommunities() {
-
-    localStorage.setItem(
-        "communities",
-        JSON.stringify(
-            communities
-        )
+    return (
+        icons[category] ||
+        "👥"
     );
 
 }
@@ -1159,12 +1682,13 @@ function saveCommunities() {
 ========================================== */
 
 document.getElementById(
-    "searchCommunity"
+    "searchInput"
 ).addEventListener(
     "input",
-    function() {
+    function () {
 
         renderCommunities(
+            currentFilter,
             this.value
         );
 
@@ -1173,23 +1697,226 @@ document.getElementById(
 
 
 /* ==========================================
-   SECURITY HELPER
+   FILTER
 ========================================== */
 
-function escapeHTML(value) {
+let currentFilter =
+    "all";
 
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+document.querySelectorAll(
+    ".filter-btn"
+).forEach(
+    function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                document
+                    .querySelectorAll(
+                        ".filter-btn"
+                    )
+                    .forEach(
+                        function (btn) {
+
+                            btn.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                this.classList.add(
+                    "active"
+                );
+
+
+                currentFilter =
+                    this.dataset.filter;
+
+
+                renderCommunities(
+                    currentFilter,
+                    document.getElementById(
+                        "searchInput"
+                    ).value
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* ==========================================
+   MY COMMUNITIES
+========================================== */
+
+function showMyCommunities() {
+
+    const grid =
+        document.getElementById(
+            "communityGrid"
+        );
+
+
+    const myCommunities =
+        communities.filter(
+            function (community) {
+
+                return (
+                    Array.isArray(
+                        community.members
+                    ) &&
+                    community.members.includes(
+                        userData.email
+                    )
+                );
+
+            }
+        );
+
+
+    grid.innerHTML = "";
+
+
+    document.getElementById(
+        "communityCount"
+    ).textContent =
+        `${myCommunities.length} ${
+            myCommunities.length === 1
+                ? "community"
+                : "communities"
+        }`;
+
+
+    if (myCommunities.length === 0) {
+
+        grid.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    👥
+                </div>
+
+                <h3>
+                    You haven't joined any communities yet.
+                </h3>
+
+                <p>
+                    Join a community or create your
+                    own discussion group.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    myCommunities.forEach(
+        function (community) {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+            card.className =
+                "community-card";
+
+
+            card.innerHTML = `
+
+                <div class="community-icon">
+                    ${
+                        community.icon ||
+                        "👥"
+                    }
+                </div>
+
+                <h3>
+                    ${escapeHTML(
+                        community.name
+                    )}
+                </h3>
+
+                <p class="community-description">
+                    ${escapeHTML(
+                        community.description
+                    )}
+                </p>
+
+                <div class="community-meta">
+
+                    <span>
+                        👥 ${
+                            community.members.length
+                        } members
+                    </span>
+
+                    <span class="generation-tag">
+                        ${
+                            community.generation
+                        }
+                    </span>
+
+                </div>
+
+                <div class="community-actions">
+
+                    <button
+                        class="open-btn"
+                        onclick="openCommunity(
+                            '${community.id}'
+                        )"
+                    >
+                        Open Community
+                    </button>
+
+                </div>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        }
+    );
 
 }
 
 
 /* ==========================================
-   HOME
+   HTML ESCAPE
+========================================== */
+
+function escapeHTML(
+    value
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        value || "";
+
+    return div.innerHTML;
+
+}
+
+
+/* ==========================================
+   NAVIGATION
 ========================================== */
 
 function goHome() {
@@ -1200,11 +1927,42 @@ function goHome() {
 }
 
 
+function goProfile() {
+
+    window.location.href =
+        "profile.html";
+
+}
+
+
 /* ==========================================
-   START
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================== */
+
+document.getElementById(
+    "createModal"
+).addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target === this
+        ) {
+
+            closeCreateModal();
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   INITIAL LOAD
 ========================================== */
 
 renderCommunities();
+
 
 </script>
 

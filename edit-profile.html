@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
@@ -19,22 +16,25 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f6fb;
-    color: #202124;
-    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f3ff;
+    color: #292047;
 }
 
-
-/* =========================
+/* =========================================
    HEADER
-========================= */
+========================================= */
 
 .header {
-    background: #2563eb;
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+
     color: white;
 
-    padding: 15px 20px;
+    padding: 18px 22px;
 
     display: flex;
     align-items: center;
@@ -46,294 +46,370 @@ body {
 }
 
 .logo {
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 25px;
+    font-weight: 800;
 }
 
-.back-btn {
+.header-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.header-btn {
     border: none;
-    background: rgba(255,255,255,.18);
+    background: rgba(255,255,255,0.15);
     color: white;
 
-    padding: 9px 15px;
-    border-radius: 20px;
+    padding: 12px 17px;
 
-    font-weight: bold;
+    border-radius: 25px;
+
+    font-weight: 700;
     cursor: pointer;
 }
 
+.header-btn:hover {
+    background: rgba(255,255,255,0.25);
+}
 
-/* =========================
-   CONTAINER
-========================= */
+/* =========================================
+   PAGE
+========================================= */
 
 .container {
-    max-width: 750px;
-    margin: auto;
-    padding: 20px;
+    max-width: 850px;
+    margin: 25px auto;
+    padding: 0 16px 50px;
 }
-
-
-/* =========================
-   TITLE
-========================= */
 
 .page-title {
-    margin-bottom: 5px;
-    font-size: 28px;
-}
-
-.page-description {
-    color: #777;
-    line-height: 1.5;
     margin-bottom: 20px;
 }
 
+.page-title h1 {
+    font-size: 30px;
+    margin-bottom: 6px;
+}
 
-/* =========================
+.page-title p {
+    color: #777;
+}
+
+/* =========================================
    CARD
-========================= */
+========================================= */
 
 .card {
     background: white;
-    border-radius: 18px;
-    padding: 22px;
-    margin-bottom: 18px;
+    border-radius: 25px;
+    padding: 25px;
+    margin-bottom: 20px;
 
     box-shadow:
-        0 4px 16px rgba(0,0,0,.06);
+        0 8px 25px rgba(80,60,140,0.08);
 }
 
-.card-title {
-    color: #1e3a8a;
-    font-size: 19px;
-    margin-bottom: 16px;
+.card h2 {
+    margin-bottom: 18px;
+    font-size: 21px;
 }
 
+/* =========================================
+   PROFILE PHOTO
+========================================= */
 
-/* =========================
-   PROTECTED INFORMATION
-========================= */
-
-.protected {
-    background: #f8fafc;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 12px;
+.photo-section {
+    text-align: center;
 }
 
-.protected-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-
-    padding: 10px 0;
-
-    border-bottom: 1px solid #e5e7eb;
+.photo-wrapper {
+    position: relative;
+    width: 145px;
+    height: 145px;
+    margin: 0 auto 15px;
 }
 
-.protected-row:last-child {
-    border-bottom: none;
+.profile-photo {
+    width: 145px;
+    height: 145px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    background: #e8defd;
+
+    border: 5px solid #eee5ff;
 }
 
-.protected-label {
-    color: #777;
-}
+.photo-button {
+    display: inline-block;
 
-.protected-value {
+    background: #7c3aed;
+    color: white;
+
+    padding: 11px 18px;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+
     font-weight: bold;
-    text-align: right;
 }
 
-.lock {
-    color: #888;
-    font-size: 12px;
-    margin-top: 12px;
+.photo-button:hover {
+    background: #6828d9;
 }
 
+#photoInput {
+    display: none;
+}
 
-/* =========================
+/* =========================================
    FORM
-========================= */
+========================================= */
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 17px;
 }
 
-label {
+.form-group label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
+
+    margin-bottom: 7px;
+
+    font-weight: 700;
 }
 
-textarea,
 input,
+textarea,
 select {
 
     width: 100%;
 
-    padding: 13px;
+    padding: 14px;
 
-    border: 1px solid #d1d5db;
+    border: 1px solid #ddd;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
     font-size: 15px;
 
     outline: none;
 
-    font-family: inherit;
+    background: #fff;
+}
 
-    background: white;
+input:focus,
+textarea:focus,
+select:focus {
+
+    border-color: #7c3aed;
+
+    box-shadow:
+        0 0 0 3px rgba(124,58,237,0.1);
 }
 
 textarea {
-    min-height: 120px;
+    min-height: 110px;
     resize: vertical;
 }
 
-textarea:focus,
-input:focus,
-select:focus {
-    border-color: #2563eb;
+/* =========================================
+   NON EDITABLE INFORMATION
+========================================= */
+
+.locked {
+    background: #f4f2fa;
+    color: #777;
 }
 
+.info-box {
+    background: #f7f3ff;
 
-/* =========================
-   SELECT BUTTON
-========================= */
+    border-radius: 15px;
+
+    padding: 16px;
+
+    margin-bottom: 15px;
+}
+
+.info-label {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.info-value {
+    font-weight: 700;
+}
+
+/* =========================================
+   TAGS
+========================================= */
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 10px;
+}
+
+.tag {
+    background: #eee7ff;
+    color: #6735bd;
+
+    padding: 8px 13px;
+
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 14px;
+}
+
+.tag button {
+    border: none;
+    background: none;
+
+    color: #6735bd;
+
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+/* =========================================
+   SELECTOR BUTTON
+========================================= */
 
 .selector-button {
 
     width: 100%;
 
-    background: #f8fafc;
-
-    border: 1px solid #d1d5db;
-
     padding: 14px;
 
-    border-radius: 11px;
+    background: #f4efff;
 
-    text-align: left;
+    color: #6633bb;
 
-    cursor: pointer;
+    border: 2px dashed #b99ce8;
 
-    font-size: 15px;
-}
+    border-radius: 13px;
 
-.selector-button:hover {
-    border-color: #2563eb;
-}
-
-
-/* =========================
-   SELECTED TAGS
-========================= */
-
-.selected-tags {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 8px;
-
-    margin-top: 12px;
-}
-
-.tag {
-
-    background: #dbeafe;
-
-    color: #1d4ed8;
-
-    padding: 7px 11px;
-
-    border-radius: 20px;
-
-    font-size: 13px;
-
-    font-weight: bold;
-}
-
-.remove-tag {
-
-    margin-left: 5px;
+    font-weight: 700;
 
     cursor: pointer;
-
-    color: #dc2626;
 }
 
+/* =========================================
+   GENERATION
+========================================= */
 
-/* =========================
-   BUTTONS
-========================= */
+.generation-card {
 
-.save-btn {
-
-    width: 100%;
-
-    border: none;
-
-    background: #2563eb;
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
 
     color: white;
 
-    padding: 15px;
+    border-radius: 20px;
 
-    border-radius: 12px;
+    padding: 20px;
 
-    font-size: 16px;
+    margin-top: 10px;
+}
+
+.generation-badge {
+
+    display: inline-block;
+
+    margin-top: 12px;
+
+    background: rgba(255,255,255,0.2);
+
+    padding: 9px 15px;
+
+    border-radius: 20px;
 
     font-weight: bold;
+}
+
+/* =========================================
+   SAVE BUTTON
+========================================= */
+
+.save-button {
+
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: 800;
 
     cursor: pointer;
 }
 
-.save-btn:hover {
-    background: #1d4ed8;
+.save-button:hover {
+    opacity: .9;
 }
 
-.cancel-btn {
+.cancel-button {
 
     width: 100%;
 
-    border: none;
-
-    background: #e5e7eb;
-
-    color: #333;
-
     padding: 14px;
 
-    border-radius: 12px;
+    border: none;
 
-    font-weight: bold;
+    border-radius: 14px;
+
+    background: #eeeaf7;
+
+    color: #54328d;
+
+    font-size: 16px;
+
+    font-weight: 700;
 
     cursor: pointer;
 
     margin-top: 10px;
 }
 
-
-/* =========================
+/* =========================================
    MESSAGE
-========================= */
+========================================= */
 
-.message {
+#message {
 
     display: none;
 
-    background: #dcfce7;
+    padding: 14px;
 
-    color: #166534;
-
-    padding: 12px;
-
-    border-radius: 10px;
+    border-radius: 12px;
 
     margin-bottom: 15px;
 
@@ -342,10 +418,19 @@ select:focus {
     font-weight: bold;
 }
 
+.success {
+    background: #dcfce7;
+    color: #166534;
+}
 
-/* =========================
-   SKILL MODAL
-========================= */
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* =========================================
+   MODAL
+========================================= */
 
 .modal {
 
@@ -355,30 +440,32 @@ select:focus {
 
     inset: 0;
 
-    background: rgba(0,0,0,.55);
+    background: rgba(0,0,0,0.55);
 
     z-index: 500;
 
-    align-items: flex-end;
+    align-items: center;
 
     justify-content: center;
+
+    padding: 20px;
 }
 
-.modal-box {
+.modal-content {
 
     background: white;
 
     width: 100%;
 
-    max-width: 700px;
+    max-width: 600px;
 
-    max-height: 90vh;
-
-    border-radius: 22px 22px 0 0;
-
-    padding: 20px;
+    max-height: 85vh;
 
     overflow-y: auto;
+
+    border-radius: 22px;
+
+    padding: 22px;
 }
 
 .modal-header {
@@ -389,21 +476,14 @@ select:focus {
 
     align-items: center;
 
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-.modal-title {
-
-    font-size: 20px;
-
-    font-weight: bold;
-}
-
-.close-btn {
+.close {
 
     border: none;
 
-    background: #f1f5f9;
+    background: #eee;
 
     width: 38px;
 
@@ -411,137 +491,96 @@ select:focus {
 
     border-radius: 50%;
 
+    font-size: 20px;
+
     cursor: pointer;
-
-    font-size: 18px;
 }
 
+.option-grid {
 
-/* =========================
-   SEARCH
-========================= */
+    display: grid;
 
-.search {
+    grid-template-columns:
+        repeat(auto-fit,minmax(140px,1fr));
 
-    margin-bottom: 15px;
+    gap: 10px;
 }
 
+.option {
 
-/* =========================
-   SKILL CATEGORIES
-========================= */
+    padding: 12px;
 
-.category {
+    border-radius: 12px;
 
-    margin-bottom: 20px;
-}
-
-.category-title {
-
-    font-weight: bold;
-
-    color: #1e3a8a;
-
-    margin-bottom: 10px;
-}
-
-
-/* =========================
-   SKILL OPTIONS
-========================= */
-
-.skill-grid {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 8px;
-}
-
-.skill-option {
-
-    border: 1px solid #d1d5db;
+    border: 1px solid #ddd;
 
     background: white;
 
-    padding: 9px 12px;
-
-    border-radius: 20px;
-
     cursor: pointer;
 
-    font-size: 13px;
+    text-align: center;
+
+    font-weight: 600;
 }
 
-.skill-option.selected {
+.option.selected {
 
-    background: #2563eb;
+    background: #7c3aed;
 
     color: white;
 
-    border-color: #2563eb;
+    border-color: #7c3aed;
 }
 
+/* =========================================
+   FOOTER
+========================================= */
 
-/* =========================
-   MODAL DONE
-========================= */
+.footer {
 
-.done-btn {
+    text-align: center;
 
-    width: 100%;
+    padding: 25px;
 
-    border: none;
-
-    background: #2563eb;
-
-    color: white;
-
-    padding: 14px;
-
-    border-radius: 11px;
-
-    font-weight: bold;
-
-    margin-top: 10px;
-
-    cursor: pointer;
+    color: #888;
 }
 
-
-/* =========================
+/* =========================================
    MOBILE
-========================= */
+========================================= */
 
-@media (max-width: 600px) {
+@media(max-width:600px) {
 
-    .container {
-        padding: 14px;
+    .header {
+        padding: 15px;
     }
 
-    .protected-row {
-        flex-direction: column;
-        gap: 4px;
+    .logo {
+        font-size: 21px;
     }
 
-    .protected-value {
-        text-align: left;
+    .header-btn {
+        padding: 10px 12px;
+        font-size: 13px;
     }
 
+    .card {
+        padding: 20px;
+    }
+
+    .page-title h1 {
+        font-size: 26px;
+    }
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================
+<!-- ======================================
      HEADER
-========================= -->
+====================================== -->
 
 <header class="header">
 
@@ -549,913 +588,489 @@ select:focus {
         Gene-rations
     </div>
 
-    <button
-        class="back-btn"
-        onclick="goBack()">
+    <div class="header-right">
 
-        ← Profile
+        <button
+            class="header-btn"
+            onclick="goToGenerationHub()">
 
-    </button>
+            🏠 Generation Hub
+
+        </button>
+
+    </div>
 
 </header>
 
 
+<!-- ======================================
+     MAIN
+====================================== -->
 
 <main class="container">
 
-
-<h1 class="page-title">
-    Edit Profile
-</h1>
-
-<p class="page-description">
-    Update the information you want other
-    Gene-rations members to see.
-</p>
-
-
-<div
-    id="message"
-    class="message">
-
-    Profile updated successfully.
-
-</div>
-
-
-
-<!-- =========================
-     PROTECTED ACCOUNT DATA
-========================= -->
-
-<section class="card">
-
-    <h2 class="card-title">
-        Account Information
-    </h2>
-
-
-    <div class="protected">
-
-        <div class="protected-row">
-
-            <span class="protected-label">
-                Full Name
-            </span>
-
-            <span
-                id="fullName"
-                class="protected-value">
-
-                -
-
-            </span>
-
-        </div>
-
-
-        <div class="protected-row">
-
-            <span class="protected-label">
-                Email
-            </span>
-
-            <span
-                id="email"
-                class="protected-value">
-
-                -
-
-            </span>
-
-        </div>
-
-
-        <div class="protected-row">
-
-            <span class="protected-label">
-                Phone
-            </span>
-
-            <span
-                id="phone"
-                class="protected-value">
-
-                -
-
-            </span>
-
-        </div>
-
-
-        <div class="protected-row">
-
-            <span class="protected-label">
-                Date of Birth
-            </span>
-
-            <span
-                id="dob"
-                class="protected-value">
-
-                -
-
-            </span>
-
-        </div>
-
-
-        <div class="protected-row">
-
-            <span class="protected-label">
-                Age
-            </span>
-
-            <span
-                id="age"
-                class="protected-value">
-
-                -
-
-            </span>
-
-        </div>
-
-
-        <div class="protected-row">
-
-            <span class="protected-label">
-                Gender
-            </span>
-
-            <span
-                id="gender"
-                class="protected-value">
-
-                -
-
-            </span>
-
-        </div>
-
-
-        <div class="protected-row">
-
-            <span class="protected-label">
-                Generation
-            </span>
-
-            <span
-                id="generation"
-                class="protected-value">
-
-                -
-
-            </span>
-
-        </div>
-
-
-        <div class="protected-row">
-
-            <span class="protected-label">
-                Generation Badge
-            </span>
-
-            <span
-                id="generationBadge"
-                class="protected-value">
-
-                -
-
-            </span>
-
-        </div>
-
-        <div class="lock">
-            🔒 These details come from your account
-            and generation calculation.
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     EDITABLE INFORMATION
-========================= -->
-
-<section class="card">
-
-    <h2 class="card-title">
-        About Me
-    </h2>
-
-
-    <div class="form-group">
-
-        <label for="bio">
-            Bio
-        </label>
-
-        <textarea
-            id="bio"
-            maxlength="500"
-            placeholder="Tell your generation community something about yourself..."></textarea>
+    <div class="page-title">
+
+        <h1>
+            Edit Profile
+        </h1>
+
+        <p>
+            Update your personal information and
+            interests.
+        </p>
 
     </div>
 
 
-    <div class="form-group">
-
-        <label for="country">
-            Country
-        </label>
-
-        <select id="country">
-
-            <option value="">
-                Select country
-            </option>
-
-            <option>Kenya</option>
-            <option>Uganda</option>
-            <option>Tanzania</option>
-            <option>Rwanda</option>
-            <option>Ethiopia</option>
-            <option>Nigeria</option>
-            <option>Ghana</option>
-            <option>South Africa</option>
-            <option>United States</option>
-            <option>Canada</option>
-            <option>United Kingdom</option>
-            <option>India</option>
-            <option>Australia</option>
-            <option>Other</option>
-
-        </select>
-
-    </div>
+    <div id="message"></div>
 
 
-    <div class="form-group">
+    <!-- ==================================
+         PROFILE PHOTO
+    =================================== -->
 
-        <label for="hobbies">
-            Hobbies
+    <section class="card photo-section">
+
+        <h2>
+            Profile Photo
+        </h2>
+
+        <div class="photo-wrapper">
+
+            <img
+                id="profilePhoto"
+                class="profile-photo"
+                src=""
+                alt="Profile Photo">
+
+        </div>
+
+        <label
+            for="photoInput"
+            class="photo-button">
+
+            📷 Change Photo
+
         </label>
 
         <input
-            id="hobbies"
-            type="text"
-            placeholder="e.g. Football, Reading, Music">
+            type="file"
+            id="photoInput"
+            accept="image/*">
 
-    </div>
-
-</section>
+    </section>
 
 
+    <!-- ==================================
+         PERSONAL INFORMATION
+    =================================== -->
 
-<!-- =========================
-     SKILLS
-========================= -->
+    <section class="card">
 
-<section class="card">
-
-    <h2 class="card-title">
-        Skills
-    </h2>
+        <h2>
+            Personal Information
+        </h2>
 
 
-    <div class="form-group">
+        <div class="form-group">
 
-        <label>
-            Select your skills
-        </label>
+            <label for="fullName">
+                Full Name
+            </label>
 
+            <input
+                type="text"
+                id="fullName"
+                placeholder="Your full name">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="email">
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Your email">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="phone">
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Your phone number">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="dob">
+                Date of Birth
+            </label>
+
+            <input
+                type="date"
+                id="dob">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="gender">
+                Gender
+            </label>
+
+            <select id="gender">
+
+                <option value="">
+                    Select gender
+                </option>
+
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Female">
+                    Female
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+                <option value="Prefer not to say">
+                    Prefer not to say
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="country">
+                Country
+            </label>
+
+            <select id="country">
+
+                <option value="">
+                    Select country
+                </option>
+
+                <option value="Kenya">
+                    🇰🇪 Kenya
+                </option>
+
+                <option value="Uganda">
+                    🇺🇬 Uganda
+                </option>
+
+                <option value="Tanzania">
+                    🇹🇿 Tanzania
+                </option>
+
+                <option value="Nigeria">
+                    🇳🇬 Nigeria
+                </option>
+
+                <option value="Ghana">
+                    🇬🇭 Ghana
+                </option>
+
+                <option value="South Africa">
+                    🇿🇦 South Africa
+                </option>
+
+                <option value="United Kingdom">
+                    🇬🇧 United Kingdom
+                </option>
+
+                <option value="United States">
+                    🇺🇸 United States
+                </option>
+
+                <option value="Canada">
+                    🇨🇦 Canada
+                </option>
+
+                <option value="India">
+                    🇮🇳 India
+                </option>
+
+                <option value="Australia">
+                    🇦🇺 Australia
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================
+         GENERATION INFORMATION
+    =================================== -->
+
+    <section class="card">
+
+        <h2>
+            Your Generation
+        </h2>
+
+        <p style="color:#777;">
+            Your generation is automatically
+            determined from your age.
+        </p>
+
+        <div class="generation-card">
+
+            <h2 id="generationName">
+                Loading...
+            </h2>
+
+            <p id="generationDescription">
+                Loading generation information...
+            </p>
+
+            <div
+                class="generation-badge"
+                id="generationBadge">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================
+         ABOUT ME
+    =================================== -->
+
+    <section class="card">
+
+        <h2>
+            About Me
+        </h2>
+
+        <div class="form-group">
+
+            <label for="bio">
+                Bio
+            </label>
+
+            <textarea
+                id="bio"
+                maxlength="500"
+                placeholder="Tell the Gene-rations community about yourself..."></textarea>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================
+         INTERESTS
+    =================================== -->
+
+    <section class="card">
+
+        <h2>
+            Interests
+        </h2>
+
+        <p style="color:#777;margin-bottom:12px;">
+            Choose topics that interest you.
+        </p>
 
         <button
             type="button"
             class="selector-button"
-            onclick="openSkills()">
+            onclick="openInterestSelector()">
 
-            🌍 Choose from international skills
+            ➕ Select Interests
 
         </button>
 
-
         <div
-            id="selectedSkills"
-            class="selected-tags">
+            id="interestsTags"
+            class="tags">
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
+    <!-- ==================================
+         HOBBIES
+    =================================== -->
 
-<!-- =========================
-     INTERESTS
-========================= -->
+    <section class="card">
 
-<section class="card">
+        <h2>
+            Hobbies
+        </h2>
 
-    <h2 class="card-title">
-        Interests
-    </h2>
-
-
-    <div class="form-group">
-
-        <label>
-            What interests you?
-        </label>
-
+        <p style="color:#777;margin-bottom:12px;">
+            Select activities you enjoy.
+        </p>
 
         <button
             type="button"
             class="selector-button"
-            onclick="openInterests()">
+            onclick="openHobbySelector()">
 
-            🌎 Choose your interests
+            ➕ Select Hobbies
 
         </button>
 
-
         <div
-            id="selectedInterests"
-            class="selected-tags">
+            id="hobbiesTags"
+            class="tags">
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
+    <!-- ==================================
+         SKILLS
+    =================================== -->
 
-<!-- =========================
-     SAVE
-========================= -->
+    <section class="card">
 
-<section class="card">
+        <h2>
+            Skills & Education
+        </h2>
 
-    <button
-        class="save-btn"
-        onclick="saveProfile()">
+        <p style="color:#777;margin-bottom:12px;">
 
-        Save Changes
+            Select your professional,
+            technical or practical skills.
 
-    </button>
+        </p>
+
+        <button
+            type="button"
+            class="selector-button"
+            onclick="openSkillSelector()">
+
+            🎓 Select Skills / Education
+
+        </button>
+
+        <div
+            id="skillsTags"
+            class="tags">
+
+        </div>
+
+    </section>
 
 
-    <button
-        class="cancel-btn"
-        onclick="goBack()">
+    <!-- ==================================
+         SAVE
+    =================================== -->
 
-        Cancel
+    <section class="card">
 
-    </button>
+        <button
+            class="save-button"
+            onclick="saveProfile()">
 
-</section>
+            💾 Save Changes
 
+        </button>
+
+        <button
+            class="cancel-button"
+            onclick="goToProfile()">
+
+            Cancel
+
+        </button>
+
+    </section>
 
 </main>
 
 
+<footer class="footer">
 
-<!-- ==================================================
-     SKILLS MODAL
-================================================== -->
+    Gene-rations © 2026
+
+</footer>
+
+
+<!-- ======================================
+     SELECTOR MODAL
+====================================== -->
 
 <div
-    id="skillsModal"
+    id="selectorModal"
     class="modal">
 
-    <div class="modal-box">
-
+    <div class="modal-content">
 
         <div class="modal-header">
 
-            <div class="modal-title">
-                Select Skills
-            </div>
+            <h2 id="modalTitle">
+                Select
+            </h2>
 
             <button
-                class="close-btn"
-                onclick="closeSkills()">
+                class="close"
+                onclick="closeSelector()">
 
-                ✕
+                ×
 
             </button>
 
         </div>
 
-
-        <input
-            id="skillSearch"
-            class="search"
-            type="search"
-            placeholder="Search skills...">
-
-
-        <div id="skillList">
-
-
-            <!-- TECHNOLOGY -->
-
-            <div
-                class="category"
-                data-category="Technology">
-
-                <div class="category-title">
-                    💻 Technology & Digital
-                </div>
-
-                <div class="skill-grid">
-
-                    <button class="skill-option">
-                        Web Development
-                    </button>
-
-                    <button class="skill-option">
-                        Mobile App Development
-                    </button>
-
-                    <button class="skill-option">
-                        Software Development
-                    </button>
-
-                    <button class="skill-option">
-                        Data Analysis
-                    </button>
-
-                    <button class="skill-option">
-                        Artificial Intelligence
-                    </button>
-
-                    <button class="skill-option">
-                        Cybersecurity
-                    </button>
-
-                    <button class="skill-option">
-                        Cloud Computing
-                    </button>
-
-                    <button class="skill-option">
-                        Graphic Design
-                    </button>
-
-                    <button class="skill-option">
-                        UI/UX Design
-                    </button>
-
-                    <button class="skill-option">
-                        Digital Marketing
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- BUSINESS -->
-
-            <div
-                class="category">
-
-                <div class="category-title">
-                    💼 Business & Finance
-                </div>
-
-                <div class="skill-grid">
-
-                    <button class="skill-option">
-                        Entrepreneurship
-                    </button>
-
-                    <button class="skill-option">
-                        Accounting
-                    </button>
-
-                    <button class="skill-option">
-                        Business Management
-                    </button>
-
-                    <button class="skill-option">
-                        Sales
-                    </button>
-
-                    <button class="skill-option">
-                        Marketing
-                    </button>
-
-                    <button class="skill-option">
-                        Project Management
-                    </button>
-
-                    <button class="skill-option">
-                        Financial Planning
-                    </button>
-
-                    <button class="skill-option">
-                        Investing
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- EDUCATION -->
-
-            <div
-                class="category">
-
-                <div class="category-title">
-                    🎓 Education & Research
-                </div>
-
-                <div class="skill-grid">
-
-                    <button class="skill-option">
-                        Teaching
-                    </button>
-
-                    <button class="skill-option">
-                        Research
-                    </button>
-
-                    <button class="skill-option">
-                        Mathematics
-                    </button>
-
-                    <button class="skill-option">
-                        Science
-                    </button>
-
-                    <button class="skill-option">
-                        Languages
-                    </button>
-
-                    <button class="skill-option">
-                        Writing
-                    </button>
-
-                    <button class="skill-option">
-                        Public Speaking
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- CREATIVE -->
-
-            <div
-                class="category">
-
-                <div class="category-title">
-                    🎨 Creative & Media
-                </div>
-
-                <div class="skill-grid">
-
-                    <button class="skill-option">
-                        Photography
-                    </button>
-
-                    <button class="skill-option">
-                        Videography
-                    </button>
-
-                    <button class="skill-option">
-                        Music
-                    </button>
-
-                    <button class="skill-option">
-                        Singing
-                    </button>
-
-                    <button class="skill-option">
-                        Acting
-                    </button>
-
-                    <button class="skill-option">
-                        Dancing
-                    </button>
-
-                    <button class="skill-option">
-                        Content Creation
-                    </button>
-
-                    <button class="skill-option">
-                        Journalism
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- PRACTICAL -->
-
-            <div
-                class="category">
-
-                <div class="category-title">
-                    🔧 Practical & Technical
-                </div>
-
-                <div class="skill-grid">
-
-                    <button class="skill-option">
-                        Electrical Work
-                    </button>
-
-                    <button class="skill-option">
-                        Electronics
-                    </button>
-
-                    <button class="skill-option">
-                        Plumbing
-                    </button>
-
-                    <button class="skill-option">
-                        Carpentry
-                    </button>
-
-                    <button class="skill-option">
-                        Welding
-                    </button>
-
-                    <button class="skill-option">
-                        Automotive Repair
-                    </button>
-
-                    <button class="skill-option">
-                        Construction
-                    </button>
-
-                    <button class="skill-option">
-                        Agriculture
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- HEALTH -->
-
-            <div
-                class="category">
-
-                <div class="category-title">
-                    🩺 Health & Wellness
-                </div>
-
-                <div class="skill-grid">
-
-                    <button class="skill-option">
-                        Nursing
-                    </button>
-
-                    <button class="skill-option">
-                        Healthcare
-                    </button>
-
-                    <button class="skill-option">
-                        Fitness
-                    </button>
-
-                    <button class="skill-option">
-                        Nutrition
-                    </button>
-
-                    <button class="skill-option">
-                        Sports
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- SOCIAL -->
-
-            <div
-                class="category">
-
-                <div class="category-title">
-                    🤝 Social & Community
-                </div>
-
-                <div class="skill-grid">
-
-                    <button class="skill-option">
-                        Leadership
-                    </button>
-
-                    <button class="skill-option">
-                        Community Development
-                    </button>
-
-                    <button class="skill-option">
-                        Mentoring
-                    </button>
-
-                    <button class="skill-option">
-                        Counseling
-                    </button>
-
-                    <button class="skill-option">
-                        Humanitarian Work
-                    </button>
-
-                    <button class="skill-option">
-                        Conflict Resolution
-                    </button>
-
-                </div>
-
-            </div>
-
+        <div
+            id="optionGrid"
+            class="option-grid">
 
         </div>
-
-
-        <button
-            class="done-btn"
-            onclick="closeSkills()">
-
-            Done
-
-        </button>
 
     </div>
 
 </div>
-
-
-
-<!-- ==================================================
-     INTERESTS MODAL
-================================================== -->
-
-<div
-    id="interestsModal"
-    class="modal">
-
-    <div class="modal-box">
-
-
-        <div class="modal-header">
-
-            <div class="modal-title">
-                Select Interests
-            </div>
-
-            <button
-                class="close-btn"
-                onclick="closeInterests()">
-
-                ✕
-
-            </button>
-
-        </div>
-
-
-        <input
-            id="interestSearch"
-            class="search"
-            type="search"
-            placeholder="Search interests...">
-
-
-        <div class="skill-grid">
-
-
-            <button class="skill-option interest-option">
-                Technology
-            </button>
-
-            <button class="skill-option interest-option">
-                Business
-            </button>
-
-            <button class="skill-option interest-option">
-                Education
-            </button>
-
-            <button class="skill-option interest-option">
-                Music
-            </button>
-
-            <button class="skill-option interest-option">
-                Movies
-            </button>
-
-            <button class="skill-option interest-option">
-                Sports
-            </button>
-
-            <button class="skill-option interest-option">
-                Travel
-            </button>
-
-            <button class="skill-option interest-option">
-                Photography
-            </button>
-
-            <button class="skill-option interest-option">
-                Politics
-            </button>
-
-            <button class="skill-option interest-option">
-                Science
-            </button>
-
-            <button class="skill-option interest-option">
-                Environment
-            </button>
-
-            <button class="skill-option interest-option">
-                Agriculture
-            </button>
-
-            <button class="skill-option interest-option">
-                Entrepreneurship
-            </button>
-
-            <button class="skill-option interest-option">
-                Family
-            </button>
-
-            <button class="skill-option interest-option">
-                Community
-            </button>
-
-            <button class="skill-option interest-option">
-                Fitness
-            </button>
-
-            <button class="skill-option interest-option">
-                Art
-            </button>
-
-            <button class="skill-option interest-option">
-                Gaming
-            </button>
-
-            <button class="skill-option interest-option">
-                Books
-            </button>
-
-            <button class="skill-option interest-option">
-                Innovation
-            </button>
-
-
-        </div>
-
-
-        <button
-            class="done-btn"
-            onclick="closeInterests()">
-
-            Done
-
-        </button>
-
-    </div>
-
-</div>
-
 
 
 <script>
 
-/* ==================================================
+/* ==========================================
    LOAD USER
-================================================== */
+========================================== */
 
-const storedUser =
-    localStorage.getItem("userData");
+let userData =
+    JSON.parse(
+        localStorage.getItem("userData")
+    );
 
 
-if (!storedUser) {
+if (!userData) {
 
     window.location.href =
         "login.html";
@@ -1463,106 +1078,74 @@ if (!storedUser) {
 }
 
 
-const user =
-    JSON.parse(storedUser);
+/* ==========================================
+   DEFAULT PHOTO
+========================================== */
+
+const defaultPhoto =
+    "data:image/svg+xml;charset=UTF-8," +
+    encodeURIComponent(`
+
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="300"
+             height="300"
+             viewBox="0 0 300 300">
+
+            <rect width="300"
+                  height="300"
+                  fill="#e8defd"/>
+
+            <circle
+                cx="150"
+                cy="105"
+                r="55"
+                fill="#8d72c8"/>
+
+            <path
+                d="M55 265
+                   C65 185 105 160
+                   150 160
+                   C195 160 235 185 245 265Z"
+                fill="#8d72c8"/>
+
+        </svg>
+
+    `);
 
 
-/* ==================================================
-   HELPERS
-================================================== */
+/* ==========================================
+   GENERATION ENGINE
+========================================== */
 
-function valueOrDefault(
-    value,
-    fallback = "-"
-) {
+function calculateAge(dob) {
 
-    return (
-        value !== undefined &&
-        value !== null &&
-        value !== ""
-    )
-        ? value
-        : fallback;
+    if (!dob) {
+        return null;
+    }
 
-}
-
-
-/* ==================================================
-   DISPLAY PROTECTED DATA
-================================================== */
-
-document.getElementById(
-    "fullName"
-).textContent =
-    valueOrDefault(
-        user.fullName ||
-        user.name
-    );
-
-
-document.getElementById(
-    "email"
-).textContent =
-    valueOrDefault(
-        user.email
-    );
-
-
-document.getElementById(
-    "phone"
-).textContent =
-    valueOrDefault(
-        user.phone ||
-        user.internationalPhone
-    );
-
-
-document.getElementById(
-    "gender"
-).textContent =
-    valueOrDefault(
-        user.gender
-    );
-
-
-/* ==================================================
-   DOB + AGE
-================================================== */
-
-if (user.dob) {
-
-    const dob =
-        new Date(user.dob);
-
-
-    document.getElementById(
-        "dob"
-    ).textContent =
-        dob.toLocaleDateString();
-
+    const birthDate =
+        new Date(dob);
 
     const today =
         new Date();
 
-
     let age =
         today.getFullYear()
         -
-        dob.getFullYear();
-
+        birthDate.getFullYear();
 
     const month =
         today.getMonth()
         -
-        dob.getMonth();
-
+        birthDate.getMonth();
 
     if (
         month < 0 ||
         (
             month === 0 &&
             today.getDate()
-            < dob.getDate()
+            <
+            birthDate.getDate()
         )
     ) {
 
@@ -1570,114 +1153,415 @@ if (user.dob) {
 
     }
 
+    return age;
+}
+
+
+function getGeneration(age) {
+
+    if (age === null) {
+        return "Generation Alpha";
+    }
+
+    if (age >= 65) {
+        return "Silent Generation";
+    }
+
+    if (age >= 45) {
+        return "Generation X";
+    }
+
+    if (age >= 29) {
+        return "Millennial";
+    }
+
+    if (age >= 13) {
+        return "Generation Z";
+    }
+
+    return "Generation Alpha";
+}
+
+
+/* ==========================================
+   GENERATION DATA
+========================================== */
+
+const generationData = {
+
+    "Silent Generation": {
+
+        badge: "🏷️ Silent Generation",
+
+        description:
+            "A generation with deep experience, wisdom and valuable life perspectives.",
+
+        welcome:
+            "Welcome to the Silent Generation community."
+
+    },
+
+    "Generation X": {
+
+        badge: "🏷️ Generation X",
+
+        description:
+            "A generation known for independence, adaptability and experience.",
+
+        welcome:
+            "Welcome to the Generation X community."
+
+    },
+
+    "Millennial": {
+
+        badge: "🏷️ Millennial",
+
+        description:
+            "A connected generation shaped by technology, creativity and change.",
+
+        welcome:
+            "Welcome to the Millennial community."
+
+    },
+
+    "Generation Z": {
+
+        badge: "🏷️ Generation Z",
+
+        description:
+            "A digital generation bringing new ideas, creativity and fresh perspectives.",
+
+        welcome:
+            "Welcome to the Generation Z community."
+
+    },
+
+    "Generation Alpha": {
+
+        badge: "🏷️ Generation Alpha",
+
+        description:
+            "A young generation growing up in a highly connected digital world.",
+
+        welcome:
+            "Welcome to the Generation Alpha community."
+
+    }
+
+};
+
+
+/* ==========================================
+   EDITABLE OPTIONS
+========================================== */
+
+const interests = [
+
+    "Technology",
+    "Business",
+    "Education",
+    "Music",
+    "Sports",
+    "Travel",
+    "Politics",
+    "Science",
+    "Art",
+    "Fashion",
+    "Health",
+    "Agriculture",
+    "Finance",
+    "Entrepreneurship",
+    "Gaming",
+    "Photography",
+    "Writing",
+    "Community Service"
+
+];
+
+
+const hobbies = [
+
+    "Football",
+    "Reading",
+    "Cooking",
+    "Dancing",
+    "Singing",
+    "Swimming",
+    "Cycling",
+    "Gardening",
+    "Fishing",
+    "Traveling",
+    "Photography",
+    "Gaming",
+    "Watching Movies",
+    "Writing",
+    "Drawing",
+    "Hiking",
+    "Volunteering"
+
+];
+
+
+const skills = [
+
+    "Computer Skills",
+    "Web Development",
+    "Programming",
+    "Graphic Design",
+    "Digital Marketing",
+    "Business Management",
+    "Accounting",
+    "Teaching",
+    "Leadership",
+    "Communication",
+    "Public Speaking",
+    "Entrepreneurship",
+    "Carpentry",
+    "Electrical Work",
+    "Plumbing",
+    "Farming",
+    "Cooking",
+    "Fashion Design",
+    "Photography",
+    "Video Editing",
+    "Music",
+    "Writing",
+    "Research",
+    "Healthcare",
+    "Mechanics"
+
+];
+
+
+/* ==========================================
+   LOAD FORM
+========================================== */
+
+function loadProfile() {
+
+    if (!userData) {
+        return;
+    }
+
 
     document.getElementById(
-        "age"
+        "fullName"
+    ).value =
+        userData.fullName || "";
+
+
+    document.getElementById(
+        "email"
+    ).value =
+        userData.email || "";
+
+
+    document.getElementById(
+        "phone"
+    ).value =
+        userData.phone || "";
+
+
+    document.getElementById(
+        "dob"
+    ).value =
+        userData.dob || "";
+
+
+    document.getElementById(
+        "gender"
+    ).value =
+        userData.gender || "";
+
+
+    document.getElementById(
+        "country"
+    ).value =
+        userData.country || "";
+
+
+    document.getElementById(
+        "bio"
+    ).value =
+        userData.bio || "";
+
+
+    /* PHOTO */
+
+    document.getElementById(
+        "profilePhoto"
+    ).src =
+        userData.profilePhoto ||
+        defaultPhoto;
+
+
+    /* ARRAYS */
+
+    userData.interests =
+        Array.isArray(userData.interests)
+            ? userData.interests
+            : [];
+
+    userData.hobbies =
+        Array.isArray(userData.hobbies)
+            ? userData.hobbies
+            : [];
+
+    userData.skills =
+        Array.isArray(userData.skills)
+            ? userData.skills
+            : [];
+
+
+    renderTags(
+        "interestsTags",
+        userData.interests,
+        "interests"
+    );
+
+
+    renderTags(
+        "hobbiesTags",
+        userData.hobbies,
+        "hobbies"
+    );
+
+
+    renderTags(
+        "skillsTags",
+        userData.skills,
+        "skills"
+    );
+
+
+    updateGeneration();
+
+}
+
+
+/* ==========================================
+   UPDATE GENERATION
+========================================== */
+
+function updateGeneration() {
+
+    const dob =
+        document.getElementById(
+            "dob"
+        ).value;
+
+
+    const age =
+        calculateAge(dob);
+
+
+    const generation =
+        getGeneration(age);
+
+
+    const info =
+        generationData[generation];
+
+
+    document.getElementById(
+        "generationName"
     ).textContent =
-        age + " years";
+        generation;
+
+
+    document.getElementById(
+        "generationBadge"
+    ).textContent =
+        info.badge;
+
+
+    document.getElementById(
+        "generationDescription"
+    ).textContent =
+        info.description;
+
+
+    /*
+       Keep userData synchronized.
+    */
+
+    userData.age =
+        age;
+
+    userData.generation =
+        generation;
+
+    userData.generationBadge =
+        info.badge;
+
+    userData.generationDescription =
+        info.description;
 
 }
 
 
-/* ==================================================
-   GENERATION
-================================================== */
+/* ==========================================
+   DOB CHANGE
+========================================== */
 
 document.getElementById(
-    "generation"
-).textContent =
-    valueOrDefault(
-        user.generation
-    );
+    "dob"
+).addEventListener(
+    "change",
+    updateGeneration
+);
 
 
-document.getElementById(
-    "generationBadge"
-).textContent =
-    valueOrDefault(
-        user.generationBadge ||
-        user.generation
-    );
+/* ==========================================
+   RENDER TAGS
+========================================== */
 
-
-/* ==================================================
-   EDITABLE DATA
-================================================== */
-
-document.getElementById(
-    "bio"
-).value =
-    user.bio || "";
-
-
-document.getElementById(
-    "country"
-).value =
-    user.country || "";
-
-
-document.getElementById(
-    "hobbies"
-).value =
-    user.hobbies || "";
-
-
-
-/* ==================================================
-   ARRAYS
-================================================== */
-
-let selectedSkills =
-    Array.isArray(user.skills)
-        ? [...user.skills]
-        : [];
-
-
-let selectedInterests =
-    Array.isArray(user.interests)
-        ? [...user.interests]
-        : [];
-
-
-
-/* ==================================================
-   DISPLAY SKILLS
-================================================== */
-
-function renderSkills() {
+function renderTags(
+    elementId,
+    values,
+    property
+) {
 
     const container =
         document.getElementById(
-            "selectedSkills"
+            elementId
         );
 
 
     container.innerHTML = "";
 
 
-    selectedSkills.forEach(
-        function(skill, index) {
+    values.forEach(
+        function(value) {
 
             const tag =
                 document.createElement(
-                    "span"
+                    "div"
                 );
 
             tag.className =
                 "tag";
 
 
-            tag.innerHTML =
-                skill +
-                ' <span class="remove-tag" ' +
-                'onclick="removeSkill(' +
-                index +
-                ')">✕</span>';
+            tag.innerHTML = `
+
+                <span>
+                    ${escapeHTML(value)}
+                </span>
+
+                <button
+                    type="button"
+                    onclick="removeItem('${property}','${escapeAttribute(value)}')">
+
+                    ×
+
+                </button>
+
+            `;
 
 
-            container.appendChild(
-                tag
-            );
+            container.appendChild(tag);
 
         }
     );
@@ -1685,438 +1569,524 @@ function renderSkills() {
 }
 
 
-function removeSkill(index) {
+/* ==========================================
+   ESCAPE
+========================================== */
 
-    selectedSkills.splice(
-        index,
-        1
-    );
+function escapeHTML(value) {
 
-    renderSkills();
-
-    updateSkillButtons();
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
 
-/* ==================================================
-   DISPLAY INTERESTS
-================================================== */
+function escapeAttribute(value) {
 
-function renderInterests() {
+    return String(value)
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'");
 
-    const container =
+}
+
+
+/* ==========================================
+   REMOVE ITEM
+========================================== */
+
+function removeItem(
+    property,
+    value
+) {
+
+    userData[property] =
+        userData[property]
+            .filter(
+                item =>
+                    item !== value
+            );
+
+
+    renderTags(
+        property === "interests"
+            ? "interestsTags"
+            : property === "hobbies"
+                ? "hobbiesTags"
+                : "skillsTags",
+
+        userData[property],
+
+        property
+    );
+
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+let currentProperty =
+    null;
+
+let currentOptions =
+    [];
+
+
+function openSelector(
+    property,
+    title,
+    options
+) {
+
+    currentProperty =
+        property;
+
+    currentOptions =
+        options;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        title;
+
+
+    const grid =
         document.getElementById(
-            "selectedInterests"
+            "optionGrid"
         );
 
 
-    container.innerHTML = "";
+    grid.innerHTML = "";
 
 
-    selectedInterests.forEach(
-        function(interest, index) {
+    options.forEach(
+        function(option) {
 
-            const tag =
+            const button =
                 document.createElement(
-                    "span"
+                    "button"
                 );
 
-            tag.className =
-                "tag";
+            button.type =
+                "button";
 
+            button.className =
+                "option";
 
-            tag.innerHTML =
-                interest +
-                ' <span class="remove-tag" ' +
-                'onclick="removeInterest(' +
-                index +
-                ')">✕</span>';
 
+            if (
+                userData[property]
+                .includes(option)
+            ) {
 
-            container.appendChild(
-                tag
-            );
-
-        }
-    );
-
-}
-
-
-function removeInterest(index) {
-
-    selectedInterests.splice(
-        index,
-        1
-    );
-
-    renderInterests();
-
-    updateInterestButtons();
-
-}
-
-
-
-/* ==================================================
-   SKILL BUTTONS
-================================================== */
-
-document.querySelectorAll(
-    ".skill-option"
-).forEach(
-    function(button) {
-
-        button.addEventListener(
-            "click",
-            function() {
-
-                const value =
-                    this.textContent.trim();
-
-
-                if (
-                    selectedSkills.includes(
-                        value
-                    )
-                ) {
-
-                    selectedSkills =
-                        selectedSkills.filter(
-                            function(skill) {
-
-                                return skill !== value;
-
-                            }
-                        );
-
-                }
-
-                else {
-
-                    selectedSkills.push(
-                        value
-                    );
-
-                }
-
-
-                renderSkills();
-
-                updateSkillButtons();
-
-            }
-        );
-
-    }
-);
-
-
-function updateSkillButtons() {
-
-    document.querySelectorAll(
-        "#skillList .skill-option"
-    ).forEach(
-        function(button) {
-
-            const value =
-                button.textContent.trim();
-
-
-            button.classList.toggle(
-                "selected",
-                selectedSkills.includes(
-                    value
-                )
-            );
-
-        }
-    );
-
-}
-
-
-
-/* ==================================================
-   INTEREST BUTTONS
-================================================== */
-
-document.querySelectorAll(
-    ".interest-option"
-).forEach(
-    function(button) {
-
-        button.addEventListener(
-            "click",
-            function() {
-
-                const value =
-                    this.textContent.trim();
-
-
-                if (
-                    selectedInterests.includes(
-                        value
-                    )
-                ) {
-
-                    selectedInterests =
-                        selectedInterests.filter(
-                            function(item) {
-
-                                return item !== value;
-
-                            }
-                        );
-
-                }
-
-                else {
-
-                    selectedInterests.push(
-                        value
-                    );
-
-                }
-
-
-                renderInterests();
-
-                updateInterestButtons();
-
-            }
-        );
-
-    }
-);
-
-
-function updateInterestButtons() {
-
-    document.querySelectorAll(
-        ".interest-option"
-    ).forEach(
-        function(button) {
-
-            const value =
-                button.textContent.trim();
-
-
-            button.classList.toggle(
-                "selected",
-                selectedInterests.includes(
-                    value
-                )
-            );
-
-        }
-    );
-
-}
-
-
-
-/* ==================================================
-   SKILL SEARCH
-================================================== */
-
-document.getElementById(
-    "skillSearch"
-).addEventListener(
-    "input",
-    function() {
-
-        const search =
-            this.value.toLowerCase();
-
-
-        document.querySelectorAll(
-            "#skillList .category"
-        ).forEach(
-            function(category) {
-
-                let visible = false;
-
-
-                category.querySelectorAll(
-                    ".skill-option"
-                ).forEach(
-                    function(button) {
-
-                        const text =
-                            button.textContent
-                            .toLowerCase();
-
-
-                        const match =
-                            text.includes(
-                                search
-                            );
-
-
-                        button.style.display =
-                            match
-                                ? "inline-block"
-                                : "none";
-
-
-                        if (match) {
-
-                            visible = true;
-
-                        }
-
-                    }
+                button.classList.add(
+                    "selected"
                 );
 
-
-                category.style.display =
-                    visible
-                        ? "block"
-                        : "none";
-
             }
-        );
-
-    }
-);
 
 
-
-/* ==================================================
-   INTEREST SEARCH
-================================================== */
-
-document.getElementById(
-    "interestSearch"
-).addEventListener(
-    "input",
-    function() {
-
-        const search =
-            this.value.toLowerCase();
+            button.textContent =
+                option;
 
 
-        document.querySelectorAll(
-            ".interest-option"
-        ).forEach(
-            function(button) {
+            button.onclick =
+                function() {
 
-                const text =
-                    button.textContent
-                    .toLowerCase();
+                    toggleOption(
+                        option,
+                        button
+                    );
 
-
-                button.style.display =
-                    text.includes(search)
-                        ? "inline-block"
-                        : "none";
-
-            }
-        );
-
-    }
-);
+                };
 
 
+            grid.appendChild(
+                button
+            );
 
-/* ==================================================
-   OPEN / CLOSE SKILLS
-================================================== */
+        }
+    );
 
-function openSkills() {
 
     document.getElementById(
-        "skillsModal"
+        "selectorModal"
     ).style.display =
         "flex";
 
 }
 
 
-function closeSkills() {
+function toggleOption(
+    option,
+    button
+) {
+
+    if (
+        userData[currentProperty]
+            .includes(option)
+    ) {
+
+        userData[currentProperty] =
+            userData[currentProperty]
+                .filter(
+                    item =>
+                        item !== option
+                );
+
+        button.classList.remove(
+            "selected"
+        );
+
+    } else {
+
+        userData[currentProperty]
+            .push(option);
+
+        button.classList.add(
+            "selected"
+        );
+
+    }
+
+
+    renderTags(
+        currentProperty === "interests"
+            ? "interestsTags"
+            : currentProperty === "hobbies"
+                ? "hobbiesTags"
+                : "skillsTags",
+
+        userData[currentProperty],
+
+        currentProperty
+    );
+
+}
+
+
+function closeSelector() {
 
     document.getElementById(
-        "skillsModal"
+        "selectorModal"
     ).style.display =
         "none";
 
 }
 
 
+function openInterestSelector() {
 
-/* ==================================================
-   OPEN / CLOSE INTERESTS
-================================================== */
-
-function openInterests() {
-
-    document.getElementById(
-        "interestsModal"
-    ).style.display =
-        "flex";
+    openSelector(
+        "interests",
+        "Select Interests",
+        interests
+    );
 
 }
 
 
-function closeInterests() {
+function openHobbySelector() {
 
-    document.getElementById(
-        "interestsModal"
-    ).style.display =
-        "none";
+    openSelector(
+        "hobbies",
+        "Select Hobbies",
+        hobbies
+    );
 
 }
 
 
+function openSkillSelector() {
 
-/* ==================================================
+    openSelector(
+        "skills",
+        "Select Skills / Education",
+        skills
+    );
+
+}
+
+
+/* ==========================================
+   PROFILE PHOTO
+========================================== */
+
+document.getElementById(
+    "photoInput"
+).addEventListener(
+    "change",
+    function(event) {
+
+        const file =
+            event.target.files[0];
+
+
+        if (!file) {
+            return;
+        }
+
+
+        if (
+            !file.type.startsWith(
+                "image/"
+            )
+        ) {
+
+            showMessage(
+                "Please select an image file.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(e) {
+
+                userData.profilePhoto =
+                    e.target.result;
+
+
+                document.getElementById(
+                    "profilePhoto"
+                ).src =
+                    e.target.result;
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* ==========================================
    SAVE PROFILE
-================================================== */
+========================================== */
 
 function saveProfile() {
 
-    user.bio =
+    const fullName =
         document.getElementById(
-            "bio"
+            "fullName"
         ).value.trim();
 
 
-    user.country =
+    const email =
+        document.getElementById(
+            "email"
+        ).value.trim();
+
+
+    const phone =
+        document.getElementById(
+            "phone"
+        ).value.trim();
+
+
+    const dob =
+        document.getElementById(
+            "dob"
+        ).value;
+
+
+    const gender =
+        document.getElementById(
+            "gender"
+        ).value;
+
+
+    const country =
         document.getElementById(
             "country"
         ).value;
 
 
-    user.hobbies =
+    const bio =
         document.getElementById(
-            "hobbies"
+            "bio"
         ).value.trim();
 
 
-    user.skills =
-        selectedSkills;
+    /* VALIDATION */
+
+    if (!fullName) {
+
+        showMessage(
+            "Please enter your full name.",
+            "error"
+        );
+
+        return;
+
+    }
 
 
-    user.interests =
-        selectedInterests;
+    if (!email) {
+
+        showMessage(
+            "Please enter your email address.",
+            "error"
+        );
+
+        return;
+
+    }
 
 
-    /*
-       Save the updated user object.
-    */
+    if (!dob) {
+
+        showMessage(
+            "Please enter your date of birth.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const age =
+        calculateAge(dob);
+
+
+    if (
+        age === null ||
+        age < 0 ||
+        age > 116
+    ) {
+
+        showMessage(
+            "Please enter a valid date of birth.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /* ======================================
+       UPDATE ONLY EDITABLE DATA
+    ====================================== */
+
+    userData.fullName =
+        fullName;
+
+    userData.email =
+        email;
+
+    userData.phone =
+        phone;
+
+    userData.dob =
+        dob;
+
+    userData.age =
+        age;
+
+    userData.gender =
+        gender;
+
+    userData.country =
+        country;
+
+    userData.bio =
+        bio;
+
+
+    /* GENERATION */
+
+    const generation =
+        getGeneration(age);
+
+
+    const info =
+        generationData[generation];
+
+
+    userData.generation =
+        generation;
+
+    userData.generationBadge =
+        info.badge;
+
+    userData.generationDescription =
+        info.description;
+
+
+    /* ======================================
+       LAST UPDATED
+    ====================================== */
+
+    userData.lastProfileUpdate =
+        new Date().toISOString();
+
+
+    /* ======================================
+       SAVE
+    ====================================== */
 
     localStorage.setItem(
         "userData",
-        JSON.stringify(user)
+        JSON.stringify(userData)
     );
 
+
+    showMessage(
+        "Profile updated successfully!",
+        "success"
+    );
+
+
+    setTimeout(
+        function() {
+
+            window.location.href =
+                "profile.html";
+
+        },
+        900
+    );
+
+}
+
+
+/* ==========================================
+   MESSAGE
+========================================== */
+
+function showMessage(
+    text,
+    type
+) {
 
     const message =
         document.getElementById(
             "message"
         );
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        type;
 
 
     message.style.display =
@@ -2128,26 +2098,22 @@ function saveProfile() {
         behavior: "smooth"
     });
 
+}
 
-    setTimeout(
-        function() {
 
-            window.location.href =
-                "profile.html";
+/* ==========================================
+   NAVIGATION
+========================================== */
 
-        },
-        1000
-    );
+function goToGenerationHub() {
+
+    window.location.href =
+        "generations.html";
 
 }
 
 
-
-/* ==================================================
-   NAVIGATION
-================================================== */
-
-function goBack() {
+function goToProfile() {
 
     window.location.href =
         "profile.html";
@@ -2155,21 +2121,35 @@ function goBack() {
 }
 
 
-/* ==================================================
-   INITIAL RENDER
-================================================== */
+/* ==========================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================== */
 
-renderSkills();
+document.getElementById(
+    "selectorModal"
+).addEventListener(
+    "click",
+    function(event) {
 
-renderInterests();
+        if (
+            event.target === this
+        ) {
 
-updateSkillButtons();
+            closeSelector();
 
-updateInterestButtons();
+        }
+
+    }
+);
+
+
+/* ==========================================
+   INITIALIZE
+========================================== */
+
+loadProfile();
 
 </script>
 
-
 </body>
-
 </html>

@@ -5,8 +5,10 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Gene-rations | Notifications</title>
 
@@ -19,198 +21,307 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f3f5fb;
-    color: #222;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f5f3ff;
+
+    color: #29194d;
+
+    min-height: 100vh;
 }
 
 
-/* =========================
+/* ==========================================
    HEADER
-========================= */
+========================================== */
 
 .header {
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
-    color: white;
-
-    padding: 15px 20px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
     position: sticky;
+
     top: 0;
+
     z-index: 100;
-}
 
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-}
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
 
-.home-btn {
-    border: none;
-    background: rgba(255,255,255,.2);
     color: white;
 
-    padding: 9px 15px;
-    border-radius: 20px;
+    padding: 17px 20px;
 
-    font-weight: bold;
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+
+.logo {
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+.header-actions {
+
+    display: flex;
+
+    gap: 9px;
+
+    align-items: center;
+}
+
+
+.header-button {
+
+    border: none;
+
+    border-radius: 25px;
+
+    padding: 11px 15px;
+
+    background:
+        rgba(255,255,255,0.16);
+
+    color: white;
+
+    font-weight: 700;
+
     cursor: pointer;
 }
 
 
-/* =========================
+.header-button:hover {
+
+    background:
+        rgba(255,255,255,0.27);
+}
+
+
+/* ==========================================
    MAIN
-========================= */
+========================================== */
 
 .container {
-    max-width: 750px;
+
+    max-width: 850px;
+
     margin: auto;
-    padding: 20px;
+
+    padding:
+        25px
+        16px
+        50px;
 }
 
 
-/* =========================
+/* ==========================================
    TITLE
-========================= */
+========================================== */
 
-.title-card {
-    background: white;
+.page-header {
 
-    border-radius: 18px;
-
-    padding: 20px;
-
-    margin-bottom: 15px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.06);
-}
-
-.title-row {
     display: flex;
-
-    justify-content: space-between;
 
     align-items: center;
 
-    gap: 10px;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 22px;
 }
 
-.title-card h1 {
-    font-size: 26px;
+
+.page-header h1 {
+
+    font-size: 30px;
 }
 
-.title-card p {
+
+.page-header p {
+
+    margin-top: 6px;
+
     color: #777;
-
-    margin-top: 7px;
-
-    line-height: 1.5;
 }
 
 
-/* =========================
-   CONTROLS
-========================= */
+.unread-badge {
 
-.controls {
+    min-width: 42px;
+
+    height: 42px;
+
+    padding: 0 12px;
+
+    border-radius: 50px;
+
     display: flex;
 
-    gap: 8px;
+    align-items: center;
 
-    margin-bottom: 15px;
+    justify-content: center;
 
-    overflow-x: auto;
+    background: #7c3aed;
+
+    color: white;
+
+    font-weight: 800;
 }
 
-.control-btn {
-    border: none;
+
+/* ==========================================
+   TOOLBAR
+========================================== */
+
+.toolbar {
 
     background: white;
 
-    color: #555;
+    padding: 14px;
+
+    border-radius: 18px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    box-shadow:
+        0 6px 20px
+        rgba(70,50,120,0.06);
+}
+
+
+.filter-button {
+
+    border: none;
+
+    background: #f0ebff;
+
+    color: #6335a7;
 
     padding: 10px 15px;
 
     border-radius: 20px;
 
-    white-space: nowrap;
+    font-weight: 700;
 
     cursor: pointer;
-
-    font-weight: bold;
 }
 
-.control-btn.active {
-    background: #2563eb;
+
+.filter-button.active {
+
+    background: #7c3aed;
 
     color: white;
 }
 
-.mark-read-btn {
+
+.mark-read-button {
+
+    margin-left: auto;
+
     border: none;
 
-    background: #eff6ff;
+    background: #e8f0ff;
 
-    color: #2563eb;
+    color: #2458bb;
 
-    padding: 9px 12px;
+    padding: 10px 15px;
 
-    border-radius: 10px;
+    border-radius: 20px;
+
+    font-weight: 700;
 
     cursor: pointer;
-
-    font-size: 12px;
-
-    font-weight: bold;
 }
 
 
-/* =========================
-   NOTIFICATION CARD
-========================= */
+/* ==========================================
+   NOTIFICATION LIST
+========================================== */
+
+.notification-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
 
 .notification {
+
     background: white;
 
-    border-radius: 16px;
+    border-radius: 20px;
 
-    padding: 16px;
-
-    margin-bottom: 10px;
+    padding: 17px;
 
     display: flex;
 
     gap: 13px;
 
-    cursor: pointer;
+    align-items: flex-start;
+
+    position: relative;
 
     box-shadow:
-        0 3px 12px rgba(0,0,0,.05);
+        0 6px 20px
+        rgba(70,50,120,0.06);
 
-    border-left: 4px solid transparent;
+    transition:
+        transform .15s,
+        background .15s;
 }
+
 
 .notification:hover {
-    background: #fafcff;
+
+    transform:
+        translateY(-1px);
 }
+
 
 .notification.unread {
-    background: #eff6ff;
 
-    border-left-color: #2563eb;
+    background: #f0eaff;
+
+    border-left:
+        4px solid #7c3aed;
 }
 
+
 .notification-icon {
-    width: 45px;
 
-    height: 45px;
+    width: 47px;
 
-    min-width: 45px;
+    height: 47px;
+
+    min-width: 47px;
 
     border-radius: 50%;
 
@@ -220,113 +331,214 @@ body {
 
     justify-content: center;
 
-    font-size: 20px;
+    font-size: 21px;
 
-    background: #ede9fe;
+    background: #eee7ff;
 }
+
 
 .notification-content {
+
     flex: 1;
+
+    min-width: 0;
 }
 
-.notification-text {
+
+.notification-title {
+
+    font-weight: 800;
+
+    margin-bottom: 5px;
+}
+
+
+.notification-message {
+
+    color: #666;
+
     line-height: 1.45;
 
     font-size: 14px;
 }
 
+
 .notification-time {
+
     color: #999;
 
-    font-size: 11px;
+    font-size: 12px;
 
-    margin-top: 6px;
-}
-
-.unread-dot {
-    width: 9px;
-
-    height: 9px;
-
-    background: #2563eb;
-
-    border-radius: 50%;
-
-    margin-top: 6px;
+    margin-top: 7px;
 }
 
 
-/* =========================
-   EMPTY
-========================= */
+.notification-actions {
 
-.empty {
-    background: white;
+    display: flex;
 
-    border-radius: 18px;
-
-    padding: 50px 20px;
-
-    text-align: center;
-
-    color: #777;
-
-    display: none;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.05);
-}
-
-.empty-icon {
-    font-size: 48px;
-
-    margin-bottom: 12px;
-}
-
-.empty h2 {
-    color: #333;
-
-    margin-bottom: 7px;
+    gap: 5px;
 }
 
 
-/* =========================
-   CLEAR
-========================= */
+.notification-action {
 
-.clear-btn {
     border: none;
 
     background: transparent;
 
-    color: #dc2626;
+    width: 32px;
 
-    padding: 9px;
+    height: 32px;
+
+    border-radius: 50%;
 
     cursor: pointer;
 
-    font-weight: bold;
+    color: #777;
 
-    font-size: 12px;
+    font-size: 16px;
 }
 
 
-/* =========================
+.notification-action:hover {
+
+    background: #eee9f8;
+}
+
+
+.unread-dot {
+
+    position: absolute;
+
+    width: 9px;
+
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #7c3aed;
+
+    top: 15px;
+
+    right: 15px;
+}
+
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.empty-state {
+
+    background: white;
+
+    border-radius: 25px;
+
+    padding: 55px 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 6px 20px
+        rgba(70,50,120,0.06);
+}
+
+
+.empty-icon {
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+
+.empty-state h2 {
+
+    margin-bottom: 8px;
+}
+
+
+.empty-state p {
+
+    color: #777;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer {
+
+    text-align: center;
+
+    padding: 25px;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
    MOBILE
-========================= */
+========================================== */
 
 @media (max-width: 600px) {
 
-    .container {
+    .header {
+
         padding: 14px;
     }
 
-    .title-card h1 {
-        font-size: 23px;
+    .logo {
+
+        font-size: 20px;
     }
 
-    .title-row {
-        align-items: flex-start;
+    .header-button {
+
+        padding:
+            9px 11px;
+
+        font-size: 12px;
+    }
+
+    .container {
+
+        padding:
+            20px
+            12px
+            40px;
+    }
+
+    .page-header h1 {
+
+        font-size: 26px;
+    }
+
+    .mark-read-button {
+
+        margin-left: 0;
+
+        width: 100%;
+    }
+
+    .notification {
+
+        padding: 14px;
+    }
+
+    .notification-icon {
+
+        width: 42px;
+
+        height: 42px;
+
+        min-width: 42px;
     }
 
 }
@@ -339,9 +551,9 @@ body {
 <body>
 
 
-<!-- =========================
+<!-- =========================================
      HEADER
-========================= -->
+========================================= -->
 
 <header class="header">
 
@@ -349,167 +561,198 @@ body {
         Gene-rations
     </div>
 
-    <button
-        class="home-btn"
-        onclick="goHome()">
 
-        ← Generation Hub
-
-    </button>
-
-</header>
-
-
-
-<main class="container">
-
-
-<!-- =========================
-     TITLE
-========================= -->
-
-<section class="title-card">
-
-    <div class="title-row">
-
-        <h1>
-            Notifications
-        </h1>
+    <div class="header-actions">
 
         <button
-            class="mark-read-btn"
-            onclick="markAllRead()">
+            class="header-button"
+            id="hubButton">
 
-            Mark all read
+            🏠 Generation Hub
+
+        </button>
+
+
+        <button
+            class="header-button"
+            id="settingsButton">
+
+            ⚙️
 
         </button>
 
     </div>
 
-    <p id="notificationSubtitle">
-        Loading your latest Gene-rations activity...
-    </p>
-
-</section>
+</header>
 
 
 
-<!-- =========================
-     FILTERS
-========================= -->
+<!-- =========================================
+     MAIN
+========================================= -->
 
-<div class="controls">
+<main class="container">
 
-    <button
-        class="control-btn active"
-        onclick="setFilter('all', this)">
 
-        All
+    <section class="page-header">
 
-    </button>
+        <div>
 
-    <button
-        class="control-btn"
-        onclick="setFilter('unread', this)">
+            <h1>
+                Notifications
+            </h1>
 
-        Unread
+            <p>
+                Stay updated with what is happening
+                in your Gene-rations community.
+            </p>
 
-    </button>
+        </div>
 
-    <button
-        class="control-btn"
-        onclick="setFilter('social', this)">
 
-        Social
+        <div
+            id="unreadCount"
+            class="unread-badge">
 
-    </button>
+            0
 
-    <button
-        class="control-btn"
-        onclick="setFilter('community', this)">
+        </div>
 
-        Communities
-
-    </button>
-
-    <button
-        class="control-btn"
-        onclick="setFilter('system', this)">
-
-        System
-
-    </button>
-
-</div>
+    </section>
 
 
 
-<!-- =========================
-     NOTIFICATIONS
-========================= -->
+    <!-- =====================================
+         TOOLBAR
+    ====================================== -->
 
-<div id="notificationsContainer">
-
-</div>
+    <section class="toolbar">
 
 
+        <button
+            class="filter-button active"
+            data-filter="all">
 
-<!-- =========================
-     EMPTY
-========================= -->
+            All
 
-<div
-    id="empty"
-    class="empty">
-
-    <div class="empty-icon">
-        🔔
-    </div>
-
-    <h2>
-        You're all caught up
-    </h2>
-
-    <p>
-        There are no notifications to show.
-    </p>
-
-</div>
+        </button>
 
 
+        <button
+            class="filter-button"
+            data-filter="unread">
 
-<!-- =========================
-     CLEAR ALL
-========================= -->
+            Unread
 
-<div style="text-align:center; margin-top:15px;">
+        </button>
 
-    <button
-        class="clear-btn"
-        onclick="clearAll()">
 
-        Clear all notifications
+        <button
+            class="filter-button"
+            data-filter="social">
 
-    </button>
+            Social
 
-</div>
+        </button>
+
+
+        <button
+            class="filter-button"
+            data-filter="community">
+
+            Communities
+
+        </button>
+
+
+        <button
+            class="filter-button"
+            data-filter="events">
+
+            Events
+
+        </button>
+
+
+        <button
+            class="mark-read-button"
+            id="markAllRead">
+
+            ✓ Mark all as read
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =====================================
+         NOTIFICATIONS
+    ====================================== -->
+
+    <section
+        id="notificationList"
+        class="notification-list">
+
+    </section>
+
+
+
+    <!-- =====================================
+         EMPTY STATE
+    ====================================== -->
+
+    <section
+        id="emptyState"
+        class="empty-state"
+        style="display:none;">
+
+        <div class="empty-icon">
+            🔔
+        </div>
+
+        <h2>
+            No notifications
+        </h2>
+
+        <p>
+            You're all caught up.
+            New activity will appear here.
+        </p>
+
+    </section>
 
 
 </main>
 
 
 
+<footer>
+
+    Gene-rations © 2026
+
+</footer>
+
+
+
 <script>
 
 /* ==================================================
-   USER
+   GENE-RATIONS NOTIFICATION ENGINE
 ================================================== */
 
-const storedUser =
-    localStorage.getItem("userData");
+
+/* ================================================
+   CURRENT USER
+================================================ */
+
+let userData =
+    JSON.parse(
+        localStorage.getItem("userData")
+    );
 
 
-if (!storedUser) {
+if (!userData) {
 
     window.location.href =
         "login.html";
@@ -517,455 +760,100 @@ if (!storedUser) {
 }
 
 
-const user =
-    JSON.parse(storedUser);
+/* ================================================
+   STORAGE KEY
+================================================ */
+
+const notificationKey =
+    "geneRationsNotifications";
 
 
-const userName =
-    user.fullName ||
-    user.name ||
-    "Gene-rations Member";
-
-
-const generation =
-    user.generation ||
-    "Your Generation";
-
-
-/* ==================================================
-   NOTIFICATIONS
-================================================== */
+/* ================================================
+   LOAD NOTIFICATIONS
+================================================ */
 
 let notifications =
     JSON.parse(
         localStorage.getItem(
-            "notifications"
+            notificationKey
         )
-    ) || [];
+    );
 
 
-/* ==================================================
-   DEMO NOTIFICATIONS
-================================================== */
+if (!Array.isArray(notifications)) {
 
-if (notifications.length === 0) {
-
-    notifications = [
-
-        {
-            id: 1,
-
-            type: "social",
-
-            icon: "👍",
-
-            text:
-                "Welcome to Gene-rations. Your generation hub is ready for you.",
-
-            read: false,
-
-            time:
-                new Date().toISOString()
-
-        },
-
-        {
-            id: 2,
-
-            type: "community",
-
-            icon: "👥",
-
-            text:
-                "Your " +
-                generation +
-                " community is ready. Start connecting with your generation.",
-
-            read: false,
-
-            time:
-                new Date().toISOString()
-
-        },
-
-        {
-            id: 3,
-
-            type: "system",
-
-            icon: "🎉",
-
-            text:
-                "Welcome " +
-                userName +
-                "! Complete your profile to help other members know you better.",
-
-            read: false,
-
-            time:
-                new Date().toISOString()
-
-        }
-
-    ];
-
-
-    saveNotifications();
+    notifications = [];
 
 }
 
 
-/* ==================================================
-   FILTER
-================================================== */
+/* ================================================
+   MAKE SURE OLD NOTIFICATIONS HAVE DATA
+================================================ */
+
+notifications =
+    notifications.map(
+        function(notification) {
+
+            return {
+
+                id:
+                    notification.id ||
+                    Date.now() +
+                    Math.random(),
+
+                userEmail:
+                    notification.userEmail ||
+                    userData.email,
+
+                type:
+                    notification.type ||
+                    "system",
+
+                title:
+                    notification.title ||
+                    "Gene-rations Update",
+
+                message:
+                    notification.message ||
+                    "",
+
+                icon:
+                    notification.icon ||
+                    "🔔",
+
+                createdAt:
+                    notification.createdAt ||
+                    new Date().toISOString(),
+
+                read:
+                    notification.read === true
+
+            };
+
+        }
+    );
+
+
+saveNotifications();
+
+
+/* ================================================
+   CURRENT FILTER
+================================================ */
 
 let currentFilter =
     "all";
 
 
-/* ==================================================
-   RENDER
-================================================== */
-
-function renderNotifications() {
-
-    const container =
-        document.getElementById(
-            "notificationsContainer"
-        );
-
-
-    container.innerHTML =
-        "";
-
-
-    let filtered =
-        notifications;
-
-
-    if (
-        currentFilter ===
-        "unread"
-    ) {
-
-        filtered =
-            notifications.filter(
-                function(notification) {
-
-                    return !notification.read;
-
-                }
-            );
-
-    }
-
-
-    if (
-        currentFilter ===
-        "social"
-    ) {
-
-        filtered =
-            notifications.filter(
-                function(notification) {
-
-                    return notification.type ===
-                        "social";
-
-                }
-            );
-
-    }
-
-
-    if (
-        currentFilter ===
-        "community"
-    ) {
-
-        filtered =
-            notifications.filter(
-                function(notification) {
-
-                    return notification.type ===
-                        "community";
-
-                }
-            );
-
-    }
-
-
-    if (
-        currentFilter ===
-        "system"
-    ) {
-
-        filtered =
-            notifications.filter(
-                function(notification) {
-
-                    return notification.type ===
-                        "system";
-
-                }
-            );
-
-    }
-
-
-    if (filtered.length === 0) {
-
-        document.getElementById(
-            "empty"
-        ).style.display =
-            "block";
-
-        updateSubtitle();
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "empty"
-    ).style.display =
-        "none";
-
-
-    filtered.forEach(
-        function(notification) {
-
-            container.appendChild(
-                createNotification(
-                    notification
-                )
-            );
-
-        }
-    );
-
-
-    updateSubtitle();
-
-}
-
-
-/* ==================================================
-   CREATE NOTIFICATION
-================================================== */
-
-function createNotification(
-    notification
-) {
-
-    const item =
-        document.createElement(
-            "div"
-        );
-
-
-    item.className =
-        "notification " +
-        (
-            notification.read
-                ? ""
-                : "unread"
-        );
-
-
-    item.innerHTML = `
-
-        <div class="notification-icon">
-
-            ${escapeHTML(
-                notification.icon ||
-                "🔔"
-            )}
-
-        </div>
-
-
-        <div class="notification-content">
-
-            <div class="notification-text">
-
-                ${escapeHTML(
-                    notification.text
-                )}
-
-            </div>
-
-            <div class="notification-time">
-
-                ${formatTime(
-                    notification.time
-                )}
-
-            </div>
-
-        </div>
-
-
-        ${
-            notification.read
-                ? ""
-                : '<div class="unread-dot"></div>'
-        }
-
-    `;
-
-
-    item.onclick =
-        function() {
-
-            markRead(
-                notification.id
-            );
-
-        };
-
-
-    return item;
-
-}
-
-
-/* ==================================================
-   MARK ONE READ
-================================================== */
-
-function markRead(id) {
-
-    const notification =
-        notifications.find(
-            function(item) {
-
-                return item.id === id;
-
-            }
-        );
-
-
-    if (!notification)
-        return;
-
-
-    notification.read =
-        true;
-
-
-    saveNotifications();
-
-    renderNotifications();
-
-}
-
-
-/* ==================================================
-   MARK ALL READ
-================================================== */
-
-function markAllRead() {
-
-    notifications.forEach(
-        function(notification) {
-
-            notification.read =
-                true;
-
-        }
-    );
-
-
-    saveNotifications();
-
-    renderNotifications();
-
-}
-
-
-/* ==================================================
-   FILTER
-================================================== */
-
-function setFilter(
-    filter,
-    button
-) {
-
-    currentFilter =
-        filter;
-
-
-    document.querySelectorAll(
-        ".control-btn"
-    ).forEach(
-        function(btn) {
-
-            btn.classList.remove(
-                "active"
-            );
-
-        }
-    );
-
-
-    button.classList.add(
-        "active"
-    );
-
-
-    renderNotifications();
-
-}
-
-
-/* ==================================================
-   CLEAR ALL
-================================================== */
-
-function clearAll() {
-
-    if (
-        notifications.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    const confirmClear =
-        confirm(
-            "Clear all notifications?"
-        );
-
-
-    if (!confirmClear)
-        return;
-
-
-    notifications =
-        [];
-
-
-    saveNotifications();
-
-    renderNotifications();
-
-}
-
-
-/* ==================================================
-   SAVE
-================================================== */
+/* ================================================
+   SAVE NOTIFICATIONS
+================================================ */
 
 function saveNotifications() {
 
     localStorage.setItem(
-        "notifications",
+        notificationKey,
         JSON.stringify(
             notifications
         )
@@ -974,64 +862,135 @@ function saveNotifications() {
 }
 
 
-/* ==================================================
-   SUBTITLE
-================================================== */
+/* ================================================
+   GET CURRENT USER NOTIFICATIONS
+================================================ */
 
-function updateSubtitle() {
+function getUserNotifications() {
 
-    const unread =
-        notifications.filter(
-            function(notification) {
+    return notifications.filter(
+        function(notification) {
 
-                return !notification.read;
+            return (
+                notification.userEmail ===
+                userData.email
+            );
 
-            }
-        ).length;
-
-
-    document.getElementById(
-        "notificationSubtitle"
-    ).textContent =
-        unread === 0
-
-            ? "You're all caught up."
-
-            : unread +
-              " unread notification" +
-              (
-                  unread === 1
-                      ? ""
-                      : "s"
-              );
+        }
+    );
 
 }
 
 
-/* ==================================================
-   TIME
-================================================== */
+/* ================================================
+   CREATE NOTIFICATION
+================================================ */
 
-function formatTime(
-    dateString
-) {
+/*
+   Other Gene-rations pages can eventually
+   use this function.
+
+   Example:
+
+   createNotification({
+       type: "social",
+       title: "New follower",
+       message: "Someone followed you.",
+       icon: "👤"
+   });
+*/
+
+function createNotification(data) {
+
+    const notification = {
+
+        id:
+            Date.now() +
+            Math.random(),
+
+        userEmail:
+            userData.email,
+
+        type:
+            data.type ||
+            "system",
+
+        title:
+            data.title ||
+            "Gene-rations Update",
+
+        message:
+            data.message ||
+            "",
+
+        icon:
+            data.icon ||
+            "🔔",
+
+        createdAt:
+            new Date().toISOString(),
+
+        read:
+            false
+
+    };
+
+
+    notifications.unshift(
+        notification
+    );
+
+
+    saveNotifications();
+
+
+    renderNotifications();
+
+}
+
+
+/* ================================================
+   FORMAT TIME
+================================================ */
+
+function formatTime(dateString) {
 
     const date =
         new Date(dateString);
+
+
+    if (
+        isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return "Recently";
+
+    }
 
 
     const now =
         new Date();
 
 
+    const difference =
+        now.getTime()
+        -
+        date.getTime();
+
+
     const seconds =
         Math.floor(
-            (now - date) / 1000
+            difference / 1000
         );
 
 
-    if (seconds < 60)
+    if (seconds < 60) {
+
         return "Just now";
+
+    }
 
 
     const minutes =
@@ -1040,8 +999,16 @@ function formatTime(
         );
 
 
-    if (minutes < 60)
-        return minutes + " min ago";
+    if (minutes < 60) {
+
+        return (
+            minutes +
+            (minutes === 1
+                ? " minute ago"
+                : " minutes ago")
+        );
+
+    }
 
 
     const hours =
@@ -1050,8 +1017,16 @@ function formatTime(
         );
 
 
-    if (hours < 24)
-        return hours + " hr ago";
+    if (hours < 24) {
+
+        return (
+            hours +
+            (hours === 1
+                ? " hour ago"
+                : " hours ago")
+        );
+
+    }
 
 
     const days =
@@ -1060,8 +1035,16 @@ function formatTime(
         );
 
 
-    if (days < 7)
-        return days + " day(s) ago";
+    if (days < 7) {
+
+        return (
+            days +
+            (days === 1
+                ? " day ago"
+                : " days ago")
+        );
+
+    }
 
 
     return date.toLocaleDateString();
@@ -1069,49 +1052,518 @@ function formatTime(
 }
 
 
-/* ==================================================
-   SECURITY
-================================================== */
+/* ================================================
+   ESCAPE HTML
+================================================ */
 
-function escapeHTML(
-    value
-) {
+function escapeHTML(value) {
 
     return String(value)
 
-        .replace(/&/g, "&amp;")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
 
-        .replace(/</g, "&lt;")
+        .replace(
+            /</g,
+            "&lt;"
+        )
 
-        .replace(/>/g, "&gt;")
+        .replace(
+            />/g,
+            "&gt;"
+        )
 
-        .replace(/"/g, "&quot;")
+        .replace(
+            /"/g,
+            "&quot;"
+        )
 
-        .replace(/'/g, "&#039;");
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
-/* ==================================================
-   HOME
-================================================== */
+/* ================================================
+   FILTER NOTIFICATIONS
+================================================ */
 
-function goHome() {
+function getFilteredNotifications() {
 
-    window.location.href =
-        "generations.html";
+    const userNotifications =
+        getUserNotifications();
+
+
+    if (
+        currentFilter ===
+        "all"
+    ) {
+
+        return userNotifications;
+
+    }
+
+
+    if (
+        currentFilter ===
+        "unread"
+    ) {
+
+        return userNotifications.filter(
+            function(notification) {
+
+                return !notification.read;
+
+            }
+        );
+
+    }
+
+
+    return userNotifications.filter(
+        function(notification) {
+
+            return (
+                notification.type ===
+                currentFilter
+            );
+
+        }
+    );
 
 }
 
 
-/* ==================================================
-   START
-================================================== */
+/* ================================================
+   RENDER
+================================================ */
+
+function renderNotifications() {
+
+    const list =
+        document.getElementById(
+            "notificationList"
+        );
+
+
+    const emptyState =
+        document.getElementById(
+            "emptyState"
+        );
+
+
+    list.innerHTML = "";
+
+
+    const filtered =
+        getFilteredNotifications();
+
+
+    if (
+        filtered.length === 0
+    ) {
+
+        list.style.display =
+            "none";
+
+        emptyState.style.display =
+            "block";
+
+    } else {
+
+        list.style.display =
+            "flex";
+
+        emptyState.style.display =
+            "none";
+
+    }
+
+
+    filtered.forEach(
+        function(notification) {
+
+            const item =
+                document.createElement(
+                    "article"
+                );
+
+
+            item.className =
+                "notification" +
+                (
+                    notification.read
+                        ? ""
+                        : " unread"
+                );
+
+
+            item.innerHTML = `
+
+                <div class="notification-icon">
+                    ${escapeHTML(
+                        notification.icon
+                    )}
+                </div>
+
+
+                <div class="notification-content">
+
+                    <div class="notification-title">
+                        ${escapeHTML(
+                            notification.title
+                        )}
+                    </div>
+
+
+                    <div class="notification-message">
+                        ${escapeHTML(
+                            notification.message
+                        )}
+                    </div>
+
+
+                    <div class="notification-time">
+                        ${formatTime(
+                            notification.createdAt
+                        )}
+                    </div>
+
+                </div>
+
+
+                <div class="notification-actions">
+
+                    <button
+                        class="notification-action"
+                        title="Mark as read"
+                        onclick="toggleRead('${notification.id}')">
+
+                        ✓
+
+                    </button>
+
+
+                    <button
+                        class="notification-action"
+                        title="Delete"
+                        onclick="deleteNotification('${notification.id}')">
+
+                        🗑️
+
+                    </button>
+
+                </div>
+
+
+                ${
+                    notification.read
+                    ? ""
+                    : `
+                        <span class="unread-dot"></span>
+                    `
+                }
+
+            `;
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+
+    updateUnreadCount();
+
+}
+
+
+/* ================================================
+   UPDATE UNREAD COUNT
+================================================ */
+
+function updateUnreadCount() {
+
+    const unread =
+        getUserNotifications()
+            .filter(
+                function(notification) {
+
+                    return !notification.read;
+
+                }
+            )
+            .length;
+
+
+    document.getElementById(
+        "unreadCount"
+    ).textContent =
+        unread;
+
+
+    document.title =
+        unread > 0
+            ? `(${unread}) Notifications | Gene-rations`
+            : "Gene-rations | Notifications";
+
+}
+
+
+/* ================================================
+   TOGGLE READ
+================================================ */
+
+function toggleRead(id) {
+
+    const notification =
+        notifications.find(
+            function(item) {
+
+                return String(item.id) ===
+                    String(id);
+
+            }
+        );
+
+
+    if (!notification) {
+        return;
+    }
+
+
+    notification.read =
+        !notification.read;
+
+
+    saveNotifications();
+
+    renderNotifications();
+
+}
+
+
+/* ================================================
+   DELETE
+================================================ */
+
+function deleteNotification(id) {
+
+    notifications =
+        notifications.filter(
+            function(notification) {
+
+                return String(notification.id) !==
+                    String(id);
+
+            }
+        );
+
+
+    saveNotifications();
+
+    renderNotifications();
+
+}
+
+
+/* ================================================
+   MARK ALL READ
+================================================ */
+
+document.getElementById(
+    "markAllRead"
+).addEventListener(
+    "click",
+    function() {
+
+        notifications.forEach(
+            function(notification) {
+
+                if (
+                    notification.userEmail ===
+                    userData.email
+                ) {
+
+                    notification.read =
+                        true;
+
+                }
+
+            }
+        );
+
+
+        saveNotifications();
+
+        renderNotifications();
+
+    }
+);
+
+
+/* ================================================
+   FILTER BUTTONS
+================================================ */
+
+document
+    .querySelectorAll(
+        ".filter-button"
+    )
+    .forEach(
+        function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    document
+                        .querySelectorAll(
+                            ".filter-button"
+                        )
+                        .forEach(
+                            function(btn) {
+
+                                btn.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    currentFilter =
+                        this.dataset.filter;
+
+
+                    renderNotifications();
+
+                }
+            );
+
+        }
+    );
+
+
+/* ================================================
+   NAVIGATION
+================================================ */
+
+document.getElementById(
+    "hubButton"
+).addEventListener(
+    "click",
+    function() {
+
+        window.location.href =
+            "generations.html";
+
+    }
+);
+
+
+document.getElementById(
+    "settingsButton"
+).addEventListener(
+    "click",
+    function() {
+
+        window.location.href =
+            "settings.html";
+
+    }
+);
+
+
+/* ================================================
+   SAMPLE NOTIFICATIONS
+================================================ */
+
+/*
+   We only create examples if this user
+   has never received notifications.
+
+   This makes the page easier to test.
+*/
+
+function createTestNotifications() {
+
+    const existing =
+        getUserNotifications();
+
+
+    if (
+        existing.length > 0
+    ) {
+
+        return;
+
+    }
+
+
+    createNotification({
+
+        type:
+            "social",
+
+        title:
+            "Welcome to Gene-rations",
+
+        message:
+            `Welcome ${userData.fullName || "Member"}! Your Gene-rations journey has started.`,
+
+        icon:
+            "🎉"
+
+    });
+
+
+    createNotification({
+
+        type:
+            "community",
+
+        title:
+            "Generation community",
+
+        message:
+            `Welcome to the ${userData.generation || "Gene-rations"} community.`,
+
+        icon:
+            "👥"
+
+    });
+
+}
+
+
+/* ================================================
+   INITIALIZE
+================================================ */
 
 renderNotifications();
+
+
+/*
+   Uncomment this while testing if you want
+   sample notifications.
+
+   createTestNotifications();
+*/
+
 
 </script>
 
 </body>
-
 </html>

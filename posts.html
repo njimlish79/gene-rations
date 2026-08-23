@@ -5,8 +5,10 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Gene-rations | Posts</title>
 
@@ -19,461 +21,655 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f3f5fb;
-    color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f3ff;
+    color: #29194d;
 }
 
-/* =========================
+
+/* ==========================================
    HEADER
-========================= */
+========================================== */
 
 .header {
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
-    color: white;
-
-    padding: 15px 20px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
     position: sticky;
     top: 0;
     z-index: 100;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color: white;
+
+    padding: 16px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
 }
 
 .logo {
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 24px;
+    font-weight: 800;
 }
 
-.home-btn {
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.header-button {
+
     border: none;
-    background: rgba(255,255,255,.2);
+
+    background:
+        rgba(255,255,255,.16);
+
     color: white;
 
-    padding: 9px 15px;
-    border-radius: 20px;
+    padding: 10px 14px;
 
-    font-weight: bold;
+    border-radius: 22px;
+
+    font-weight: 700;
+
     cursor: pointer;
 }
 
-/* =========================
+
+/* ==========================================
    CONTAINER
-========================= */
+========================================== */
 
 .container {
-    max-width: 750px;
+
+    max-width: 800px;
+
     margin: auto;
-    padding: 20px;
+
+    padding:
+        25px
+        15px
+        50px;
 }
 
-/* =========================
-   GENERATION HEADER
-========================= */
 
-.generation-header {
-    background: white;
-    border-radius: 18px;
-    padding: 20px;
-    margin-bottom: 18px;
+/* ==========================================
+   PAGE TITLE
+========================================== */
 
-    box-shadow: 0 4px 15px rgba(0,0,0,.06);
+.page-title {
+    margin-bottom: 20px;
 }
 
-.generation-header h1 {
-    font-size: 25px;
-    margin-bottom: 7px;
+.page-title h1 {
+    font-size: 30px;
 }
 
-.generation-header p {
-    color: #666;
-    line-height: 1.5;
+.page-title p {
+    color: #777;
+    margin-top: 6px;
 }
 
-.badge {
-    display: inline-block;
 
-    margin-top: 10px;
-
-    background: #ede9fe;
-    color: #6d28d9;
-
-    padding: 7px 12px;
-
-    border-radius: 20px;
-
-    font-size: 13px;
-    font-weight: bold;
-}
-
-/* =========================
+/* ==========================================
    CREATE POST
-========================= */
+========================================== */
 
-.create-post {
+.create-card {
+
     background: white;
-    border-radius: 18px;
+
+    border-radius: 22px;
 
     padding: 20px;
+
     margin-bottom: 20px;
 
-    box-shadow: 0 4px 15px rgba(0,0,0,.06);
+    box-shadow:
+        0 6px 20px
+        rgba(70,50,120,.07);
 }
 
-.user-line {
+.user-row {
+
     display: flex;
+
     align-items: center;
+
     gap: 12px;
 
     margin-bottom: 15px;
 }
 
-.avatar {
-    width: 45px;
-    height: 45px;
+.user-photo {
+
+    width: 48px;
+    height: 48px;
 
     border-radius: 50%;
 
-    background: #2563eb;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-weight: bold;
-    font-size: 18px;
-
-    overflow: hidden;
-}
-
-.avatar img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
+
+    background: #e8defd;
 }
 
 .user-name {
-    font-weight: bold;
+    font-weight: 800;
 }
 
 .user-generation {
-    color: #777;
+
+    color: #7c3aed;
+
     font-size: 13px;
+
     margin-top: 3px;
 }
 
 textarea {
+
     width: 100%;
 
     min-height: 110px;
 
     resize: vertical;
 
-    border: 1px solid #d1d5db;
+    border: 1px solid #ddd;
 
-    border-radius: 12px;
+    border-radius: 15px;
 
-    padding: 13px;
+    padding: 14px;
 
-    font-family: inherit;
     font-size: 15px;
 
     outline: none;
 }
 
 textarea:focus {
-    border-color: #2563eb;
+
+    border-color: #7c3aed;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(124,58,237,.1);
 }
 
-.post-options {
+
+/* ==========================================
+   CREATE POST TOOLS
+========================================== */
+
+.post-tools {
+
     display: flex;
-    gap: 8px;
 
-    margin-top: 12px;
-}
+    align-items: center;
 
-.option-btn {
-    border: none;
-
-    background: #f1f5f9;
-
-    padding: 9px 12px;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    font-size: 13px;
-}
-
-.publish-btn {
-    width: 100%;
+    gap: 10px;
 
     margin-top: 12px;
 
-    border: none;
-
-    background: #2563eb;
-    color: white;
-
-    padding: 13px;
-
-    border-radius: 11px;
-
-    font-weight: bold;
-
-    cursor: pointer;
+    flex-wrap: wrap;
 }
 
-/* =========================
-   FEED FILTER
-========================= */
-
-.feed-controls {
-    display: flex;
-    gap: 8px;
-
-    overflow-x: auto;
-
-    margin-bottom: 15px;
-}
-
-.filter-btn {
-    white-space: nowrap;
+.tool-button {
 
     border: none;
 
-    background: white;
+    background: #f0ebff;
 
-    padding: 10px 15px;
+    color: #6335a7;
+
+    padding: 10px 14px;
 
     border-radius: 20px;
 
     cursor: pointer;
 
-    font-weight: bold;
-
-    color: #555;
+    font-weight: 700;
 }
 
-.filter-btn.active {
-    background: #2563eb;
+.tool-button:hover {
+    background: #e6dcff;
+}
+
+#imageInput {
+    display: none;
+}
+
+.post-button {
+
+    margin-left: auto;
+
+    border: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+    color: white;
+
+    padding: 11px 22px;
+
+    border-radius: 22px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   IMAGE PREVIEW
+========================================== */
+
+.preview-container {
+    margin-top: 12px;
+    position: relative;
+}
+
+.preview-image {
+
+    width: 100%;
+
+    max-height: 350px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    display: none;
+}
+
+.remove-preview {
+
+    position: absolute;
+
+    right: 10px;
+    top: 10px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(0,0,0,.65);
+
+    color: white;
+
+    cursor: pointer;
+
+    display: none;
+}
+
+
+/* ==========================================
+   FEED FILTER
+========================================== */
+
+.feed-tools {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+
+    flex-wrap: wrap;
+}
+
+.filter {
+
+    border: none;
+
+    background: #eee8ff;
+
+    color: #6435a9;
+
+    padding: 9px 15px;
+
+    border-radius: 20px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.filter.active {
+
+    background: #7c3aed;
+
     color: white;
 }
 
-/* =========================
-   POST CARD
-========================= */
+
+/* ==========================================
+   POST
+========================================== */
 
 .post {
+
     background: white;
 
-    border-radius: 18px;
+    border-radius: 22px;
 
     padding: 18px;
 
-    margin-bottom: 16px;
+    margin-bottom: 15px;
 
-    box-shadow: 0 4px 15px rgba(0,0,0,.06);
+    box-shadow:
+        0 6px 20px
+        rgba(70,50,120,.07);
 }
 
 .post-header {
+
     display: flex;
+
     align-items: center;
+
     gap: 11px;
 }
 
+.post-author-photo {
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    background: #e8defd;
+}
+
 .post-author {
-    font-weight: bold;
+
+    font-weight: 800;
 }
 
 .post-generation {
-    color: #777;
+
     font-size: 12px;
+
+    color: #7c3aed;
 
     margin-top: 3px;
 }
 
 .post-time {
-    color: #999;
+
     font-size: 12px;
+
+    color: #999;
 
     margin-left: auto;
 }
 
 .post-content {
+
     margin-top: 15px;
 
-    line-height: 1.6;
+    line-height: 1.55;
 
     white-space: pre-wrap;
+
+    word-wrap: break-word;
 }
 
-.post-community {
-    display: inline-block;
+.post-image {
 
-    margin-top: 12px;
+    width: 100%;
 
-    background: #eff6ff;
-    color: #2563eb;
+    max-height: 450px;
 
-    padding: 5px 9px;
+    object-fit: cover;
 
     border-radius: 15px;
 
-    font-size: 12px;
+    margin-top: 14px;
 }
 
-/* =========================
+
+/* ==========================================
    POST ACTIONS
-========================= */
+========================================== */
 
 .post-actions {
+
     display: flex;
 
-    justify-content: space-between;
+    gap: 7px;
 
-    margin-top: 17px;
+    margin-top: 15px;
 
     padding-top: 12px;
 
     border-top: 1px solid #eee;
+
 }
 
-.action-btn {
+.action-button {
+
+    flex: 1;
+
     border: none;
 
-    background: transparent;
+    background: #f6f3fb;
 
-    color: #666;
+    color: #5c4c75;
+
+    padding: 10px;
+
+    border-radius: 12px;
 
     cursor: pointer;
 
-    padding: 7px 10px;
-
-    border-radius: 8px;
+    font-weight: 700;
 }
 
-.action-btn:hover {
-    background: #f1f5f9;
+.action-button:hover {
+    background: #ebe4fa;
 }
 
-.action-btn.liked {
-    color: #2563eb;
-    font-weight: bold;
+.action-button.liked {
+
+    color: #d91e63;
+
+    background: #ffe8f0;
 }
 
-/* =========================
+
+/* ==========================================
    COMMENTS
-========================= */
+========================================== */
 
 .comments {
+
+    margin-top: 14px;
+
     display: none;
-
-    margin-top: 12px;
-
-    padding-top: 12px;
-
-    border-top: 1px solid #eee;
 }
 
 .comment {
-    background: #f8fafc;
 
-    padding: 9px;
+    background: #f7f5fa;
 
-    border-radius: 10px;
+    padding: 10px 12px;
 
-    margin-bottom: 7px;
+    border-radius: 12px;
+
+    margin-bottom: 8px;
+}
+
+.comment-author {
+
+    font-weight: 800;
+
+    font-size: 13px;
+}
+
+.comment-text {
 
     font-size: 14px;
+
+    margin-top: 4px;
+
+    color: #555;
 }
 
-.comment strong {
-    margin-right: 5px;
-}
+.comment-form {
 
-.comment-box {
     display: flex;
+
     gap: 7px;
+
+    margin-top: 10px;
 }
 
-.comment-box input {
+.comment-input {
+
     flex: 1;
 
     border: 1px solid #ddd;
 
-    border-radius: 9px;
+    border-radius: 20px;
 
-    padding: 10px;
+    padding: 10px 14px;
 
     outline: none;
 }
 
-.comment-box button {
+.comment-submit {
+
     border: none;
 
-    background: #2563eb;
+    border-radius: 20px;
+
+    padding: 9px 15px;
+
+    background: #7c3aed;
+
     color: white;
 
-    border-radius: 9px;
-
-    padding: 0 13px;
+    font-weight: 700;
 
     cursor: pointer;
 }
 
-/* =========================
+
+/* ==========================================
    EMPTY
-========================= */
+========================================== */
 
 .empty {
+
+    background: white;
+
+    padding: 55px 25px;
+
+    border-radius: 22px;
+
     text-align: center;
 
     color: #777;
 
-    padding: 40px 20px;
-
-    display: none;
+    box-shadow:
+        0 6px 20px
+        rgba(70,50,120,.06);
 }
 
-/* =========================
+.empty-icon {
+
+    font-size: 48px;
+
+    margin-bottom: 12px;
+}
+
+
+/* ==========================================
    MESSAGE
-========================= */
+========================================== */
 
-.message {
+#message {
+
     display: none;
-
-    background: #dcfce7;
-    color: #166534;
 
     padding: 12px;
 
-    border-radius: 10px;
-
     margin-bottom: 15px;
+
+    border-radius: 12px;
 
     text-align: center;
 
-    font-weight: bold;
+    font-weight: 700;
 }
 
-/* =========================
+.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+
+/* ==========================================
    MOBILE
-========================= */
+========================================== */
 
-@media (max-width:600px) {
+@media(max-width:600px) {
 
-    .container {
+    .header {
         padding: 14px;
     }
 
-    .post-time {
-        font-size: 10px;
+    .logo {
+        font-size: 20px;
+    }
+
+    .header-button {
+        font-size: 12px;
+        padding: 9px 11px;
+    }
+
+    .container {
+        padding:
+            20px 11px 40px;
+    }
+
+    .page-title h1 {
+        font-size: 26px;
+    }
+
+    .post-button {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .post-actions {
+        gap: 5px;
+    }
+
+    .action-button {
+        font-size: 12px;
+        padding: 9px 5px;
     }
 
 }
@@ -486,9 +682,9 @@ textarea:focus {
 <body>
 
 
-<!-- =========================
+<!-- ==========================================
      HEADER
-========================= -->
+========================================== -->
 
 <header class="header">
 
@@ -496,205 +692,222 @@ textarea:focus {
         Gene-rations
     </div>
 
-    <button
-        class="home-btn"
-        onclick="goHome()">
 
-        ← Generation Hub
+    <div class="header-actions">
 
-    </button>
+        <button
+            class="header-button"
+            onclick="goToHub()">
+
+            🏠 Generation Hub
+
+        </button>
+
+
+        <button
+            class="header-button"
+            onclick="goToNotifications()">
+
+            🔔
+
+        </button>
+
+    </div>
 
 </header>
 
 
 
+<!-- ==========================================
+     MAIN
+========================================== -->
+
 <main class="container">
 
 
-<!-- =========================
-     GENERATION
-========================= -->
+    <section class="page-title">
 
-<section class="generation-header">
+        <h1>
+            Posts
+        </h1>
 
-    <h1>
-        <span id="generationName">
-            Loading...
-        </span>
-        Discussions
-    </h1>
+        <p>
+            Share ideas, experiences and
+            conversations with your generation.
+        </p>
 
-    <p>
-        Share ideas, experiences, questions
-        and conversations with your generation
-        and the wider Gene-rations community.
-    </p>
-
-    <span
-        id="generationBadge"
-        class="badge">
-
-        Loading...
-
-    </span>
-
-</section>
+    </section>
 
 
-
-<div
-    id="message"
-    class="message">
-
-    Post published successfully.
-
-</div>
+    <div id="message"></div>
 
 
+    <!-- ======================================
+         CREATE POST
+    ======================================= -->
 
-<!-- =========================
-     CREATE POST
-========================= -->
+    <section class="create-card">
 
-<section class="create-post">
+        <div class="user-row">
 
-    <div class="user-line">
+            <img
+                id="currentUserPhoto"
+                class="user-photo"
+                src=""
+                alt="Profile">
 
-        <div
-            id="userAvatar"
-            class="avatar">
+            <div>
 
-            U
+                <div
+                    id="currentUserName"
+                    class="user-name">
 
-        </div>
+                    Loading...
 
-        <div>
+                </div>
 
-            <div
-                id="userName"
-                class="user-name">
+                <div
+                    id="currentUserGeneration"
+                    class="user-generation">
 
-                Loading...
+                    Loading...
 
-            </div>
-
-            <div
-                id="userGeneration"
-                class="user-generation">
-
-                Loading...
+                </div>
 
             </div>
 
         </div>
 
+
+        <textarea
+            id="postText"
+            maxlength="3000"
+            placeholder="What's on your mind?">
+
+        </textarea>
+
+
+        <div class="preview-container">
+
+            <img
+                id="previewImage"
+                class="preview-image"
+                src=""
+                alt="Image preview">
+
+
+            <button
+                id="removePreview"
+                class="remove-preview">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="post-tools">
+
+            <label
+                for="imageInput"
+                class="tool-button">
+
+                📷 Photo
+
+            </label>
+
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*">
+
+
+            <button
+                class="tool-button"
+                onclick="addEmoji()">
+
+                😊 Emoji
+
+            </button>
+
+
+            <button
+                class="post-button"
+                onclick="createPost()">
+
+                Post
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         FILTER
+    ======================================= -->
+
+    <div class="feed-tools">
+
+        <button
+            class="filter active"
+            data-filter="all">
+
+            🌍 All Posts
+
+        </button>
+
+
+        <button
+            class="filter"
+            data-filter="generation">
+
+            👥 My Generation
+
+        </button>
+
+
+        <button
+            class="filter"
+            data-filter="mine">
+
+            👤 My Posts
+
+        </button>
+
     </div>
 
 
-    <textarea
-        id="postText"
-        maxlength="3000"
-        placeholder="What's on your mind? Share something with your generation..."></textarea>
+
+    <!-- ======================================
+         FEED
+    ======================================= -->
+
+    <section id="feed"></section>
 
 
-    <div class="post-options">
+    <section
+        id="empty"
+        class="empty"
+        style="display:none;">
 
-        <button
-            class="option-btn"
-            onclick="setPostType('idea')">
+        <div class="empty-icon">
+            📝
+        </div>
 
-            💡 Idea
+        <h2>
+            No posts yet
+        </h2>
 
-        </button>
+        <p>
+            Be the first to share something
+            with the Gene-rations community.
+        </p>
 
-        <button
-            class="option-btn"
-            onclick="setPostType('question')">
-
-            ❓ Question
-
-        </button>
-
-        <button
-            class="option-btn"
-            onclick="setPostType('discussion')">
-
-            💬 Discussion
-
-        </button>
-
-    </div>
-
-
-    <button
-        class="publish-btn"
-        onclick="createPost()">
-
-        Publish Post
-
-    </button>
-
-</section>
-
-
-
-<!-- =========================
-     FILTER
-========================= -->
-
-<div class="feed-controls">
-
-    <button
-        class="filter-btn active"
-        onclick="filterPosts('all', this)">
-
-        All Posts
-
-    </button>
-
-    <button
-        class="filter-btn"
-        onclick="filterPosts('generation', this)">
-
-        My Generation
-
-    </button>
-
-    <button
-        class="filter-btn"
-        onclick="filterPosts('mine', this)">
-
-        My Posts
-
-    </button>
-
-</div>
-
-
-
-<!-- =========================
-     FEED
-========================= -->
-
-<div id="postsContainer">
-
-</div>
-
-
-<div
-    id="empty"
-    class="empty">
-
-    <h3>
-        No posts yet
-    </h3>
-
-    <p>
-        Be the first person to start a
-        conversation.
-    </p>
-
-</div>
+    </section>
 
 
 </main>
@@ -703,15 +916,22 @@ textarea:focus {
 
 <script>
 
-/* ==================================================
-   USER
-================================================== */
-
-const storedUser =
-    localStorage.getItem("userData");
+/* =================================================
+   GENE-RATIONS POSTS ENGINE
+================================================= */
 
 
-if (!storedUser) {
+/* ================================================
+   CURRENT USER
+================================================ */
+
+let userData =
+    JSON.parse(
+        localStorage.getItem("userData")
+    );
+
+
+if (!userData) {
 
     window.location.href =
         "login.html";
@@ -719,207 +939,311 @@ if (!storedUser) {
 }
 
 
-const user =
-    JSON.parse(storedUser);
+/* ================================================
+   DEFAULT PHOTO
+================================================ */
+
+const defaultPhoto =
+    "data:image/svg+xml;charset=UTF-8," +
+    encodeURIComponent(`
+
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="200"
+             height="200">
+
+            <rect
+                width="200"
+                height="200"
+                fill="#e8defd"/>
+
+            <circle
+                cx="100"
+                cy="70"
+                r="38"
+                fill="#8d72c8"/>
+
+            <path
+                d="M35 180
+                   C40 125
+                   70 110
+                   100 110
+                   C130 110
+                   160 125
+                   165 180Z"
+                fill="#8d72c8"/>
+
+        </svg>
+
+    `);
 
 
-const userName =
-    user.fullName ||
-    user.name ||
-    "Gene-rations Member";
+/* ================================================
+   POST STORAGE
+================================================ */
 
+const postStorageKey =
+    "geneRationsPosts";
 
-const generation =
-    user.generation ||
-    "Your Generation";
-
-
-/* ==================================================
-   USER DISPLAY
-================================================== */
-
-document.getElementById(
-    "userName"
-).textContent =
-    userName;
-
-
-document.getElementById(
-    "userGeneration"
-).textContent =
-    generation;
-
-
-document.getElementById(
-    "generationName"
-).textContent =
-    generation;
-
-
-document.getElementById(
-    "generationBadge"
-).textContent =
-    user.generationBadge ||
-    generation;
-
-
-/* ==================================================
-   PROFILE PHOTO
-================================================== */
-
-const avatar =
-    document.getElementById(
-        "userAvatar"
-    );
-
-
-if (user.profilePhoto) {
-
-    avatar.innerHTML =
-        `<img src="${user.profilePhoto}"
-              alt="Profile photo">`;
-
-}
-
-else {
-
-    avatar.textContent =
-        userName
-            .charAt(0)
-            .toUpperCase();
-
-}
-
-
-/* ==================================================
-   POSTS
-================================================== */
 
 let posts =
     JSON.parse(
         localStorage.getItem(
-            "posts"
+            postStorageKey
         )
-    ) || [];
+    );
 
 
-/* ==================================================
-   INITIAL DEMO POSTS
-================================================== */
+if (!Array.isArray(posts)) {
 
-if (posts.length === 0) {
-
-    posts = [
-
-        {
-            id: 1,
-
-            author:
-                "Gene-rations Member",
-
-            generation:
-                generation,
-
-            content:
-                "Welcome to our generation discussion space. Share your ideas, experiences and questions here.",
-
-            type:
-                "discussion",
-
-            likes:
-                2,
-
-            liked:
-                false,
-
-            comments:
-                [],
-
-            time:
-                new Date().toISOString()
-
-        },
-
-        {
-            id: 2,
-
-            author:
-                "Gene-rations Community",
-
-            generation:
-                "All Generations",
-
-            content:
-                "Different generations have different experiences. What is one thing you think every generation can learn from another?",
-
-            type:
-                "question",
-
-            likes:
-                4,
-
-            liked:
-                false,
-
-            comments:
-                [],
-
-            time:
-                new Date().toISOString()
-
-        }
-
-    ];
-
-    savePosts();
+    posts = [];
 
 }
 
 
-/* ==================================================
+/* ================================================
+   NORMALIZE POSTS
+================================================ */
+
+posts =
+    posts.map(
+        function(post) {
+
+            return {
+
+                id:
+                    post.id ||
+                    Date.now() +
+                    Math.random(),
+
+                authorEmail:
+                    post.authorEmail ||
+                    "",
+
+                author:
+                    post.author ||
+                    "Gene-rations Member",
+
+                generation:
+                    post.generation ||
+                    "Generation Alpha",
+
+                profilePhoto:
+                    post.profilePhoto ||
+                    "",
+
+                content:
+                    post.content ||
+                    "",
+
+                image:
+                    post.image ||
+                    "",
+
+                likes:
+                    Array.isArray(post.likes)
+                        ? post.likes
+                        : [],
+
+                comments:
+                    Array.isArray(post.comments)
+                        ? post.comments
+                        : [],
+
+                createdAt:
+                    post.createdAt ||
+                    new Date().toISOString()
+
+            };
+
+        }
+    );
+
+
+savePosts();
+
+
+/* ================================================
    CURRENT FILTER
-================================================== */
+================================================ */
 
 let currentFilter =
     "all";
 
 
-let currentPostType =
-    "discussion";
+/* ================================================
+   SAVE POSTS
+================================================ */
 
+function savePosts() {
 
-/* ==================================================
-   POST TYPE
-================================================== */
-
-function setPostType(type) {
-
-    currentPostType =
-        type;
+    localStorage.setItem(
+        postStorageKey,
+        JSON.stringify(posts)
+    );
 
 }
 
 
-/* ==================================================
+/* ================================================
+   LOAD USER INFORMATION
+================================================ */
+
+function loadUser() {
+
+    document.getElementById(
+        "currentUserName"
+    ).textContent =
+        userData.fullName ||
+        "Gene-rations Member";
+
+
+    document.getElementById(
+        "currentUserGeneration"
+    ).textContent =
+        userData.generation ||
+        "Generation community";
+
+
+    document.getElementById(
+        "currentUserPhoto"
+    ).src =
+        userData.profilePhoto ||
+        defaultPhoto;
+
+}
+
+
+loadUser();
+
+
+/* ================================================
+   IMAGE UPLOAD
+================================================ */
+
+let selectedImage =
+    "";
+
+
+document.getElementById(
+    "imageInput"
+).addEventListener(
+    "change",
+    function(event) {
+
+        const file =
+            event.target.files[0];
+
+
+        if (!file) {
+            return;
+        }
+
+
+        if (
+            !file.type.startsWith(
+                "image/"
+            )
+        ) {
+
+            showMessage(
+                "Please select an image.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(e) {
+
+                selectedImage =
+                    e.target.result;
+
+
+                const preview =
+                    document.getElementById(
+                        "previewImage"
+                    );
+
+
+                preview.src =
+                    selectedImage;
+
+
+                preview.style.display =
+                    "block";
+
+
+                document.getElementById(
+                    "removePreview"
+                ).style.display =
+                    "block";
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* ================================================
+   REMOVE IMAGE
+================================================ */
+
+document.getElementById(
+    "removePreview"
+).addEventListener(
+    "click",
+    function() {
+
+        selectedImage = "";
+
+        document.getElementById(
+            "imageInput"
+        ).value = "";
+
+
+        document.getElementById(
+            "previewImage"
+        ).style.display =
+            "none";
+
+
+        this.style.display =
+            "none";
+
+    }
+);
+
+
+/* ================================================
    CREATE POST
-================================================== */
+================================================ */
 
 function createPost() {
 
-    const textarea =
+    const text =
         document.getElementById(
             "postText"
-        );
+        ).value.trim();
 
 
-    const content =
-        textarea.value.trim();
+    if (
+        !text &&
+        !selectedImage
+    ) {
 
-
-    if (content === "") {
-
-        alert(
-            "Please write something before publishing."
+        showMessage(
+            "Write something or add a photo before posting.",
+            "error"
         );
 
         return;
@@ -930,34 +1254,35 @@ function createPost() {
     const newPost = {
 
         id:
-            Date.now(),
+            Date.now() +
+            Math.random(),
+
+        authorEmail:
+            userData.email,
 
         author:
-            userName,
+            userData.fullName ||
+            "Gene-rations Member",
 
         generation:
-            generation,
-
-        content:
-            content,
-
-        type:
-            currentPostType,
-
-        likes:
-            0,
-
-        liked:
-            false,
-
-        comments:
-            [],
+            userData.generation ||
+            "Generation Alpha",
 
         profilePhoto:
-            user.profilePhoto ||
+            userData.profilePhoto ||
             "",
 
-        time:
+        content:
+            text,
+
+        image:
+            selectedImage,
+
+        likes: [],
+
+        comments: [],
+
+        createdAt:
             new Date().toISOString()
 
     };
@@ -971,52 +1296,97 @@ function createPost() {
     savePosts();
 
 
-    textarea.value =
-        "";
+    /* =========================================
+       ALSO UPDATE USER'S OWN POSTS
+    ========================================= */
+
+    if (
+        !Array.isArray(
+            userData.posts
+        )
+    ) {
+
+        userData.posts = [];
+
+    }
+
+
+    userData.posts.unshift(
+        newPost.id
+    );
+
+
+    localStorage.setItem(
+        "userData",
+        JSON.stringify(
+            userData
+        )
+    );
+
+
+    /* =========================================
+       CLEAR FORM
+    ========================================= */
+
+    document.getElementById(
+        "postText"
+    ).value = "";
+
+
+    selectedImage = "";
 
 
     document.getElementById(
-        "message"
+        "imageInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "previewImage"
     ).style.display =
-        "block";
+        "none";
+
+
+    document.getElementById(
+        "removePreview"
+    ).style.display =
+        "none";
+
+
+    showMessage(
+        "Your post was published successfully!",
+        "success"
+    );
 
 
     renderPosts();
 
-
-    setTimeout(
-        function() {
-
-            document.getElementById(
-                "message"
-            ).style.display =
-                "none";
-
-        },
-        1500
-    );
-
 }
 
 
-/* ==================================================
+/* ================================================
    RENDER POSTS
-================================================== */
+================================================ */
 
 function renderPosts() {
 
-    const container =
+    const feed =
         document.getElementById(
-            "postsContainer"
+            "feed"
         );
 
 
-    container.innerHTML =
-        "";
+    const empty =
+        document.getElementById(
+            "empty"
+        );
 
 
-    let filtered =
-        posts;
+    feed.innerHTML = "";
+
+
+    let filteredPosts =
+        [...posts];
 
 
     if (
@@ -1024,12 +1394,14 @@ function renderPosts() {
         "generation"
     ) {
 
-        filtered =
-            posts.filter(
+        filteredPosts =
+            filteredPosts.filter(
                 function(post) {
 
-                    return post.generation ===
-                        generation;
+                    return (
+                        post.generation ===
+                        userData.generation
+                    );
 
                 }
             );
@@ -1042,12 +1414,14 @@ function renderPosts() {
         "mine"
     ) {
 
-        filtered =
-            posts.filter(
+        filteredPosts =
+            filteredPosts.filter(
                 function(post) {
 
-                    return post.author ===
-                        userName;
+                    return (
+                        post.authorEmail ===
+                        userData.email
+                    );
 
                 }
             );
@@ -1056,12 +1430,13 @@ function renderPosts() {
 
 
     if (
-        filtered.length === 0
+        filteredPosts.length === 0
     ) {
 
-        document.getElementById(
-            "empty"
-        ).style.display =
+        feed.style.display =
+            "none";
+
+        empty.style.display =
             "block";
 
         return;
@@ -1069,17 +1444,20 @@ function renderPosts() {
     }
 
 
-    document.getElementById(
-        "empty"
-    ).style.display =
+    feed.style.display =
+        "block";
+
+    empty.style.display =
         "none";
 
 
-    filtered.forEach(
+    filteredPosts.forEach(
         function(post) {
 
-            container.appendChild(
-                createPostCard(post)
+            feed.appendChild(
+                createPostElement(
+                    post
+                )
             );
 
         }
@@ -1088,123 +1466,163 @@ function renderPosts() {
 }
 
 
-/* ==================================================
-   POST CARD
-================================================== */
+/* ================================================
+   CREATE POST HTML
+================================================ */
 
-function createPostCard(post) {
+function createPostElement(
+    post
+) {
 
-    const card =
+    const article =
         document.createElement(
             "article"
         );
 
 
-    card.className =
+    article.className =
         "post";
 
 
-    const time =
-        formatTime(
-            post.time
+    const liked =
+        post.likes.includes(
+            userData.email
         );
 
 
-    const photo =
-        post.profilePhoto ||
-        "";
+    const likeCount =
+        post.likes.length;
 
 
-    const avatarHTML =
-        photo
-
-            ? `<img src="${escapeHTML(photo)}"
-                    alt="Profile photo">`
-
-            : escapeHTML(
-                post.author
-                    .charAt(0)
-                    .toUpperCase()
-              );
+    const commentCount =
+        post.comments.length;
 
 
-    card.innerHTML = `
+    article.innerHTML = `
 
         <div class="post-header">
 
-            <div class="avatar">
+            <img
+                class="post-author-photo"
+                src="${
+                    post.profilePhoto ||
+                    defaultPhoto
+                }"
+                alt="Profile">
 
-                ${avatarHTML}
-
-            </div>
 
             <div>
 
                 <div class="post-author">
 
-                    ${escapeHTML(post.author)}
+                    ${escapeHTML(
+                        post.author
+                    )}
 
                 </div>
+
 
                 <div class="post-generation">
 
-                    ${escapeHTML(post.generation)}
+                    ${
+                        escapeHTML(
+                            post.generation
+                        )
+                    }
 
                 </div>
 
             </div>
 
+
             <div class="post-time">
 
-                ${time}
+                ${
+                    formatTime(
+                        post.createdAt
+                    )
+                }
 
             </div>
 
         </div>
 
 
-        <div class="post-content">
+        ${
+            post.content
+            ?
+            `
+                <div class="post-content">
+                    ${escapeHTML(
+                        post.content
+                    )}
+                </div>
+            `
+            :
+            ""
+        }
 
-            ${escapeHTML(post.content)}
 
-        </div>
-
-
-        <span class="post-community">
-
-            ${getPostTypeIcon(post.type)}
-            ${escapeHTML(post.type)}
-
-        </span>
+        ${
+            post.image
+            ?
+            `
+                <img
+                    class="post-image"
+                    src="${post.image}"
+                    alt="Post image">
+            `
+            :
+            ""
+        }
 
 
         <div class="post-actions">
 
             <button
-                class="action-btn ${post.liked ? "liked" : ""}"
-                onclick="likePost(${post.id})">
+                class="action-button ${
+                    liked
+                        ? "liked"
+                        : ""
+                }"
+                onclick="toggleLike('${post.id}')">
 
-                👍 ${post.likes}
+                ${
+                    liked
+                        ? "❤️"
+                        : "🤍"
+                }
+
+                Like ${likeCount}
 
             </button>
 
 
             <button
-                class="action-btn"
-                onclick="toggleComments(${post.id})">
+                class="action-button"
+                onclick="toggleComments('${post.id}')">
 
-                💬 ${post.comments.length}
-
-            </button>
-
-
-            <button
-                class="action-btn"
-                onclick="sharePost(${post.id})">
-
-                ↗ Share
+                💬 Comment ${commentCount}
 
             </button>
+
+
+            ${
+                post.authorEmail ===
+                userData.email
+                ?
+                `
+                    <button
+                        class="action-button"
+                        onclick="deletePost('${post.id}')">
+
+                        🗑️ Delete
+
+                    </button>
+                `
+                :
+                ""
+            }
 
         </div>
 
@@ -1213,95 +1631,197 @@ function createPostCard(post) {
             id="comments-${post.id}"
             class="comments">
 
-            ${renderComments(post)}
+            ${
+                renderCommentsHTML(
+                    post
+                )
+            }
+
+
+            <div class="comment-form">
+
+                <input
+                    id="comment-${post.id}"
+                    class="comment-input"
+                    placeholder="Write a comment...">
+
+
+                <button
+                    class="comment-submit"
+                    onclick="addComment('${post.id}')">
+
+                    Send
+
+                </button>
+
+            </div>
 
         </div>
 
     `;
 
 
-    return card;
+    return article;
 
 }
 
 
-/* ==================================================
-   COMMENTS
-================================================== */
+/* ================================================
+   COMMENTS HTML
+================================================ */
 
-function renderComments(post) {
+function renderCommentsHTML(
+    post
+) {
 
-    let html = "";
+    if (
+        post.comments.length === 0
+    ) {
 
+        return `
+            <div
+                style="
+                    color:#999;
+                    font-size:13px;
+                    margin-bottom:10px;
+                ">
 
-    post.comments.forEach(
-        function(comment) {
+                No comments yet.
 
-            html += `
+            </div>
+        `;
 
-                <div class="comment">
-
-                    <strong>
-                        ${escapeHTML(comment.author)}
-                    </strong>
-
-                    ${escapeHTML(comment.text)}
-
-                </div>
-
-            `;
-
-        }
-    );
+    }
 
 
-    html += `
+    return post.comments
+        .map(
+            function(comment) {
 
-        <div class="comment-box">
+                return `
 
-            <input
-                id="comment-${post.id}"
-                type="text"
-                placeholder="Write a comment...">
+                    <div class="comment">
 
-            <button
-                onclick="addComment(${post.id})">
+                        <div class="comment-author">
 
-                Send
+                            ${
+                                escapeHTML(
+                                    comment.author
+                                )
+                            }
 
-            </button>
-
-        </div>
-
-    `;
+                        </div>
 
 
-    return html;
+                        <div class="comment-text">
+
+                            ${
+                                escapeHTML(
+                                    comment.text
+                                )
+                            }
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
 
 }
 
 
-function toggleComments(id) {
+/* ================================================
+   LIKE
+================================================ */
 
-    const box =
-        document.getElementById(
-            "comments-" + id
+function toggleLike(
+    postId
+) {
+
+    const post =
+        posts.find(
+            function(item) {
+
+                return String(item.id) ===
+                    String(postId);
+
+            }
         );
 
 
-    box.style.display =
-        box.style.display === "block"
-            ? "none"
-            : "block";
+    if (!post) {
+        return;
+    }
+
+
+    const index =
+        post.likes.indexOf(
+            userData.email
+        );
+
+
+    if (index === -1) {
+
+        post.likes.push(
+            userData.email
+        );
+
+
+        /* ======================================
+           NOTIFICATION
+        ====================================== */
+
+        if (
+            post.authorEmail !==
+            userData.email
+        ) {
+
+            createNotificationForUser(
+                post.authorEmail,
+                {
+                    type: "social",
+                    title: "Someone liked your post",
+                    message:
+                        userData.fullName +
+                        " liked your post.",
+                    icon: "❤️"
+                }
+            );
+
+        }
+
+    } else {
+
+        post.likes.splice(
+            index,
+            1
+        );
+
+    }
+
+
+    savePosts();
+
+    renderPosts();
 
 }
 
 
-function addComment(id) {
+/* ================================================
+   COMMENTS
+================================================ */
+
+function addComment(
+    postId
+) {
 
     const input =
         document.getElementById(
-            "comment-" + id
+            `comment-${postId}`
         );
 
 
@@ -1309,31 +1829,44 @@ function addComment(id) {
         input.value.trim();
 
 
-    if (!text) return;
+    if (!text) {
+        return;
+    }
 
 
     const post =
         posts.find(
             function(item) {
 
-                return item.id === id;
+                return String(item.id) ===
+                    String(postId);
 
             }
         );
 
 
-    if (!post) return;
+    if (!post) {
+        return;
+    }
 
 
     post.comments.push({
 
+        id:
+            Date.now() +
+            Math.random(),
+
         author:
-            userName,
+            userData.fullName ||
+            "Gene-rations Member",
+
+        authorEmail:
+            userData.email,
 
         text:
             text,
 
-        time:
+        createdAt:
             new Date().toISOString()
 
     });
@@ -1341,164 +1874,181 @@ function addComment(id) {
 
     savePosts();
 
+
+    /* ======================================
+       NOTIFICATION
+    ====================================== */
+
+    if (
+        post.authorEmail !==
+        userData.email
+    ) {
+
+        createNotificationForUser(
+            post.authorEmail,
+            {
+                type: "social",
+                title: "New comment",
+                message:
+                    userData.fullName +
+                    " commented on your post.",
+                icon: "💬"
+            }
+        );
+
+    }
+
+
     renderPosts();
 
 
     setTimeout(
         function() {
 
-            const box =
+            const comments =
                 document.getElementById(
-                    "comments-" + id
+                    `comments-${postId}`
                 );
 
-            if (box) {
 
-                box.style.display =
+            if (comments) {
+
+                comments.style.display =
                     "block";
 
             }
 
         },
-        50
+        0
     );
 
 }
 
 
-/* ==================================================
-   LIKE
-================================================== */
+/* ================================================
+   SHOW COMMENTS
+================================================ */
 
-function likePost(id) {
+function toggleComments(
+    postId
+) {
 
-    const post =
-        posts.find(
-            function(item) {
-
-                return item.id === id;
-
-            }
+    const comments =
+        document.getElementById(
+            `comments-${postId}`
         );
 
 
-    if (!post) return;
-
-
-    if (post.liked) {
-
-        post.likes--;
-
-        post.liked =
-            false;
-
-    }
-
-    else {
-
-        post.likes++;
-
-        post.liked =
-            true;
-
+    if (!comments) {
+        return;
     }
 
 
-    savePosts();
+    if (
+        comments.style.display ===
+        "block"
+    ) {
 
-    renderPosts();
+        comments.style.display =
+            "none";
+
+    } else {
+
+        comments.style.display =
+            "block";
+
+    }
 
 }
 
 
-/* ==================================================
-   SHARE
-================================================== */
+/* ================================================
+   DELETE POST
+================================================ */
 
-function sharePost(id) {
+function deletePost(
+    postId
+) {
 
     const post =
         posts.find(
             function(item) {
 
-                return item.id === id;
+                return String(item.id) ===
+                    String(postId);
 
             }
         );
 
 
-    if (!post) return;
-
-
-    const text =
-        post.author +
-        " posted on Gene-rations:\n\n" +
-        post.content;
+    if (!post) {
+        return;
+    }
 
 
     if (
-        navigator.share
+        post.authorEmail !==
+        userData.email
     ) {
 
-        navigator.share({
-
-            title:
-                "Gene-rations Post",
-
-            text:
-                text
-
-        });
+        return;
 
     }
 
-    else {
 
-        navigator.clipboard
-            .writeText(text)
-            .then(
-                function() {
+    const confirmed =
+        confirm(
+            "Delete this post?"
+        );
 
-                    alert(
-                        "Post copied to clipboard."
-                    );
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    posts =
+        posts.filter(
+            function(item) {
+
+                return String(item.id) !==
+                    String(postId);
+
+            }
+        );
+
+
+    savePosts();
+
+
+    /* ======================================
+       REMOVE FROM USER POSTS
+    ====================================== */
+
+    if (
+        Array.isArray(
+            userData.posts
+        )
+    ) {
+
+        userData.posts =
+            userData.posts.filter(
+                function(id) {
+
+                    return String(id) !==
+                        String(postId);
 
                 }
             );
 
     }
 
-}
 
-
-/* ==================================================
-   FILTER
-================================================== */
-
-function filterPosts(
-    filter,
-    button
-) {
-
-    currentFilter =
-        filter;
-
-
-    document.querySelectorAll(
-        ".filter-btn"
-    ).forEach(
-        function(btn) {
-
-            btn.classList.remove(
-                "active"
-            );
-
-        }
-    );
-
-
-    button.classList.add(
-        "active"
+    localStorage.setItem(
+        "userData",
+        JSON.stringify(
+            userData
+        )
     );
 
 
@@ -1507,30 +2057,90 @@ function filterPosts(
 }
 
 
-/* ==================================================
-   SAVE POSTS
-================================================== */
+/* ================================================
+   NOTIFICATION CREATOR
+================================================ */
 
-function savePosts() {
+function createNotificationForUser(
+    targetEmail,
+    data
+) {
+
+    const key =
+        "geneRationsNotifications";
+
+
+    let notifications =
+        JSON.parse(
+            localStorage.getItem(
+                key
+            )
+        );
+
+
+    if (!Array.isArray(notifications)) {
+
+        notifications = [];
+
+    }
+
+
+    notifications.unshift({
+
+        id:
+            Date.now() +
+            Math.random(),
+
+        userEmail:
+            targetEmail,
+
+        type:
+            data.type ||
+            "social",
+
+        title:
+            data.title ||
+            "Gene-rations Update",
+
+        message:
+            data.message ||
+            "",
+
+        icon:
+            data.icon ||
+            "🔔",
+
+        createdAt:
+            new Date().toISOString(),
+
+        read:
+            false
+
+    });
+
 
     localStorage.setItem(
-        "posts",
-        JSON.stringify(posts)
+        key,
+        JSON.stringify(
+            notifications
+        )
     );
 
 }
 
 
-/* ==================================================
+/* ================================================
    TIME
-================================================== */
+================================================ */
 
 function formatTime(
     dateString
 ) {
 
     const date =
-        new Date(dateString);
+        new Date(
+            dateString
+        );
 
 
     const now =
@@ -1561,7 +2171,7 @@ function formatTime(
     if (minutes < 60) {
 
         return minutes +
-            " min ago";
+            "m ago";
 
     }
 
@@ -1575,7 +2185,7 @@ function formatTime(
     if (hours < 24) {
 
         return hours +
-            " hr ago";
+            "h ago";
 
     }
 
@@ -1589,7 +2199,7 @@ function formatTime(
     if (days < 7) {
 
         return days +
-            " day(s) ago";
+            "d ago";
 
     }
 
@@ -1599,51 +2209,158 @@ function formatTime(
 }
 
 
-/* ==================================================
-   POST TYPE ICON
-================================================== */
+/* ================================================
+   ESCAPE HTML
+================================================ */
 
-function getPostTypeIcon(
-    type
+function escapeHTML(
+    value
 ) {
-
-    if (type === "idea")
-        return "💡";
-
-    if (type === "question")
-        return "❓";
-
-    return "💬";
-
-}
-
-
-/* ==================================================
-   SECURITY
-================================================== */
-
-function escapeHTML(value) {
 
     return String(value)
 
-        .replace(/&/g, "&amp;")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
 
-        .replace(/</g, "&lt;")
+        .replace(
+            /</g,
+            "&lt;"
+        )
 
-        .replace(/>/g, "&gt;")
+        .replace(
+            />/g,
+            "&gt;"
+        )
 
-        .replace(/"/g, "&quot;")
+        .replace(
+            /"/g,
+            "&quot;"
+        )
 
-        .replace(/'/g, "&#039;");
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
-/* ==================================================
-   HOME
-================================================== */
+/* ================================================
+   EMOJI
+================================================ */
 
-function goHome() {
+function addEmoji() {
+
+    const textarea =
+        document.getElementById(
+            "postText"
+        );
+
+
+    textarea.value += " 😊";
+
+
+    textarea.focus();
+
+}
+
+
+/* ================================================
+   MESSAGE
+================================================ */
+
+function showMessage(
+    text,
+    type
+) {
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        type;
+
+
+    message.style.display =
+        "block";
+
+
+    setTimeout(
+        function() {
+
+            message.style.display =
+                "none";
+
+        },
+        2500
+    );
+
+}
+
+
+/* ================================================
+   FILTERS
+================================================ */
+
+document
+    .querySelectorAll(
+        ".filter"
+    )
+    .forEach(
+        function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    document
+                        .querySelectorAll(
+                            ".filter"
+                        )
+                        .forEach(
+                            function(item) {
+
+                                item.classList
+                                    .remove(
+                                        "active"
+                                    );
+
+                            }
+                        );
+
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    currentFilter =
+                        this.dataset.filter;
+
+
+                    renderPosts();
+
+                }
+            );
+
+        }
+    );
+
+
+/* ================================================
+   NAVIGATION
+================================================ */
+
+function goToHub() {
 
     window.location.href =
         "generations.html";
@@ -1651,14 +2368,21 @@ function goHome() {
 }
 
 
-/* ==================================================
-   START
-================================================== */
+function goToNotifications() {
+
+    window.location.href =
+        "notifications.html";
+
+}
+
+
+/* ================================================
+   INITIALIZE
+================================================ */
 
 renderPosts();
 
 </script>
 
 </body>
-
 </html>

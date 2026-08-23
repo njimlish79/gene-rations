@@ -5,12 +5,19 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Gene-rations | Messages</title>
 
+
 <style>
+
+/* ==========================================
+   RESET
+========================================== */
 
 * {
     box-sizing: border-box;
@@ -18,195 +25,219 @@
     padding: 0;
 }
 
+
 body {
+
     font-family: Arial, sans-serif;
-    background: #f3f5fb;
-    color: #222;
+
+    background: #f5f3fb;
+
+    color: #292238;
+
+    min-height: 100vh;
 }
 
 
-/* =========================
+/* ==========================================
    HEADER
-========================= */
+========================================== */
 
 .header {
 
     background:
-        linear-gradient(135deg, #2563eb, #7c3aed);
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
 
     color: white;
 
-    padding: 15px 20px;
+    padding: 17px 20px;
 
     display: flex;
 
-    justify-content: space-between;
-
     align-items: center;
+
+    justify-content: space-between;
 
     position: sticky;
 
     top: 0;
 
     z-index: 100;
-
 }
+
 
 .logo {
 
-    font-size: 22px;
+    font-size: 23px;
 
     font-weight: bold;
-
-}
-
-.home-btn {
-
-    border: none;
-
-    background: rgba(255,255,255,.2);
-
-    color: white;
-
-    padding: 9px 15px;
-
-    border-radius: 20px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
 }
 
 
-/* =========================
-   LAYOUT
-========================= */
-
-.page {
-
-    max-width: 1000px;
-
-    margin: auto;
-
-    padding: 20px;
-
-}
-
-.messages-layout {
-
-    display: grid;
-
-    grid-template-columns: 320px 1fr;
-
-    gap: 15px;
-
-    min-height: 650px;
-
-}
-
-
-/* =========================
-   CONVERSATIONS
-========================= */
-
-.conversations {
-
-    background: white;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.06);
-
-    overflow: hidden;
-
-}
-
-.conversations-header {
-
-    padding: 18px;
-
-    border-bottom: 1px solid #eee;
-
-}
-
-.conversations-header h1 {
-
-    font-size: 22px;
-
-    margin-bottom: 12px;
-
-}
-
-.search {
-
-    width: 100%;
-
-    padding: 11px 13px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 10px;
-
-    outline: none;
-
-    font-size: 14px;
-
-}
-
-.search:focus {
-
-    border-color: #2563eb;
-
-}
-
-
-/* =========================
-   CONVERSATION ITEM
-========================= */
-
-.conversation {
+.header-actions {
 
     display: flex;
 
-    align-items: center;
+    gap: 8px;
+}
 
-    gap: 11px;
+
+.header-btn {
+
+    border: none;
+
+    background:
+        rgba(255,255,255,.18);
+
+    color: white;
+
+    padding: 11px 15px;
+
+    border-radius: 25px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.header-btn:hover {
+
+    background:
+        rgba(255,255,255,.30);
+}
+
+
+/* ==========================================
+   MAIN
+========================================== */
+
+.container {
+
+    width: 94%;
+
+    max-width: 850px;
+
+    margin: auto;
+
+    padding: 22px 0 50px;
+}
+
+
+/* ==========================================
+   PAGE TITLE
+========================================== */
+
+.page-title {
+
+    margin-bottom: 20px;
+}
+
+
+.page-title h1 {
+
+    font-size: 28px;
+
+    margin-bottom: 5px;
+}
+
+
+.page-title p {
+
+    color: #777;
+}
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+.search-box {
+
+    background: white;
 
     padding: 14px 16px;
 
-    cursor: pointer;
+    border-radius: 18px;
 
-    border-bottom: 1px solid #f1f1f1;
+    margin-bottom: 18px;
 
+    box-shadow:
+        0 5px 20px
+        rgba(40,20,80,.06);
 }
 
-.conversation:hover {
 
-    background: #f8fafc;
+.search-box input {
 
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    font-size: 16px;
+
+    background: transparent;
 }
 
-.conversation.active {
 
-    background: #eff6ff;
+/* ==========================================
+   MESSAGE CARD
+========================================== */
 
+.messages-card {
+
+    background: white;
+
+    border-radius: 23px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 6px 25px
+        rgba(40,20,80,.07);
 }
 
-.avatar {
 
-    width: 46px;
+/* ==========================================
+   CARD HEADER
+========================================== */
 
-    height: 46px;
+.messages-header {
 
-    min-width: 46px;
+    padding: 18px 20px;
 
-    border-radius: 50%;
+    border-bottom: 1px solid #eee;
 
-    background: #2563eb;
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.messages-header h2 {
+
+    font-size: 20px;
+}
+
+
+.unread-total {
+
+    background: #7c3aed;
 
     color: white;
+
+    min-width: 28px;
+
+    height: 28px;
+
+    border-radius: 50%;
 
     display: flex;
 
@@ -214,11 +245,82 @@ body {
 
     justify-content: center;
 
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   CONVERSATION
+========================================== */
+
+.conversation {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 17px 20px;
+
+    border-bottom: 1px solid #f0edf5;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.conversation:hover {
+
+    background: #faf8ff;
+}
+
+
+.conversation.unread {
+
+    background: #f7f3ff;
+}
+
+
+/* ==========================================
+   AVATAR
+========================================== */
+
+.avatar {
+
+    width: 55px;
+
+    height: 55px;
+
+    min-width: 55px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ddd6fe,
+            #c4b5fd
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 23px;
+
     font-weight: bold;
 
-    overflow: hidden;
+    color: #5b21b6;
 
+    overflow: hidden;
 }
+
 
 .avatar img {
 
@@ -227,324 +329,191 @@ body {
     height: 100%;
 
     object-fit: cover;
-
 }
 
-.conversation-info {
 
-    min-width: 0;
+/* ==========================================
+   CONVERSATION CONTENT
+========================================== */
+
+.conversation-content {
 
     flex: 1;
 
+    min-width: 0;
 }
+
+
+.conversation-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 5px;
+}
+
 
 .conversation-name {
 
     font-weight: bold;
 
-    margin-bottom: 4px;
-
-}
-
-.last-message {
-
-    color: #777;
-
-    font-size: 13px;
-
-    white-space: nowrap;
+    font-size: 16px;
 
     overflow: hidden;
 
-    text-overflow: ellipsis;
+    white-space: nowrap;
 
+    text-overflow: ellipsis;
 }
+
 
 .conversation-time {
 
     color: #999;
 
-    font-size: 11px;
+    font-size: 12px;
 
+    white-space: nowrap;
 }
 
 
-/* =========================
-   CHAT
-========================= */
-
-.chat {
-
-    background: white;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.06);
-
-    display: flex;
-
-    flex-direction: column;
-
-    overflow: hidden;
-
-}
-
-
-/* =========================
-   CHAT HEADER
-========================= */
-
-.chat-header {
-
-    padding: 15px 18px;
-
-    border-bottom: 1px solid #eee;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 11px;
-
-}
-
-.chat-user-name {
-
-    font-weight: bold;
-
-}
-
-.chat-user-generation {
+.last-message {
 
     color: #777;
 
-    font-size: 12px;
+    font-size: 14px;
 
-    margin-top: 3px;
+    overflow: hidden;
 
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
 }
 
 
-/* =========================
-   CHAT BODY
-========================= */
+.unread .last-message {
 
-.chat-body {
+    color: #3f3158;
 
-    flex: 1;
-
-    padding: 20px;
-
-    overflow-y: auto;
-
-    min-height: 450px;
-
-    background: #f8fafc;
-
+    font-weight: bold;
 }
 
 
-/* =========================
-   EMPTY CHAT
-========================= */
+/* ==========================================
+   RIGHT SIDE
+========================================== */
 
-.empty-chat {
-
-    height: 100%;
-
-    min-height: 450px;
+.conversation-right {
 
     display: flex;
 
     flex-direction: column;
 
-    justify-content: center;
+    align-items: flex-end;
+
+    gap: 7px;
+}
+
+
+.unread-badge {
+
+    background: #7c3aed;
+
+    color: white;
+
+    min-width: 22px;
+
+    height: 22px;
+
+    border-radius: 50%;
+
+    display: flex;
 
     align-items: center;
+
+    justify-content: center;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   EMPTY
+========================================== */
+
+.empty {
+
+    padding: 55px 20px;
 
     text-align: center;
 
     color: #777;
-
-    padding: 30px;
-
 }
 
-.empty-chat-icon {
+
+.empty-icon {
 
     font-size: 50px;
 
     margin-bottom: 12px;
-
 }
 
 
-/* =========================
-   MESSAGE BUBBLES
-========================= */
+.empty h3 {
 
-.message-row {
+    color: #40364d;
 
-    display: flex;
-
-    margin-bottom: 12px;
-
-}
-
-.message-row.mine {
-
-    justify-content: flex-end;
-
-}
-
-.message-row.theirs {
-
-    justify-content: flex-start;
-
-}
-
-.message-bubble {
-
-    max-width: 75%;
-
-    padding: 11px 14px;
-
-    border-radius: 16px;
-
-    line-height: 1.5;
-
-    font-size: 14px;
-
-}
-
-.mine .message-bubble {
-
-    background: #2563eb;
-
-    color: white;
-
-    border-bottom-right-radius: 4px;
-
-}
-
-.theirs .message-bubble {
-
-    background: white;
-
-    color: #222;
-
-    border-bottom-left-radius: 4px;
-
-    box-shadow:
-        0 2px 5px rgba(0,0,0,.05);
-
-}
-
-.message-time {
-
-    font-size: 10px;
-
-    margin-top: 4px;
-
-    opacity: .65;
-
-    text-align: right;
-
+    margin-bottom: 8px;
 }
 
 
-/* =========================
-   COMPOSE
-========================= */
-
-.compose {
-
-    padding: 13px;
-
-    border-top: 1px solid #eee;
-
-    display: flex;
-
-    gap: 8px;
-
-}
-
-.compose textarea {
-
-    flex: 1;
-
-    resize: none;
-
-    height: 45px;
-
-    padding: 12px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 12px;
-
-    font-family: inherit;
-
-    outline: none;
-
-}
-
-.compose textarea:focus {
-
-    border-color: #2563eb;
-
-}
-
-.send-btn {
-
-    width: 50px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    background: #2563eb;
-
-    color: white;
-
-    cursor: pointer;
-
-    font-size: 18px;
-
-}
-
-
-/* =========================
+/* ==========================================
    NEW MESSAGE BUTTON
-========================= */
+========================================== */
 
 .new-message-btn {
 
-    width: 100%;
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    width: 58px;
+
+    height: 58px;
 
     border: none;
 
-    background: #2563eb;
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
 
     color: white;
 
-    padding: 11px;
-
-    border-radius: 10px;
-
-    margin-top: 12px;
-
-    font-weight: bold;
+    font-size: 25px;
 
     cursor: pointer;
 
+    box-shadow:
+        0 8px 25px
+        rgba(80,40,180,.3);
 }
 
 
-/* =========================
+/* ==========================================
    MODAL
-========================= */
+========================================== */
 
 .modal {
 
@@ -554,33 +523,38 @@ body {
 
     inset: 0;
 
-    background: rgba(0,0,0,.55);
+    background:
+        rgba(0,0,0,.55);
 
     z-index: 500;
 
-    align-items: flex-end;
+    align-items: center;
 
     justify-content: center;
 
+    padding: 20px;
 }
 
-.modal-box {
 
-    width: 100%;
+.modal.show {
 
-    max-width: 600px;
+    display: flex;
+}
 
-    max-height: 90vh;
 
-    overflow-y: auto;
+.modal-content {
 
     background: white;
 
-    border-radius: 22px 22px 0 0;
+    width: 100%;
 
-    padding: 22px;
+    max-width: 450px;
 
+    border-radius: 24px;
+
+    padding: 25px;
 }
+
 
 .modal-header {
 
@@ -590,108 +564,145 @@ body {
 
     align-items: center;
 
-    margin-bottom: 18px;
-
+    margin-bottom: 20px;
 }
 
-.close {
 
-    border: none;
+.close-btn {
 
     width: 38px;
 
     height: 38px;
 
+    border: none;
+
     border-radius: 50%;
 
-    background: #f1f5f9;
+    background: #eee;
+
+    font-size: 20px;
 
     cursor: pointer;
-
-    font-size: 18px;
-
 }
 
 
-/* =========================
-   CONTACT SEARCH
-========================= */
+.form-group {
 
-.contact {
+    margin-bottom: 16px;
+}
 
-    display: flex;
 
-    align-items: center;
+.form-group label {
 
-    gap: 12px;
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: bold;
+}
+
+
+.form-group input {
+
+    width: 100%;
 
     padding: 13px;
 
-    border-radius: 10px;
+    border: 1px solid #ddd;
 
-    cursor: pointer;
+    border-radius: 13px;
 
-    margin-top: 6px;
+    outline: none;
 
+    font-size: 15px;
 }
 
-.contact:hover {
 
-    background: #f1f5f9;
+.start-btn {
 
-}
+    width: 100%;
 
-.contact-info {
+    border: none;
 
-    flex: 1;
+    background: #7c3aed;
 
-}
+    color: white;
 
-.contact-name {
+    padding: 14px;
+
+    border-radius: 14px;
 
     font-weight: bold;
 
-}
-
-.contact-generation {
-
-    color: #777;
-
-    font-size: 12px;
-
-    margin-top: 3px;
-
+    cursor: pointer;
 }
 
 
-/* =========================
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #888;
+}
+
+
+/* ==========================================
    MOBILE
-========================= */
+========================================== */
 
-@media (max-width: 700px) {
+@media(max-width:600px) {
 
-    .page {
+    .header {
 
-        padding: 10px;
-
+        padding: 14px;
     }
 
-    .messages-layout {
 
-        grid-template-columns: 1fr;
+    .logo {
 
+        font-size: 20px;
     }
 
-    .conversations {
 
-        max-height: 350px;
+    .header-btn {
 
+        padding: 9px 11px;
+
+        font-size: 12px;
     }
 
-    .chat {
 
-        min-height: 550px;
+    .container {
 
+        width: 96%;
+    }
+
+
+    .conversation {
+
+        padding: 15px;
+    }
+
+
+    .avatar {
+
+        width: 50px;
+
+        height: 50px;
+
+        min-width: 50px;
+    }
+
+
+    .conversation-time {
+
+        font-size: 11px;
     }
 
 }
@@ -704,234 +715,254 @@ body {
 <body>
 
 
-<!-- =========================
+<!-- ==========================================
      HEADER
-========================= -->
+========================================== -->
 
 <header class="header">
 
     <div class="logo">
+
         Gene-rations
+
     </div>
 
-    <button
-        class="home-btn"
-        onclick="goHome()">
 
-        ← Generation Hub
+    <div class="header-actions">
 
-    </button>
+        <button
+            class="header-btn"
+            onclick="goGenerationHub()">
+
+            🏠 Generation Hub
+
+        </button>
+
+
+        <button
+            class="header-btn"
+            onclick="goProfile()">
+
+            👤
+
+        </button>
+
+    </div>
 
 </header>
 
 
 
-<main class="page">
+<!-- ==========================================
+     MAIN
+========================================== -->
+
+<main class="container">
 
 
-<div class="messages-layout">
+    <section class="page-title">
+
+        <h1>
+
+            Messages
+
+        </h1>
 
 
-<!-- ==================================================
-     CONVERSATIONS
-================================================== -->
+        <p id="messageWelcome">
 
-<section class="conversations">
+            Connect with other Gene-rations members.
 
+        </p>
 
-<div class="conversations-header">
-
-    <h1>
-        Messages
-    </h1>
-
-
-    <input
-        id="conversationSearch"
-        class="search"
-        type="search"
-        placeholder="Search conversations...">
-
-
-    <button
-        class="new-message-btn"
-        onclick="openNewMessage()">
-
-        + New Message
-
-    </button>
-
-</div>
-
-
-<div id="conversationList">
-
-</div>
-
-
-</section>
+    </section>
 
 
 
-<!-- ==================================================
-     CHAT
-================================================== -->
+    <!-- SEARCH -->
 
-<section class="chat">
+    <section class="search-box">
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="🔍 Search conversations..."
+        >
+
+    </section>
 
 
-<div
-    id="chatHeader"
-    class="chat-header"
-    style="display:none;">
 
-    <div
-        id="chatAvatar"
-        class="avatar">
+    <!-- MESSAGES -->
 
-        U
+    <section class="messages-card">
 
-    </div>
 
-    <div>
+        <div class="messages-header">
 
-        <div
-            id="chatUserName"
-            class="chat-user-name">
+            <h2>
 
-            User
+                Conversations
+
+            </h2>
+
+
+            <span
+                class="unread-total"
+                id="unreadTotal">
+
+                0
+
+            </span>
 
         </div>
 
-        <div
-            id="chatUserGeneration"
-            class="chat-user-generation">
 
-            Generation
+        <div id="conversationList">
+
+            <!-- Dynamic conversations -->
 
         </div>
 
-    </div>
 
-</div>
+    </section>
 
-
-
-<div
-    id="chatBody"
-    class="chat-body">
-
-
-<div class="empty-chat">
-
-    <div class="empty-chat-icon">
-        💬
-    </div>
-
-    <h2>
-        Your Messages
-    </h2>
-
-    <p>
-        Select a conversation or start
-        a new private conversation.
-    </p>
-
-</div>
-
-
-</div>
-
-
-
-<div
-    id="compose"
-    class="compose"
-    style="display:none;">
-
-    <textarea
-        id="messageInput"
-        placeholder="Write a message..."></textarea>
-
-
-    <button
-        class="send-btn"
-        onclick="sendMessage()">
-
-        ➤
-
-    </button>
-
-</div>
-
-
-</section>
-
-
-</div>
 
 </main>
 
 
 
-<!-- ==================================================
+<!-- ==========================================
+     NEW MESSAGE BUTTON
+========================================== -->
+
+<button
+    class="new-message-btn"
+    onclick="openNewMessage()"
+    title="New message">
+
+    ✉️
+
+</button>
+
+
+
+<!-- ==========================================
      NEW MESSAGE MODAL
-================================================== -->
+========================================== -->
 
 <div
-    id="newMessageModal"
-    class="modal">
+    class="modal"
+    id="newMessageModal">
 
 
-<div class="modal-box">
+    <div class="modal-content">
 
 
-<div class="modal-header">
+        <div class="modal-header">
 
-    <h2>
-        New Message
-    </h2>
+            <h2>
 
-    <button
-        class="close"
-        onclick="closeNewMessage()">
+                New Message
 
-        ✕
+            </h2>
 
-    </button>
+
+            <button
+                class="close-btn"
+                onclick="closeNewMessage()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form
+            id="newMessageForm">
+
+
+            <div class="form-group">
+
+                <label>
+
+                    Recipient email
+
+                </label>
+
+
+                <input
+                    type="email"
+                    id="recipientEmail"
+                    placeholder="Enter member email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+
+                    First message
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="firstMessage"
+                    placeholder="Write your message..."
+                    required
+                >
+
+            </div>
+
+
+            <button
+                class="start-btn"
+                type="submit">
+
+                Start Conversation
+
+            </button>
+
+
+        </form>
+
+    </div>
 
 </div>
 
 
-<input
-    id="contactSearch"
-    class="search"
-    type="search"
-    placeholder="Search members...">
 
+<footer class="footer">
 
-<div id="contactList">
+    Gene-rations © 2026
 
-</div>
-
-
-</div>
-
-</div>
+</footer>
 
 
 
 <script>
 
-/* ==================================================
-   USER
-================================================== */
+/* =====================================================
+   USER DATA
+===================================================== */
 
-const storedUser =
-    localStorage.getItem("userData");
+let userData =
+    JSON.parse(
+        localStorage.getItem("userData")
+    );
 
 
-if (!storedUser) {
+/* =====================================================
+   LOGIN CHECK
+===================================================== */
+
+if (!userData) {
 
     window.location.href =
         "login.html";
@@ -939,381 +970,253 @@ if (!storedUser) {
 }
 
 
-const user =
-    JSON.parse(storedUser);
+/* =====================================================
+   USER NAME
+===================================================== */
+
+document.getElementById(
+    "messageWelcome"
+).textContent =
+
+    `Connect with other Gene-rations members, ${
+        userData.fullName ||
+        "Member"
+    }.`;
 
 
-const currentUserName =
-    user.fullName ||
-    user.name ||
-    "Gene-rations Member";
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+const MESSAGE_KEY =
+    "geneRationsMessages";
 
 
-const currentGeneration =
-    user.generation ||
-    "Your Generation";
 
+/* =====================================================
+   LOAD MESSAGE DATA
+===================================================== */
 
-/* ==================================================
-   CONVERSATIONS
-================================================== */
-
-let conversations =
+let messageData =
     JSON.parse(
         localStorage.getItem(
-            "messages"
+            MESSAGE_KEY
         )
     ) || [];
 
-
-let activeConversation =
-    null;
-
-
-/* ==================================================
-   DEMO CONTACTS
-================================================== */
-
-let contacts =
-    JSON.parse(
-        localStorage.getItem(
-            "geneRationsContacts"
-        )
-    ) || [];
 
 
 /*
-   For frontend testing we create
-   a few sample members.
+    Structure:
 
-   Later these will come from
-   the backend database.
+    {
+        id,
+        participants: [],
+        messages: [],
+        updatedAt
+    }
+
 */
 
-if (contacts.length === 0) {
 
-    contacts = [
 
-        {
-            id: "member-1",
+/* =====================================================
+   SAVE
+===================================================== */
 
-            name:
-                "Gene-rations Member",
-
-            generation:
-                currentGeneration
-
-        },
-
-        {
-            id: "member-2",
-
-            name:
-                "Generation Community Member",
-
-            generation:
-                currentGeneration
-
-        },
-
-        {
-            id: "member-3",
-
-            name:
-                "Cross Generation Member",
-
-            generation:
-                "All Generations"
-
-        }
-
-    ];
-
+function saveMessages() {
 
     localStorage.setItem(
-        "geneRationsContacts",
+
+        MESSAGE_KEY,
+
         JSON.stringify(
-            contacts
+            messageData
         )
+
     );
 
 }
 
 
-/* ==================================================
-   RENDER CONVERSATIONS
-================================================== */
 
-function renderConversations(
+/* =====================================================
+   GET CONVERSATIONS
+===================================================== */
+
+function getConversations() {
+
+    return messageData
+        .filter(function(conversation) {
+
+            return (
+                Array.isArray(
+                    conversation.participants
+                )
+                &&
+                conversation.participants
+                    .includes(
+                        userData.email
+                    )
+            );
+
+        })
+        .sort(function(a,b) {
+
+            return (
+                new Date(
+                    b.updatedAt || 0
+                )
+                -
+                new Date(
+                    a.updatedAt || 0
+                )
+            );
+
+        });
+
+}
+
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderMessages(
     search = ""
 ) {
 
-    const container =
+    const list =
         document.getElementById(
             "conversationList"
         );
 
 
-    container.innerHTML =
-        "";
+    list.innerHTML = "";
 
 
-    conversations
-        .filter(
+    const conversations =
+        getConversations();
+
+
+    const searchTerm =
+        search
+            .toLowerCase()
+            .trim();
+
+
+    const filtered =
+        conversations.filter(
             function(conversation) {
 
-                return conversation.name
+                const otherUser =
+                    getOtherParticipant(
+                        conversation
+                    );
+
+
+                const name =
+                    otherUser.name ||
+                    otherUser.email ||
+                    "";
+
+
+                const last =
+                    getLastMessage(
+                        conversation
+                    );
+
+
+                return (
+
+                    name
+                        .toLowerCase()
+                        .includes(
+                            searchTerm
+                        )
+
+                    ||
+
+                    (
+                        last.text ||
+                        ""
+                    )
                     .toLowerCase()
                     .includes(
-                        search.toLowerCase()
-                    );
+                        searchTerm
+                    )
 
-            }
-        )
-        .forEach(
-            function(conversation) {
-
-                const item =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                item.className =
-                    "conversation";
-
-
-                if (
-                    activeConversation &&
-                    activeConversation.id ===
-                    conversation.id
-                ) {
-
-                    item.classList.add(
-                        "active"
-                    );
-
-                }
-
-
-                const initials =
-                    conversation.name
-                        .charAt(0)
-                        .toUpperCase();
-
-
-                item.innerHTML = `
-
-                    <div class="avatar">
-                        ${initials}
-                    </div>
-
-                    <div class="conversation-info">
-
-                        <div class="conversation-name">
-
-                            ${escapeHTML(
-                                conversation.name
-                            )}
-
-                        </div>
-
-                        <div class="last-message">
-
-                            ${escapeHTML(
-                                getLastMessage(
-                                    conversation
-                                )
-                            )}
-
-                        </div>
-
-                    </div>
-
-                    <div class="conversation-time">
-
-                        ${getLastTime(
-                            conversation
-                        )}
-
-                    </div>
-
-                `;
-
-
-                item.onclick =
-                    function() {
-
-                        openConversation(
-                            conversation.id
-                        );
-
-                    };
-
-
-                container.appendChild(
-                    item
                 );
 
             }
         );
 
-}
+
+    /* ===============================
+       UNREAD
+    =============================== */
+
+    let totalUnread = 0;
 
 
-/* ==================================================
-   LAST MESSAGE
-================================================== */
+    conversations.forEach(
+        function(conversation) {
 
-function getLastMessage(
-    conversation
-) {
+            totalUnread +=
+                getUnreadCount(
+                    conversation
+                );
 
-    if (
-        !conversation.messages ||
-        conversation.messages.length === 0
-    ) {
-
-        return "No messages yet";
-
-    }
-
-
-    return conversation
-        .messages[
-            conversation.messages.length - 1
-        ]
-        .text;
-
-}
-
-
-function getLastTime(
-    conversation
-) {
-
-    if (
-        !conversation.messages ||
-        conversation.messages.length === 0
-    ) {
-
-        return "";
-
-    }
-
-
-    return formatTime(
-        conversation
-            .messages[
-                conversation.messages.length - 1
-            ]
-            .time
+        }
     );
 
-}
-
-
-/* ==================================================
-   OPEN CONVERSATION
-================================================== */
-
-function openConversation(
-    id
-) {
-
-    activeConversation =
-        conversations.find(
-            function(conversation) {
-
-                return conversation.id === id;
-
-            }
-        );
-
-
-    if (!activeConversation)
-        return;
-
 
     document.getElementById(
-        "chatHeader"
-    ).style.display =
-        "flex";
-
-
-    document.getElementById(
-        "compose"
-    ).style.display =
-        "flex";
-
-
-    document.getElementById(
-        "chatUserName"
+        "unreadTotal"
     ).textContent =
-        activeConversation.name;
+        totalUnread;
 
 
-    document.getElementById(
-        "chatUserGeneration"
-    ).textContent =
-        activeConversation.generation ||
-        "Gene-rations Member";
-
-
-    document.getElementById(
-        "chatAvatar"
-    ).textContent =
-        activeConversation.name
-            .charAt(0)
-            .toUpperCase();
-
-
-    renderMessages();
-
-
-    renderConversations();
-
-}
-
-
-/* ==================================================
-   RENDER CHAT
-================================================== */
-
-function renderMessages() {
-
-    const body =
-        document.getElementById(
-            "chatBody"
-        );
-
-
-    body.innerHTML =
-        "";
-
+    /* ===============================
+       EMPTY
+    =============================== */
 
     if (
-        !activeConversation.messages ||
-        activeConversation.messages.length === 0
+        filtered.length === 0
     ) {
 
-        body.innerHTML = `
+        list.innerHTML = `
 
-            <div class="empty-chat">
+            <div class="empty">
 
-                <div class="empty-chat-icon">
-                    👋
+                <div class="empty-icon">
+
+                    💬
+
                 </div>
 
+
                 <h3>
-                    Start the conversation
+
+                    ${
+                        search
+                            ? "No conversations found"
+                            : "No messages yet"
+                    }
+
                 </h3>
 
+
                 <p>
-                    Send a private message to
-                    ${escapeHTML(
-                        activeConversation.name
-                    )}.
+
+                    ${
+                        search
+                            ? "Try another search."
+                            : "Start a conversation with another Gene-rations member."
+                    }
+
                 </p>
 
             </div>
@@ -1325,161 +1228,408 @@ function renderMessages() {
     }
 
 
-    activeConversation.messages
-        .forEach(
-            function(message) {
 
-                const row =
-                    document.createElement(
-                        "div"
+    /* ===============================
+       CONVERSATIONS
+    =============================== */
+
+    filtered.forEach(
+        function(conversation) {
+
+            const otherUser =
+                getOtherParticipant(
+                    conversation
+                );
+
+
+            const last =
+                getLastMessage(
+                    conversation
+                );
+
+
+            const unread =
+                getUnreadCount(
+                    conversation
+                );
+
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "conversation" +
+                (
+                    unread > 0
+                        ? " unread"
+                        : ""
+                );
+
+
+            item.onclick =
+                function() {
+
+                    openConversation(
+                        conversation.id
                     );
 
-
-                row.className =
-                    "message-row " +
-                    (
-                        message.sender ===
-                        currentUserName
-                            ? "mine"
-                            : "theirs"
-                    );
+                };
 
 
-                row.innerHTML = `
+            const name =
+                otherUser.name ||
+                otherUser.email ||
+                "Gene-rations Member";
 
-                    <div class="message-bubble">
 
-                        ${escapeHTML(
-                            message.text
-                        )}
+            const initials =
+                getInitials(
+                    name
+                );
 
-                        <div class="message-time">
 
-                            ${formatTime(
-                                message.time
+            const photo =
+                otherUser.profilePhoto ||
+                "";
+
+
+            item.innerHTML = `
+
+                <div class="avatar">
+
+                    ${
+                        photo
+
+                        ?
+
+                        `<img
+                            src="${photo}"
+                            alt="Profile"
+                        >`
+
+                        :
+
+                        initials
+                    }
+
+                </div>
+
+
+                <div
+                    class="conversation-content">
+
+
+                    <div
+                        class="conversation-top">
+
+
+                        <div
+                            class="conversation-name">
+
+                            ${escapeHTML(
+                                name
                             )}
 
                         </div>
 
+
+                        <div
+                            class="conversation-time">
+
+                            ${
+                                formatTime(
+                                    last?.createdAt
+                                )
+                            }
+
+                        </div>
+
+
                     </div>
 
-                `;
+
+                    <div
+                        class="last-message">
+
+                        ${
+                            last
+
+                                ?
+
+                                escapeHTML(
+                                    last.text ||
+                                    ""
+                                )
+
+                                :
+
+                                "No messages yet"
+                        }
+
+                    </div>
 
 
-                body.appendChild(
-                    row
+                </div>
+
+
+                <div
+                    class="conversation-right">
+
+
+                    ${
+                        unread > 0
+
+                        ?
+
+                        `<span
+                            class="unread-badge">
+
+                            ${unread}
+
+                        </span>`
+
+                        :
+
+                        ""
+
+                    }
+
+
+                </div>
+
+            `;
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   GET OTHER PARTICIPANT
+===================================================== */
+
+function getOtherParticipant(
+    conversation
+) {
+
+    const email =
+        conversation.participants
+            .find(function(participant) {
+
+                return (
+                    participant !==
+                    userData.email
+                );
+
+            });
+
+
+    /*
+       If participant is an object
+    */
+
+    if (
+        email &&
+        typeof email ===
+        "object"
+    ) {
+
+        return email;
+
+    }
+
+
+    /*
+       Search saved user profiles if
+       available later.
+    */
+
+    const users =
+        JSON.parse(
+            localStorage.getItem(
+                "geneRationsUsers"
+            )
+        ) || [];
+
+
+    const found =
+        users.find(
+            function(user) {
+
+                return (
+                    user.email ===
+                    email
                 );
 
             }
         );
 
 
-    body.scrollTop =
-        body.scrollHeight;
+    if (found) {
 
-}
-
-
-/* ==================================================
-   SEND MESSAGE
-================================================== */
-
-function sendMessage() {
-
-    if (!activeConversation)
-        return;
-
-
-    const input =
-        document.getElementById(
-            "messageInput"
-        );
-
-
-    const text =
-        input.value.trim();
-
-
-    if (!text)
-        return;
-
-
-    if (
-        !activeConversation.messages
-    ) {
-
-        activeConversation.messages =
-            [];
+        return found;
 
     }
 
 
-    activeConversation.messages.push({
+    /*
+       Fallback
+    */
 
-        sender:
-            currentUserName,
+    return {
 
-        text:
-            text,
+        email:
+            email ||
+            "Unknown Member",
 
-        time:
-            new Date().toISOString()
+        name:
+            email ||
+            "Gene-rations Member",
 
-    });
+        profilePhoto:
+            ""
 
-
-    saveMessages();
-
-
-    input.value =
-        "";
-
-
-    renderMessages();
-
-    renderConversations();
+    };
 
 }
 
 
-/* ==================================================
-   ENTER TO SEND
-================================================== */
 
-document.getElementById(
-    "messageInput"
-).addEventListener(
-    "keydown",
-    function(event) {
+/* =====================================================
+   GET LAST MESSAGE
+===================================================== */
 
-        if (
-            event.key === "Enter" &&
-            !event.shiftKey
-        ) {
+function getLastMessage(
+    conversation
+) {
 
-            event.preventDefault();
+    if (
+        !Array.isArray(
+            conversation.messages
+        )
+        ||
+        conversation.messages.length === 0
+    ) {
 
-            sendMessage();
+        return null;
+
+    }
+
+
+    return conversation.messages[
+        conversation.messages.length - 1
+    ];
+
+}
+
+
+
+/* =====================================================
+   UNREAD COUNT
+===================================================== */
+
+function getUnreadCount(
+    conversation
+) {
+
+    if (
+        !Array.isArray(
+            conversation.messages
+        )
+    ) {
+
+        return 0;
+
+    }
+
+
+    return conversation.messages.filter(
+        function(message) {
+
+            return (
+                message.sender !==
+                userData.email
+
+                &&
+
+                message.read !== true
+            );
 
         }
+    ).length;
+
+}
+
+
+
+/* =====================================================
+   OPEN CONVERSATION
+===================================================== */
+
+function openConversation(
+    conversationId
+) {
+
+    localStorage.setItem(
+
+        "selectedConversationId",
+
+        conversationId
+
+    );
+
+
+    /*
+       We will build this page next.
+    */
+
+    window.location.href =
+        "message-details.html";
+
+}
+
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+document.getElementById(
+    "searchInput"
+).addEventListener(
+    "input",
+    function() {
+
+        renderMessages(
+            this.value
+        );
 
     }
 );
 
 
-/* ==================================================
+
+/* =====================================================
    NEW MESSAGE
-================================================== */
+===================================================== */
 
 function openNewMessage() {
 
     document.getElementById(
         "newMessageModal"
-    ).style.display =
-        "flex";
-
-
-    renderContacts();
+    ).classList.add(
+        "show"
+    );
 
 }
 
@@ -1488,313 +1638,207 @@ function closeNewMessage() {
 
     document.getElementById(
         "newMessageModal"
-    ).style.display =
-        "none";
+    ).classList.remove(
+        "show"
+    );
 
 }
 
 
-/* ==================================================
-   CONTACTS
-================================================== */
 
-function renderContacts(
-    search = ""
-) {
+/* =====================================================
+   START NEW CONVERSATION
+===================================================== */
 
-    const container =
-        document.getElementById(
-            "contactList"
-        );
+document.getElementById(
+    "newMessageForm"
+).addEventListener(
+    "submit",
+    function(event) {
 
-
-    container.innerHTML =
-        "";
+        event.preventDefault();
 
 
-    contacts
-        .filter(
-            function(contact) {
+        const recipient =
+            document.getElementById(
+                "recipientEmail"
+            ).value
+            .trim()
+            .toLowerCase();
 
-                return contact.name
-                    .toLowerCase()
-                    .includes(
-                        search.toLowerCase()
+
+        const firstMessage =
+            document.getElementById(
+                "firstMessage"
+            ).value
+            .trim();
+
+
+        if (
+            !recipient ||
+            !firstMessage
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            recipient ===
+            userData.email
+        ) {
+
+            alert(
+                "You cannot message yourself."
+            );
+
+            return;
+
+        }
+
+
+        /*
+           Check whether conversation
+           already exists.
+        */
+
+        let conversation =
+            messageData.find(
+                function(item) {
+
+                    return (
+
+                        item.participants
+                            .includes(
+                                userData.email
+                            )
+
+                        &&
+
+                        item.participants
+                            .includes(
+                                recipient
+                            )
+
+                        &&
+
+                        item.participants
+                            .length === 2
+
                     );
 
-            }
-        )
-        .forEach(
-            function(contact) {
-
-                const item =
-                    document.createElement(
-                        "div"
-                    );
+                }
+            );
 
 
-                item.className =
-                    "contact";
+        /*
+           Create new conversation
+        */
+
+        if (!conversation) {
+
+            conversation = {
+
+                id:
+                    "conversation-" +
+                    Date.now() +
+                    "-" +
+                    Math.random()
+                        .toString(36)
+                        .substring(2,7),
+
+                participants: [
+
+                    userData.email,
+
+                    recipient
+
+                ],
+
+                messages: [],
+
+                updatedAt:
+                    new Date()
+                        .toISOString()
+
+            };
 
 
-                item.innerHTML = `
+            messageData.push(
+                conversation
+            );
 
-                    <div class="avatar">
-
-                        ${escapeHTML(
-                            contact.name
-                                .charAt(0)
-                                .toUpperCase()
-                        )}
-
-                    </div>
-
-                    <div class="contact-info">
-
-                        <div class="contact-name">
-
-                            ${escapeHTML(
-                                contact.name
-                            )}
-
-                        </div>
-
-                        <div class="contact-generation">
-
-                            ${escapeHTML(
-                                contact.generation
-                            )}
-
-                        </div>
-
-                    </div>
-
-                `;
+        }
 
 
-                item.onclick =
-                    function() {
+        /*
+           Add first message
+        */
 
-                        startConversation(
-                            contact
-                        );
-
-                    };
-
-
-                container.appendChild(
-                    item
-                );
-
-            }
-        );
-
-}
-
-
-/* ==================================================
-   START CONVERSATION
-================================================== */
-
-function startConversation(
-    contact
-) {
-
-    let conversation =
-        conversations.find(
-            function(item) {
-
-                return item.contactId ===
-                    contact.id;
-
-            }
-        );
-
-
-    if (!conversation) {
-
-        conversation = {
+        conversation.messages.push({
 
             id:
-                "conversation-" +
+                "message-" +
                 Date.now(),
 
-            contactId:
-                contact.id,
+            sender:
+                userData.email,
 
-            name:
-                contact.name,
+            receiver:
+                recipient,
 
-            generation:
-                contact.generation,
+            text:
+                firstMessage,
 
-            messages:
-                []
+            createdAt:
+                new Date()
+                    .toISOString(),
 
-        };
+            read:
+                true
+
+        });
 
 
-        conversations.push(
-            conversation
-        );
+        conversation.updatedAt =
+            new Date()
+                .toISOString();
 
 
         saveMessages();
 
-    }
 
+        /*
+           Save selected conversation
+        */
 
-    closeNewMessage();
+        localStorage.setItem(
 
+            "selectedConversationId",
 
-    openConversation(
-        conversation.id
-    );
+            conversation.id
 
-}
-
-
-/* ==================================================
-   SAVE
-================================================== */
-
-function saveMessages() {
-
-    localStorage.setItem(
-        "messages",
-        JSON.stringify(
-            conversations
-        )
-    );
-
-}
-
-
-/* ==================================================
-   SEARCH CONVERSATIONS
-================================================== */
-
-document.getElementById(
-    "conversationSearch"
-).addEventListener(
-    "input",
-    function() {
-
-        renderConversations(
-            this.value
         );
+
+
+        /*
+           Open conversation
+        */
+
+        window.location.href =
+            "message-details.html";
 
     }
 );
 
 
-/* ==================================================
-   SEARCH CONTACTS
-================================================== */
 
-document.getElementById(
-    "contactSearch"
-).addEventListener(
-    "input",
-    function() {
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
-        renderContacts(
-            this.value
-        );
-
-    }
-);
-
-
-/* ==================================================
-   TIME
-================================================== */
-
-function formatTime(
-    dateString
-) {
-
-    const date =
-        new Date(dateString);
-
-
-    const now =
-        new Date();
-
-
-    const seconds =
-        Math.floor(
-            (now - date) / 1000
-        );
-
-
-    if (seconds < 60)
-        return "Now";
-
-
-    const minutes =
-        Math.floor(
-            seconds / 60
-        );
-
-
-    if (minutes < 60)
-        return minutes + "m";
-
-
-    const hours =
-        Math.floor(
-            minutes / 60
-        );
-
-
-    if (hours < 24)
-        return hours + "h";
-
-
-    const days =
-        Math.floor(
-            hours / 24
-        );
-
-
-    if (days < 7)
-        return days + "d";
-
-
-    return date.toLocaleDateString();
-
-}
-
-
-/* ==================================================
-   SECURITY
-================================================== */
-
-function escapeHTML(
-    value
-) {
-
-    return String(value)
-
-        .replace(/&/g, "&amp;")
-
-        .replace(/</g, "&lt;")
-
-        .replace(/>/g, "&gt;")
-
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
-
-}
-
-
-/* ==================================================
-   HOME
-================================================== */
-
-function goHome() {
+function goGenerationHub() {
 
     window.location.href =
         "generations.html";
@@ -1802,13 +1846,151 @@ function goHome() {
 }
 
 
-/* ==================================================
-   START
-================================================== */
+function goProfile() {
 
-renderConversations();
+    window.location.href =
+        "profile.html";
+
+}
+
+
+
+/* =====================================================
+   UTILITIES
+===================================================== */
+
+function getInitials(
+    name
+) {
+
+    return name
+        .split(" ")
+        .filter(Boolean)
+        .slice(0,2)
+        .map(function(word) {
+
+            return word
+                .charAt(0)
+                .toUpperCase();
+
+        })
+        .join("");
+
+}
+
+
+
+function formatTime(
+    date
+) {
+
+    if (!date) {
+
+        return "";
+
+    }
+
+
+    const d =
+        new Date(date);
+
+
+    if (
+        isNaN(
+            d.getTime()
+        )
+    ) {
+
+        return "";
+
+    }
+
+
+    const now =
+        new Date();
+
+
+    const sameDay =
+        d.toDateString() ===
+        now.toDateString();
+
+
+    if (sameDay) {
+
+        return d.toLocaleTimeString(
+            [],
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+    }
+
+
+    return d.toLocaleDateString(
+        [],
+        {
+            month: "short",
+            day: "numeric"
+        }
+    );
+
+}
+
+
+
+function escapeHTML(
+    value
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        value || "";
+
+
+    return div.innerHTML;
+
+}
+
+
+
+/* =====================================================
+   CLOSE MODAL OUTSIDE
+===================================================== */
+
+document.getElementById(
+    "newMessageModal"
+).addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target === this
+        ) {
+
+            closeNewMessage();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+renderMessages();
 
 </script>
+
 
 </body>
 

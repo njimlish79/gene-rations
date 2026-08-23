@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Gene-rations | Video Creator</title>
+<title>Gene-rations | Create Video</title>
 
 <style>
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -20,1928 +15,1307 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #f3f5fb;
-    color: #222;
+    background: #f5f3fb;
+    color: #29232f;
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
 .header {
-
-    background:
-        linear-gradient(135deg, #2563eb, #7c3aed);
-
-    color: white;
-
-    padding: 15px 20px;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
     position: sticky;
-
     top: 0;
-
     z-index: 100;
+    min-height: 105px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    color: white;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
 
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.back-btn {
+    width: 54px;
+    height: 54px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,.18);
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
 }
 
 .logo {
-
-    font-size: 22px;
-
+    font-size: 25px;
     font-weight: bold;
-
 }
 
-.header-buttons {
-
-    display: flex;
-
-    gap: 8px;
-
-}
-
-.header-btn {
-
+.hub-btn {
     border: none;
-
+    border-radius: 30px;
+    padding: 14px 20px;
     background: rgba(255,255,255,.18);
-
     color: white;
-
-    padding: 9px 13px;
-
-    border-radius: 20px;
-
     font-weight: bold;
-
+    font-size: 15px;
     cursor: pointer;
-
 }
-
-
-/* =========================
-   MAIN
-========================= */
 
 .container {
-
-    max-width: 1000px;
-
-    margin: auto;
-
-    padding: 20px;
-
+    max-width: 720px;
+    margin: 25px auto;
+    padding: 0 15px 40px;
 }
-
-
-/* =========================
-   INTRO
-========================= */
-
-.intro {
-
-    background: white;
-
-    border-radius: 18px;
-
-    padding: 20px;
-
-    margin-bottom: 18px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.06);
-
-}
-
-.intro h1 {
-
-    font-size: 27px;
-
-    margin-bottom: 8px;
-
-}
-
-.intro p {
-
-    color: #777;
-
-    line-height: 1.5;
-
-}
-
-.generation-badge {
-
-    display: inline-block;
-
-    margin-top: 10px;
-
-    background: #ede9fe;
-
-    color: #6d28d9;
-
-    padding: 7px 12px;
-
-    border-radius: 20px;
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-}
-
-
-/* =========================
-   CREATOR GRID
-========================= */
-
-.creator-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        1.4fr 1fr;
-
-    gap: 18px;
-
-}
-
-
-/* =========================
-   CARDS
-========================= */
 
 .card {
-
     background: white;
-
-    border-radius: 18px;
-
-    padding: 20px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.06);
-
-    margin-bottom: 18px;
-
+    border-radius: 28px;
+    padding: 25px;
+    box-shadow: 0 10px 35px rgba(80,50,120,.08);
 }
 
-.card h2 {
-
-    font-size: 19px;
-
-    margin-bottom: 6px;
-
+h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
 }
 
-.card-description {
-
+.subtitle {
     color: #777;
-
-    font-size: 13px;
-
+    margin-bottom: 25px;
     line-height: 1.5;
-
-    margin-bottom: 16px;
-
 }
 
-
-/* =========================
-   VIDEO SELECTOR
-========================= */
-
-.video-selector {
-
-    width: 100%;
-
-    aspect-ratio: 16 / 9;
-
-    background:
-        linear-gradient(
-            135deg,
-            #111827,
-            #312e81
-        );
-
-    border-radius: 14px;
-
-    overflow: hidden;
-
-    position: relative;
-
+.section {
+    margin-top: 25px;
 }
 
-.video-selector video {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: contain;
-
-    background: #111;
-
-}
-
-.video-empty {
-
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    flex-direction: column;
-
-    color: white;
-
-    text-align: center;
-
-    padding: 20px;
-
-}
-
-.video-empty-icon {
-
-    font-size: 50px;
-
-    margin-bottom: 10px;
-
-}
-
-.video-empty p {
-
-    color: #cbd5e1;
-
-    font-size: 13px;
-
-}
-
-
-/* =========================
-   FILE BUTTON
-========================= */
-
-.file-label {
-
+label {
     display: block;
-
-    text-align: center;
-
-    margin-top: 12px;
-
-    padding: 12px;
-
-    background: #2563eb;
-
-    color: white;
-
-    border-radius: 10px;
-
     font-weight: bold;
-
-    cursor: pointer;
-
+    margin-bottom: 9px;
 }
 
-#videoFile {
-
-    display: none;
-
-}
-
-
-/* =========================
-   FORM
-========================= */
-
-.form-group {
-
-    margin-bottom: 16px;
-
-}
-
-.form-group label {
-
-    display: block;
-
-    font-weight: bold;
-
-    margin-bottom: 7px;
-
-    font-size: 14px;
-
-}
-
-.form-group input,
-
-.form-group textarea,
-
-.form-group select {
-
+input,
+textarea,
+select {
     width: 100%;
-
-    padding: 12px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 10px;
-
-    outline: none;
-
-    font-family: inherit;
-
-    font-size: 14px;
-
-}
-
-.form-group input:focus,
-
-.form-group textarea:focus,
-
-.form-group select:focus {
-
-    border-color: #2563eb;
-
-}
-
-.form-group textarea {
-
-    min-height: 100px;
-
-    resize: vertical;
-
-}
-
-
-/* =========================
-   PRIVACY
-========================= */
-
-.privacy-options {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 9px;
-
-}
-
-.privacy-option {
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 10px;
-
-    padding: 11px;
-
-    cursor: pointer;
-
-}
-
-.privacy-option:hover {
-
-    background: #f8fafc;
-
-}
-
-.privacy-option label {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 9px;
-
-    cursor: pointer;
-
-}
-
-.privacy-option small {
-
-    display: block;
-
-    color: #777;
-
-    margin-top: 5px;
-
-    margin-left: 25px;
-
-}
-
-
-/* =========================
-   OPTIONS
-========================= */
-
-.option-row {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    padding: 12px 0;
-
-    border-bottom: 1px solid #eee;
-
-}
-
-.option-row:last-child {
-
-    border-bottom: none;
-
-}
-
-.option-text strong {
-
-    display: block;
-
-    font-size: 14px;
-
-}
-
-.option-text small {
-
-    color: #777;
-
-    font-size: 12px;
-
-}
-
-
-/* =========================
-   CHECKBOX
-========================= */
-
-.switch {
-
-    position: relative;
-
-    width: 45px;
-
-    height: 24px;
-
-}
-
-.switch input {
-
-    display: none;
-
-}
-
-.slider {
-
-    position: absolute;
-
-    inset: 0;
-
-    background: #d1d5db;
-
-    border-radius: 20px;
-
-    cursor: pointer;
-
-}
-
-.slider:before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 18px;
-
-    height: 18px;
-
-    left: 3px;
-
-    top: 3px;
-
-    background: white;
-
-    border-radius: 50%;
-
-    transition: .2s;
-
-}
-
-.switch input:checked + .slider {
-
-    background: #2563eb;
-
-}
-
-.switch input:checked + .slider:before {
-
-    transform: translateX(21px);
-
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.action-buttons {
-
-    display: flex;
-
-    gap: 10px;
-
-    margin-top: 10px;
-
-}
-
-.preview-btn,
-
-.publish-btn {
-
-    flex: 1;
-
-    padding: 13px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-}
-
-.preview-btn {
-
-    background: #f1f5f9;
-
-    color: #333;
-
-}
-
-.publish-btn {
-
-    background: #2563eb;
-
-    color: white;
-
-}
-
-
-/* =========================
-   PROGRESS
-========================= */
-
-.progress-area {
-
-    display: none;
-
-    margin-top: 15px;
-
-}
-
-.progress-bar {
-
-    width: 100%;
-
-    height: 9px;
-
-    background: #e5e7eb;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-}
-
-.progress-fill {
-
-    height: 100%;
-
-    width: 0%;
-
-    background: #2563eb;
-
-    transition: width .2s;
-
-}
-
-.progress-text {
-
-    margin-top: 7px;
-
-    color: #777;
-
-    font-size: 12px;
-
-}
-
-
-/* =========================
-   TIP
-========================= */
-
-.tip {
-
-    background: #eff6ff;
-
-    border-radius: 12px;
-
-    padding: 13px;
-
-    color: #1e40af;
-
-    font-size: 13px;
-
-    line-height: 1.5;
-
-}
-
-
-/* =========================
-   PREVIEW MODAL
-========================= */
-
-.modal {
-
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    background: rgba(0,0,0,.65);
-
-    z-index: 500;
-
-    align-items: center;
-
-    justify-content: center;
-
+    border: 2px solid #e5e0ef;
+    border-radius: 15px;
     padding: 15px;
-
+    font-size: 16px;
+    outline: none;
+    background: #fff;
 }
 
-.modal-box {
-
-    background: white;
-
-    width: 100%;
-
-    max-width: 750px;
-
-    max-height: 90vh;
-
-    overflow-y: auto;
-
-    border-radius: 18px;
-
-    padding: 18px;
-
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #7c3aed;
 }
 
-.modal-header {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 15px;
-
+textarea {
+    min-height: 120px;
+    resize: vertical;
 }
 
-.close-btn {
+.file-box {
+    border: 2px dashed #d9d1e7;
+    border-radius: 22px;
+    padding: 25px;
+    text-align: center;
+    background: #faf9fd;
+}
 
-    border: none;
+.file-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
 
-    background: #f1f5f9;
+.file-box p {
+    color: #777;
+    margin: 8px 0 18px;
+}
 
-    width: 38px;
+.file-input {
+    display: none;
+}
 
-    height: 38px;
-
-    border-radius: 50%;
-
+.choose-btn {
+    display: inline-block;
+    padding: 14px 25px;
+    border-radius: 14px;
+    color: white;
+    background: #7c3aed;
+    font-weight: bold;
     cursor: pointer;
-
-    font-size: 18px;
-
 }
 
-.preview-video {
+.file-name {
+    margin-top: 12px;
+    color: #666;
+    word-break: break-word;
+}
 
-    width: 100%;
-
-    max-height: 65vh;
-
+.preview {
+    margin-top: 20px;
+    display: none;
+    border-radius: 20px;
+    overflow: hidden;
     background: #111;
-
-    border-radius: 12px;
-
 }
 
+.preview video {
+    display: block;
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+}
 
-/* =========================
-   MOBILE
-========================= */
+.thumbnail-preview {
+    display: none;
+    margin-top: 15px;
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+}
 
-@media (max-width: 750px) {
+.info-box {
+    padding: 15px;
+    border-radius: 15px;
+    background: #f1edff;
+    color: #5b21b6;
+    line-height: 1.5;
+}
 
-    .container {
+.warning {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    background: #fff0f0;
+    color: #a33;
+    line-height: 1.5;
+}
 
-        padding: 13px;
+.success {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    background: #eaf9ef;
+    color: #18743a;
+    line-height: 1.5;
+}
 
-    }
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
 
-    .creator-grid {
+.cancel-btn,
+.publish-btn {
+    flex: 1;
+    border: none;
+    border-radius: 18px;
+    padding: 17px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        grid-template-columns: 1fr;
+.cancel-btn {
+    background: #eeeaf5;
+    color: #554b61;
+}
 
-    }
+.publish-btn {
+    color: white;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+.publish-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.small {
+    font-size: 13px;
+    color: #777;
+    margin-top: 8px;
+}
+
+.storage-note {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #777;
+    text-align: center;
+}
+
+@media (max-width: 500px) {
 
     .header {
-
-        padding: 13px;
-
+        min-height: 95px;
+        padding: 15px;
     }
 
     .logo {
-
-        font-size: 19px;
-
+        font-size: 21px;
     }
 
-    .header-btn {
-
-        padding: 8px 10px;
-
-        font-size: 12px;
-
+    .hub-btn {
+        padding: 12px 14px;
     }
 
+    .card {
+        padding: 20px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================
-     HEADER
-========================= -->
-
 <header class="header">
 
-    <div class="logo">
-        Gene-rations
-    </div>
-
-
-    <div class="header-buttons">
+    <div class="header-left">
 
         <button
-            class="header-btn"
-            onclick="goVideos()">
-
-            Videos
-
+            class="back-btn"
+            onclick="goBack()">
+            ←
         </button>
 
-
-        <button
-            class="header-btn"
-            onclick="goHome()">
-
-            Generation Hub
-
-        </button>
+        <div class="logo">
+            Gene-rations
+        </div>
 
     </div>
+
+    <button
+        class="hub-btn"
+        onclick="goToHub()">
+
+        🏠 Generation Hub
+
+    </button>
 
 </header>
 
 
-
 <main class="container">
 
+<div class="card">
 
-<!-- =========================
-     INTRO
-========================= -->
+    <h1>🎬 Create Video</h1>
 
-<section class="intro">
-
-    <h1>
-        Video Creator
-    </h1>
-
-    <p>
-        Create and share videos with your
-        generation and the wider Gene-rations
-        community.
+    <p class="subtitle">
+        Share a video with your Gene-rations community.
+        Your video file is stored in IndexedDB instead of
+        localStorage.
     </p>
 
 
-    <span
-        id="generationBadge"
-        class="generation-badge">
+    <!-- USER INFORMATION -->
 
-        Loading...
+    <div class="section">
 
-    </span>
+        <div class="info-box">
 
-</section>
+            <strong>Creator:</strong>
+            <span id="creatorName">
+                Loading...
+            </span>
 
+            <br>
 
-
-<div class="creator-grid">
-
-
-<!-- ==================================================
-     LEFT SIDE
-================================================== -->
-
-<div>
-
-
-<!-- =========================
-     VIDEO FILE
-========================= -->
-
-<section class="card">
-
-    <h2>
-        1. Choose Your Video
-    </h2>
-
-    <p class="card-description">
-
-        Select a video from your device.
-        The selected video will appear in
-        the preview area.
-
-    </p>
-
-
-    <div
-        id="videoPreviewArea"
-        class="video-selector">
-
-        <div class="video-empty">
-
-            <div class="video-empty-icon">
-                🎬
-            </div>
-
-            <strong>
-                No video selected
-            </strong>
-
-            <p>
-                Choose a video to begin.
-            </p>
+            <strong>Generation:</strong>
+            <span id="creatorGeneration">
+                Loading...
+            </span>
 
         </div>
 
     </div>
 
 
-    <label
-        class="file-label"
-        for="videoFile">
+    <!-- VIDEO -->
 
-        + Choose Video
-
-    </label>
-
-
-    <input
-        id="videoFile"
-        type="file"
-        accept="video/*">
-
-</section>
-
-
-
-<!-- =========================
-     VIDEO DETAILS
-========================= -->
-
-<section class="card">
-
-    <h2>
-        2. Video Details
-    </h2>
-
-    <p class="card-description">
-
-        Give your video a clear title and
-        description so other members know
-        what it is about.
-
-    </p>
-
-
-    <div class="form-group">
+    <div class="section">
 
         <label>
+            Video
+        </label>
+
+        <div class="file-box">
+
+            <div class="file-icon">
+                🎥
+            </div>
+
+            <p>
+                Choose a video from your device.
+            </p>
+
+            <label
+                for="videoInput"
+                class="choose-btn">
+
+                Choose Video
+
+            </label>
+
+            <input
+                id="videoInput"
+                class="file-input"
+                type="file"
+                accept="video/*">
+
+            <div
+                id="videoFileName"
+                class="file-name">
+
+                No video selected
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="videoPreview"
+            class="preview">
+
+            <video
+                id="videoPlayer"
+                controls>
+            </video>
+
+        </div>
+
+    </div>
+
+
+    <!-- TITLE -->
+
+    <div class="section">
+
+        <label for="videoTitle">
             Video title
         </label>
 
         <input
-            id="title"
+            id="videoTitle"
             type="text"
-            maxlength="120"
+            maxlength="100"
             placeholder="Enter your video title">
 
     </div>
 
 
-    <div class="form-group">
+    <!-- DESCRIPTION -->
 
-        <label>
+    <div class="section">
+
+        <label for="videoDescription">
             Description
         </label>
 
         <textarea
-            id="description"
+            id="videoDescription"
             maxlength="1000"
-            placeholder="Describe your video..."></textarea>
+            placeholder="Tell the community about your video..."></textarea>
 
     </div>
 
 
-    <div class="form-group">
+    <!-- CATEGORY -->
 
-        <label>
+    <div class="section">
+
+        <label for="videoCategory">
             Category
         </label>
 
-        <select id="category">
+        <select id="videoCategory">
 
-            <option value="generation">
-                My Generation
+            <option value="">
+                Select category
             </option>
 
-            <option value="education">
-                Education
+            <option value="Education">
+                📚 Education
             </option>
 
-            <option value="stories">
-                Stories
+            <option value="Entertainment">
+                🎭 Entertainment
             </option>
 
-            <option value="entertainment">
-                Entertainment
+            <option value="Technology">
+                💻 Technology
             </option>
 
-            <option value="community">
-                Community
+            <option value="Family">
+                👨‍👩‍👧 Family
+            </option>
+
+            <option value="Business">
+                💼 Business
+            </option>
+
+            <option value="Culture">
+                🌍 Culture
+            </option>
+
+            <option value="Lifestyle">
+                🌱 Lifestyle
+            </option>
+
+            <option value="Sports">
+                ⚽ Sports
+            </option>
+
+            <option value="Other">
+                📌 Other
             </option>
 
         </select>
 
     </div>
 
-</section>
 
+    <!-- THUMBNAIL -->
 
-</div>
+    <div class="section">
 
+        <label>
+            Thumbnail
+            <span style="font-weight:normal;color:#888;">
+                (optional)
+            </span>
+        </label>
 
+        <div class="file-box">
 
-<!-- ==================================================
-     RIGHT SIDE
-================================================== -->
+            <div class="file-icon">
+                🖼️
+            </div>
 
-<div>
+            <p>
+                Choose an image to represent your video.
+            </p>
 
+            <label
+                for="thumbnailInput"
+                class="choose-btn">
 
-<!-- =========================
-     PUBLISH SETTINGS
-========================= -->
-
-<section class="card">
-
-    <h2>
-        3. Publishing
-    </h2>
-
-    <p class="card-description">
-
-        Choose who can see your video.
-
-    </p>
-
-
-    <div class="privacy-options">
-
-
-        <div class="privacy-option">
-
-            <label>
-
-                <input
-                    type="radio"
-                    name="privacy"
-                    value="generation"
-                    checked>
-
-                <strong>
-                    My Generation
-                </strong>
+                Choose Thumbnail
 
             </label>
 
-            <small>
-                Members of your generation
-                can see the video.
-            </small>
-
-        </div>
-
-
-        <div class="privacy-option">
-
-            <label>
-
-                <input
-                    type="radio"
-                    name="privacy"
-                    value="all">
-
-                <strong>
-                    All Generations
-                </strong>
-
-            </label>
-
-            <small>
-                Members from every generation
-                can see it.
-            </small>
-
-        </div>
-
-
-        <div class="privacy-option">
-
-            <label>
-
-                <input
-                    type="radio"
-                    name="privacy"
-                    value="private">
-
-                <strong>
-                    Private
-                </strong>
-
-            </label>
-
-            <small>
-                Only you can see it.
-            </small>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     EXTRA OPTIONS
-========================= -->
-
-<section class="card">
-
-    <h2>
-        4. Extra Options
-    </h2>
-
-
-    <div class="option-row">
-
-        <div class="option-text">
-
-            <strong>
-                Allow comments
-            </strong>
-
-            <small>
-                Let members discuss your video.
-            </small>
-
-        </div>
-
-
-        <label class="switch">
-
             <input
-                id="allowComments"
-                type="checkbox"
-                checked>
+                id="thumbnailInput"
+                class="file-input"
+                type="file"
+                accept="image/*">
 
-            <span class="slider"></span>
+            <div
+                id="thumbnailFileName"
+                class="file-name">
 
-        </label>
+                No thumbnail selected
 
-    </div>
-
-
-    <div class="option-row">
-
-        <div class="option-text">
-
-            <strong>
-                Allow sharing
-            </strong>
-
-            <small>
-                Allow members to share your video.
-            </small>
+            </div>
 
         </div>
 
 
-        <label class="switch">
-
-            <input
-                id="allowSharing"
-                type="checkbox"
-                checked>
-
-            <span class="slider"></span>
-
-        </label>
+        <img
+            id="thumbnailPreview"
+            class="thumbnail-preview">
 
     </div>
 
 
-    <div class="option-row">
-
-        <div class="option-text">
-
-            <strong>
-                Notify followers
-            </strong>
-
-            <small>
-                Notify people following you.
-            </small>
-
-        </div>
-
-
-        <label class="switch">
-
-            <input
-                id="notifyFollowers"
-                type="checkbox"
-                checked>
-
-            <span class="slider"></span>
-
-        </label>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     TIP
-========================= -->
-
-<div class="tip">
-
-    <strong>💡 Creator tip</strong>
-
-    <br>
-
-    Share useful experiences, knowledge,
-    stories and ideas that can help your
-    generation and encourage meaningful
-    conversations between generations.
-
-</div>
-
-
-
-<!-- =========================
-     ACTIONS
-========================= -->
-
-<div class="action-buttons">
-
-    <button
-        class="preview-btn"
-        onclick="openPreview()">
-
-        👁 Preview
-
-    </button>
-
-
-    <button
-        class="publish-btn"
-        onclick="publishVideo()">
-
-        🚀 Publish
-
-    </button>
-
-</div>
-
-
-<!-- =========================
-     PROGRESS
-========================= -->
-
-<div
-    id="progressArea"
-    class="progress-area">
-
-    <div class="progress-bar">
-
-        <div
-            id="progressFill"
-            class="progress-fill">
-
-        </div>
-
-    </div>
-
+    <!-- ERROR -->
 
     <div
-        id="progressText"
-        class="progress-text">
+        id="warning"
+        class="warning">
+    </div>
 
-        Preparing video...
+
+    <!-- SUCCESS -->
+
+    <div
+        id="success"
+        class="success">
+    </div>
+
+
+    <div class="buttons">
+
+        <button
+            class="cancel-btn"
+            onclick="cancelCreate()">
+
+            Cancel
+
+        </button>
+
+        <button
+            id="publishButton"
+            class="publish-btn"
+            disabled>
+
+            🎬 Publish Video
+
+        </button>
+
+    </div>
+
+
+    <div class="storage-note">
+
+        🔒 Your video is stored locally on this device
+        using IndexedDB.
 
     </div>
 
 </div>
-
-
-</div>
-
-
-</div>
-
 
 </main>
 
 
-
-<!-- ==================================================
-     PREVIEW MODAL
-================================================== -->
-
-<div
-    id="previewModal"
-    class="modal">
-
-
-<div class="modal-box">
-
-
-<div class="modal-header">
-
-    <h2>
-        Video Preview
-    </h2>
-
-
-    <button
-        class="close-btn"
-        onclick="closePreview()">
-
-        ✕
-
-    </button>
-
-</div>
-
-
-<div id="modalContent">
-
-    <p>
-        No video selected.
-    </p>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-
 <script>
 
-/* ==================================================
-   USER DATA
-================================================== */
+/* ==========================================
+   DATABASE
+========================================== */
 
-const storedUser =
-    localStorage.getItem("userData");
+const DB_NAME = "Gene-rationsVideoDB";
+const DB_VERSION = 1;
+const STORE_NAME = "videos";
+
+let database = null;
 
 
-if (!storedUser) {
+/* ==========================================
+   USER
+========================================== */
 
-    window.location.href =
-        "login.html";
+let user = null;
 
+
+/* ==========================================
+   SELECTED FILES
+========================================== */
+
+let selectedVideo = null;
+let selectedThumbnail = null;
+
+
+/* ==========================================
+   DOM
+========================================== */
+
+const videoInput =
+    document.getElementById("videoInput");
+
+const thumbnailInput =
+    document.getElementById("thumbnailInput");
+
+const videoPlayer =
+    document.getElementById("videoPlayer");
+
+const videoPreview =
+    document.getElementById("videoPreview");
+
+const thumbnailPreview =
+    document.getElementById("thumbnailPreview");
+
+const publishButton =
+    document.getElementById("publishButton");
+
+const warning =
+    document.getElementById("warning");
+
+const success =
+    document.getElementById("success");
+
+
+/* ==========================================
+   LOAD USER
+========================================== */
+
+function loadUser() {
+
+    const stored =
+        localStorage.getItem("userData");
+
+    if (!stored) {
+
+        window.location.href =
+            "login.html";
+
+        return false;
+    }
+
+    try {
+
+        user =
+            JSON.parse(stored);
+
+        if (!user) {
+            throw new Error("Invalid user");
+        }
+
+        document.getElementById(
+            "creatorName"
+        ).textContent =
+            user.fullName ||
+            user.name ||
+            "Gene-rations Member";
+
+
+        document.getElementById(
+            "creatorGeneration"
+        ).textContent =
+            user.generation ||
+            "Generation Member";
+
+
+        return true;
+
+    } catch (error) {
+
+        console.error(error);
+
+        window.location.href =
+            "login.html";
+
+        return false;
+    }
 }
 
 
-const user =
-    JSON.parse(storedUser);
+/* ==========================================
+   OPEN INDEXED DB
+========================================== */
+
+function openDatabase() {
+
+    return new Promise(
+        function(resolve, reject) {
+
+            const request =
+                indexedDB.open(
+                    DB_NAME,
+                    DB_VERSION
+                );
 
 
-const userName =
-    user.fullName ||
-    user.name ||
-    "Gene-rations Member";
+            request.onupgradeneeded =
+                function(event) {
+
+                    const db =
+                        event.target.result;
 
 
-const generation =
-    user.generation ||
-    "Your Generation";
+                    if (
+                        !db.objectStoreNames
+                            .contains(STORE_NAME)
+                    ) {
+
+                        const store =
+                            db.createObjectStore(
+                                STORE_NAME,
+                                {
+                                    keyPath: "id"
+                                }
+                            );
 
 
-document.getElementById(
-    "generationBadge"
-).textContent =
-    generation;
+                        store.createIndex(
+                            "createdAt",
+                            "createdAt"
+                        );
+
+                        store.createIndex(
+                            "creatorId",
+                            "creatorId"
+                        );
+
+                    }
+
+                };
 
 
-/* ==================================================
-   VIDEO FILE
-================================================== */
+            request.onsuccess =
+                function(event) {
 
-let selectedFile =
-    null;
+                    database =
+                        event.target.result;
+
+                    resolve(database);
+
+                };
 
 
-let selectedVideoURL =
-    "";
+            request.onerror =
+                function(event) {
+
+                    reject(
+                        event.target.error
+                    );
+
+                };
+
+        }
+    );
+}
 
 
-document.getElementById(
-    "videoFile"
-).addEventListener(
+/* ==========================================
+   VIDEO SELECTED
+========================================== */
+
+videoInput.addEventListener(
     "change",
     function() {
+
+        hideMessages();
 
         const file =
             this.files[0];
 
+        if (!file) {
 
-        if (!file)
-            return;
+            selectedVideo = null;
 
+            videoPreview.style.display =
+                "none";
 
-        if (
-            !file.type.startsWith(
-                "video/"
-            )
-        ) {
-
-            alert(
-                "Please select a valid video file."
-            );
-
-            this.value =
-                "";
+            updatePublishButton();
 
             return;
-
         }
 
 
-        selectedFile =
-            file;
+        if (!file.type.startsWith("video/")) {
 
-
-        selectedVideoURL =
-            URL.createObjectURL(
-                file
+            showWarning(
+                "Please choose a valid video file."
             );
 
+            this.value = "";
 
-        showVideoPreview();
+            selectedVideo = null;
+
+            updatePublishButton();
+
+            return;
+        }
+
+
+        selectedVideo = file;
+
+
+        document.getElementById(
+            "videoFileName"
+        ).textContent =
+            file.name;
+
+
+        const url =
+            URL.createObjectURL(file);
+
+
+        videoPlayer.src =
+            url;
+
+
+        videoPreview.style.display =
+            "block";
+
+
+        videoPlayer.onloadeddata =
+            function() {
+
+                URL.revokeObjectURL(url);
+
+            };
+
+
+        updatePublishButton();
 
     }
 );
 
 
-/* ==================================================
-   VIDEO PREVIEW
-================================================== */
+/* ==========================================
+   THUMBNAIL SELECTED
+========================================== */
 
-function showVideoPreview() {
+thumbnailInput.addEventListener(
+    "change",
+    function() {
 
-    const area =
+        hideMessages();
+
+        const file =
+            this.files[0];
+
+        if (!file) {
+
+            selectedThumbnail = null;
+
+            thumbnailPreview.style.display =
+                "none";
+
+            return;
+        }
+
+
+        if (!file.type.startsWith("image/")) {
+
+            showWarning(
+                "Please choose a valid image."
+            );
+
+            this.value = "";
+
+            selectedThumbnail = null;
+
+            return;
+        }
+
+
+        selectedThumbnail = file;
+
+
         document.getElementById(
-            "videoPreviewArea"
-        );
+            "thumbnailFileName"
+        ).textContent =
+            file.name;
 
 
-    area.innerHTML = `
-
-        <video
-            controls
-            playsinline>
-
-            <source
-                src="${selectedVideoURL}">
-
-        </video>
-
-    `;
-
-}
+        const url =
+            URL.createObjectURL(file);
 
 
-/* ==================================================
-   OPEN PREVIEW
-================================================== */
+        thumbnailPreview.src =
+            url;
 
-function openPreview() {
+
+        thumbnailPreview.style.display =
+            "block";
+
+    }
+);
+
+
+/* ==========================================
+   VALIDATE
+========================================== */
+
+function updatePublishButton() {
 
     const title =
         document.getElementById(
-            "title"
+            "videoTitle"
         ).value.trim();
 
 
-    const description =
-        document.getElementById(
-            "description"
-        ).value.trim();
-
-
-    const modal =
-        document.getElementById(
-            "previewModal"
-        );
-
-
-    const content =
-        document.getElementById(
-            "modalContent"
-        );
-
-
-    if (!selectedFile) {
-
-        content.innerHTML = `
-
-            <div style="
-                text-align:center;
-                padding:30px;
-                color:#777;
-            ">
-
-                <div style="
-                    font-size:50px;
-                    margin-bottom:10px;
-                ">
-                    🎬
-                </div>
-
-                <h3>
-                    No video selected
-                </h3>
-
-                <p>
-                    Choose a video first.
-                </p>
-
-            </div>
-
-        `;
-
-    }
-
-    else {
-
-        content.innerHTML = `
-
-            <video
-                class="preview-video"
-                controls
-                autoplay>
-
-                <source
-                    src="${selectedVideoURL}">
-
-            </video>
-
-
-            <div style="
-                padding-top:15px;
-            ">
-
-                <h2>
-                    ${escapeHTML(
-                        title ||
-                        "Untitled video"
-                    )}
-                </h2>
-
-                <p style="
-                    color:#777;
-                    margin-top:7px;
-                    line-height:1.5;
-                ">
-
-                    ${escapeHTML(
-                        description ||
-                        "No description"
-                    )}
-
-                </p>
-
-            </div>
-
-        `;
-
-    }
-
-
-    modal.style.display =
-        "flex";
+    publishButton.disabled =
+        !selectedVideo ||
+        !title;
 
 }
 
 
-function closePreview() {
+document.getElementById(
+    "videoTitle"
+).addEventListener(
+    "input",
+    updatePublishButton
+);
 
-    document.getElementById(
-        "previewModal"
-    ).style.display =
+
+/* ==========================================
+   CREATE UNIQUE ID
+========================================== */
+
+function createVideoId() {
+
+    return (
+        "video_" +
+        Date.now() +
+        "_" +
+        Math.random()
+            .toString(36)
+            .substring(2, 10)
+    );
+
+}
+
+
+/* ==========================================
+   SAVE VIDEO
+========================================== */
+
+function saveVideo(videoData) {
+
+    return new Promise(
+        function(resolve, reject) {
+
+            const transaction =
+                database.transaction(
+                    [STORE_NAME],
+                    "readwrite"
+                );
+
+
+            const store =
+                transaction.objectStore(
+                    STORE_NAME
+                );
+
+
+            const request =
+                store.add(videoData);
+
+
+            request.onsuccess =
+                function() {
+
+                    resolve(true);
+
+                };
+
+
+            request.onerror =
+                function(event) {
+
+                    reject(
+                        event.target.error
+                    );
+
+                };
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   PUBLISH
+========================================== */
+
+publishButton.addEventListener(
+    "click",
+    async function() {
+
+        hideMessages();
+
+
+        if (!selectedVideo) {
+
+            showWarning(
+                "Please choose a video first."
+            );
+
+            return;
+        }
+
+
+        const title =
+            document.getElementById(
+                "videoTitle"
+            ).value.trim();
+
+
+        const description =
+            document.getElementById(
+                "videoDescription"
+            ).value.trim();
+
+
+        const category =
+            document.getElementById(
+                "videoCategory"
+            ).value;
+
+
+        if (!title) {
+
+            showWarning(
+                "Please enter a video title."
+            );
+
+            return;
+        }
+
+
+        if (!database) {
+
+            showWarning(
+                "Video storage is not ready. Please refresh the page and try again."
+            );
+
+            return;
+        }
+
+
+        publishButton.disabled =
+            true;
+
+        publishButton.textContent =
+            "Publishing...";
+
+
+        try {
+
+            const videoData = {
+
+                id:
+                    createVideoId(),
+
+                title:
+                    title,
+
+                description:
+                    description,
+
+                category:
+                    category ||
+                    "Other",
+
+
+                videoBlob:
+                    selectedVideo,
+
+
+                thumbnailBlob:
+                    selectedThumbnail ||
+                    null,
+
+
+                creatorId:
+                    user.email ||
+                    user.fullName ||
+                    "member",
+
+
+                creatorName:
+                    user.fullName ||
+                    user.name ||
+                    "Gene-rations Member",
+
+
+                generation:
+                    user.generation ||
+                    "",
+
+
+                createdAt:
+                    Date.now(),
+
+
+                views:
+                    0,
+
+
+                likes:
+                    [],
+
+
+                comments:
+                    [],
+
+
+                shares:
+                    0
+
+            };
+
+
+            await saveVideo(
+                videoData
+            );
+
+
+            /*
+             * IMPORTANT:
+             * We only store a SMALL reference
+             * in localStorage.
+             *
+             * The actual video remains in
+             * IndexedDB.
+             */
+
+            let videoIndex = [];
+
+            try {
+
+                videoIndex =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "geneRationsVideoIndex"
+                        )
+                    ) || [];
+
+            } catch(error) {
+
+                videoIndex = [];
+
+            }
+
+
+            videoIndex.push({
+
+                id:
+                    videoData.id,
+
+                title:
+                    videoData.title,
+
+                category:
+                    videoData.category,
+
+                creatorName:
+                    videoData.creatorName,
+
+                generation:
+                    videoData.generation,
+
+                createdAt:
+                    videoData.createdAt,
+
+                views:
+                    0
+
+            });
+
+
+            /*
+             * Keep index small.
+             */
+
+            localStorage.setItem(
+                "geneRationsVideoIndex",
+                JSON.stringify(
+                    videoIndex
+                )
+            );
+
+
+            showSuccess(
+                "🎉 Video published successfully!"
+            );
+
+
+            publishButton.textContent =
+                "Published ✓";
+
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "videos.html";
+
+                },
+                1200
+            );
+
+
+        } catch(error) {
+
+            console.error(
+                "Publish error:",
+                error
+            );
+
+
+            showWarning(
+                "The video could not be published. " +
+                "Your device may not have enough available storage."
+            );
+
+
+            publishButton.disabled =
+                false;
+
+
+            publishButton.textContent =
+                "🎬 Publish Video";
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   MESSAGES
+========================================== */
+
+function showWarning(message) {
+
+    warning.textContent =
+        message;
+
+    warning.style.display =
+        "block";
+
+    success.style.display =
         "none";
 
 }
 
 
-/* ==================================================
-   PUBLISH VIDEO
-================================================== */
+function showSuccess(message) {
 
-function publishVideo() {
+    success.textContent =
+        message;
 
-    const title =
-        document.getElementById(
-            "title"
-        ).value.trim();
-
-
-    const description =
-        document.getElementById(
-            "description"
-        ).value.trim();
-
-
-    const category =
-        document.getElementById(
-            "category"
-        ).value;
-
-
-    const privacy =
-        document.querySelector(
-            'input[name="privacy"]:checked'
-        ).value;
-
-
-    const allowComments =
-        document.getElementById(
-            "allowComments"
-        ).checked;
-
-
-    const allowSharing =
-        document.getElementById(
-            "allowSharing"
-        ).checked;
-
-
-    const notifyFollowers =
-        document.getElementById(
-            "notifyFollowers"
-        ).checked;
-
-
-    /* =========================
-       VALIDATION
-    ========================= */
-
-    if (!selectedFile) {
-
-        alert(
-            "Please choose a video first."
-        );
-
-        return;
-
-    }
-
-
-    if (!title) {
-
-        alert(
-            "Please enter a video title."
-        );
-
-        document.getElementById(
-            "title"
-        ).focus();
-
-        return;
-
-    }
-
-
-    if (!description) {
-
-        alert(
-            "Please enter a description."
-        );
-
-        document.getElementById(
-            "description"
-        ).focus();
-
-        return;
-
-    }
-
-
-    /* =========================
-       PROGRESS
-    ========================= */
-
-    const progressArea =
-        document.getElementById(
-            "progressArea"
-        );
-
-
-    const progressFill =
-        document.getElementById(
-            "progressFill"
-        );
-
-
-    const progressText =
-        document.getElementById(
-            "progressText"
-        );
-
-
-    progressArea.style.display =
+    success.style.display =
         "block";
 
-
-    let progress =
-        0;
-
-
-    const progressTimer =
-        setInterval(
-            function() {
-
-                progress += 10;
-
-
-                progressFill.style.width =
-                    progress + "%";
-
-
-                progressText.textContent =
-                    progress < 100
-                        ? "Preparing video... " +
-                          progress +
-                          "%"
-                        : "Published!";
-
-
-                if (
-                    progress >= 100
-                ) {
-
-                    clearInterval(
-                        progressTimer
-                    );
-
-
-                    saveVideo({
-
-                        id:
-                            Date.now(),
-
-                        title:
-                            title,
-
-                        description:
-                            description,
-
-                        category:
-                            category,
-
-                        generation:
-                            generation,
-
-                        author:
-                            userName,
-
-                        privacy:
-                            privacy,
-
-                        allowComments:
-                            allowComments,
-
-                        allowSharing:
-                            allowSharing,
-
-                        notifyFollowers:
-                            notifyFollowers,
-
-                        likes:
-                            0,
-
-                        liked:
-                            false,
-
-                        comments:
-                            [],
-
-                        videoData:
-                            selectedVideoURL,
-
-                        time:
-                            new Date().toISOString()
-
-                    });
-
-
-                    createNotification();
-
-
-                    setTimeout(
-                        function() {
-
-                            alert(
-                                "Your video has been published."
-                            );
-
-
-                            window.location.href =
-                                "videos.html";
-
-                        },
-                        500
-                    );
-
-                }
-
-            },
-            100
-        );
+    warning.style.display =
+        "none";
 
 }
 
 
-/* ==================================================
-   SAVE VIDEO
-================================================== */
+function hideMessages() {
 
-function saveVideo(
-    newVideo
-) {
+    warning.style.display =
+        "none";
 
-    let videos =
-        JSON.parse(
-            localStorage.getItem(
-                "videos"
-            )
-        ) || [];
-
-
-    videos.unshift(
-        newVideo
-    );
-
-
-    /*
-       This is only for frontend testing.
-
-       Later:
-       The video file will be uploaded
-       to backend/cloud storage and the
-       database will store its URL.
-    */
-
-
-    localStorage.setItem(
-        "videos",
-        JSON.stringify(
-            videos
-        )
-    );
+    success.style.display =
+        "none";
 
 }
 
 
-/* ==================================================
-   CREATOR NOTIFICATION
-================================================== */
-
-function createNotification() {
-
-    let notifications =
-        JSON.parse(
-            localStorage.getItem(
-                "notifications"
-            )
-        ) || [];
-
-
-    notifications.unshift({
-
-        id:
-            Date.now(),
-
-        type:
-            "social",
-
-        icon:
-            "🎬",
-
-        text:
-            "Your video was successfully published.",
-
-        read:
-            false,
-
-        time:
-            new Date().toISOString()
-
-    });
-
-
-    localStorage.setItem(
-        "notifications",
-        JSON.stringify(
-            notifications
-        )
-    );
-
-}
-
-
-/* ==================================================
+/* ==========================================
    NAVIGATION
-================================================== */
+========================================== */
 
-function goVideos() {
-
-    window.location.href =
-        "videos.html";
-
-}
-
-
-function goHome() {
+function goToHub() {
 
     window.location.href =
         "generations.html";
@@ -1949,30 +1323,63 @@ function goHome() {
 }
 
 
-/* ==================================================
-   SECURITY
-================================================== */
+function goBack() {
 
-function escapeHTML(
-    value
-) {
+    if (document.referrer) {
 
-    return String(value)
+        history.back();
 
-        .replace(/&/g, "&amp;")
+    } else {
 
-        .replace(/</g, "&lt;")
+        window.location.href =
+            "videos.html";
 
-        .replace(/>/g, "&gt;")
-
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
+    }
 
 }
+
+
+function cancelCreate() {
+
+    window.location.href =
+        "videos.html";
+
+}
+
+
+/* ==========================================
+   START
+========================================== */
+
+(async function() {
+
+    if (!loadUser()) {
+        return;
+    }
+
+
+    try {
+
+        await openDatabase();
+
+        console.log(
+            "Gene-rations video database ready."
+        );
+
+    } catch(error) {
+
+        console.error(error);
+
+        showWarning(
+            "Your browser could not open video storage. " +
+            "Please make sure browser storage is enabled."
+        );
+
+    }
+
+})();
 
 </script>
 
 </body>
-
 </html>
