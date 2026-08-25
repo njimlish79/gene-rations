@@ -367,7 +367,6 @@
 
 </div>
 
-
 <script>
 
     /* ==========================================
@@ -391,6 +390,14 @@
 
 
     /* ==========================================
+       BACKEND
+    ========================================== */
+
+    const API_URL =
+        "http://localhost:3000";
+
+
+    /* ==========================================
        SHOW / HIDE PASSWORD
     ========================================== */
 
@@ -404,13 +411,16 @@
 
                 passwordInput.type = "text";
 
-                showPassword.textContent = "Hide";
+                showPassword.textContent =
+                    "Hide";
 
             } else {
 
-                passwordInput.type = "password";
+                passwordInput.type =
+                    "password";
 
-                showPassword.textContent = "Show";
+                showPassword.textContent =
+                    "Show";
 
             }
 
@@ -424,43 +434,15 @@
 
     loginForm.addEventListener(
         "submit",
-        function (event) {
+        async function (event) {
 
             event.preventDefault();
 
 
             message.textContent = "";
 
-            message.className = "message";
-
-
-            /* ==============================
-               GET USER DATA
-            ============================== */
-
-            const storedUser =
-                localStorage.getItem("userData");
-
-
-            /* ==============================
-               NO ACCOUNT
-            ============================== */
-
-            if (!storedUser) {
-
-                message.textContent =
-                    "No account found. Please create an account first.";
-
-                message.className =
-                    "message error";
-
-                return;
-
-            }
-
-
-            const userData =
-                JSON.parse(storedUser);
+            message.className =
+                "message";
 
 
             /* ==============================
@@ -477,19 +459,157 @@
 
 
             /* ==============================
-               CHECK VERIFICATION
+               BASIC VALIDATION
             ============================== */
 
-            if (
-                userData.verified !== true
-            ) {
+            if (!email || !password) {
 
                 message.textContent =
-                    "Your account has not been verified yet.";
+                    "Please enter your email and password.";
 
                 message.className =
                     "message error";
 
+                return;
+
+            }
+
+
+            /* ==============================
+               LOADING
+            ============================== */
+
+            message.textContent =
+                "Signing in...";
+
+            message.className =
+                "message";
+
+
+            try {
+
+                /* ==============================
+                   SEND LOGIN TO BACKEND
+                ============================== */
+
+                const response =
+                    await fetch(
+                        `${API_URL}/api/auth/login`,
+                        {
+
+                            method:
+                                "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    email:
+                                        email,
+
+                                    password:
+                                        password
+
+                                })
+
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                /* ==============================
+                   LOGIN FAILED
+                ============================== */
+
+                if (!response.ok) {
+
+                    message.textContent =
+                        result.message ||
+                        "Login failed.";
+
+                    message.className =
+                        "message error";
+
+                    return;
+
+                }
+
+
+                /* ==============================
+                   USER DATA
+                ============================== */
+
+                const userData =
+                    result.user;
+
+
+                /* ==============================
+                   CREATE LOGIN SESSION
+                ============================== */
+
+                const loginSession = {
+
+                    loggedIn:
+                        true,
+
+                    userId:
+                        userData.id,
+
+                    email:
+                        userData.email,
+
+                    generation:
+                        userData.generation,
+
+                    loginTime:
+                        new Date().toISOString()
+
+                };
+
+
+                localStorage.setItem(
+                    "loginSession",
+                    JSON.stringify(
+                        loginSession
+                    )
+                );
+
+
+                /* ==============================
+                   STORE USER DATA
+                ============================== */
+
+                localStorage.setItem(
+                    "userData",
+                    JSON.stringify(
+                        userData
+                    )
+                );
+
+
+                /* ==============================
+                   SUCCESS
+                ============================== */
+
+                message.textContent =
+                    "Login successful. Welcome back!";
+
+                message.className =
+                    "message success";
+
+
+                /* ==============================
+                   GENERATION DASHBOARD
+                ============================== */
 
                 setTimeout(
                     function () {
@@ -498,126 +618,32 @@
                             "generations.html";
 
                     },
-                    1200
+                    800
                 );
 
-                return;
-
             }
 
+            catch (error) {
 
-            /* ==============================
-               CHECK EMAIL
-            ============================== */
+                console.error(
+                    "Login error:",
+                    error
+                );
 
-            const savedEmail =
-                (userData.email || "")
-                    .trim()
-                    .toLowerCase();
-
-
-            if (
-                email !== savedEmail
-            ) {
 
                 message.textContent =
-                    "Incorrect email or password.";
+                    "Unable to connect to the server. Please try again.";
 
                 message.className =
                     "message error";
 
-                return;
-
             }
-
-
-            /* ==============================
-               CHECK PASSWORD
-            ============================== */
-
-            if (
-                password !== userData.password
-            ) {
-
-                message.textContent =
-                    "Incorrect email or password.";
-
-                message.className =
-                    "message error";
-
-                return;
-
-            }
-
-
-            /* ==============================
-               CREATE LOGIN SESSION
-            ============================== */
-
-            const loginSession = {
-
-                loggedIn: true,
-
-                email: userData.email,
-
-                generation:
-                    userData.generation,
-
-                loginTime:
-                    new Date().toISOString()
-
-            };
-
-
-            localStorage.setItem(
-                "loginSession",
-                JSON.stringify(loginSession)
-            );
-
-
-            /* ==============================
-               UPDATE LAST ACTIVE
-            ============================== */
-
-            userData.lastActive =
-                new Date().toISOString();
-
-
-            localStorage.setItem(
-                "userData",
-                JSON.stringify(userData)
-            );
-
-
-            /* ==============================
-               SUCCESS
-            ============================== */
-
-            message.textContent =
-                "Login successful. Welcome back!";
-
-            message.className =
-                "message success";
-
-
-            /* ==============================
-               GENERATION DASHBOARD
-            ============================== */
-
-            setTimeout(
-                function () {
-
-                    window.location.href =
-                        "generations.html";
-
-                },
-                800
-            );
 
         }
     );
 
-</script>
-
-</body>
-</html>
+          </script>
+  
+  
+          </body>
+          </html>

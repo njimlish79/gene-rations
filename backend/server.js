@@ -544,6 +544,209 @@ app.post(
     }
 );
 
+/* ==========================================
+   LOGIN
+========================================== */
+
+app.post(
+    "/api/auth/login",
+    async (req, res) => {
+
+        try {
+
+            const {
+                email,
+                password
+            } = req.body;
+
+
+            /* -------------------------------
+               VALIDATION
+            -------------------------------- */
+
+            if (!email || !password) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "Email and password are required."
+
+                });
+
+            }
+
+
+            /* -------------------------------
+               FIND USER
+            -------------------------------- */
+
+            const users =
+                loadUsers();
+
+            const user =
+                users.find(
+                    item =>
+                        item.email.toLowerCase() ===
+                        email.toLowerCase()
+                );
+
+
+            if (!user) {
+
+                return res.status(401).json({
+
+                    success: false,
+
+                    message:
+                        "Invalid email or password."
+
+                });
+
+            }
+
+
+            /* -------------------------------
+               CHECK PASSWORD
+            -------------------------------- */
+
+            const passwordMatch =
+                await bcrypt.compare(
+                    password,
+                    user.passwordHash
+                );
+
+
+            if (!passwordMatch) {
+
+                return res.status(401).json({
+
+                    success: false,
+
+                    message:
+                        "Invalid email or password."
+
+                });
+
+            }
+
+
+            /* -------------------------------
+               CHECK VERIFICATION
+            -------------------------------- */
+
+            if (!user.verified) {
+
+                return res.status(403).json({
+
+                    success: false,
+
+                    message:
+                        "Please verify your account first."
+
+                });
+
+            }
+
+
+            /* -------------------------------
+               UPDATE LAST ACTIVE
+            -------------------------------- */
+
+            user.lastActive =
+                new Date().toISOString();
+
+            saveUsers(users);
+
+
+            /* -------------------------------
+               RESPONSE
+            -------------------------------- */
+
+            res.json({
+
+                success: true,
+
+                message:
+                    "Login successful.",
+
+                user: {
+
+                    id:
+                        user.id,
+
+                    fullName:
+                        user.fullName,
+
+                    email:
+                        user.email,
+
+                    phone:
+                        user.phone,
+
+                    dob:
+                        user.dob,
+
+                    age:
+                        user.age,
+
+                    gender:
+                        user.gender,
+
+                    generation:
+                        user.generation,
+
+                    generationBadge:
+                        user.generationBadge,
+
+                    generationDescription:
+                        user.generationDescription,
+
+                    profilePhoto:
+                        user.profilePhoto,
+
+                    bio:
+                        user.bio,
+
+                    interests:
+                        user.interests,
+
+                    hobbies:
+                        user.hobbies,
+
+                    skills:
+                        user.skills,
+
+                    memberSince:
+                        user.memberSince,
+
+                    lastActive:
+                        user.lastActive
+
+                }
+
+            });
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            res.status(500).json({
+
+                success: false,
+
+                message:
+                    "Server error."
+
+            });
+
+        }
+
+    }
+);
 
 /* ==========================================
    START SERVER
