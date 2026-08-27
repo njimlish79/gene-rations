@@ -249,98 +249,151 @@
 
 </div>
 
-
 <script>
 
-    /* ==========================================
-       GET USER DATA
-    ========================================== */
+/* ==========================================
+   PENDING VERIFICATION
+========================================== */
 
-    const storedUser =
-        localStorage.getItem("userData");
+const pendingData =
+    localStorage.getItem("pendingVerification");
 
 
-    /*
-       If someone opens this page directly
-       without creating an account first,
-       send them back to signup.
-    */
+/*
+   Signup should have created this before
+   sending the user here.
+*/
 
-    if (!storedUser) {
+if (!pendingData) {
 
-        window.location.href =
-            "signup.html";
+    window.location.href =
+        "signup.html";
+
+}
+
+
+/* ==========================================
+   GET PENDING DATA
+========================================== */
+
+const pendingVerification =
+    JSON.parse(pendingData);
+
+const userEmail =
+    pendingVerification.email;
+
+const verificationMethod =
+    pendingVerification.verificationMethod;
+
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const verificationIcon =
+    document.getElementById(
+        "verificationIcon"
+    );
+
+const verificationTitle =
+    document.getElementById(
+        "verificationTitle"
+    );
+
+const contactDisplay =
+    document.getElementById(
+        "contactDisplay"
+    );
+
+const verificationForm =
+    document.getElementById(
+        "verificationForm"
+    );
+
+const verificationCode =
+    document.getElementById(
+        "verificationCode"
+    );
+
+const resendButton =
+    document.getElementById(
+        "resendButton"
+    );
+
+const changeMethod =
+    document.getElementById(
+        "changeMethod"
+    );
+
+const countdown =
+    document.getElementById(
+        "countdown"
+    );
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+/* ==========================================
+   MASK EMAIL
+========================================== */
+
+function maskEmail(email) {
+
+    if (!email) {
+        return "";
+    }
+
+    const parts =
+        email.split("@");
+
+    if (parts.length !== 2) {
+        return email;
+    }
+
+    const name =
+        parts[0];
+
+    const domain =
+        parts[1];
+
+    let visibleName;
+
+    if (name.length <= 2) {
+
+        visibleName =
+            name.charAt(0) +
+            "••••";
+
+    } else {
+
+        visibleName =
+            name.substring(0, 2) +
+            "••••";
 
     }
 
+    return (
+        visibleName +
+        "@" +
+        domain
+    );
 
-    const userData =
-        JSON.parse(storedUser);
-
-
-    /* ==========================================
-       ELEMENTS
-    ========================================== */
-
-    const verificationTitle =
-        document.getElementById(
-            "verificationTitle"
-        );
-
-    const verificationIcon =
-        document.getElementById(
-            "verificationIcon"
-        );
-
-    const contactDisplay =
-        document.getElementById(
-            "contactDisplay"
-        );
-
-    const verificationForm =
-        document.getElementById(
-            "verificationForm"
-        );
-
-    const verificationCode =
-        document.getElementById(
-            "verificationCode"
-        );
-
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-    const resendButton =
-        document.getElementById(
-            "resendButton"
-        );
-
-    const countdown =
-        document.getElementById(
-            "countdown"
-        );
-
-    const changeMethod =
-        document.getElementById(
-            "changeMethod"
-        );
+}
 
 
-    /* ==========================================
-       VERIFICATION METHOD
-    ========================================== */
+/* ==========================================
+   DISPLAY VERIFICATION
+========================================== */
 
-    const method =
-        userData.verificationMethod;
+function updateVerificationDisplay() {
 
-
-    /* ==========================================
-       DISPLAY EMAIL OR PHONE
-    ========================================== */
-
-    if (method === "sms") {
+    if (
+        verificationMethod ===
+        "sms"
+    ) {
 
         verificationIcon.textContent =
             "📱";
@@ -348,131 +401,247 @@
         verificationTitle.textContent =
             "Verify Your Phone";
 
-        contactDisplay.textContent =
-            maskPhone(userData.phone);
+        /*
+           We currently only have the email
+           inside pendingVerification.
 
-    } else {
+           We will add phone here when we
+           implement real SMS sending.
+        */
+
+        contactDisplay.textContent =
+            "your registered phone number";
+
+    }
+
+    else {
 
         verificationIcon.textContent =
             "✉️";
 
         verificationTitle.textContent =
-            "Verify Your Email";
+            "Verify Your Account";
 
         contactDisplay.textContent =
-            maskEmail(userData.email);
+            maskEmail(userEmail);
 
     }
 
-
-    /* ==========================================
-       MASK EMAIL
-    ========================================== */
-
-    function maskEmail(email) {
-
-        if (!email) {
-            return "";
-        }
-
-        const parts =
-            email.split("@");
-
-        if (parts.length !== 2) {
-            return email;
-        }
-
-        const name =
-            parts[0];
-
-        const domain =
-            parts[1];
-
-        let visibleName =
-            name.substring(0, 1);
-
-        return (
-            visibleName +
-            "***@" +
-            domain
-        );
-
-    }
+}
 
 
-    /* ==========================================
-       MASK PHONE
-    ========================================== */
+/* ==========================================
+   INITIAL DISPLAY
+========================================== */
 
-    function maskPhone(phone) {
-
-        if (!phone) {
-            return "";
-        }
-
-        if (phone.length <= 6) {
-            return phone;
-        }
-
-        return (
-            phone.substring(0, 4) +
-            "••••••" +
-            phone.substring(
-                phone.length - 3
-            )
-        );
-
-    }
+updateVerificationDisplay();
 
 
-    /* ==========================================
-       DEMO VERIFICATION CODE
-    ========================================== */
+/* ==========================================
+   VERIFY ACCOUNT
+========================================== */
 
-    /*
-       IMPORTANT:
+verificationForm.addEventListener(
+    "submit",
+    async function(event) {
 
-       This is a FRONT-END prototype.
+        event.preventDefault();
 
-       A real production verification code
-       must be generated and sent by a secure
-       backend/SMS/email service.
-
-       For now we generate a temporary code
-       so you can test the complete flow.
-    */
-
-    function generateVerificationCode() {
 
         const code =
-            Math.floor(
-                100000 +
-                Math.random() * 900000
-            ).toString();
+            verificationCode.value
+                .trim();
 
-        sessionStorage.setItem(
-            "verificationCode",
-            code
+
+        /* -------------------------------
+           CODE VALIDATION
+        -------------------------------- */
+
+        if (
+            !/^\d{6}$/.test(code)
+        ) {
+
+            showMessage(
+                "Please enter the 6-digit verification code.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* -------------------------------
+           BUTTON
+        -------------------------------- */
+
+        const verifyButton =
+            verificationForm.querySelector(
+                "button[type='submit']"
+            );
+
+        verifyButton.disabled =
+            true;
+
+        verifyButton.textContent =
+            "Verifying...";
+
+
+        showMessage(
+            "Verifying your account...",
+            ""
         );
 
-        console.log(
-            "Demo verification code:",
-            code
-        );
+
+        /* -------------------------------
+           SEND TO BACKEND
+        -------------------------------- */
+
+        try {
+
+            const response =
+                await fetch(
+                    "http://localhost:3000/api/auth/verify",
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                email:
+                                    userEmail,
+
+                                code:
+                                    code
+
+                            })
+
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            /* -------------------------------
+               VERIFICATION FAILED
+            -------------------------------- */
+
+            if (!response.ok) {
+
+                showMessage(
+                    result.message ||
+                    "Verification failed.",
+                    "error"
+                );
+
+                verifyButton.disabled =
+                    false;
+
+                verifyButton.textContent =
+                    "Verify Account";
+
+                return;
+
+            }
+
+
+            /* -------------------------------
+               SUCCESS
+            -------------------------------- */
+
+            showMessage(
+                "Account verified successfully! Redirecting to login...",
+                "success"
+            );
+
+
+            /*
+               Remove pending verification.
+            */
+
+            localStorage.removeItem(
+                "pendingVerification"
+            );
+
+
+            /*
+               Give the user a moment to see
+               the success message.
+            */
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "login.html";
+
+                },
+                1000
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Verification error:",
+                error
+            );
+
+
+            showMessage(
+                "Unable to connect to the Gene-rations server.",
+                "error"
+            );
+
+
+            verifyButton.disabled =
+                false;
+
+            verifyButton.textContent =
+                "Verify Account";
+
+        }
 
     }
+);
 
 
-    generateVerificationCode();
+/* ==========================================
+   RESEND CODE
+========================================== */
+
+let seconds = 60;
+
+let timer;
 
 
-    /* ==========================================
-       RESEND COUNTDOWN
-    ========================================== */
+function startCountdown() {
 
-    let seconds = 60;
+    seconds = 60;
 
-    let timer =
+    resendButton.disabled =
+        true;
+
+    countdown.textContent =
+        seconds;
+
+
+    clearInterval(timer);
+
+
+    timer =
         setInterval(
             function() {
 
@@ -481,7 +650,10 @@
                 countdown.textContent =
                     seconds;
 
-                if (seconds <= 0) {
+
+                if (
+                    seconds <= 0
+                ) {
 
                     clearInterval(timer);
 
@@ -497,178 +669,129 @@
             1000
         );
 
-
-    /* ==========================================
-       RESEND CODE
-    ========================================== */
-
-    resendButton.addEventListener(
-        "click",
-        function() {
-
-            generateVerificationCode();
-
-            message.textContent =
-                "A new verification code has been generated.";
-
-            message.className =
-                "message success";
+}
 
 
-            resendButton.disabled =
-                true;
-
-            seconds = 60;
-
-            countdown.textContent =
-                seconds;
+startCountdown();
 
 
-            clearInterval(timer);
+/* ==========================================
+   RESEND
+========================================== */
 
-            timer =
-                setInterval(
-                    function() {
+resendButton.addEventListener(
+    "click",
+    async function() {
 
-                        seconds--;
+        showMessage(
+            "Resend functionality will be connected to the email/SMS service next.",
+            "success"
+        );
 
-                        countdown.textContent =
-                            seconds;
+        startCountdown();
 
-                        if (seconds <= 0) {
+    }
+);
 
-                            clearInterval(timer);
 
-                            resendButton.disabled =
-                                false;
+/* ==========================================
+   CHANGE METHOD
+========================================== */
 
-                            countdown.textContent =
-                                "";
+changeMethod.addEventListener(
+    "click",
+    function() {
 
-                        }
+        /*
+           We are NOT changing the method
+           locally anymore.
 
-                    },
-                    1000
+           The backend must be updated before
+           switching from email to SMS or SMS
+           to email.
+        */
+
+        showMessage(
+            "Verification method switching will be connected to the backend next.",
+            "error"
+        );
+
+    }
+);
+
+
+/* ==========================================
+   MESSAGE
+========================================== */
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message";
+
+    if (type) {
+
+        message.classList.add(
+            type
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   ONLY NUMBERS
+========================================== */
+
+verificationCode.addEventListener(
+    "input",
+    function() {
+
+        this.value =
+            this.value
+                .replace(
+                    /\D/g,
+                    ""
+                )
+                .slice(
+                    0,
+                    6
                 );
 
-        }
-    );
+    }
+);
 
 
-    /* ==========================================
-       VERIFY ACCOUNT
-    ========================================== */
+/* ==========================================
+   ENTER KEY
+========================================== */
 
-    verificationForm.addEventListener(
-        "submit",
-        function(event) {
+verificationCode.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key ===
+            "Enter"
+        ) {
 
             event.preventDefault();
 
-
-            const enteredCode =
-                verificationCode.value.trim();
-
-            const correctCode =
-                sessionStorage.getItem(
-                    "verificationCode"
-                );
-
-
-            if (
-                enteredCode !== correctCode
-            ) {
-
-                message.textContent =
-                    "Incorrect verification code. Please try again.";
-
-                message.className =
-                    "message error";
-
-                return;
-
-            }
-
-
-            /* ==============================
-               MARK ACCOUNT VERIFIED
-            ============================== */
-
-            userData.verified =
-                true;
-
-
-            localStorage.setItem(
-                "userData",
-                JSON.stringify(userData)
-            );
-
-
-            localStorage.setItem(
-                "verificationPending",
-                "false"
-            );
-
-
-            sessionStorage.removeItem(
-                "verificationCode"
-            );
-
-
-            message.textContent =
-                "Account verified successfully!";
-
-            message.className =
-                "message success";
-
-
-            /* ==============================
-               GO TO LOGIN
-            ============================== */
-
-            setTimeout(
-                function() {
-
-                    window.location.href =
-                        "login.html";
-
-                },
-                1000
-            );
+            verificationForm.requestSubmit();
 
         }
-    );
 
+    }
+);
 
-    /* ==========================================
-       CHANGE VERIFICATION METHOD
-    ========================================== */
-
-    changeMethod.addEventListener(
-        "click",
-        function() {
-
-            const newMethod =
-                method === "email"
-                    ? "sms"
-                    : "email";
-
-
-            userData.verificationMethod =
-                newMethod;
-
-
-            localStorage.setItem(
-                "userData",
-                JSON.stringify(userData)
-            );
-
-
-            window.location.reload();
-
-        }
-    );
-
+  
 </script>
 
 </body>

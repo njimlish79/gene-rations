@@ -38,7 +38,7 @@
                 Arial,
                 sans-serif;
 
-            background: #f3f6fa;
+            background: #22f457;
 
             min-height: 100vh;
 
@@ -499,12 +499,12 @@
     ====================================== -->
 
     <div class="logo">
-        Gene-rations
+    <img src="/images/gene-rations.png" alt="Gene-rations" style="width:350px;height:50px;">
     </div>
 
 
     <p class="subtitle">
-        Create your account and join your generation.
+        Join Generations Chap Chap!
     </p>
 
 
@@ -1649,190 +1649,220 @@
                 generation +
                 " community.";
 
+/* ================================
+   CREATE ACCOUNT THROUGH BACKEND
+================================ */
 
-            /* ================================
-               USER DATA
-            ================================= */
+try {
 
-            const userData = {
+    signupButton.disabled = true;
 
-                fullName:
-                    fullName,
+    message.textContent =
+        "Creating your account...";
 
-                email:
-                    email,
-
-                phone:
-                    internationalPhone,
-
-                dob:
-                    dobInput.value,
-
-                age:
-                    age,
-
-                gender:
-                    genderInput.value,
-
-                password:
-                    password,
-
-                generation:
-                    generation,
-
-                generationBadge:
-                    generationBadge,
-
-                generationDescription:
-                    generationDescription,
-
-                memberSince:
-                    new Date()
-                        .toISOString(),
-
-                lastActive:
-                    null,
-
-                profilePhoto:
-                    "",
-
-                bio:
-                    "",
-
-                interests:
-                    [],
-
-                hobbies:
-                    [],
-
-                skills:
-                    [],
-
-                followers:
-                    [],
-
-                following:
-                    [],
-
-                posts:
-                    [],
-
-                communities:
-                    [],
-
-                events:
-                    [],
-
-                familyMembers:
-                    [],
-
-                profileViews:
-                    0,
-
-                verified:
-                    false,
-
-                verificationMethod:
-                    verificationMethod,
-
-                verificationCode:
-                    generateVerificationCode(),
-
-                verificationExpires:
-                    Date.now()
-                    +
-                    (10 * 60 * 1000)
-
-            };
+    message.className =
+        "";
 
 
-            /* ================================
-               SAVE ACCOUNT
-            ================================= */
+    /* ================================
+       SEND ACCOUNT TO BACKEND
+    ================================= */
 
-            localStorage.setItem(
-                "userData",
-                JSON.stringify(userData)
-            );
+    const response =
+        await fetch(
+            "http://localhost:3000/api/auth/signup",
+            {
 
+                method:
+                    "POST",
 
-            /* ================================
-               REMOVE OLD LOGIN SESSION
-            ================================= */
+                headers: {
 
-            localStorage.removeItem(
-                "loginSession"
-            );
-
-
-            /* ================================
-               SUCCESS
-            ================================= */
-
-            message.textContent =
-                "Account created successfully.";
-
-            message.className =
-                "success";
-
-
-            signupButton.disabled =
-                true;
-
-
-            /* ================================
-               GO TO VERIFICATION
-            ================================= */
-
-            setTimeout(
-                function () {
-
-                    window.location.href =
-                        "verify-account.html";
+                    "Content-Type":
+                        "application/json"
 
                 },
-                700
-            );
 
-        }
-    );
+                body:
+                    JSON.stringify({
+
+                        fullName:
+                            fullName,
+
+                        email:
+                            email,
+
+                        phone:
+                            internationalPhone,
+
+                        dob:
+                            dobInput.value,
+
+                        age:
+                            age,
+
+                        gender:
+                            genderInput.value,
+
+                        generation:
+                            generation,
+
+                        generationBadge:
+                            generationBadge,
+
+                        generationDescription:
+                            generationDescription,
+
+                        verificationMethod:
+                            verificationMethod,
+
+                        password:
+                            password
+
+                    })
+
+            }
+        );
 
 
-    /* =========================================
-       ERROR FUNCTION
-    ========================================= */
+    /* ================================
+       READ BACKEND RESPONSE
+    ================================= */
 
-    function showError(
-        text
-    ) {
+    const result =
+        await response.json();
+
+
+    /* ================================
+       SIGNUP FAILED
+    ================================= */
+
+    if (!response.ok) {
 
         message.textContent =
-            text;
+            result.message ||
+            "Unable to create your account.";
 
         message.className =
             "error";
 
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: "smooth"
-        });
+        signupButton.disabled =
+            false;
+
+        return;
 
     }
 
 
-    /* =========================================
-       VERIFICATION CODE
-    ========================================= */
+    /* ================================
+       SAVE ONLY PENDING ACCOUNT INFO
+    ================================= */
 
-    function generateVerificationCode() {
+    const pendingVerification = {
 
-        return Math.floor(
-            100000 +
-            Math.random() * 900000
-        ).toString();
+        userId:
+            result.userId,
+
+        email:
+            email,
+
+        phone:
+            internationalPhone,
+          
+
+        verificationMethod:
+            verificationMethod
+
+    };
+
+
+    localStorage.setItem(
+        "pendingVerification",
+        JSON.stringify(
+            pendingVerification
+        )
+    );
+
+
+    /* ================================
+       REMOVE OLD LOGIN SESSION
+    ================================= */
+
+    localStorage.removeItem(
+        "loginSession"
+    );
+
+
+    /* ================================
+       SUCCESS
+    ================================= */
+
+    message.textContent =
+        "Account created successfully.";
+
+    message.className =
+        "success";
+
+
+    /* ================================
+       GO TO VERIFICATION
+    ================================= */
+
+    setTimeout(
+        function () {
+
+            window.location.href =
+                "verify-account.html";
+
+        },
+        700
+    );
+
+}
+
+  catch (error) {
+
+    console.error(
+        "Signup error:",
+        error
+    );
+
+    message.textContent =
+        "Unable to connect to the Gene-rations server.";
+
+    message.className =
+        "error";
+
+    signupButton.disabled =
+        false;
+
+}
 
     }
+);
 
+
+/* =========================================
+   ERROR FUNCTION
+========================================= */
+
+function showError(
+    text
+) {
+
+    message.textContent =
+        text;
+
+    message.className =
+        "error";
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+
+}
+          
 </script>
 
 
