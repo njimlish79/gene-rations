@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
@@ -9,56 +12,95 @@
 
 <style>
 
+/* =========================================
+   RESET
+========================================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+
+/* =========================================
+   BODY
+========================================= */
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f3ff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #09d071;
+
     color: #292047;
 }
+
 
 /* =========================================
    HEADER
 ========================================= */
 
 .header {
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #7c3aed
-    );
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
 
     color: white;
 
     padding: 18px 22px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     position: sticky;
+
     top: 0;
+
     z-index: 100;
 }
 
+
 .logo {
+
     font-size: 25px;
+
     font-weight: 800;
 }
 
+
 .header-right {
+
     display: flex;
+
     gap: 10px;
+
     align-items: center;
 }
 
+
 .header-btn {
+
     border: none;
-    background: rgba(255,255,255,0.15);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+
     color: white;
 
     padding: 12px 17px;
@@ -66,72 +108,118 @@ body {
     border-radius: 25px;
 
     font-weight: 700;
+
     cursor: pointer;
 }
 
+
 .header-btn:hover {
-    background: rgba(255,255,255,0.25);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.25
+        );
 }
+
 
 /* =========================================
    PAGE
 ========================================= */
 
 .container {
+
     max-width: 850px;
+
     margin: 25px auto;
-    padding: 0 16px 50px;
+
+    padding:
+        0 16px 50px;
 }
 
+
 .page-title {
+
     margin-bottom: 20px;
 }
 
+
 .page-title h1 {
+
     font-size: 30px;
+
     margin-bottom: 6px;
 }
 
+
 .page-title p {
+
     color: #777;
 }
+
 
 /* =========================================
    CARD
 ========================================= */
 
 .card {
+
     background: white;
+
     border-radius: 25px;
+
     padding: 25px;
+
     margin-bottom: 20px;
 
     box-shadow:
-        0 8px 25px rgba(80,60,140,0.08);
+        0 8px 25px
+        rgba(
+            80,
+            60,
+            140,
+            0.08
+        );
 }
 
+
 .card h2 {
+
     margin-bottom: 18px;
+
     font-size: 21px;
 }
+
 
 /* =========================================
    PROFILE PHOTO
 ========================================= */
 
 .photo-section {
+
     text-align: center;
 }
 
+
 .photo-wrapper {
+
     position: relative;
+
     width: 145px;
+
     height: 145px;
-    margin: 0 auto 15px;
+
+    margin:
+        0 auto 15px;
 }
 
+
 .profile-photo {
+
     width: 145px;
+
     height: 145px;
 
     border-radius: 50%;
@@ -140,13 +228,18 @@ body {
 
     background: #e8defd;
 
-    border: 5px solid #eee5ff;
+    border:
+        5px solid
+        #eee5ff;
 }
 
+
 .photo-button {
+
     display: inline-block;
 
     background: #7c3aed;
+
     color: white;
 
     padding: 11px 18px;
@@ -158,29 +251,38 @@ body {
     font-weight: bold;
 }
 
+
 .photo-button:hover {
+
     background: #6828d9;
 }
 
+
 #photoInput {
+
     display: none;
 }
+
 
 /* =========================================
    FORM
 ========================================= */
 
 .form-group {
+
     margin-bottom: 17px;
 }
 
+
 .form-group label {
+
     display: block;
 
     margin-bottom: 7px;
 
     font-weight: 700;
 }
+
 
 input,
 textarea,
@@ -190,7 +292,9 @@ select {
 
     padding: 14px;
 
-    border: 1px solid #ddd;
+    border:
+        1px solid
+        #ddd;
 
     border-radius: 12px;
 
@@ -201,6 +305,7 @@ select {
     background: #fff;
 }
 
+
 input:focus,
 textarea:focus,
 select:focus {
@@ -208,24 +313,42 @@ select:focus {
     border-color: #7c3aed;
 
     box-shadow:
-        0 0 0 3px rgba(124,58,237,0.1);
+        0 0 0 3px
+        rgba(
+            124,
+            58,
+            237,
+            0.1
+        );
 }
 
+
 textarea {
+
     min-height: 110px;
+
     resize: vertical;
 }
+
 
 /* =========================================
    NON EDITABLE INFORMATION
 ========================================= */
 
 .locked {
+
     background: #f4f2fa;
+
     color: #777;
+
+    cursor: not-allowed;
+
+    border-color: #ddd;
 }
 
+
 .info-box {
+
     background: #f7f3ff;
 
     border-radius: 15px;
@@ -235,29 +358,43 @@ textarea {
     margin-bottom: 15px;
 }
 
+
 .info-label {
+
     color: #777;
+
     font-size: 13px;
+
     margin-bottom: 5px;
 }
 
+
 .info-value {
+
     font-weight: 700;
 }
+
 
 /* =========================================
    TAGS
 ========================================= */
 
 .tags {
+
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 9px;
+
     margin-top: 10px;
 }
 
+
 .tag {
+
     background: #eee7ff;
+
     color: #6735bd;
 
     padding: 8px 13px;
@@ -265,14 +402,19 @@ textarea {
     border-radius: 20px;
 
     display: flex;
+
     align-items: center;
+
     gap: 6px;
 
     font-size: 14px;
 }
 
+
 .tag button {
+
     border: none;
+
     background: none;
 
     color: #6735bd;
@@ -281,6 +423,7 @@ textarea {
 
     cursor: pointer;
 }
+
 
 /* =========================================
    SELECTOR BUTTON
@@ -296,7 +439,9 @@ textarea {
 
     color: #6633bb;
 
-    border: 2px dashed #b99ce8;
+    border:
+        2px dashed
+        #b99ce8;
 
     border-radius: 13px;
 
@@ -304,6 +449,7 @@ textarea {
 
     cursor: pointer;
 }
+
 
 /* =========================================
    GENERATION
@@ -327,13 +473,20 @@ textarea {
     margin-top: 10px;
 }
 
+
 .generation-badge {
 
     display: inline-block;
 
     margin-top: 12px;
 
-    background: rgba(255,255,255,0.2);
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.2
+        );
 
     padding: 9px 15px;
 
@@ -341,6 +494,7 @@ textarea {
 
     font-weight: bold;
 }
+
 
 /* =========================================
    SAVE BUTTON
@@ -372,9 +526,20 @@ textarea {
     cursor: pointer;
 }
 
+
 .save-button:hover {
+
     opacity: .9;
 }
+
+
+.save-button:disabled {
+
+    opacity: .6;
+
+    cursor: not-allowed;
+}
+
 
 .cancel-button {
 
@@ -399,6 +564,7 @@ textarea {
     margin-top: 10px;
 }
 
+
 /* =========================================
    MESSAGE
 ========================================= */
@@ -418,15 +584,38 @@ textarea {
     font-weight: bold;
 }
 
+
 .success {
+
     background: #dcfce7;
+
     color: #166534;
 }
 
+
 .error {
+
     background: #fee2e2;
+
     color: #991b1b;
 }
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loading {
+
+    text-align: center;
+
+    padding: 20px;
+
+    color: #777;
+
+    font-weight: bold;
+}
+
 
 /* =========================================
    MODAL
@@ -440,7 +629,13 @@ textarea {
 
     inset: 0;
 
-    background: rgba(0,0,0,0.55);
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.55
+        );
 
     z-index: 500;
 
@@ -450,6 +645,7 @@ textarea {
 
     padding: 20px;
 }
+
 
 .modal-content {
 
@@ -468,6 +664,7 @@ textarea {
     padding: 22px;
 }
 
+
 .modal-header {
 
     display: flex;
@@ -478,6 +675,7 @@ textarea {
 
     margin-bottom: 20px;
 }
+
 
 .close {
 
@@ -496,15 +694,23 @@ textarea {
     cursor: pointer;
 }
 
+
 .option-grid {
 
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(140px,1fr));
+        repeat(
+            auto-fit,
+            minmax(
+                140px,
+                1fr
+            )
+        );
 
     gap: 10px;
 }
+
 
 .option {
 
@@ -512,7 +718,9 @@ textarea {
 
     border-radius: 12px;
 
-    border: 1px solid #ddd;
+    border:
+        1px solid
+        #ddd;
 
     background: white;
 
@@ -523,6 +731,7 @@ textarea {
     font-weight: 600;
 }
 
+
 .option.selected {
 
     background: #7c3aed;
@@ -531,6 +740,7 @@ textarea {
 
     border-color: #7c3aed;
 }
+
 
 /* =========================================
    FOOTER
@@ -545,6 +755,7 @@ textarea {
     color: #888;
 }
 
+
 /* =========================================
    MOBILE
 ========================================= */
@@ -552,31 +763,46 @@ textarea {
 @media(max-width:600px) {
 
     .header {
+
         padding: 15px;
     }
 
+
     .logo {
+
         font-size: 21px;
     }
 
+
     .header-btn {
-        padding: 10px 12px;
+
+        padding:
+            10px 12px;
+
         font-size: 13px;
     }
 
+
     .card {
+
         padding: 20px;
     }
 
+
     .page-title h1 {
+
         font-size: 26px;
     }
+
 }
 
 </style>
+
 </head>
 
+
 <body>
+
 
 <!-- ======================================
      HEADER
@@ -585,12 +811,16 @@ textarea {
 <header class="header">
 
     <div class="logo">
+
         Gene-rations
+
     </div>
+
 
     <div class="header-right">
 
         <button
+            type="button"
             class="header-btn"
             onclick="goToGenerationHub()">
 
@@ -608,6 +838,7 @@ textarea {
 ====================================== -->
 
 <main class="container">
+
 
     <div class="page-title">
 
@@ -636,6 +867,7 @@ textarea {
             Profile Photo
         </h2>
 
+
         <div class="photo-wrapper">
 
             <img
@@ -646,6 +878,7 @@ textarea {
 
         </div>
 
+
         <label
             for="photoInput"
             class="photo-button">
@@ -653,6 +886,7 @@ textarea {
             📷 Change Photo
 
         </label>
+
 
         <input
             type="file"
@@ -690,13 +924,28 @@ textarea {
         <div class="form-group">
 
             <label for="email">
-                Email Address
+                Email Address 🔒
             </label>
 
             <input
                 type="email"
                 id="email"
-                placeholder="Your email">
+                class="locked"
+                readonly
+                placeholder="Your email"
+                title="Email cannot be changed">
+
+            <small
+                style="
+                    display:block;
+                    margin-top:7px;
+                    color:#777;
+                ">
+
+                Your email address is permanent
+                after account registration.
+
+            </small>
 
         </div>
 
@@ -704,26 +953,65 @@ textarea {
         <div class="form-group">
 
             <label for="phone">
-                Phone Number
+                Phone Number 🔒
             </label>
 
             <input
                 type="tel"
                 id="phone"
-                placeholder="Your phone number">
+                class="locked"
+                readonly
+                placeholder="Your phone number"
+                title="Phone number cannot be changed">
+
+            <small
+                style="
+                    display:block;
+                    margin-top:7px;
+                    color:#777;
+                ">
+
+                Your phone number is permanent
+                after account registration.
+
+            </small>
 
         </div>
 
 
+        <!-- ==================================
+             LOCKED DOB
+        =================================== -->
+
         <div class="form-group">
 
             <label for="dob">
-                Date of Birth
+
+                Date of Birth 🔒
+
             </label>
+
 
             <input
                 type="date"
-                id="dob">
+                id="dob"
+                readonly
+                class="locked"
+                title="Date of birth cannot be changed after account registration">
+
+
+            <small
+                style="
+                    display:block;
+                    margin-top:7px;
+                    color:#777;
+                ">
+
+                Your date of birth was provided
+                during account registration and
+                cannot be changed from your profile.
+
+            </small>
 
         </div>
 
@@ -731,8 +1019,11 @@ textarea {
         <div class="form-group">
 
             <label for="gender">
+
                 Gender
+
             </label>
+
 
             <select id="gender">
 
@@ -764,8 +1055,11 @@ textarea {
         <div class="form-group">
 
             <label for="country">
+
                 Country
+
             </label>
+
 
             <select id="country">
 
@@ -834,20 +1128,30 @@ textarea {
             Your Generation
         </h2>
 
+
         <p style="color:#777;">
+
             Your generation is automatically
-            determined from your age.
+            determined from your date of birth.
+
         </p>
+
 
         <div class="generation-card">
 
             <h2 id="generationName">
+
                 Loading...
+
             </h2>
 
+
             <p id="generationDescription">
+
                 Loading generation information...
+
             </p>
+
 
             <div
                 class="generation-badge"
@@ -872,11 +1176,15 @@ textarea {
             About Me
         </h2>
 
+
         <div class="form-group">
 
             <label for="bio">
+
                 Bio
+
             </label>
+
 
             <textarea
                 id="bio"
@@ -898,9 +1206,17 @@ textarea {
             Interests
         </h2>
 
-        <p style="color:#777;margin-bottom:12px;">
+
+        <p
+            style="
+                color:#777;
+                margin-bottom:12px;
+            ">
+
             Choose topics that interest you.
+
         </p>
+
 
         <button
             type="button"
@@ -910,6 +1226,7 @@ textarea {
             ➕ Select Interests
 
         </button>
+
 
         <div
             id="interestsTags"
@@ -930,9 +1247,17 @@ textarea {
             Hobbies
         </h2>
 
-        <p style="color:#777;margin-bottom:12px;">
+
+        <p
+            style="
+                color:#777;
+                margin-bottom:12px;
+            ">
+
             Select activities you enjoy.
+
         </p>
+
 
         <button
             type="button"
@@ -942,6 +1267,7 @@ textarea {
             ➕ Select Hobbies
 
         </button>
+
 
         <div
             id="hobbiesTags"
@@ -962,12 +1288,18 @@ textarea {
             Skills & Education
         </h2>
 
-        <p style="color:#777;margin-bottom:12px;">
+
+        <p
+            style="
+                color:#777;
+                margin-bottom:12px;
+            ">
 
             Select your professional,
             technical or practical skills.
 
         </p>
+
 
         <button
             type="button"
@@ -977,6 +1309,7 @@ textarea {
             🎓 Select Skills / Education
 
         </button>
+
 
         <div
             id="skillsTags"
@@ -994,6 +1327,8 @@ textarea {
     <section class="card">
 
         <button
+            id="saveButton"
+            type="button"
             class="save-button"
             onclick="saveProfile()">
 
@@ -1001,7 +1336,9 @@ textarea {
 
         </button>
 
+
         <button
+            type="button"
             class="cancel-button"
             onclick="goToProfile()">
 
@@ -1029,15 +1366,21 @@ textarea {
     id="selectorModal"
     class="modal">
 
+
     <div class="modal-content">
+
 
         <div class="modal-header">
 
             <h2 id="modalTitle">
+
                 Select
+
             </h2>
 
+
             <button
+                type="button"
                 class="close"
                 onclick="closeSelector()">
 
@@ -1046,6 +1389,7 @@ textarea {
             </button>
 
         </div>
+
 
         <div
             id="optionGrid"
@@ -1060,8 +1404,22 @@ textarea {
 
 <script>
 
+/* =====================================================
+   GENE-RATIONS EDIT PROFILE
+===================================================== */
+
+
 /* ==========================================
-   LOAD USER
+   BACKEND ADDRESS
+========================================== */
+
+const API_BASE_URL =
+    localStorage.getItem("API_BASE_URL") ||
+    "http://localhost:3000";
+
+
+/* ==========================================
+   LOAD LOCAL USER
 ========================================== */
 
 let userData =
@@ -1070,7 +1428,11 @@ let userData =
     );
 
 
-if (!userData) {
+/* ==========================================
+   AUTHENTICATION CHECK
+========================================== */
+
+if (!userData || !userData.id) {
 
     window.location.href =
         "login.html";
@@ -1091,9 +1453,10 @@ const defaultPhoto =
              height="300"
              viewBox="0 0 300 300">
 
-            <rect width="300"
-                  height="300"
-                  fill="#e8defd"/>
+            <rect
+                width="300"
+                height="300"
+                fill="#e8defd"/>
 
             <circle
                 cx="150"
@@ -1103,8 +1466,7 @@ const defaultPhoto =
 
             <path
                 d="M55 265
-                   C65 185 105 160
-                   150 160
+                   C65 185 105 160 150 160
                    C195 160 235 185 245 265Z"
                 fill="#8d72c8"/>
 
@@ -1120,24 +1482,42 @@ const defaultPhoto =
 function calculateAge(dob) {
 
     if (!dob) {
+
         return null;
+
     }
+
 
     const birthDate =
         new Date(dob);
 
+
     const today =
         new Date();
+
+
+    if (
+        isNaN(
+            birthDate.getTime()
+        )
+    ) {
+
+        return null;
+
+    }
+
 
     let age =
         today.getFullYear()
         -
         birthDate.getFullYear();
 
+
     const month =
         today.getMonth()
         -
         birthDate.getMonth();
+
 
     if (
         month < 0 ||
@@ -1153,33 +1533,54 @@ function calculateAge(dob) {
 
     }
 
+
     return age;
+
 }
 
 
 function getGeneration(age) {
 
-    if (age === null) {
-        return "Generation Alpha";
+    if (
+        age === null ||
+        age < 0
+    ) {
+
+        return null;
+
     }
+
 
     if (age >= 65) {
+
         return "Silent Generation";
+
     }
+
 
     if (age >= 45) {
+
         return "Generation X";
+
     }
+
 
     if (age >= 29) {
+
         return "Millennial";
+
     }
+
 
     if (age >= 13) {
+
         return "Generation Z";
+
     }
 
+
     return "Generation Alpha";
+
 }
 
 
@@ -1191,61 +1592,55 @@ const generationData = {
 
     "Silent Generation": {
 
-        badge: "🏷️ Silent Generation",
+        badge:
+            "⭐ Silent",
 
         description:
-            "A generation with deep experience, wisdom and valuable life perspectives.",
-
-        welcome:
-            "Welcome to the Silent Generation community."
+            "A generation with deep experience, wisdom and valuable life perspectives."
 
     },
+
 
     "Generation X": {
 
-        badge: "🏷️ Generation X",
+        badge:
+            "🔥 Gen X",
 
         description:
-            "A generation known for independence, adaptability and experience.",
-
-        welcome:
-            "Welcome to the Generation X community."
+            "A generation known for independence, adaptability and experience."
 
     },
+
 
     "Millennial": {
 
-        badge: "🏷️ Millennial",
+        badge:
+            "🌍 Millennial",
 
         description:
-            "A connected generation shaped by technology, creativity and change.",
-
-        welcome:
-            "Welcome to the Millennial community."
+            "A connected generation shaped by technology, creativity and change."
 
     },
+
 
     "Generation Z": {
 
-        badge: "🏷️ Generation Z",
+        badge:
+            "⚡ Gen Z",
 
         description:
-            "A digital generation bringing new ideas, creativity and fresh perspectives.",
-
-        welcome:
-            "Welcome to the Generation Z community."
+            "A digital generation bringing new ideas, creativity and fresh perspectives."
 
     },
 
+
     "Generation Alpha": {
 
-        badge: "🏷️ Generation Alpha",
+        badge:
+            "🧬 Alpha",
 
         description:
-            "A young generation growing up in a highly connected digital world.",
-
-        welcome:
-            "Welcome to the Generation Alpha community."
+            "A young generation growing up in a highly connected digital world."
 
     }
 
@@ -1303,6 +1698,14 @@ const hobbies = [
 ];
 
 
+/*
+   This list is intentionally kept in the
+   same selector structure.
+
+   It can later be replaced by the full
+   international education/skills selector.
+*/
+
 const skills = [
 
     "Computer Skills",
@@ -1335,14 +1738,204 @@ const skills = [
 
 
 /* ==========================================
+   ENSURE ARRAYS
+========================================== */
+
+function prepareUserArrays() {
+
+    if (
+        !Array.isArray(
+            userData.interests
+        )
+    ) {
+
+        userData.interests = [];
+
+    }
+
+
+    if (
+        !Array.isArray(
+            userData.hobbies
+        )
+    ) {
+
+        userData.hobbies = [];
+
+    }
+
+
+    if (
+        !Array.isArray(
+            userData.skills
+        )
+    ) {
+
+        userData.skills = [];
+
+    }
+
+}
+
+
+/* ==========================================
+   LOAD USER FROM BACKEND
+========================================== */
+
+async function loadUserFromBackend() {
+
+    if (!userData || !userData.id) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/api/user/${encodeURIComponent(userData.id)}`
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            if (data.dormant) {
+
+                showMessage(
+                    "Your account is dormant. Please reactivate your account.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            throw new Error(
+                data.message ||
+                "Unable to load your profile."
+            );
+
+        }
+
+
+        if (data.user) {
+
+            /*
+               Preserve local fields that the
+               current backend does not yet return.
+            */
+
+            const oldInterests =
+                Array.isArray(userData.interests)
+                    ? userData.interests
+                    : [];
+
+
+            const oldCountry =
+                userData.country || "";
+
+
+            const oldGender =
+                userData.gender || "";
+
+
+            userData =
+                {
+                    ...userData,
+                    ...data.user
+                };
+
+
+            if (
+                !Array.isArray(
+                    userData.interests
+                )
+            ) {
+
+                userData.interests =
+                    oldInterests;
+
+            }
+
+
+            if (
+                !userData.country
+            ) {
+
+                userData.country =
+                    oldCountry;
+
+            }
+
+
+            if (
+                !userData.gender
+            ) {
+
+                userData.gender =
+                    oldGender;
+
+            }
+
+
+            prepareUserArrays();
+
+
+            localStorage.setItem(
+                "userData",
+                JSON.stringify(
+                    userData
+                )
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Profile loading error:",
+            error
+        );
+
+
+        /*
+           If backend is temporarily unavailable,
+           continue using the local profile data.
+        */
+
+        showMessage(
+            "Could not refresh from the server. Showing your saved profile data.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ==========================================
    LOAD FORM
 ========================================== */
 
 function loadProfile() {
 
     if (!userData) {
+
         return;
+
     }
+
+
+    prepareUserArrays();
 
 
     document.getElementById(
@@ -1387,31 +1980,11 @@ function loadProfile() {
         userData.bio || "";
 
 
-    /* PHOTO */
-
     document.getElementById(
         "profilePhoto"
     ).src =
         userData.profilePhoto ||
         defaultPhoto;
-
-
-    /* ARRAYS */
-
-    userData.interests =
-        Array.isArray(userData.interests)
-            ? userData.interests
-            : [];
-
-    userData.hobbies =
-        Array.isArray(userData.hobbies)
-            ? userData.hobbies
-            : [];
-
-    userData.skills =
-        Array.isArray(userData.skills)
-            ? userData.skills
-            : [];
 
 
     renderTags(
@@ -1446,18 +2019,38 @@ function loadProfile() {
 
 function updateGeneration() {
 
-    const dob =
-        document.getElementById(
-            "dob"
-        ).value;
-
-
     const age =
-        calculateAge(dob);
+        calculateAge(
+            userData.dob
+        );
 
 
     const generation =
         getGeneration(age);
+
+
+    if (!generation) {
+
+        document.getElementById(
+            "generationName"
+        ).textContent =
+            "Unable to determine";
+
+
+        document.getElementById(
+            "generationBadge"
+        ).textContent =
+            "Generation unavailable";
+
+
+        document.getElementById(
+            "generationDescription"
+        ).textContent =
+            "A valid date of birth is required.";
+
+        return;
+
+    }
 
 
     const info =
@@ -1482,35 +2075,22 @@ function updateGeneration() {
         info.description;
 
 
-    /*
-       Keep userData synchronized.
-    */
-
     userData.age =
         age;
+
 
     userData.generation =
         generation;
 
+
     userData.generationBadge =
         info.badge;
+
 
     userData.generationDescription =
         info.description;
 
 }
-
-
-/* ==========================================
-   DOB CHANGE
-========================================== */
-
-document.getElementById(
-    "dob"
-).addEventListener(
-    "change",
-    updateGeneration
-);
 
 
 /* ==========================================
@@ -1532,6 +2112,15 @@ function renderTags(
     container.innerHTML = "";
 
 
+    if (
+        !Array.isArray(values)
+    ) {
+
+        return;
+
+    }
+
+
     values.forEach(
         function(value) {
 
@@ -1540,56 +2129,64 @@ function renderTags(
                     "div"
                 );
 
+
             tag.className =
                 "tag";
 
 
-            tag.innerHTML = `
-
-                <span>
-                    ${escapeHTML(value)}
-                </span>
-
-                <button
-                    type="button"
-                    onclick="removeItem('${property}','${escapeAttribute(value)}')">
-
-                    ×
-
-                </button>
-
-            `;
+            const span =
+                document.createElement(
+                    "span"
+                );
 
 
-            container.appendChild(tag);
+            span.textContent =
+                value;
+
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.textContent =
+                "×";
+
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    removeItem(
+                        property,
+                        value
+                    );
+
+                }
+            );
+
+
+            tag.appendChild(
+                span
+            );
+
+
+            tag.appendChild(
+                button
+            );
+
+
+            container.appendChild(
+                tag
+            );
 
         }
     );
-
-}
-
-
-/* ==========================================
-   ESCAPE
-========================================== */
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
-
-
-function escapeAttribute(value) {
-
-    return String(value)
-        .replace(/\\/g, "\\\\")
-        .replace(/'/g, "\\'");
 
 }
 
@@ -1603,23 +2200,35 @@ function removeItem(
     value
 ) {
 
+    if (
+        !Array.isArray(
+            userData[property]
+        )
+    ) {
+
+        return;
+
+    }
+
+
     userData[property] =
-        userData[property]
-            .filter(
-                item =>
-                    item !== value
-            );
+        userData[property].filter(
+            item =>
+                item !== value
+        );
 
 
-    renderTags(
+    const elementId =
         property === "interests"
             ? "interestsTags"
             : property === "hobbies"
                 ? "hobbiesTags"
-                : "skillsTags",
+                : "skillsTags";
 
+
+    renderTags(
+        elementId,
         userData[property],
-
         property
     );
 
@@ -1633,9 +2242,6 @@ function removeItem(
 let currentProperty =
     null;
 
-let currentOptions =
-    [];
-
 
 function openSelector(
     property,
@@ -1645,9 +2251,6 @@ function openSelector(
 
     currentProperty =
         property;
-
-    currentOptions =
-        options;
 
 
     document.getElementById(
@@ -1673,8 +2276,10 @@ function openSelector(
                     "button"
                 );
 
+
             button.type =
                 "button";
+
 
             button.className =
                 "option";
@@ -1682,7 +2287,7 @@ function openSelector(
 
             if (
                 userData[property]
-                .includes(option)
+                    .includes(option)
             ) {
 
                 button.classList.add(
@@ -1723,6 +2328,10 @@ function openSelector(
 }
 
 
+/* ==========================================
+   TOGGLE OPTION
+========================================== */
+
 function toggleOption(
     option,
     button
@@ -1740,14 +2349,18 @@ function toggleOption(
                         item !== option
                 );
 
+
         button.classList.remove(
             "selected"
         );
 
-    } else {
+    }
+
+    else {
 
         userData[currentProperty]
             .push(option);
+
 
         button.classList.add(
             "selected"
@@ -1756,20 +2369,26 @@ function toggleOption(
     }
 
 
-    renderTags(
+    const elementId =
         currentProperty === "interests"
             ? "interestsTags"
             : currentProperty === "hobbies"
                 ? "hobbiesTags"
-                : "skillsTags",
+                : "skillsTags";
 
+
+    renderTags(
+        elementId,
         userData[currentProperty],
-
         currentProperty
     );
 
 }
 
+
+/* ==========================================
+   CLOSE SELECTOR
+========================================== */
 
 function closeSelector() {
 
@@ -1780,6 +2399,10 @@ function closeSelector() {
 
 }
 
+
+/* ==========================================
+   INTEREST SELECTOR
+========================================== */
 
 function openInterestSelector() {
 
@@ -1792,6 +2415,10 @@ function openInterestSelector() {
 }
 
 
+/* ==========================================
+   HOBBY SELECTOR
+========================================== */
+
 function openHobbySelector() {
 
     openSelector(
@@ -1802,6 +2429,10 @@ function openHobbySelector() {
 
 }
 
+
+/* ==========================================
+   SKILL SELECTOR
+========================================== */
 
 function openSkillSelector() {
 
@@ -1822,14 +2453,16 @@ document.getElementById(
     "photoInput"
 ).addEventListener(
     "change",
-    function(event) {
+    async function(event) {
 
         const file =
             event.target.files[0];
 
 
         if (!file) {
+
             return;
+
         }
 
 
@@ -1849,21 +2482,50 @@ document.getElementById(
         }
 
 
+        /*
+           Limit large images because the current
+           backend stores the image string directly.
+        */
+
+        if (
+            file.size >
+            5 * 1024 * 1024
+        ) {
+
+            showMessage(
+                "Please choose an image smaller than 5 MB.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
         const reader =
             new FileReader();
 
 
         reader.onload =
-            function(e) {
+            async function(e) {
 
-                userData.profilePhoto =
+                const imageData =
                     e.target.result;
 
 
                 document.getElementById(
                     "profilePhoto"
                 ).src =
-                    e.target.result;
+                    imageData;
+
+
+                userData.profilePhoto =
+                    imageData;
+
+
+                await saveProfilePhoto(
+                    imageData
+                );
 
             };
 
@@ -1875,33 +2537,212 @@ document.getElementById(
 
 
 /* ==========================================
+   SAVE PROFILE PHOTO TO BACKEND
+========================================== */
+
+async function saveProfilePhoto(imageData) {
+
+    if (!userData || !userData.id) {
+
+        showMessage(
+            "Your account information could not be found. Please log in again.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (!imageData) {
+
+        showMessage(
+            "Please select a profile photo.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    try {
+
+        const url =
+            `${API_BASE_URL}/api/user/${encodeURIComponent(userData.id)}/profile-photo`;
+
+
+        console.log(
+            "Saving profile photo to:",
+            url
+        );
+
+
+        const response =
+            await fetch(
+                url,
+                {
+
+                    method: "PATCH",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        profilePhoto:
+                            imageData
+
+                    })
+
+                }
+            );
+
+
+        /* ======================================
+           READ RESPONSE SAFELY
+        ====================================== */
+
+        const responseText =
+            await response.text();
+
+
+        let data = null;
+
+
+        try {
+
+            data =
+                JSON.parse(
+                    responseText
+                );
+
+        }
+
+        catch (jsonError) {
+
+            console.error(
+                "Backend returned non-JSON:",
+                responseText
+            );
+
+            throw new Error(
+                `Backend returned invalid response (${response.status}).`
+            );
+
+        }
+
+
+        /* ======================================
+           BACKEND ERROR
+        ====================================== */
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                "Unable to update profile photo."
+            );
+
+        }
+
+
+        /* ======================================
+           UPDATE USER DATA
+        ====================================== */
+
+        if (data.user) {
+
+            userData =
+                {
+                    ...userData,
+                    ...data.user
+                };
+
+        }
+
+
+        /*
+           Make absolutely sure the new photo
+           remains in localStorage.
+        */
+
+        userData.profilePhoto =
+            imageData;
+
+
+        localStorage.setItem(
+            "userData",
+            JSON.stringify(
+                userData
+            )
+        );
+
+
+        /* ======================================
+           UPDATE IMAGE ON SCREEN
+        ====================================== */
+
+        const photo =
+            document.getElementById(
+                "profilePhoto"
+            );
+
+
+        if (photo) {
+
+            photo.src =
+                imageData;
+
+        }
+
+
+        showMessage(
+            "Profile photo updated successfully.",
+            "success"
+        );
+
+
+        console.log(
+            "Profile photo saved successfully."
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Profile photo update error:",
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            "Unable to save profile photo.",
+            "error"
+        );
+
+    }
+
+}
+
+/* ==========================================
    SAVE PROFILE
 ========================================== */
 
-function saveProfile() {
+async function saveProfile() {
+
+    const saveButton =
+        document.getElementById(
+            "saveButton"
+        );
+
 
     const fullName =
         document.getElementById(
             "fullName"
         ).value.trim();
-
-
-    const email =
-        document.getElementById(
-            "email"
-        ).value.trim();
-
-
-    const phone =
-        document.getElementById(
-            "phone"
-        ).value.trim();
-
-
-    const dob =
-        document.getElementById(
-            "dob"
-        ).value;
 
 
     const gender =
@@ -1922,9 +2763,10 @@ function saveProfile() {
         ).value.trim();
 
 
-    /* VALIDATION */
-
-    if (!fullName) {
+    /* ======================================
+       VALIDATION
+    ====================================== */
+ if (!fullName) {
 
         showMessage(
             "Please enter your full name.",
@@ -1936,10 +2778,10 @@ function saveProfile() {
     }
 
 
-    if (!email) {
+    if (!userData || !userData.id) {
 
         showMessage(
-            "Please enter your email address.",
+            "Your account information could not be found. Please log in again.",
             "error"
         );
 
@@ -1948,10 +2790,14 @@ function saveProfile() {
     }
 
 
+    const dob =
+        userData.dob;
+
+
     if (!dob) {
 
         showMessage(
-            "Please enter your date of birth.",
+            "Your registered date of birth is missing.",
             "error"
         );
 
@@ -1961,7 +2807,9 @@ function saveProfile() {
 
 
     const age =
-        calculateAge(dob);
+        calculateAge(
+            dob
+        );
 
 
     if (
@@ -1971,7 +2819,7 @@ function saveProfile() {
     ) {
 
         showMessage(
-            "Please enter a valid date of birth.",
+            "Your registered date of birth is invalid.",
             "error"
         );
 
@@ -1981,87 +2829,273 @@ function saveProfile() {
 
 
     /* ======================================
-       UPDATE ONLY EDITABLE DATA
+       GENERATION
     ====================================== */
 
-    userData.fullName =
-        fullName;
-
-    userData.email =
-        email;
-
-    userData.phone =
-        phone;
-
-    userData.dob =
-        dob;
-
-    userData.age =
-        age;
-
-    userData.gender =
-        gender;
-
-    userData.country =
-        country;
-
-    userData.bio =
-        bio;
-
-
-    /* GENERATION */
-
     const generation =
-        getGeneration(age);
+        getGeneration(
+            age
+        );
+
+
+    if (!generation) {
+
+        showMessage(
+            "Unable to determine your generation.",
+            "error"
+        );
+
+        return;
+
+    }
 
 
     const info =
         generationData[generation];
 
 
-    userData.generation =
-        generation;
+    /* ======================================
+       DATA TO SEND TO BACKEND
+    ====================================== */
 
-    userData.generationBadge =
-        info.badge;
+    const profileData = {
 
-    userData.generationDescription =
-        info.description;
+        fullName:
+            fullName,
+
+        bio:
+            bio,
+
+        hobbies:
+            Array.isArray(
+                userData.hobbies
+            )
+                ? userData.hobbies
+                : [],
+
+        skills:
+            Array.isArray(
+                userData.skills
+            )
+                ? userData.skills
+                : []
+
+    };
 
 
     /* ======================================
-       LAST UPDATED
+       DISABLE BUTTON
     ====================================== */
 
-    userData.lastProfileUpdate =
-        new Date().toISOString();
+    saveButton.disabled =
+        true;
 
 
-    /* ======================================
-       SAVE
-    ====================================== */
-
-    localStorage.setItem(
-        "userData",
-        JSON.stringify(userData)
-    );
+    saveButton.textContent =
+        "⏳ Saving...";
 
 
-    showMessage(
-        "Profile updated successfully!",
-        "success"
-    );
+    try {
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/api/user/${encodeURIComponent(userData.id)}/settings`,
+                {
+
+                    method:
+                        "PATCH",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify(
+                            profileData
+                        )
+
+                }
+            );
 
 
-    setTimeout(
-        function() {
+        const data =
+            await response.json();
 
-            window.location.href =
-                "profile.html";
 
-        },
-        900
-    );
+        /* ==================================
+           BACKEND ERROR
+        ================================== */
+
+        if (!response.ok) {
+
+            if (data.dormant) {
+
+                showMessage(
+                    "Your account is dormant. Please reactivate your account.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            throw new Error(
+                data.message ||
+                "Unable to update your profile."
+            );
+
+        }
+
+
+        /* ==================================
+           UPDATE LOCAL USER
+        ================================== */
+
+        if (data.user) {
+
+            const existingInterests =
+                Array.isArray(
+                    userData.interests
+                )
+                    ? userData.interests
+                    : [];
+
+
+            const existingCountry =
+                country;
+
+
+            const existingGender =
+                gender;
+
+
+            userData =
+                {
+                    ...userData,
+                    ...data.user
+                };
+
+
+            /*
+               Preserve fields that the current
+               backend publicUser() does not yet
+               return.
+            */
+
+            userData.interests =
+                existingInterests;
+
+
+            userData.country =
+                existingCountry;
+
+
+            userData.gender =
+                existingGender;
+
+        }
+
+
+        /* ==================================
+           LOCAL GENERATION DATA
+        ================================== */
+
+        userData.age =
+            age;
+
+
+        userData.generation =
+            generation;
+
+
+        userData.generationBadge =
+            info.badge;
+
+
+        userData.generationDescription =
+            info.description;
+
+
+        userData.country =
+            country;
+
+
+        userData.gender =
+            gender;
+
+
+        userData.bio =
+            bio;
+
+
+        userData.lastProfileUpdate =
+            new Date().toISOString();
+
+
+        /* ==================================
+           SAVE LOCAL STORAGE
+        ================================== */
+
+        localStorage.setItem(
+            "userData",
+            JSON.stringify(
+                userData
+            )
+        );
+
+
+        /* ==================================
+           SUCCESS
+        ================================== */
+
+        showMessage(
+            "Profile updated successfully!",
+            "success"
+        );
+
+
+        setTimeout(
+            function() {
+
+                window.location.href =
+                    "profile.html";
+
+            },
+            900
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Save profile error:",
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            "Unable to save your profile.",
+            "error"
+        );
+
+    }
+
+    finally {
+
+        saveButton.disabled =
+            false;
+
+
+        saveButton.textContent =
+            "💾 Save Changes";
+
+    }
 
 }
 
@@ -2094,24 +3128,36 @@ function showMessage(
 
 
     window.scrollTo({
+
         top: 0,
+
         behavior: "smooth"
+
     });
 
 }
 
 
 /* ==========================================
-   NAVIGATION
+   GENERATION HUB
 ========================================== */
 
 function goToGenerationHub() {
+
+    /*
+       Your actual generation hub page
+       is generations.html
+    */
 
     window.location.href =
         "generations.html";
 
 }
 
+
+/* ==========================================
+   PROFILE
+========================================== */
 
 function goToProfile() {
 
@@ -2122,7 +3168,7 @@ function goToProfile() {
 
 
 /* ==========================================
-   CLOSE MODAL WHEN CLICKING OUTSIDE
+   CLOSE MODAL OUTSIDE
 ========================================== */
 
 document.getElementById(
@@ -2147,9 +3193,39 @@ document.getElementById(
    INITIALIZE
 ========================================== */
 
-loadProfile();
+async function initializeEditProfile() {
+
+    /*
+       First display whatever is already
+       available locally.
+    */
+
+    prepareUserArrays();
+
+    loadProfile();
+
+
+    /*
+       Then ask the backend for the latest
+       version of the user.
+    */
+
+    await loadUserFromBackend();
+
+
+    /*
+       Refresh the form using the backend data.
+    */
+
+    loadProfile();
+
+}
+
+
+initializeEditProfile();
 
 </script>
 
 </body>
+
 </html>

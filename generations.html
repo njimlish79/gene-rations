@@ -24,6 +24,39 @@
 
 <style>
 
+  /* ==================================================
+   GENE-RATIONS — DYNAMIC GENERATION THEME
+================================================== */
+
+:root {
+
+    --generation-primary: #1769e0;
+
+    --generation-secondary: #8137e8;
+
+    --generation-light:
+        color-mix(
+            in srgb,
+            var(--generation-secondary) 8%,
+            white
+        );
+
+    --generation-soft:
+        color-mix(
+            in srgb,
+            var(--generation-secondary) 15%,
+            white
+        );
+
+    --generation-dark:
+        color-mix(
+            in srgb,
+            var(--generation-primary) 75%,
+            black
+        );
+}
+
+
 /* ==================================================
    RESET
 ================================================== */
@@ -35,6 +68,10 @@
 }
 
 
+/* ==================================================
+   BODY
+================================================== */
+
 body {
 
     font-family:
@@ -42,11 +79,16 @@ body {
         Helvetica,
         sans-serif;
 
-    background: #f4f3ff;
+    background:
+        var(--generation-light);
 
     color: #252525;
 
     min-height: 100vh;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease;
 }
 
 
@@ -59,8 +101,8 @@ body {
     background:
         linear-gradient(
             135deg,
-            #1769e0,
-            #8137e8
+            var(--generation-primary),
+            var(--generation-secondary)
         );
 
     color: white;
@@ -80,8 +122,19 @@ body {
     top: 0;
 
     z-index: 100;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.12);
+
+    transition:
+        background 0.4s ease;
 }
 
+
+/* ==================================================
+   LOGO
+================================================== */
 
 .logo {
 
@@ -90,6 +143,10 @@ body {
     font-weight: 800;
 }
 
+
+/* ==================================================
+   HEADER ACTIONS
+================================================== */
 
 .header-actions {
 
@@ -105,12 +162,13 @@ body {
 
     border: none;
 
-    background: rgba(
-        255,
-        255,
-        255,
-        0.18
-    );
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
 
     color: white;
 
@@ -121,17 +179,25 @@ body {
     font-weight: bold;
 
     cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 
 .header-btn:hover {
 
-    background: rgba(
-        255,
-        255,
-        255,
-        0.3
-    );
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.30
+        );
+
+    transform:
+        translateY(-2px);
 }
 
 
@@ -139,7 +205,8 @@ body {
 
     background: white;
 
-    color: #7138dd;
+    color:
+        var(--generation-primary);
 }
 
 
@@ -155,12 +222,13 @@ body {
 
     margin: auto;
 
-    padding: 25px 18px 50px;
+    padding:
+        25px 18px 50px;
 }
 
 
 /* ==================================================
-   HERO
+   GENERATION HERO
 ================================================== */
 
 .generation-hero {
@@ -178,17 +246,29 @@ body {
     background:
         linear-gradient(
             135deg,
-            #7138e8,
-            #883de9
+            var(--generation-primary),
+            var(--generation-secondary)
         );
 
     margin-bottom: 22px;
 
     box-shadow:
         0 12px 30px
-        rgba(70, 40, 150, 0.18);
+        color-mix(
+            in srgb,
+            var(--generation-primary) 25%,
+            transparent
+        );
+
+    transition:
+        background 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
+
+/* ==================================================
+   HERO CIRCLE
+================================================== */
 
 .hero-circle {
 
@@ -222,6 +302,10 @@ body {
 }
 
 
+/* ==================================================
+   HERO TEXT
+================================================== */
+
 .welcome {
 
     font-size: 18px;
@@ -241,6 +325,10 @@ body {
     margin-bottom: 18px;
 }
 
+
+/* ==================================================
+   GENERATION BADGE
+================================================== */
 
 .generation-badge {
 
@@ -334,6 +422,10 @@ body {
 
     text-align: center;
 
+    border-top:
+        4px solid
+        var(--generation-primary);
+
     box-shadow:
         0 8px 25px
         rgba(
@@ -342,6 +434,17 @@ body {
             100,
             0.08
         );
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.3s ease;
+}
+
+
+.stat-card:hover {
+
+    transform:
+        translateY(-3px);
 }
 
 
@@ -351,9 +454,13 @@ body {
 
     font-weight: 800;
 
-    color: #7439df;
+    color:
+        var(--generation-primary);
 
     margin-bottom: 7px;
+
+    transition:
+        color 0.3s ease;
 }
 
 
@@ -366,16 +473,20 @@ body {
 
 
 /* ==================================================
-   SECTION
+   SECTION TITLE
 ================================================== */
 
 .section-title {
 
     font-size: 27px;
 
-    color: #35165d;
+    color:
+        var(--generation-dark);
 
     margin-bottom: 18px;
+
+    transition:
+        color 0.3s ease;
 }
 
 
@@ -394,6 +505,10 @@ body {
 }
 
 
+/* ==================================================
+   MENU CARD
+================================================== */
+
 .menu-card {
 
     background: white;
@@ -405,6 +520,10 @@ body {
     cursor: pointer;
 
     border: none;
+
+    border-left:
+        4px solid
+        transparent;
 
     text-align: left;
 
@@ -418,14 +537,19 @@ body {
         );
 
     transition:
-        transform 0.2s,
-        box-shadow 0.2s;
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.3s ease;
 }
 
 
 .menu-card:hover {
 
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
+
+    border-left-color:
+        var(--generation-primary);
 
     box-shadow:
         0 12px 30px
@@ -437,6 +561,10 @@ body {
         );
 }
 
+
+/* ==================================================
+   MENU ICON
+================================================== */
 
 .menu-icon {
 
@@ -452,13 +580,24 @@ body {
 
     justify-content: center;
 
-    background: #e5dcff;
+    background:
+        var(--generation-soft);
+
+    color:
+        var(--generation-primary);
 
     font-size: 27px;
 
     margin-bottom: 17px;
+
+    transition:
+        background 0.3s ease;
 }
 
+
+/* ==================================================
+   MENU TITLE
+================================================== */
 
 .menu-title {
 
@@ -466,7 +605,8 @@ body {
 
     font-weight: 800;
 
-    color: #321657;
+    color:
+        var(--generation-dark);
 
     margin-bottom: 8px;
 }
@@ -496,6 +636,10 @@ body {
 
     padding: 25px;
 
+    border-top:
+        4px solid
+        var(--generation-primary);
+
     box-shadow:
         0 8px 25px
         rgba(
@@ -515,7 +659,8 @@ body {
 
     margin-bottom: 18px;
 
-    color: #35165d;
+    color:
+        var(--generation-dark);
 }
 
 
@@ -537,13 +682,31 @@ body {
 
     border-radius: 25px;
 
-    background: #eee9ff;
+    background:
+        var(--generation-soft);
 
-    color: #6632c5;
+    color:
+        var(--generation-primary);
 
     font-weight: bold;
 
     cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.quick-button:hover {
+
+    background:
+        var(--generation-secondary);
+
+    color: white;
+
+    transform:
+        translateY(-2px);
 }
 
 
@@ -631,7 +794,8 @@ body {
 
     .header-btn {
 
-        padding: 10px 12px;
+        padding:
+            10px 12px;
 
         font-size: 13px;
 
@@ -722,7 +886,7 @@ body {
 
     }
 
-}
+  }
 
 </style>
 

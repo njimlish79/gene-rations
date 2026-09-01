@@ -367,105 +367,225 @@
 
 </div>
 
-<script>
+  <script>
 
-    /* ==========================================
-       ELEMENTS
-    ========================================== */
+/* ==========================================
+   ELEMENTS
+========================================== */
 
-    const loginForm =
-        document.getElementById("loginForm");
+const loginForm =
+    document.getElementById("loginForm");
 
-    const emailInput =
-        document.getElementById("email");
+const emailInput =
+    document.getElementById("email");
 
-    const passwordInput =
-        document.getElementById("password");
+const passwordInput =
+    document.getElementById("password");
 
-    const showPassword =
-        document.getElementById("showPassword");
+const showPassword =
+    document.getElementById("showPassword");
 
-    const message =
-        document.getElementById("message");
-
-
-    /* ==========================================
-       BACKEND
-    ========================================== */
-
-    const API_URL =
-        "http://localhost:3000";
+const message =
+    document.getElementById("message");
 
 
-    /* ==========================================
-       SHOW / HIDE PASSWORD
-    ========================================== */
+/* ==========================================
+   BACKEND
+========================================== */
 
-    showPassword.addEventListener(
-        "click",
-        function () {
+const API_URL =
+    "http://localhost:3000";
 
-            if (
-                passwordInput.type === "password"
-            ) {
 
-                passwordInput.type = "text";
+/* ==========================================
+   SHOW / HIDE PASSWORD
+========================================== */
 
-                showPassword.textContent =
-                    "Hide";
+showPassword.addEventListener(
+    "click",
+    function () {
 
-            } else {
+        if (
+            passwordInput.type === "password"
+        ) {
 
-                passwordInput.type =
-                    "password";
+            passwordInput.type = "text";
 
-                showPassword.textContent =
-                    "Show";
+            this.textContent =
+                "Hide";
+
+        } else {
+
+            passwordInput.type =
+                "password";
+
+            this.textContent =
+                "Show";
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   LOGIN
+========================================== */
+
+loginForm.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+
+        /* ==============================
+           CLEAR MESSAGE
+        ============================== */
+
+        message.textContent = "";
+
+        message.className =
+            "message";
+
+
+        /* ==============================
+           GET VALUES
+        ============================== */
+
+        const email =
+            emailInput.value
+                .trim()
+                .toLowerCase();
+
+        const password =
+            passwordInput.value;
+
+
+        /* ==============================
+           VALIDATION
+        ============================== */
+
+        if (!email || !password) {
+
+            message.textContent =
+                "Please enter your email and password.";
+
+            message.className =
+                "message error";
+
+            return;
+
+        }
+
+
+        /* ==============================
+           LOADING
+        ============================== */
+
+        message.textContent =
+            "Signing in...";
+
+        message.className =
+            "message";
+
+
+        /* Prevent double login */
+        const loginButton =
+            loginForm.querySelector(
+                "button[type='submit']"
+            );
+
+        if (loginButton) {
+
+            loginButton.disabled =
+                true;
+
+        }
+
+
+        try {
+
+            /* ==============================
+               SEND TO BACKEND
+            ============================== */
+
+            const response =
+                await fetch(
+                    `${API_URL}/api/auth/login`,
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                email:
+                                    email,
+
+                                password:
+                                    password
+
+                            })
+
+                    }
+                );
+
+
+            /* ==============================
+               READ RESPONSE
+            ============================== */
+
+            const result =
+                await response.json();
+
+
+            /* ==============================
+               LOGIN FAILED
+            ============================== */
+
+            if (!response.ok) {
+
+                message.textContent =
+                    result.message ||
+                    "Login failed.";
+
+                message.className =
+                    "message error";
+
+
+                if (loginButton) {
+
+                    loginButton.disabled =
+                        false;
+
+                }
+
+                return;
 
             }
 
-        }
-    );
-
-
-    /* ==========================================
-       LOGIN
-    ========================================== */
-
-    loginForm.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
-
-
-            message.textContent = "";
-
-            message.className =
-                "message";
-
 
             /* ==============================
-               GET LOGIN VALUES
+               GET USER
             ============================== */
 
-            const email =
-                emailInput.value
-                    .trim()
-                    .toLowerCase();
-
-            const password =
-                passwordInput.value;
+            const userData =
+                result.user;
 
 
-            /* ==============================
-               BASIC VALIDATION
-            ============================== */
-
-            if (!email || !password) {
+            if (!userData) {
 
                 message.textContent =
-                    "Please enter your email and password.";
+                    "Login succeeded but user data was not returned.";
 
                 message.className =
                     "message error";
@@ -476,174 +596,104 @@
 
 
             /* ==============================
-               LOADING
+               CREATE SESSION
+            ============================== */
+
+            const loginSession = {
+
+                loggedIn:
+                    true,
+
+                userId:
+                    userData.id,
+
+                email:
+                    userData.email,
+
+                generation:
+                    userData.generation,
+
+                loginTime:
+                    new Date().toISOString()
+
+            };
+
+
+            localStorage.setItem(
+                "loginSession",
+                JSON.stringify(
+                    loginSession
+                )
+            );
+
+
+            /* ==============================
+               SAVE USER DATA
+            ============================== */
+
+            localStorage.setItem(
+                "userData",
+                JSON.stringify(
+                    userData
+                )
+            );
+
+
+            /* ==============================
+               SUCCESS
             ============================== */
 
             message.textContent =
-                "Signing in...";
+                "Login successful. Welcome back!";
 
             message.className =
-                "message";
+                "message success";
 
 
-            try {
+            /* ==============================
+               GO TO GENERATION PAGE
+            ============================== */
 
-                /* ==============================
-                   SEND LOGIN TO BACKEND
-                ============================== */
+            setTimeout(
+                function () {
 
-                const response =
-                    await fetch(
-                        `${API_URL}/api/auth/login`,
-                        {
+                    window.location.href =
+                        "generations.html";
 
-                            method:
-                                "POST",
+                },
+                800
+            );
 
-                            headers: {
+        }
 
-                                "Content-Type":
-                                    "application/json"
+        catch (error) {
 
-                            },
-
-                            body:
-                                JSON.stringify({
-
-                                    email:
-                                        email,
-
-                                    password:
-                                        password
-
-                                })
-
-                        }
-                    );
+            console.error(
+                "Login error:",
+                error
+            );
 
 
-                const result =
-                    await response.json();
+            message.textContent =
+                "Unable to connect to the Gene-rations server. Make sure the backend is running.";
+
+            message.className =
+                "message error";
 
 
-                /* ==============================
-                   LOGIN FAILED
-                ============================== */
+            if (loginButton) {
 
-                if (!response.ok) {
-
-                    message.textContent =
-                        result.message ||
-                        "Login failed.";
-
-                    message.className =
-                        "message error";
-
-                    return;
-
-                }
-
-
-                /* ==============================
-                   USER DATA
-                ============================== */
-
-                const userData =
-                    result.user;
-
-
-                /* ==============================
-                   CREATE LOGIN SESSION
-                ============================== */
-
-                const loginSession = {
-
-                    loggedIn:
-                        true,
-
-                    userId:
-                        userData.id,
-
-                    email:
-                        userData.email,
-
-                    generation:
-                        userData.generation,
-
-                    loginTime:
-                        new Date().toISOString()
-
-                };
-
-
-                localStorage.setItem(
-                    "loginSession",
-                    JSON.stringify(
-                        loginSession
-                    )
-                );
-
-
-                /* ==============================
-                   STORE USER DATA
-                ============================== */
-
-                localStorage.setItem(
-                    "userData",
-                    JSON.stringify(
-                        userData
-                    )
-                );
-
-
-                /* ==============================
-                   SUCCESS
-                ============================== */
-
-                message.textContent =
-                    "Login successful. Welcome back!";
-
-                message.className =
-                    "message success";
-
-
-                /* ==============================
-                   GENERATION DASHBOARD
-                ============================== */
-
-                setTimeout(
-                    function () {
-
-                        window.location.href =
-                            "generations.html";
-
-                    },
-                    800
-                );
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Login error:",
-                    error
-                );
-
-
-                message.textContent =
-                    "Unable to connect to the server. Please try again.";
-
-                message.className =
-                    "message error";
+                loginButton.disabled =
+                    false;
 
             }
 
         }
-    );
 
-          </script>
-  
+    }
+);
+
+      </script>
   
           </body>
           </html>
