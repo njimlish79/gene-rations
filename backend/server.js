@@ -1435,7 +1435,7 @@ app.patch(
 
 
             /* -----------------------------------------
-               DORMANT
+               DORMANT ACCOUNT
             ----------------------------------------- */
 
             if (
@@ -1456,7 +1456,7 @@ app.patch(
                     dormant: true,
 
                     message:
-                        "Dormant accounts must be reactivated through verification."
+                        "Dormant accounts must be reactivated first."
 
                 });
 
@@ -1464,7 +1464,7 @@ app.patch(
 
 
             /* -----------------------------------------
-               EMAIL IS PERMANENT
+               PERMANENT ACCOUNT INFORMATION
             ----------------------------------------- */
 
             if (
@@ -1486,10 +1486,6 @@ app.patch(
             }
 
 
-            /* -----------------------------------------
-               PHONE IS PERMANENT
-            ----------------------------------------- */
-
             if (
                 Object.prototype.hasOwnProperty.call(
                     req.body,
@@ -1508,10 +1504,6 @@ app.patch(
 
             }
 
-
-            /* -----------------------------------------
-               DOB IS PERMANENT
-            ----------------------------------------- */
 
             if (
                 Object.prototype.hasOwnProperty.call(
@@ -1532,10 +1524,6 @@ app.patch(
             }
 
 
-            /* -----------------------------------------
-               AGE CANNOT BE EDITED
-            ----------------------------------------- */
-
             if (
                 Object.prototype.hasOwnProperty.call(
                     req.body,
@@ -1555,10 +1543,6 @@ app.patch(
             }
 
 
-            /* -----------------------------------------
-               GENERATION CANNOT BE EDITED
-            ----------------------------------------- */
-
             if (
                 Object.prototype.hasOwnProperty.call(
                     req.body,
@@ -1577,10 +1561,6 @@ app.patch(
 
             }
 
-
-            /* -----------------------------------------
-               GENERATION BADGE CANNOT BE EDITED
-            ----------------------------------------- */
 
             if (
                 Object.prototype.hasOwnProperty.call(
@@ -1603,6 +1583,8 @@ app.patch(
 
             /* -----------------------------------------
                FULL NAME
+               Only create a pending change when
+               the name is actually different.
             ----------------------------------------- */
 
             if (
@@ -1634,75 +1616,110 @@ app.patch(
                 }
 
 
+                /*
+                 * IMPORTANT:
+                 * If the name has NOT changed,
+                 * do nothing and continue saving
+                 * the other profile fields.
+                 */
+
                 if (
-                    newName ===
+                    newName !==
                     user.fullName
                 ) {
 
-                    return res.status(400).json({
+                    if (
+                        user.pendingNameChange
+                    ) {
 
-                        success: false,
+                        return res.status(409).json({
 
-                        message:
-                            "This is already your current name."
+                            success: false,
 
-                    });
+                            message:
+                                "You already have a name change waiting to take effect."
 
-                }
+                        });
 
-
-                if (
-                    user.pendingNameChange
-                ) {
-
-                    return res.status(409).json({
-
-                        success: false,
-
-                        message:
-                            "You already have a name change waiting to take effect."
-
-                    });
-
-                }
+                    }
 
 
-                if (
-                    !canRequestNameChange(
-                        user
-                    )
-                ) {
-
-                    return res.status(429).json({
-
-                        success: false,
-
-                        message:
-                            "You have reached the maximum of 2 name changes within 6 months."
-
-                    });
-
-                }
-
-
-                user.pendingNameChange = {
-
-                    name:
-                        newName,
-
-                    requestedAt:
-                        new Date().toISOString(),
-
-                    effectiveAt:
-                        Date.now() +
-                        (
-                            24 *
-                            60 *
-                            60 *
-                            1000
+                    if (
+                        !canRequestNameChange(
+                            user
                         )
+                    ) {
 
-                };
+                        return res.status(429).json({
+
+                            success: false,
+
+                            message:
+                                "You have reached the maximum of 2 name changes within 6 months."
+
+                        });
+
+                    }
+
+
+                    user.pendingNameChange = {
+
+                        name:
+                            newName,
+
+                        requestedAt:
+                            new Date().toISOString(),
+
+                        effectiveAt:
+                            Date.now() +
+                            (
+                                24 *
+                                60 *
+                                60 *
+                                1000
+                            )
+
+                    };
+
+                }
+
+            }
+
+
+            /* -----------------------------------------
+               GENDER
+            ----------------------------------------- */
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    req.body,
+                    "gender"
+                )
+            ) {
+
+                user.gender =
+                    String(
+                        req.body.gender || ""
+                    ).trim();
+
+            }
+
+
+            /* -----------------------------------------
+               COUNTRY
+            ----------------------------------------- */
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    req.body,
+                    "country"
+                )
+            ) {
+
+                user.country =
+                    String(
+                        req.body.country || ""
+                    ).trim();
 
             }
 
@@ -1718,10 +1735,73 @@ app.patch(
                 )
             ) {
 
-                user.bio =
+                const bio =
                     String(
-                        req.body.bio
+                        req.body.bio || ""
                     ).trim();
+
+
+                if (
+                    bio.length > 500
+                ) {
+
+                    return res.status(400).json({
+
+                        success: false,
+
+                        message:
+                            "Bio cannot exceed 500 characters."
+
+                    });
+
+                }
+
+
+                user.bio =
+                    bio;
+
+            }
+
+
+            /* -----------------------------------------
+               INTERESTS
+            ----------------------------------------- */
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    req.body,
+                    "interests"
+                )
+            ) {
+
+                if (
+                    !Array.isArray(
+                        req.body.interests
+                    )
+                ) {
+
+                    return res.status(400).json({
+
+                        success: false,
+
+                        message:
+                            "Interests must be an array."
+
+                    });
+
+                }
+
+
+                user.interests =
+                    req.body.interests
+                        .map(
+                            item =>
+                                String(item).trim()
+                        )
+                        .filter(
+                            item =>
+                                item.length > 0
+                        );
 
             }
 
@@ -1756,7 +1836,15 @@ app.patch(
 
 
                 user.hobbies =
-                    req.body.hobbies;
+                    req.body.hobbies
+                        .map(
+                            item =>
+                                String(item).trim()
+                        )
+                        .filter(
+                            item =>
+                                item.length > 0
+                        );
 
             }
 
@@ -1791,7 +1879,15 @@ app.patch(
 
 
                 user.skills =
-                    req.body.skills;
+                    req.body.skills
+                        .map(
+                            item =>
+                                String(item).trim()
+                        )
+                        .filter(
+                            item =>
+                                item.length > 0
+                        );
 
             }
 
@@ -1835,7 +1931,8 @@ app.patch(
 
 
             /* -----------------------------------------
-               ACCOUNT ALWAYS PUBLIC
+               ACCOUNT VISIBILITY
+               Gene-rations accounts remain public.
             ----------------------------------------- */
 
             user.accountVisibility =
@@ -1843,7 +1940,8 @@ app.patch(
 
 
             /* -----------------------------------------
-               GENERATION ALWAYS RECALCULATED
+               GENERATION DATA
+               ALWAYS CALCULATED FROM DOB
             ----------------------------------------- */
 
             refreshGenerationData(
@@ -1851,16 +1949,31 @@ app.patch(
             );
 
 
+            /* -----------------------------------------
+               ACTIVITY
+            ----------------------------------------- */
+
             user.lastActive =
                 new Date().toISOString();
 
+            user.dormant =
+                false;
+
+
+            /* -----------------------------------------
+               SAVE USER
+            ----------------------------------------- */
 
             saveUsers(
                 users
             );
 
 
-            res.json({
+            /* -----------------------------------------
+               RESPONSE
+            ----------------------------------------- */
+
+            return res.json({
 
                 success: true,
 
@@ -1884,7 +1997,7 @@ app.patch(
             );
 
 
-            res.status(500).json({
+            return res.status(500).json({
 
                 success: false,
 
@@ -1897,7 +2010,6 @@ app.patch(
 
     }
 );
-
 
 /* =====================================================
    PROFILE PHOTO

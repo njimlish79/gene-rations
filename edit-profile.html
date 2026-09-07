@@ -34,9 +34,15 @@ body {
         Helvetica,
         sans-serif;
 
-    background: #09d071;
+    background:
+        #b6e90b;
 
-    color: #292047;
+    color:
+        #222;
+
+    min-height:
+        100vh;
+
 }
 
 
@@ -49,114 +55,184 @@ body {
     background:
         linear-gradient(
             135deg,
-            #2563eb,
-            #7c3aed
+            #2864e8,
+            #7b2ff7
         );
 
-    color: white;
+    color:
+        white;
 
-    padding: 18px 22px;
+    padding:
+        16px 20px;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: space-between;
+    justify-content:
+        space-between;
 
-    position: sticky;
+    position:
+        sticky;
 
-    top: 0;
+    top:
+        0;
 
-    z-index: 100;
+    z-index:
+        20;
+
 }
 
 
 .logo {
 
-    font-size: 25px;
+    font-size:
+        23px;
 
-    font-weight: 800;
-}
+    font-weight:
+        bold;
 
-
-.header-right {
-
-    display: flex;
-
-    gap: 10px;
-
-    align-items: center;
 }
 
 
 .header-btn {
 
-    border: none;
+    border:
+        0;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.15
-        );
+        rgba(255,255,255,.18);
 
-    color: white;
+    color:
+        white;
 
-    padding: 12px 17px;
+    padding:
+        10px 15px;
 
-    border-radius: 25px;
+    border-radius:
+        22px;
 
-    font-weight: 700;
+    font-weight:
+        bold;
 
-    cursor: pointer;
-}
+    cursor:
+        pointer;
 
-
-.header-btn:hover {
-
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.25
-        );
 }
 
 
 /* =========================================
-   PAGE
+   CONTAINER
 ========================================= */
 
 .container {
 
-    max-width: 850px;
+    width:
+        100%;
 
-    margin: 25px auto;
+    max-width:
+        850px;
+
+    margin:
+        auto;
 
     padding:
-        0 16px 50px;
+        20px;
+
 }
 
 
+/* =========================================
+   MESSAGE
+========================================= */
+
+.message {
+
+    display:
+        none;
+
+    padding:
+        13px 15px;
+
+    border-radius:
+        12px;
+
+    margin-bottom:
+        15px;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.45;
+
+}
+
+
+.message.success {
+
+    display:
+        block;
+
+    background:
+        #e8f7ed;
+
+    color:
+        #217a3b;
+
+}
+
+
+.message.error {
+
+    display:
+        block;
+
+    background:
+        #ffe9e9;
+
+    color:
+        #b3261e;
+
+}
+
+
+/* =========================================
+   PAGE TITLE
+========================================= */
+
 .page-title {
 
-    margin-bottom: 20px;
+    margin:
+        4px 0 18px;
+
 }
 
 
 .page-title h1 {
 
-    font-size: 30px;
+    font-size:
+        27px;
 
-    margin-bottom: 6px;
+    margin-bottom:
+        5px;
+
 }
 
 
 .page-title p {
 
-    color: #777;
+    color:
+        #777;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.5;
+
 }
 
 
@@ -166,30 +242,50 @@ body {
 
 .card {
 
-    background: white;
+    background:
+        white;
 
-    border-radius: 25px;
+    border-radius:
+        18px;
 
-    padding: 25px;
+    margin-bottom:
+        16px;
 
-    margin-bottom: 20px;
+    overflow:
+        hidden;
 
     box-shadow:
-        0 8px 25px
-        rgba(
-            80,
-            60,
-            140,
-            0.08
-        );
+        0 4px 16px
+        rgba(0,0,0,.05);
+
 }
 
 
-.card h2 {
+.card-title {
 
-    margin-bottom: 18px;
+    padding:
+        16px 18px;
 
-    font-size: 21px;
+    background:
+        #fafaff;
+
+    border-bottom:
+        1px solid #eee;
+
+    font-size:
+        15px;
+
+    font-weight:
+        bold;
+
+}
+
+
+.card-body {
+
+    padding:
+        18px;
+
 }
 
 
@@ -197,70 +293,135 @@ body {
    PROFILE PHOTO
 ========================================= */
 
-.photo-section {
+.photo-area {
 
-    text-align: center;
-}
+    display:
+        flex;
 
+    align-items:
+        center;
 
-.photo-wrapper {
+    gap:
+        18px;
 
-    position: relative;
-
-    width: 145px;
-
-    height: 145px;
-
-    margin:
-        0 auto 15px;
 }
 
 
 .profile-photo {
 
-    width: 145px;
+    width:
+        92px;
 
-    height: 145px;
+    height:
+        92px;
 
-    border-radius: 50%;
+    border-radius:
+        50%;
 
-    object-fit: cover;
+    overflow:
+        hidden;
 
-    background: #e8defd;
+    background:
+        #eef0ff;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    flex-shrink:
+        0;
+
+    font-size:
+        40px;
 
     border:
-        5px solid
-        #eee5ff;
+        3px solid #fff;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0,0,0,.12);
+
+}
+
+
+.profile-photo img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+}
+
+
+.photo-info {
+
+    flex:
+        1;
+
+}
+
+
+.photo-info p {
+
+    color:
+        #777;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.45;
+
+    margin-bottom:
+        10px;
+
 }
 
 
 .photo-button {
 
-    display: inline-block;
+    display:
+        inline-block;
 
-    background: #7c3aed;
+    padding:
+        9px 14px;
 
-    color: white;
+    background:
+        #2864e8;
 
-    padding: 11px 18px;
+    color:
+        white;
 
-    border-radius: 25px;
+    border-radius:
+        10px;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
-    font-weight: bold;
+    font-size:
+        13px;
+
+    font-weight:
+        bold;
+
 }
 
 
-.photo-button:hover {
+#profilePhotoInput {
 
-    background: #6828d9;
-}
+    display:
+        none;
 
-
-#photoInput {
-
-    display: none;
 }
 
 
@@ -270,184 +431,150 @@ body {
 
 .form-group {
 
-    margin-bottom: 17px;
+    margin-bottom:
+        16px;
+
+}
+
+
+.form-group:last-child {
+
+    margin-bottom:
+        0;
+
 }
 
 
 .form-group label {
 
-    display: block;
+    display:
+        block;
 
-    margin-bottom: 7px;
+    margin-bottom:
+        7px;
 
-    font-weight: 700;
+    font-size:
+        13px;
+
+    font-weight:
+        bold;
+
+    color:
+        #444;
+
 }
 
 
-input,
-textarea,
-select {
+.form-group input,
+.form-group select,
+.form-group textarea {
 
-    width: 100%;
-
-    padding: 14px;
+    width:
+        100%;
 
     border:
-        1px solid
-        #ddd;
+        1px solid #dcddea;
 
-    border-radius: 12px;
+    border-radius:
+        11px;
 
-    font-size: 15px;
+    padding:
+        12px 13px;
 
-    outline: none;
+    font-family:
+        inherit;
 
-    background: #fff;
+    font-size:
+        14px;
+
+    outline:
+        none;
+
+    background:
+        white;
+
 }
 
 
-input:focus,
-textarea:focus,
-select:focus {
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
 
-    border-color: #7c3aed;
+    border-color:
+        #2864e8;
 
     box-shadow:
         0 0 0 3px
-        rgba(
-            124,
-            58,
-            237,
-            0.1
-        );
+        rgba(40,100,232,.08);
+
 }
 
 
-textarea {
+.form-group textarea {
 
-    min-height: 110px;
+    min-height:
+        125px;
 
-    resize: vertical;
+    resize:
+        vertical;
+
 }
 
-
-/* =========================================
-   NON EDITABLE INFORMATION
-========================================= */
 
 .locked {
 
-    background: #f4f2fa;
+    background:
+        #f1f2f6 !important;
 
-    color: #777;
+    color:
+        #777;
 
-    cursor: not-allowed;
+    cursor:
+        not-allowed;
 
-    border-color: #ddd;
 }
 
 
-.info-box {
+.field-note {
 
-    background: #f7f3ff;
+    margin-top:
+        6px;
 
-    border-radius: 15px;
+    color:
+        #888;
 
-    padding: 16px;
+    font-size:
+        12px;
 
-    margin-bottom: 15px;
+    line-height:
+        1.4;
+
 }
 
 
-.info-label {
+.form-grid {
 
-    color: #777;
+    display:
+        grid;
 
-    font-size: 13px;
+    grid-template-columns:
+        1fr 1fr;
 
-    margin-bottom: 5px;
+    gap:
+        15px;
+
 }
 
 
-.info-value {
+@media (max-width: 650px) {
 
-    font-weight: 700;
-}
+    .form-grid {
 
+        grid-template-columns:
+            1fr;
 
-/* =========================================
-   TAGS
-========================================= */
+    }
 
-.tags {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 9px;
-
-    margin-top: 10px;
-}
-
-
-.tag {
-
-    background: #eee7ff;
-
-    color: #6735bd;
-
-    padding: 8px 13px;
-
-    border-radius: 20px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 6px;
-
-    font-size: 14px;
-}
-
-
-.tag button {
-
-    border: none;
-
-    background: none;
-
-    color: #6735bd;
-
-    font-size: 17px;
-
-    cursor: pointer;
-}
-
-
-/* =========================================
-   SELECTOR BUTTON
-========================================= */
-
-.selector-button {
-
-    width: 100%;
-
-    padding: 14px;
-
-    background: #f4efff;
-
-    color: #6633bb;
-
-    border:
-        2px dashed
-        #b99ce8;
-
-    border-radius: 13px;
-
-    font-weight: 700;
-
-    cursor: pointer;
 }
 
 
@@ -457,163 +584,290 @@ textarea {
 
 .generation-card {
 
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+}
+
+
+.generation-display {
+
+    padding:
+        20px;
+
+    text-align:
+        center;
+
+    color:
+        white;
+
     background:
         linear-gradient(
             135deg,
-            #7c3aed,
-            #2563eb
+            #1689df,
+            #0ac8c5
         );
 
-    color: white;
-
-    border-radius: 20px;
-
-    padding: 20px;
-
-    margin-top: 10px;
 }
 
 
 .generation-badge {
 
-    display: inline-block;
+    display:
+        inline-block;
 
-    margin-top: 12px;
+    padding:
+        8px 15px;
+
+    border-radius:
+        22px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.2
-        );
+        rgba(255,255,255,.20);
 
-    padding: 9px 15px;
+    border:
+        1px solid
+        rgba(255,255,255,.35);
 
-    border-radius: 20px;
+    font-weight:
+        bold;
 
-    font-weight: bold;
+    margin-bottom:
+        10px;
+
+}
+
+
+.generation-display h2 {
+
+    font-size:
+        23px;
+
+    margin-bottom:
+        7px;
+
+}
+
+
+.generation-display p {
+
+    font-size:
+        13px;
+
+    line-height:
+        1.5;
+
+    max-width:
+        650px;
+
+    margin:
+        auto;
+
+}
+
+
+.generation-locked {
+
+    padding:
+        12px 18px;
+
+    background:
+        #fafaff;
+
+    color:
+        #777;
+
+    font-size:
+        12px;
+
+    text-align:
+        center;
+
+    border-top:
+        1px solid #eee;
+
 }
 
 
 /* =========================================
-   SAVE BUTTON
+   SELECTOR
 ========================================= */
+
+.selector-button {
+
+    width:
+        100%;
+
+    border:
+        1px dashed #b8badd;
+
+    background:
+        #fafaff;
+
+    padding:
+        14px;
+
+    border-radius:
+        12px;
+
+    color:
+        #4d52a4;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    text-align:
+        left;
+
+}
+
+
+.tags {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        7px;
+
+    margin-top:
+        10px;
+
+}
+
+
+.tag {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        6px;
+
+    padding:
+        7px 10px;
+
+    background:
+        #eef0ff;
+
+    color:
+        #4549a0;
+
+    border-radius:
+        18px;
+
+    font-size:
+        12px;
+
+}
+
+
+.tag-remove {
+
+    border:
+        0;
+
+    background:
+        transparent;
+
+    color:
+        #777;
+
+    cursor:
+        pointer;
+
+    font-size:
+        14px;
+
+    line-height:
+        1;
+
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.actions {
+
+    display:
+        flex;
+
+    gap:
+        10px;
+
+    margin-top:
+        20px;
+
+}
+
+
+.action-button {
+
+    flex:
+        1;
+
+    border:
+        0;
+
+    border-radius:
+        12px;
+
+    padding:
+        13px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+}
+
 
 .save-button {
 
-    width: 100%;
-
-    padding: 16px;
-
-    border: none;
-
-    border-radius: 14px;
-
     background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #2563eb
-        );
+        #2864e8;
 
-    color: white;
+    color:
+        white;
 
-    font-size: 17px;
-
-    font-weight: 800;
-
-    cursor: pointer;
-}
-
-
-.save-button:hover {
-
-    opacity: .9;
-}
-
-
-.save-button:disabled {
-
-    opacity: .6;
-
-    cursor: not-allowed;
 }
 
 
 .cancel-button {
 
-    width: 100%;
+    background:
+        #e9eaf1;
 
-    padding: 14px;
+    color:
+        #444;
 
-    border: none;
-
-    border-radius: 14px;
-
-    background: #eeeaf7;
-
-    color: #54328d;
-
-    font-size: 16px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    margin-top: 10px;
 }
 
 
-/* =========================================
-   MESSAGE
-========================================= */
+.action-button:disabled {
 
-#message {
+    opacity:
+        .6;
 
-    display: none;
+    cursor:
+        not-allowed;
 
-    padding: 14px;
-
-    border-radius: 12px;
-
-    margin-bottom: 15px;
-
-    text-align: center;
-
-    font-weight: bold;
-}
-
-
-.success {
-
-    background: #dcfce7;
-
-    color: #166534;
-}
-
-
-.error {
-
-    background: #fee2e2;
-
-    color: #991b1b;
-}
-
-
-/* =========================================
-   LOADING
-========================================= */
-
-.loading {
-
-    text-align: center;
-
-    padding: 20px;
-
-    color: #777;
-
-    font-weight: bold;
 }
 
 
@@ -623,176 +877,262 @@ textarea {
 
 .modal {
 
-    display: none;
+    display:
+        none;
 
-    position: fixed;
+    position:
+        fixed;
 
-    inset: 0;
+    inset:
+        0;
 
     background:
-        rgba(
-            0,
-            0,
-            0,
-            0.55
-        );
+        rgba(0,0,0,.48);
 
-    z-index: 500;
+    z-index:
+        100;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    padding: 20px;
+    padding:
+        15px;
+
+}
+
+
+.modal.show {
+
+    display:
+        flex;
+
 }
 
 
 .modal-content {
 
-    background: white;
+    background:
+        white;
 
-    width: 100%;
+    width:
+        100%;
 
-    max-width: 600px;
+    max-width:
+        600px;
 
-    max-height: 85vh;
+    max-height:
+        85vh;
 
-    overflow-y: auto;
+    border-radius:
+        18px;
 
-    border-radius: 22px;
+    overflow:
+        hidden;
 
-    padding: 22px;
+    box-shadow:
+        0 15px 50px
+        rgba(0,0,0,.25);
+
 }
 
 
 .modal-header {
 
-    display: flex;
+    padding:
+        16px 18px;
 
-    justify-content: space-between;
+    display:
+        flex;
 
-    align-items: center;
+    justify-content:
+        space-between;
 
-    margin-bottom: 20px;
+    align-items:
+        center;
+
+    border-bottom:
+        1px solid #eee;
+
 }
 
 
-.close {
+.modal-header h3 {
 
-    border: none;
+    font-size:
+        18px;
 
-    background: #eee;
+}
 
-    width: 38px;
 
-    height: 38px;
+.close-modal {
 
-    border-radius: 50%;
+    border:
+        0;
 
-    font-size: 20px;
+    background:
+        #f0f1f5;
 
-    cursor: pointer;
+    width:
+        34px;
+
+    height:
+        34px;
+
+    border-radius:
+        50%;
+
+    cursor:
+        pointer;
+
+    font-size:
+        18px;
+
 }
 
 
 .option-grid {
 
-    display: grid;
+    padding:
+        18px;
+
+    display:
+        grid;
 
     grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(
-                140px,
-                1fr
-            )
-        );
+        repeat(2, 1fr);
 
-    gap: 10px;
+    gap:
+        10px;
+
+    overflow-y:
+        auto;
+
+    max-height:
+        65vh;
+
+}
+
+
+@media (max-width: 500px) {
+
+    .option-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
 }
 
 
 .option {
 
-    padding: 12px;
-
-    border-radius: 12px;
-
     border:
-        1px solid
-        #ddd;
+        1px solid #e1e2eb;
 
-    background: white;
+    background:
+        white;
 
-    cursor: pointer;
+    border-radius:
+        11px;
 
-    text-align: center;
+    padding:
+        12px;
 
-    font-weight: 600;
+    text-align:
+        left;
+
+    cursor:
+        pointer;
+
+    font-size:
+        13px;
+
+}
+
+
+.option:hover {
+
+    border-color:
+        #2864e8;
+
+    background:
+        #f7f8ff;
+
 }
 
 
 .option.selected {
 
-    background: #7c3aed;
+    border-color:
+        #2864e8;
 
-    color: white;
+    background:
+        #eef3ff;
 
-    border-color: #7c3aed;
+    color:
+        #2054c7;
+
+    font-weight:
+        bold;
+
 }
 
 
 /* =========================================
-   FOOTER
+   STATUS
 ========================================= */
+
+.pending-name {
+
+    margin-top:
+        10px;
+
+    padding:
+        10px 12px;
+
+    border-radius:
+        10px;
+
+    background:
+        #fff8e6;
+
+    color:
+        #765b00;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.45;
+
+}
+
+
+.hidden {
+
+    display:
+        none !important;
+
+}
+
 
 .footer {
 
-    text-align: center;
+    text-align:
+        center;
 
-    padding: 25px;
+    color:
+        #999;
 
-    color: #888;
-}
+    font-size:
+        12px;
 
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media(max-width:600px) {
-
-    .header {
-
-        padding: 15px;
-    }
-
-
-    .logo {
-
-        font-size: 21px;
-    }
-
-
-    .header-btn {
-
-        padding:
-            10px 12px;
-
-        font-size: 13px;
-    }
-
-
-    .card {
-
-        padding: 20px;
-    }
-
-
-    .page-title h1 {
-
-        font-size: 26px;
-    }
+    padding:
+        8px 0 25px;
 
 }
 
@@ -804,108 +1144,105 @@ textarea {
 <body>
 
 
-<!-- ======================================
-     HEADER
-====================================== -->
-
 <header class="header">
 
     <div class="logo">
-
         Gene-rations
-
     </div>
 
+    <button
+        class="header-btn"
+        type="button"
+        onclick="goGenerationHub()">
 
-    <div class="header-right">
+        🏠 Generation Hub
 
-        <button
-            type="button"
-            class="header-btn"
-            onclick="goToGenerationHub()">
-
-            🏠 Generation Hub
-
-        </button>
-
-    </div>
+    </button>
 
 </header>
 
 
-<!-- ======================================
-     MAIN
-====================================== -->
-
 <main class="container">
 
 
-    <div class="page-title">
+<div
+    id="message"
+    class="message">
+</div>
 
-        <h1>
-            Edit Profile
-        </h1>
 
-        <p>
-            Update your personal information and
-            interests.
-        </p>
+<div class="page-title">
 
+    <h1>
+        Edit Profile
+    </h1>
+
+    <p>
+        Keep your Gene-rations profile up to date.
+        Registration information and generation data
+        are protected and managed automatically.
+    </p>
+
+</div>
+
+
+<!-- =========================================
+     PROFILE PHOTO
+========================================= -->
+
+<section class="card">
+
+    <div class="card-title">
+        Profile Photo
     </div>
 
+    <div class="card-body">
 
-    <div id="message"></div>
+        <div class="photo-area">
 
-
-    <!-- ==================================
-         PROFILE PHOTO
-    =================================== -->
-
-    <section class="card photo-section">
-
-        <h2>
-            Profile Photo
-        </h2>
-
-
-        <div class="photo-wrapper">
-
-            <img
-                id="profilePhoto"
+            <div
                 class="profile-photo"
-                src=""
-                alt="Profile Photo">
+                id="profilePhoto">
+
+                👤
+
+            </div>
+
+            <div class="photo-info">
+
+                <label
+                    class="photo-button"
+                    for="profilePhotoInput">
+
+                    Change Photo
+
+                </label>
+
+                <input
+                    type="file"
+                    id="profilePhotoInput"
+                    accept="image/*">
+
+            </div>
 
         </div>
 
+    </div>
 
-        <label
-            for="photoInput"
-            class="photo-button">
-
-            📷 Change Photo
-
-        </label>
+</section>
 
 
-        <input
-            type="file"
-            id="photoInput"
-            accept="image/*">
+<!-- =========================================
+     PERSONAL INFORMATION
+========================================= -->
 
-    </section>
+<section class="card">
 
+    <div class="card-title">
+        Personal Information
+    </div>
 
-    <!-- ==================================
-         PERSONAL INFORMATION
-    =================================== -->
-
-    <section class="card">
-
-        <h2>
-            Personal Information
-        </h2>
-
+    <div class="card-body">
 
         <div class="form-group">
 
@@ -916,472 +1253,455 @@ textarea {
             <input
                 type="text"
                 id="fullName"
-                placeholder="Your full name">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label for="email">
-                Email Address 🔒
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                class="locked"
-                readonly
-                placeholder="Your email"
-                title="Email cannot be changed">
-
-            <small
-                style="
-                    display:block;
-                    margin-top:7px;
-                    color:#777;
-                ">
-
-                Your email address is permanent
-                after account registration.
-
-            </small>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label for="phone">
-                Phone Number 🔒
-            </label>
-
-            <input
-                type="tel"
-                id="phone"
-                class="locked"
-                readonly
-                placeholder="Your phone number"
-                title="Phone number cannot be changed">
-
-            <small
-                style="
-                    display:block;
-                    margin-top:7px;
-                    color:#777;
-                ">
-
-                Your phone number is permanent
-                after account registration.
-
-            </small>
-
-        </div>
-
-
-        <!-- ==================================
-             LOCKED DOB
-        =================================== -->
-
-        <div class="form-group">
-
-            <label for="dob">
-
-                Date of Birth 🔒
-
-            </label>
-
-
-            <input
-                type="date"
-                id="dob"
-                readonly
-                class="locked"
-                title="Date of birth cannot be changed after account registration">
-
-
-            <small
-                style="
-                    display:block;
-                    margin-top:7px;
-                    color:#777;
-                ">
-
-                Your date of birth was provided
-                during account registration and
-                cannot be changed from your profile.
-
-            </small>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label for="gender">
-
-                Gender
-
-            </label>
-
-
-            <select id="gender">
-
-                <option value="">
-                    Select gender
-                </option>
-
-                <option value="Male">
-                    Male
-                </option>
-
-                <option value="Female">
-                    Female
-                </option>
-
-                <option value="Other">
-                    Other
-                </option>
-
-                <option value="Prefer not to say">
-                    Prefer not to say
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label for="country">
-
-                Country
-
-            </label>
-
-
-            <select id="country">
-
-                <option value="">
-                    Select country
-                </option>
-
-                <option value="Kenya">
-                    🇰🇪 Kenya
-                </option>
-
-                <option value="Uganda">
-                    🇺🇬 Uganda
-                </option>
-
-                <option value="Tanzania">
-                    🇹🇿 Tanzania
-                </option>
-
-                <option value="Nigeria">
-                    🇳🇬 Nigeria
-                </option>
-
-                <option value="Ghana">
-                    🇬🇭 Ghana
-                </option>
-
-                <option value="South Africa">
-                    🇿🇦 South Africa
-                </option>
-
-                <option value="United Kingdom">
-                    🇬🇧 United Kingdom
-                </option>
-
-                <option value="United States">
-                    🇺🇸 United States
-                </option>
-
-                <option value="Canada">
-                    🇨🇦 Canada
-                </option>
-
-                <option value="India">
-                    🇮🇳 India
-                </option>
-
-                <option value="Australia">
-                    🇦🇺 Australia
-                </option>
-
-            </select>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================
-         GENERATION INFORMATION
-    =================================== -->
-
-    <section class="card">
-
-        <h2>
-            Your Generation
-        </h2>
-
-
-        <p style="color:#777;">
-
-            Your generation is automatically
-            determined from your date of birth.
-
-        </p>
-
-
-        <div class="generation-card">
-
-            <h2 id="generationName">
-
-                Loading...
-
-            </h2>
-
-
-            <p id="generationDescription">
-
-                Loading generation information...
-
-            </p>
-
+                autocomplete="name"
+                maxlength="100">
 
             <div
-                class="generation-badge"
-                id="generationBadge">
+                id="nameChangeStatus"
+                class="pending-name hidden">
+            </div>
 
-                Loading...
+        </div>
+
+
+        <div class="form-grid">
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    class="locked"
+                    readonly
+                    aria-readonly="true">
+
+                <div class="field-note">
+                    Permanent registration email. It cannot be changed here.
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    class="locked"
+                    readonly
+                    aria-readonly="true">
+
+                <div class="field-note">
+                    Permanent registration phone. It cannot be changed here.
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="dob">
+                    Date of Birth
+                </label>
+
+                <input
+                    type="date"
+                    id="dob"
+                    class="locked"
+                    readonly
+                    aria-readonly="true">
+
+                <div class="field-note">
+                    Permanent registration information.
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="age">
+                    Age
+                </label>
+
+                <input
+                    type="text"
+                    id="age"
+                    class="locked"
+                    readonly
+                    aria-readonly="true">
+
+                <div class="field-note">
+                    Automatically calculated from your date of birth.
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="gender">
+                    Gender
+                </label>
+
+                <select id="gender">
+
+                    <option value="">
+                        Select gender
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                    <option value="Prefer not to say">
+                        Prefer not to say
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="country">
+                    Country
+                </label>
+
+                <select id="country">
+
+                    <option value="">
+                        Select country
+                    </option>
+
+                    <option value="Kenya">
+                        Kenya
+                    </option>
+
+                    <option value="Uganda">
+                        Uganda
+                    </option>
+
+                    <option value="Tanzania">
+                        Tanzania
+                    </option>
+
+                    <option value="Rwanda">
+                        Rwanda
+                    </option>
+
+                    <option value="Ethiopia">
+                        Ethiopia
+                    </option>
+
+                    <option value="Nigeria">
+                        Nigeria
+                    </option>
+
+                    <option value="Ghana">
+                        Ghana
+                    </option>
+
+                    <option value="South Africa">
+                        South Africa
+                    </option>
+
+                    <option value="United Kingdom">
+                        United Kingdom
+                    </option>
+
+                    <option value="United States">
+                        United States
+                    </option>
+
+                    <option value="Canada">
+                        Canada
+                    </option>
+
+                    <option value="Australia">
+                        Australia
+                    </option>
+
+                    <option value="India">
+                        India
+                    </option>
+
+                    <option value="China">
+                        China
+                    </option>
+
+                    <option value="Japan">
+                        Japan
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- ==================================
-         ABOUT ME
-    =================================== -->
+<!-- =========================================
+     GENERATION
+========================================= -->
 
-    <section class="card">
+<section
+    class="card generation-card">
 
-        <h2>
-            About Me
+    <div class="card-title">
+        Your Generation
+    </div>
+
+    <div
+        id="generationDisplay"
+        class="generation-display">
+
+        <div
+            id="generationBadge"
+            class="generation-badge">
+
+            🧬 Gene-rations
+
+        </div>
+
+        <h2 id="generationName">
+            Loading...
         </h2>
 
+        <p id="generationWelcome">
+            Loading your generation information...
+        </p>
+
+    </div>
+
+    <div
+        id="generationDescription"
+        class="generation-locked">
+
+        Generation is automatically calculated
+        from your date of birth.
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     ABOUT ME
+========================================= -->
+
+<section class="card">
+
+    <div class="card-title">
+        About Me
+    </div>
+
+    <div class="card-body">
 
         <div class="form-group">
 
             <label for="bio">
-
                 Bio
-
             </label>
-
 
             <textarea
                 id="bio"
                 maxlength="500"
-                placeholder="Tell the Gene-rations community about yourself..."></textarea>
+                placeholder="Tell your generation community something about yourself..."></textarea>
+
+            <div class="field-note">
+                Maximum 500 characters.
+            </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- ==================================
-         INTERESTS
-    =================================== -->
+<!-- =========================================
+     INTERESTS
+========================================= -->
 
-    <section class="card">
+<section class="card">
 
-        <h2>
-            Interests
-        </h2>
+    <div class="card-title">
+        Interests
+    </div>
 
-
-        <p
-            style="
-                color:#777;
-                margin-bottom:12px;
-            ">
-
-            Choose topics that interest you.
-
-        </p>
-
+    <div class="card-body">
 
         <button
-            type="button"
             class="selector-button"
-            onclick="openInterestSelector()">
+            type="button"
+            onclick="openSelector('interests')">
 
-            ➕ Select Interests
+            + Select Interests
 
         </button>
-
 
         <div
             id="interestsTags"
             class="tags">
-
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- ==================================
-         HOBBIES
-    =================================== -->
+<!-- =========================================
+     HOBBIES
+========================================= -->
 
-    <section class="card">
+<section class="card">
 
-        <h2>
-            Hobbies
-        </h2>
+    <div class="card-title">
+        Hobbies
+    </div>
 
-
-        <p
-            style="
-                color:#777;
-                margin-bottom:12px;
-            ">
-
-            Select activities you enjoy.
-
-        </p>
-
+    <div class="card-body">
 
         <button
-            type="button"
             class="selector-button"
-            onclick="openHobbySelector()">
+            type="button"
+            onclick="openSelector('hobbies')">
 
-            ➕ Select Hobbies
+            + Select Hobbies
 
         </button>
-
 
         <div
             id="hobbiesTags"
             class="tags">
-
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- ==================================
-         SKILLS
-    =================================== -->
+<!-- =========================================
+     SKILLS & EDUCATION
+========================================= -->
 
-    <section class="card">
+<section class="card">
 
-        <h2>
-            Skills & Education
-        </h2>
+    <div class="card-title">
+        Skills &amp; Education
+    </div>
 
-
-        <p
-            style="
-                color:#777;
-                margin-bottom:12px;
-            ">
-
-            Select your professional,
-            technical or practical skills.
-
-        </p>
-
+    <div class="card-body">
 
         <button
-            type="button"
             class="selector-button"
-            onclick="openSkillSelector()">
+            type="button"
+            onclick="openSelector('skills')">
 
-            🎓 Select Skills / Education
+            + Select Skills &amp; Education
 
         </button>
-
 
         <div
             id="skillsTags"
             class="tags">
-
         </div>
 
-    </section>
+        <div class="field-note">
+            Skills are selected through the Gene-rations
+            international education selector system.
+        </div>
+
+    </div>
+
+</section>
 
 
-    <!-- ==================================
-         SAVE
-    =================================== -->
+<!-- =========================================
+     ACTIONS
+========================================= -->
 
-    <section class="card">
+<div class="actions">
 
-        <button
-            id="saveButton"
-            type="button"
-            class="save-button"
-            onclick="saveProfile()">
+    <button
+        class="action-button cancel-button"
+        type="button"
+        onclick="cancelEdit()">
 
-            💾 Save Changes
+        Cancel
 
-        </button>
+    </button>
+
+    <button
+        class="action-button save-button"
+        id="saveButton"
+        type="button"
+        onclick="saveProfile()">
+
+        Save Changes
+
+    </button>
+
+</div>
 
 
-        <button
-            type="button"
-            class="cancel-button"
-            onclick="goToProfile()">
+<div class="footer">
 
-            Cancel
+    Gene-rations<br>
+    Your generation. Your community. Your future.
 
-        </button>
+</div>
 
-    </section>
 
 </main>
 
 
-<footer class="footer">
-
-    Gene-rations © 2026
-
-</footer>
-
-
-<!-- ======================================
+<!-- =========================================
      SELECTOR MODAL
-====================================== -->
+========================================= -->
 
 <div
     id="selectorModal"
     class="modal">
 
-
     <div class="modal-content">
-
 
         <div class="modal-header">
 
-            <h2 id="modalTitle">
-
+            <h3 id="modalTitle">
                 Select
-
-            </h2>
-
+            </h3>
 
             <button
+                class="close-modal"
                 type="button"
-                class="close"
                 onclick="closeSelector()">
 
                 ×
@@ -1390,11 +1710,9 @@ textarea {
 
         </div>
 
-
         <div
             id="optionGrid"
             class="option-grid">
-
         </div>
 
     </div>
@@ -1405,81 +1723,324 @@ textarea {
 <script>
 
 /* =====================================================
-   GENE-RATIONS EDIT PROFILE
+   CONFIGURATION
 ===================================================== */
 
-
-/* ==========================================
-   BACKEND ADDRESS
-========================================== */
-
 const API_BASE_URL =
-    localStorage.getItem("API_BASE_URL") ||
     "http://localhost:3000";
 
 
-/* ==========================================
-   LOAD LOCAL USER
-========================================== */
+/* =====================================================
+   USER DATA
+===================================================== */
 
-let userData =
-    JSON.parse(
-        localStorage.getItem("userData")
+let userData = null;
+
+let selectorType = null;
+
+
+/* =====================================================
+   GENERATION DATA
+   Frontend display data mirrors the backend
+   generation calculation.
+===================================================== */
+
+const generationData = {
+
+    "Silent Generation": {
+
+        badge:
+            "⭐ Silent",
+
+        welcome:
+            "Welcome to the Silent Generation community.",
+
+        description:
+            "A generation recognized for resilience, experience, tradition and the wisdom gained across decades.",
+
+        primary:
+            "#6f7b7f",
+
+        secondary:
+            "#aeb9bd"
+
+    },
+
+
+    "Generation X": {
+
+        badge:
+            "🔥 Gen X",
+
+        welcome:
+            "Welcome to the Generation X community.",
+
+        description:
+            "A generation known for independence, adaptability, practical thinking and navigating major social and technological change.",
+
+        primary:
+            "#dc2638",
+
+        secondary:
+            "#e83e8c"
+
+    },
+
+
+    "Millennial": {
+
+        badge:
+            "🌍 Millennial",
+
+        welcome:
+            "Welcome to the Millennial community.",
+
+        description:
+            "A generation shaped by global connection, digital transformation, creativity, entrepreneurship and changing ways of working.",
+
+        primary:
+            "#ed7655",
+
+        secondary:
+            "#ffd166"
+
+    },
+
+
+    "Generation Z": {
+
+        badge:
+            "⚡ Gen Z",
+
+        welcome:
+            "Welcome to the Generation Z community.",
+
+        description:
+            "A digitally connected generation known for creativity, collaboration, fast communication and new approaches to community.",
+
+        primary:
+            "#1689df",
+
+        secondary:
+            "#0ac8c5"
+
+    },
+
+
+    "Generation Alpha": {
+
+        badge:
+            "🧬 Alpha",
+
+        welcome:
+            "Welcome to the Generation Alpha community.",
+
+        description:
+            "A generation growing up in an increasingly connected world shaped by artificial intelligence, digital learning and emerging technology.",
+
+        primary:
+            "#694de0",
+
+        secondary:
+            "#9d8df5"
+
+    }
+
+};
+
+
+/* =====================================================
+   SELECTOR OPTIONS
+===================================================== */
+
+const selectorOptions = {
+
+    interests: [
+
+        "Technology",
+        "Business",
+        "Entrepreneurship",
+        "Education",
+        "Science",
+        "Music",
+        "Movies",
+        "Sports",
+        "Travel",
+        "Photography",
+        "Art",
+        "Fashion",
+        "Cooking",
+        "Reading",
+        "Writing",
+        "Gaming",
+        "Community Service",
+        "Environment",
+        "History",
+        "Innovation"
+
+    ],
+
+
+    hobbies: [
+
+        "Reading",
+        "Writing",
+        "Singing",
+        "Dancing",
+        "Football",
+        "Basketball",
+        "Running",
+        "Cycling",
+        "Swimming",
+        "Cooking",
+        "Gardening",
+        "Photography",
+        "Drawing",
+        "Painting",
+        "Gaming",
+        "Travelling",
+        "Fishing",
+        "Watching Movies",
+        "Music",
+        "Volunteering"
+
+    ],
+
+
+    skills: [
+
+        "Computer Science",
+        "Information Technology",
+        "Software Development",
+        "Web Development",
+        "Mobile App Development",
+        "Artificial Intelligence",
+        "Data Science",
+        "Cybersecurity",
+        "Engineering",
+        "Medicine",
+        "Nursing",
+        "Teaching",
+        "Education",
+        "Business Management",
+        "Accounting",
+        "Finance",
+        "Marketing",
+        "Graphic Design",
+        "Photography",
+        "Journalism",
+        "Law",
+        "Agriculture",
+        "Architecture",
+        "Construction",
+        "Hospitality",
+        "Tourism",
+        "Languages",
+        "Research",
+        "Entrepreneurship"
+
+    ]
+
+};
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+let messageTimer = null;
+
+
+function showMessage(
+    text,
+    type = "success"
+) {
+
+    const element =
+        document.getElementById(
+            "message"
+        );
+
+
+    if (!element) return;
+
+
+    clearTimeout(
+        messageTimer
     );
 
 
-/* ==========================================
-   AUTHENTICATION CHECK
-========================================== */
+    element.textContent =
+        text;
 
-if (!userData || !userData.id) {
 
-    window.location.href =
-        "login.html";
+    element.className =
+        "message " +
+        type;
+
+
+    messageTimer =
+        setTimeout(
+            () => {
+
+                element.className =
+                    "message";
+
+            },
+
+            5000
+
+        );
 
 }
 
 
-/* ==========================================
-   DEFAULT PHOTO
-========================================== */
+/* =====================================================
+   STORAGE
+===================================================== */
 
-const defaultPhoto =
-    "data:image/svg+xml;charset=UTF-8," +
-    encodeURIComponent(`
+function getStoredUser() {
 
-        <svg xmlns="http://www.w3.org/2000/svg"
-             width="300"
-             height="300"
-             viewBox="0 0 300 300">
+    try {
 
-            <rect
-                width="300"
-                height="300"
-                fill="#e8defd"/>
+        return JSON.parse(
+            localStorage.getItem(
+                "userData"
+            )
+        );
 
-            <circle
-                cx="150"
-                cy="105"
-                r="55"
-                fill="#8d72c8"/>
+    }
 
-            <path
-                d="M55 265
-                   C65 185 105 160 150 160
-                   C195 160 235 185 245 265Z"
-                fill="#8d72c8"/>
+    catch (error) {
 
-        </svg>
+        return null;
 
-    `);
+    }
+
+}
 
 
-/* ==========================================
-   GENERATION ENGINE
-========================================== */
+function saveStoredUser() {
 
-function calculateAge(dob) {
+    if (!userData) return;
+
+    localStorage.setItem(
+        "userData",
+        JSON.stringify(
+            userData
+        )
+    );
+
+}
+
+
+/* =====================================================
+   AGE
+===================================================== */
+
+function calculateAge(
+    dob
+) {
 
     if (!dob) {
 
@@ -1489,7 +2050,9 @@ function calculateAge(dob) {
 
 
     const birthDate =
-        new Date(dob);
+        new Date(
+            dob
+        );
 
 
     const today =
@@ -1508,23 +2071,20 @@ function calculateAge(dob) {
 
 
     let age =
-        today.getFullYear()
-        -
+        today.getFullYear() -
         birthDate.getFullYear();
 
 
-    const month =
-        today.getMonth()
-        -
+    const monthDifference =
+        today.getMonth() -
         birthDate.getMonth();
 
 
     if (
-        month < 0 ||
+        monthDifference < 0 ||
         (
-            month === 0 &&
-            today.getDate()
-            <
+            monthDifference === 0 &&
+            today.getDate() <
             birthDate.getDate()
         )
     ) {
@@ -1539,14 +2099,20 @@ function calculateAge(dob) {
 }
 
 
-function getGeneration(age) {
+/* =====================================================
+   GENERATION
+===================================================== */
+
+function getGeneration(
+    age
+) {
 
     if (
         age === null ||
         age < 0
     ) {
 
-        return null;
+        return "";
 
     }
 
@@ -1584,207 +2150,562 @@ function getGeneration(age) {
 }
 
 
-/* ==========================================
-   GENERATION DATA
-========================================== */
+function getGenerationInfo(
+    generation
+) {
 
-const generationData = {
+    return (
+        generationData[
+            generation
+        ] ||
+        {
 
-    "Silent Generation": {
+            badge:
+                "🏷️ Gene-rations",
 
-        badge:
-            "⭐ Silent",
+            welcome:
+                "Welcome to Gene-rations.",
 
-        description:
-            "A generation with deep experience, wisdom and valuable life perspectives."
+            description:
+                "Your generation is calculated automatically from your date of birth.",
 
-    },
+            primary:
+                "#2864e8",
 
+            secondary:
+                "#7b2ff7"
 
-    "Generation X": {
+        }
+    );
 
-        badge:
-            "🔥 Gen X",
-
-        description:
-            "A generation known for independence, adaptability and experience."
-
-    },
-
-
-    "Millennial": {
-
-        badge:
-            "🌍 Millennial",
-
-        description:
-            "A connected generation shaped by technology, creativity and change."
-
-    },
+}
 
 
-    "Generation Z": {
+/* =====================================================
+   GENERATION DISPLAY
+===================================================== */
 
-        badge:
-            "⚡ Gen Z",
+function updateGenerationDisplay() {
 
-        description:
-            "A digital generation bringing new ideas, creativity and fresh perspectives."
-
-    },
+    if (!userData) return;
 
 
-    "Generation Alpha": {
-
-        badge:
-            "🧬 Alpha",
-
-        description:
-            "A young generation growing up in a highly connected digital world."
-
-    }
-
-};
+    const age =
+        calculateAge(
+            userData.dob
+        );
 
 
-/* ==========================================
-   EDITABLE OPTIONS
-========================================== */
-
-const interests = [
-
-    "Technology",
-    "Business",
-    "Education",
-    "Music",
-    "Sports",
-    "Travel",
-    "Politics",
-    "Science",
-    "Art",
-    "Fashion",
-    "Health",
-    "Agriculture",
-    "Finance",
-    "Entrepreneurship",
-    "Gaming",
-    "Photography",
-    "Writing",
-    "Community Service"
-
-];
+    const generation =
+        getGeneration(
+            age
+        );
 
 
-const hobbies = [
-
-    "Football",
-    "Reading",
-    "Cooking",
-    "Dancing",
-    "Singing",
-    "Swimming",
-    "Cycling",
-    "Gardening",
-    "Fishing",
-    "Traveling",
-    "Photography",
-    "Gaming",
-    "Watching Movies",
-    "Writing",
-    "Drawing",
-    "Hiking",
-    "Volunteering"
-
-];
+    const info =
+        getGenerationInfo(
+            generation
+        );
 
 
-/*
-   This list is intentionally kept in the
-   same selector structure.
-
-   It can later be replaced by the full
-   international education/skills selector.
-*/
-
-const skills = [
-
-    "Computer Skills",
-    "Web Development",
-    "Programming",
-    "Graphic Design",
-    "Digital Marketing",
-    "Business Management",
-    "Accounting",
-    "Teaching",
-    "Leadership",
-    "Communication",
-    "Public Speaking",
-    "Entrepreneurship",
-    "Carpentry",
-    "Electrical Work",
-    "Plumbing",
-    "Farming",
-    "Cooking",
-    "Fashion Design",
-    "Photography",
-    "Video Editing",
-    "Music",
-    "Writing",
-    "Research",
-    "Healthcare",
-    "Mechanics"
-
-];
+    const ageInput =
+        document.getElementById(
+            "age"
+        );
 
 
-/* ==========================================
-   ENSURE ARRAYS
-========================================== */
+    const generationName =
+        document.getElementById(
+            "generationName"
+        );
 
-function prepareUserArrays() {
 
-    if (
-        !Array.isArray(
-            userData.interests
-        )
-    ) {
+    const generationBadge =
+        document.getElementById(
+            "generationBadge"
+        );
 
-        userData.interests = [];
+
+    const welcome =
+        document.getElementById(
+            "generationWelcome"
+        );
+
+
+    const description =
+        document.getElementById(
+            "generationDescription"
+        );
+
+
+    const display =
+        document.getElementById(
+            "generationDisplay"
+        );
+
+
+    if (ageInput) {
+
+        ageInput.value =
+            age === null
+                ? ""
+                : age;
 
     }
 
 
-    if (
-        !Array.isArray(
-            userData.hobbies
-        )
-    ) {
+    if (generationName) {
 
-        userData.hobbies = [];
+        generationName.textContent =
+            generation ||
+            "Generation not available";
 
     }
 
 
+    if (generationBadge) {
+
+        generationBadge.textContent =
+            info.badge;
+
+    }
+
+
+    if (welcome) {
+
+        welcome.textContent =
+            info.welcome;
+
+    }
+
+
+    if (description) {
+
+        description.textContent =
+            info.description;
+
+    }
+
+
+    if (display) {
+
+        display.style.background =
+            `linear-gradient(
+                135deg,
+                ${info.primary},
+                ${info.secondary}
+            )`;
+
+    }
+
+
+    /*
+     * These values are presentation data only.
+     * The backend remains authoritative for the
+     * actual age and generation.
+     */
+
+    userData.age =
+        age;
+
+    userData.generation =
+        generation;
+
+    userData.generationBadge =
+        info.badge;
+
+    userData.generationDescription =
+        info.description;
+
+}
+
+
+/* =====================================================
+   PROFILE PHOTO DISPLAY
+===================================================== */
+
+function displayProfilePhoto() {
+
+    const photo =
+        document.getElementById(
+            "profilePhoto"
+        );
+
+
+    if (!photo || !userData) return;
+
+
     if (
-        !Array.isArray(
-            userData.skills
-        )
+        userData.profilePhoto
     ) {
 
-        userData.skills = [];
+        photo.innerHTML =
+            "";
+
+
+        const image =
+            document.createElement(
+                "img"
+            );
+
+
+        image.src =
+            userData.profilePhoto;
+
+
+        image.alt =
+            "Profile photo";
+
+
+        photo.appendChild(
+            image
+        );
+
+    }
+
+    else {
+
+        photo.textContent =
+            "👤";
 
     }
 
 }
 
 
-/* ==========================================
-   LOAD USER FROM BACKEND
-========================================== */
+/* =====================================================
+   TAGS
+===================================================== */
+
+function renderTags(
+    type
+) {
+
+    const element =
+        document.getElementById(
+            type + "Tags"
+        );
+
+
+    if (!element) return;
+
+
+    const values =
+        Array.isArray(
+            userData[type]
+        )
+            ? userData[type]
+            : [];
+
+
+    element.innerHTML =
+        "";
+
+
+    values.forEach(
+        (
+            value,
+            index
+        ) => {
+
+            const tag =
+                document.createElement(
+                    "span"
+                );
+
+
+            tag.className =
+                "tag";
+
+
+            const text =
+                document.createElement(
+                    "span"
+                );
+
+
+            text.textContent =
+                value;
+
+
+            const remove =
+                document.createElement(
+                    "button"
+                );
+
+
+            remove.type =
+                "button";
+
+
+            remove.className =
+                "tag-remove";
+
+
+            remove.textContent =
+                "×";
+
+
+            remove.title =
+                "Remove";
+
+
+            remove.addEventListener(
+                "click",
+                () => {
+
+                    userData[type]
+                        .splice(
+                            index,
+                            1
+                        );
+
+
+                    renderTags(
+                        type
+                    );
+
+                }
+            );
+
+
+            tag.appendChild(
+                text
+            );
+
+
+            tag.appendChild(
+                remove
+            );
+
+
+            element.appendChild(
+                tag
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   RENDER ALL TAGS
+===================================================== */
+
+function renderAllTags() {
+
+    renderTags(
+        "interests"
+    );
+
+    renderTags(
+        "hobbies"
+    );
+
+    renderTags(
+        "skills"
+    );
+
+}
+
+
+/* =====================================================
+   LOAD PROFILE INTO FORM
+===================================================== */
+
+function loadProfile() {
+
+    if (!userData) return;
+
+
+    document.getElementById(
+        "fullName"
+    ).value =
+        userData.fullName ||
+        "";
+
+
+    document.getElementById(
+        "email"
+    ).value =
+        userData.email ||
+        "";
+
+
+    document.getElementById(
+        "phone"
+    ).value =
+        userData.phone ||
+        "";
+
+
+    document.getElementById(
+        "dob"
+    ).value =
+        userData.dob ||
+        "";
+
+
+    document.getElementById(
+        "gender"
+    ).value =
+        userData.gender ||
+        "";
+
+
+    setSelectValue(
+        "country",
+        userData.country ||
+        ""
+    );
+
+
+    document.getElementById(
+        "bio"
+    ).value =
+        userData.bio ||
+        "";
+
+
+    displayProfilePhoto();
+
+    renderAllTags();
+
+    updateGenerationDisplay();
+
+    updatePendingNameStatus();
+
+}
+
+
+/* =====================================================
+   SELECT VALUE SAFELY
+===================================================== */
+
+function setSelectValue(
+    elementId,
+    value
+) {
+
+    const select =
+        document.getElementById(
+            elementId
+        );
+
+
+    if (!select) return;
+
+
+    const exists =
+        Array.from(
+            select.options
+        ).some(
+            option =>
+                option.value ===
+                value
+        );
+
+
+    if (
+        value &&
+        !exists
+    ) {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+
+        option.value =
+            value;
+
+
+        option.textContent =
+            value;
+
+
+        select.appendChild(
+            option
+        );
+
+    }
+
+
+    select.value =
+        value;
+
+}
+
+
+/* =====================================================
+   PENDING NAME
+===================================================== */
+
+function updatePendingNameStatus() {
+
+    const status =
+        document.getElementById(
+            "nameChangeStatus"
+        );
+
+
+    if (!status) return;
+
+
+    const pending =
+        userData &&
+        userData.pendingNameChange;
+
+
+    if (!pending) {
+
+        status.classList.add(
+            "hidden"
+        );
+
+
+        status.textContent =
+            "";
+
+
+        return;
+
+    }
+
+
+    const effectiveAt =
+        new Date(
+            pending.effectiveAt
+        );
+
+
+    status.classList.remove(
+        "hidden"
+    );
+
+
+    status.textContent =
+        "Pending name change: " +
+        pending.name +
+        ". It will become effective after the 24-hour waiting period (" +
+        effectiveAt.toLocaleString() +
+        ").";
+
+}
+
+
+/* =====================================================
+   BACKEND USER LOAD
+===================================================== */
 
 async function loadUserFromBackend() {
 
-    if (!userData || !userData.id) {
+    if (
+        !userData ||
+        !userData.id
+    ) {
 
         return;
 
@@ -1795,27 +2716,54 @@ async function loadUserFromBackend() {
 
         const response =
             await fetch(
-                `${API_BASE_URL}/api/user/${encodeURIComponent(userData.id)}`
+
+                API_BASE_URL +
+                "/api/user/" +
+                encodeURIComponent(
+                    userData.id
+                )
+
             );
 
 
-        const data =
-            await response.json();
+        let data = null;
+
+
+        try {
+
+            data =
+                await response.json();
+
+        }
+
+        catch (error) {
+
+            throw new Error(
+                "The server returned an invalid response."
+            );
+
+        }
+
+
+        if (
+            response.status === 403 &&
+            data &&
+            data.dormant
+        ) {
+
+            showMessage(
+                data.message ||
+                "Your account is dormant. Verification is required.",
+                "error"
+            );
+
+
+            return;
+
+        }
 
 
         if (!response.ok) {
-
-            if (data.dormant) {
-
-                showMessage(
-                    "Your account is dormant. Please reactivate your account.",
-                    "error"
-                );
-
-                return;
-
-            }
-
 
             throw new Error(
                 data.message ||
@@ -1825,438 +2773,72 @@ async function loadUserFromBackend() {
         }
 
 
-        if (data.user) {
+        if (
+            !data.user
+        ) {
 
-            /*
-               Preserve local fields that the
-               current backend does not yet return.
-            */
-
-            const oldInterests =
-                Array.isArray(userData.interests)
-                    ? userData.interests
-                    : [];
-
-
-            const oldCountry =
-                userData.country || "";
-
-
-            const oldGender =
-                userData.gender || "";
-
-
-            userData =
-                {
-                    ...userData,
-                    ...data.user
-                };
-
-
-            if (
-                !Array.isArray(
-                    userData.interests
-                )
-            ) {
-
-                userData.interests =
-                    oldInterests;
-
-            }
-
-
-            if (
-                !userData.country
-            ) {
-
-                userData.country =
-                    oldCountry;
-
-            }
-
-
-            if (
-                !userData.gender
-            ) {
-
-                userData.gender =
-                    oldGender;
-
-            }
-
-
-            prepareUserArrays();
-
-
-            localStorage.setItem(
-                "userData",
-                JSON.stringify(
-                    userData
-                )
+            throw new Error(
+                "User data was not returned by the server."
             );
 
         }
+
+
+        userData = {
+
+            ...userData,
+
+            ...data.user
+
+        };
+
+
+        saveStoredUser();
+
+        loadProfile();
 
     }
 
     catch (error) {
 
-        console.error(
-            "Profile loading error:",
+        console.warn(
+            "Backend profile load:",
             error
         );
 
-
         /*
-           If backend is temporarily unavailable,
-           continue using the local profile data.
-        */
-
-        showMessage(
-            "Could not refresh from the server. Showing your saved profile data.",
-            "error"
-        );
+         * Cached data remains available so the
+         * page can still be used if the backend
+         * temporarily cannot be reached.
+         */
 
     }
 
 }
 
 
-/* ==========================================
-   LOAD FORM
-========================================== */
-
-function loadProfile() {
-
-    if (!userData) {
-
-        return;
-
-    }
-
-
-    prepareUserArrays();
-
-
-    document.getElementById(
-        "fullName"
-    ).value =
-        userData.fullName || "";
-
-
-    document.getElementById(
-        "email"
-    ).value =
-        userData.email || "";
-
-
-    document.getElementById(
-        "phone"
-    ).value =
-        userData.phone || "";
-
-
-    document.getElementById(
-        "dob"
-    ).value =
-        userData.dob || "";
-
-
-    document.getElementById(
-        "gender"
-    ).value =
-        userData.gender || "";
-
-
-    document.getElementById(
-        "country"
-    ).value =
-        userData.country || "";
-
-
-    document.getElementById(
-        "bio"
-    ).value =
-        userData.bio || "";
-
-
-    document.getElementById(
-        "profilePhoto"
-    ).src =
-        userData.profilePhoto ||
-        defaultPhoto;
-
-
-    renderTags(
-        "interestsTags",
-        userData.interests,
-        "interests"
-    );
-
-
-    renderTags(
-        "hobbiesTags",
-        userData.hobbies,
-        "hobbies"
-    );
-
-
-    renderTags(
-        "skillsTags",
-        userData.skills,
-        "skills"
-    );
-
-
-    updateGeneration();
-
-}
-
-
-/* ==========================================
-   UPDATE GENERATION
-========================================== */
-
-function updateGeneration() {
-
-    const age =
-        calculateAge(
-            userData.dob
-        );
-
-
-    const generation =
-        getGeneration(age);
-
-
-    if (!generation) {
-
-        document.getElementById(
-            "generationName"
-        ).textContent =
-            "Unable to determine";
-
-
-        document.getElementById(
-            "generationBadge"
-        ).textContent =
-            "Generation unavailable";
-
-
-        document.getElementById(
-            "generationDescription"
-        ).textContent =
-            "A valid date of birth is required.";
-
-        return;
-
-    }
-
-
-    const info =
-        generationData[generation];
-
-
-    document.getElementById(
-        "generationName"
-    ).textContent =
-        generation;
-
-
-    document.getElementById(
-        "generationBadge"
-    ).textContent =
-        info.badge;
-
-
-    document.getElementById(
-        "generationDescription"
-    ).textContent =
-        info.description;
-
-
-    userData.age =
-        age;
-
-
-    userData.generation =
-        generation;
-
-
-    userData.generationBadge =
-        info.badge;
-
-
-    userData.generationDescription =
-        info.description;
-
-}
-
-
-/* ==========================================
-   RENDER TAGS
-========================================== */
-
-function renderTags(
-    elementId,
-    values,
-    property
-) {
-
-    const container =
-        document.getElementById(
-            elementId
-        );
-
-
-    container.innerHTML = "";
-
-
-    if (
-        !Array.isArray(values)
-    ) {
-
-        return;
-
-    }
-
-
-    values.forEach(
-        function(value) {
-
-            const tag =
-                document.createElement(
-                    "div"
-                );
-
-
-            tag.className =
-                "tag";
-
-
-            const span =
-                document.createElement(
-                    "span"
-                );
-
-
-            span.textContent =
-                value;
-
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-
-            button.type =
-                "button";
-
-
-            button.textContent =
-                "×";
-
-
-            button.addEventListener(
-                "click",
-                function() {
-
-                    removeItem(
-                        property,
-                        value
-                    );
-
-                }
-            );
-
-
-            tag.appendChild(
-                span
-            );
-
-
-            tag.appendChild(
-                button
-            );
-
-
-            container.appendChild(
-                tag
-            );
-
-        }
-    );
-
-}
-
-
-/* ==========================================
-   REMOVE ITEM
-========================================== */
-
-function removeItem(
-    property,
-    value
-) {
-
-    if (
-        !Array.isArray(
-            userData[property]
-        )
-    ) {
-
-        return;
-
-    }
-
-
-    userData[property] =
-        userData[property].filter(
-            item =>
-                item !== value
-        );
-
-
-    const elementId =
-        property === "interests"
-            ? "interestsTags"
-            : property === "hobbies"
-                ? "hobbiesTags"
-                : "skillsTags";
-
-
-    renderTags(
-        elementId,
-        userData[property],
-        property
-    );
-
-}
-
-
-/* ==========================================
-   MODAL
-========================================== */
-
-let currentProperty =
-    null;
-
+/* =====================================================
+   OPEN SELECTOR
+===================================================== */
 
 function openSelector(
-    property,
-    title,
-    options
+    type
 ) {
 
-    currentProperty =
-        property;
+    selectorType =
+        type;
 
 
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        title;
+    const modal =
+        document.getElementById(
+            "selectorModal"
+        );
+
+
+    const title =
+        document.getElementById(
+            "modalTitle"
+        );
 
 
     const grid =
@@ -2265,11 +2847,44 @@ function openSelector(
         );
 
 
-    grid.innerHTML = "";
+    const titles = {
+
+        interests:
+            "Select Interests",
+
+        hobbies:
+            "Select Hobbies",
+
+        skills:
+            "Select Skills & Education"
+
+    };
+
+
+    title.textContent =
+        titles[type] ||
+        "Select";
+
+
+    grid.innerHTML =
+        "";
+
+
+    const values =
+        Array.isArray(
+            userData[type]
+        )
+            ? userData[type]
+            : [];
+
+
+    const options =
+        selectorOptions[type] ||
+        [];
 
 
     options.forEach(
-        function(option) {
+        value => {
 
             const button =
                 document.createElement(
@@ -2285,9 +2900,14 @@ function openSelector(
                 "option";
 
 
+            button.textContent =
+                value;
+
+
             if (
-                userData[property]
-                    .includes(option)
+                values.includes(
+                    value
+                )
             ) {
 
                 button.classList.add(
@@ -2297,19 +2917,18 @@ function openSelector(
             }
 
 
-            button.textContent =
-                option;
+            button.addEventListener(
+                "click",
+                () => {
 
-
-            button.onclick =
-                function() {
-
-                    toggleOption(
-                        option,
+                    toggleSelectorOption(
+                        type,
+                        value,
                         button
                     );
 
-                };
+                }
+            );
 
 
             grid.appendChild(
@@ -2320,46 +2939,49 @@ function openSelector(
     );
 
 
-    document.getElementById(
-        "selectorModal"
-    ).style.display =
-        "flex";
+    modal.classList.add(
+        "show"
+    );
 
 }
 
 
-/* ==========================================
-   TOGGLE OPTION
-========================================== */
+/* =====================================================
+   TOGGLE SELECTOR OPTION
+===================================================== */
 
-function toggleOption(
-    option,
+function toggleSelectorOption(
+    type,
+    value,
     button
 ) {
 
     if (
-        userData[currentProperty]
-            .includes(option)
+        !Array.isArray(
+            userData[type]
+        )
     ) {
 
-        userData[currentProperty] =
-            userData[currentProperty]
-                .filter(
-                    item =>
-                        item !== option
-                );
-
-
-        button.classList.remove(
-            "selected"
-        );
+        userData[type] =
+            [];
 
     }
 
-    else {
 
-        userData[currentProperty]
-            .push(option);
+    const index =
+        userData[type]
+            .indexOf(
+                value
+            );
+
+
+    if (
+        index === -1
+    ) {
+
+        userData[type].push(
+            value
+        );
 
 
         button.classList.add(
@@ -2368,274 +2990,372 @@ function toggleOption(
 
     }
 
+    else {
 
-    const elementId =
-        currentProperty === "interests"
-            ? "interestsTags"
-            : currentProperty === "hobbies"
-                ? "hobbiesTags"
-                : "skillsTags";
+        userData[type]
+            .splice(
+                index,
+                1
+            );
+
+
+        button.classList.remove(
+            "selected"
+        );
+
+    }
 
 
     renderTags(
-        elementId,
-        userData[currentProperty],
-        currentProperty
+        type
     );
 
 }
 
 
-/* ==========================================
+/* =====================================================
    CLOSE SELECTOR
-========================================== */
+===================================================== */
 
 function closeSelector() {
 
-    document.getElementById(
-        "selectorModal"
-    ).style.display =
-        "none";
-
-}
+    const modal =
+        document.getElementById(
+            "selectorModal"
+        );
 
 
-/* ==========================================
-   INTEREST SELECTOR
-========================================== */
+    if (modal) {
 
-function openInterestSelector() {
-
-    openSelector(
-        "interests",
-        "Select Interests",
-        interests
-    );
-
-}
-
-
-/* ==========================================
-   HOBBY SELECTOR
-========================================== */
-
-function openHobbySelector() {
-
-    openSelector(
-        "hobbies",
-        "Select Hobbies",
-        hobbies
-    );
-
-}
-
-
-/* ==========================================
-   SKILL SELECTOR
-========================================== */
-
-function openSkillSelector() {
-
-    openSelector(
-        "skills",
-        "Select Skills / Education",
-        skills
-    );
-
-}
-
-
-/* ==========================================
-   PROFILE PHOTO
-========================================== */
-
-document.getElementById(
-    "photoInput"
-).addEventListener(
-    "change",
-    async function(event) {
-
-        const file =
-            event.target.files[0];
-
-
-        if (!file) {
-
-            return;
-
-        }
-
-
-        if (
-            !file.type.startsWith(
-                "image/"
-            )
-        ) {
-
-            showMessage(
-                "Please select an image file.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        /*
-           Limit large images because the current
-           backend stores the image string directly.
-        */
-
-        if (
-            file.size >
-            5 * 1024 * 1024
-        ) {
-
-            showMessage(
-                "Please choose an image smaller than 5 MB.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            async function(e) {
-
-                const imageData =
-                    e.target.result;
-
-
-                document.getElementById(
-                    "profilePhoto"
-                ).src =
-                    imageData;
-
-
-                userData.profilePhoto =
-                    imageData;
-
-
-                await saveProfilePhoto(
-                    imageData
-                );
-
-            };
-
-
-        reader.readAsDataURL(file);
+        modal.classList.remove(
+            "show"
+        );
 
     }
-);
 
 
-/* ==========================================
+    selectorType =
+        null;
+
+}
+
+
+/* =====================================================
+   PROFILE PHOTO UPLOAD
+===================================================== */
+
+document
+    .getElementById(
+        "profilePhotoInput"
+    )
+    .addEventListener(
+        "change",
+        handlePhotoChange
+    );
+
+
+async function handlePhotoChange(
+    event
+) {
+
+    const file =
+        event.target.files &&
+        event.target.files[0];
+
+
+    if (!file) {
+
+        return;
+
+    }
+
+
+    if (
+        !file.type.startsWith(
+            "image/"
+        )
+    ) {
+
+        showMessage(
+            "Please select an image file.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Resize and compress the image before
+     * sending Base64 to the backend. This keeps
+     * users.json from becoming unnecessarily large.
+     */
+
+    try {
+
+        const imageData =
+            await compressImage(
+                file
+            );
+
+
+        await saveProfilePhoto(
+            imageData
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Photo error:",
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            "Unable to process the profile photo.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   IMAGE COMPRESSION
+===================================================== */
+
+function compressImage(
+    file
+) {
+
+    return new Promise(
+        (
+            resolve,
+            reject
+        ) => {
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                event => {
+
+                    const image =
+                        new Image();
+
+
+                    image.onload =
+                        () => {
+
+                            const maxSize =
+                                900;
+
+
+                            let width =
+                                image.width;
+
+
+                            let height =
+                                image.height;
+
+
+                            if (
+                                width >
+                                maxSize ||
+                                height >
+                                maxSize
+                            ) {
+
+                                if (
+                                    width >
+                                    height
+                                ) {
+
+                                    height =
+                                        Math.round(
+                                            height *
+                                            maxSize /
+                                            width
+                                        );
+
+
+                                    width =
+                                        maxSize;
+
+                                }
+
+                                else {
+
+                                    width =
+                                        Math.round(
+                                            width *
+                                            maxSize /
+                                            height
+                                        );
+
+
+                                    height =
+                                        maxSize;
+
+                                }
+
+                            }
+
+
+                            const canvas =
+                                document.createElement(
+                                    "canvas"
+                                );
+
+
+                            canvas.width =
+                                width;
+
+
+                            canvas.height =
+                                height;
+
+
+                            const context =
+                                canvas.getContext(
+                                    "2d"
+                                );
+
+
+                            context.drawImage(
+                                image,
+                                0,
+                                0,
+                                width,
+                                height
+                            );
+
+
+                            resolve(
+                                canvas.toDataURL(
+                                    "image/jpeg",
+                                    .82
+                                )
+                            );
+
+                        };
+
+
+                    image.onerror =
+                        () => {
+
+                            reject(
+                                new Error(
+                                    "Unable to read the selected image."
+                                )
+                            );
+
+                        };
+
+
+                    image.src =
+                        event.target.result;
+
+                };
+
+
+            reader.onerror =
+                () => {
+
+                    reject(
+                        new Error(
+                            "Unable to read the selected file."
+                        )
+                    );
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
    SAVE PROFILE PHOTO TO BACKEND
-========================================== */
+===================================================== */
 
-async function saveProfilePhoto(imageData) {
+async function saveProfilePhoto(
+    imageData
+) {
 
-    if (!userData || !userData.id) {
+    if (
+        !userData ||
+        !userData.id
+    ) {
 
         showMessage(
-            "Your account information could not be found. Please log in again.",
+            "Your account information could not be found.",
             "error"
         );
 
         return;
-    }
 
-
-    if (!imageData) {
-
-        showMessage(
-            "Please select a profile photo.",
-            "error"
-        );
-
-        return;
     }
 
 
     try {
 
-        const url =
-            `${API_BASE_URL}/api/user/${encodeURIComponent(userData.id)}/profile-photo`;
-
-
-        console.log(
-            "Saving profile photo to:",
-            url
+        showMessage(
+            "Saving profile photo...",
+            "success"
         );
 
 
         const response =
             await fetch(
-                url,
+
+                API_BASE_URL +
+                "/api/user/" +
+                encodeURIComponent(
+                    userData.id
+                ) +
+                "/profile-photo",
+
                 {
 
-                    method: "PATCH",
+                    method:
+                        "PATCH",
 
                     headers: {
+
                         "Content-Type":
                             "application/json"
+
                     },
 
-                    body: JSON.stringify({
+                    body:
+                        JSON.stringify({
 
-                        profilePhoto:
-                            imageData
+                            profilePhoto:
+                                imageData
 
-                    })
+                        })
 
                 }
+
             );
 
 
-        /* ======================================
-           READ RESPONSE SAFELY
-        ====================================== */
+        const data =
+            await response.json();
 
-        const responseText =
-            await response.text();
-
-
-        let data = null;
-
-
-        try {
-
-            data =
-                JSON.parse(
-                    responseText
-                );
-
-        }
-
-        catch (jsonError) {
-
-            console.error(
-                "Backend returned non-JSON:",
-                responseText
-            );
-
-            throw new Error(
-                `Backend returned invalid response (${response.status}).`
-            );
-
-        }
-
-
-        /* ======================================
-           BACKEND ERROR
-        ====================================== */
 
         if (!response.ok) {
 
@@ -2647,64 +3367,34 @@ async function saveProfilePhoto(imageData) {
         }
 
 
-        /* ======================================
-           UPDATE USER DATA
-        ====================================== */
-
         if (data.user) {
 
-            userData =
-                {
-                    ...userData,
-                    ...data.user
-                };
+            userData = {
+
+                ...userData,
+
+                ...data.user
+
+            };
 
         }
 
+        else {
 
-        /*
-           Make absolutely sure the new photo
-           remains in localStorage.
-        */
-
-        userData.profilePhoto =
-            imageData;
-
-
-        localStorage.setItem(
-            "userData",
-            JSON.stringify(
-                userData
-            )
-        );
-
-
-        /* ======================================
-           UPDATE IMAGE ON SCREEN
-        ====================================== */
-
-        const photo =
-            document.getElementById(
-                "profilePhoto"
-            );
-
-
-        if (photo) {
-
-            photo.src =
+            userData.profilePhoto =
                 imageData;
 
         }
 
 
+        saveStoredUser();
+
+        displayProfilePhoto();
+
+
         showMessage(
             "Profile photo updated successfully.",
             "success"
-        );
-
-
-        console.log(
-            "Profile photo saved successfully."
         );
 
     }
@@ -2727,58 +3417,17 @@ async function saveProfilePhoto(imageData) {
 
 }
 
-/* ==========================================
+
+/* =====================================================
    SAVE PROFILE
-========================================== */
+===================================================== */
 
 async function saveProfile() {
 
-    const saveButton =
-        document.getElementById(
-            "saveButton"
-        );
-
-
-    const fullName =
-        document.getElementById(
-            "fullName"
-        ).value.trim();
-
-
-    const gender =
-        document.getElementById(
-            "gender"
-        ).value;
-
-
-    const country =
-        document.getElementById(
-            "country"
-        ).value;
-
-
-    const bio =
-        document.getElementById(
-            "bio"
-        ).value.trim();
-
-
-    /* ======================================
-       VALIDATION
-    ====================================== */
- if (!fullName) {
-
-        showMessage(
-            "Please enter your full name.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (!userData || !userData.id) {
+    if (
+        !userData ||
+        !userData.id
+    ) {
 
         showMessage(
             "Your account information could not be found. Please log in again.",
@@ -2790,36 +3439,64 @@ async function saveProfile() {
     }
 
 
-    const dob =
-        userData.dob;
+    const saveButton =
+        document.getElementById(
+            "saveButton"
+        );
 
 
-    if (!dob) {
+    const fullName =
+        document
+            .getElementById(
+                "fullName"
+            )
+            .value
+            .trim();
+
+
+    const gender =
+        document
+            .getElementById(
+                "gender"
+            )
+            .value;
+
+
+    const country =
+        document
+            .getElementById(
+                "country"
+            )
+            .value;
+
+
+    const bio =
+        document
+            .getElementById(
+                "bio"
+            )
+            .value
+            .trim();
+
+
+    if (!fullName) {
 
         showMessage(
-            "Your registered date of birth is missing.",
+            "Please enter your full name.",
             "error"
         );
 
         return;
 
     }
-
-
-    const age =
-        calculateAge(
-            dob
-        );
 
 
     if (
-        age === null ||
-        age < 0 ||
-        age > 116
+        fullName.length < 2
     ) {
 
         showMessage(
-            "Your registered date of birth is invalid.",
+            "Please enter a valid full name.",
             "error"
         );
 
@@ -2828,20 +3505,12 @@ async function saveProfile() {
     }
 
 
-    /* ======================================
-       GENERATION
-    ====================================== */
-
-    const generation =
-        getGeneration(
-            age
-        );
-
-
-    if (!generation) {
+    if (
+        bio.length > 500
+    ) {
 
         showMessage(
-            "Unable to determine your generation.",
+            "Bio cannot exceed 500 characters.",
             "error"
         );
 
@@ -2850,56 +3519,94 @@ async function saveProfile() {
     }
 
 
-    const info =
-        generationData[generation];
+    const interests =
+        Array.isArray(
+            userData.interests
+        )
+            ? userData.interests
+            : [];
 
 
-    /* ======================================
-       DATA TO SEND TO BACKEND
-    ====================================== */
+    const hobbies =
+        Array.isArray(
+            userData.hobbies
+        )
+            ? userData.hobbies
+            : [];
+
+
+    const skills =
+        Array.isArray(
+            userData.skills
+        )
+            ? userData.skills
+            : [];
+
+
+    /*
+     * IMPORTANT:
+     *
+     * We deliberately DO NOT send:
+     *
+     * email
+     * phone
+     * dob
+     * age
+     * generation
+     * generationBadge
+     *
+     * The backend controls these values.
+     */
 
     const profileData = {
 
         fullName:
             fullName,
 
+        gender:
+            gender,
+
+        country:
+            country,
+
         bio:
             bio,
 
+        interests:
+            interests,
+
         hobbies:
-            Array.isArray(
-                userData.hobbies
-            )
-                ? userData.hobbies
-                : [],
+            hobbies,
 
         skills:
-            Array.isArray(
-                userData.skills
-            )
-                ? userData.skills
-                : []
+            skills
 
     };
 
 
-    /* ======================================
-       DISABLE BUTTON
-    ====================================== */
+    if (saveButton) {
 
-    saveButton.disabled =
-        true;
+        saveButton.disabled =
+            true;
 
+        saveButton.textContent =
+            "Saving...";
 
-    saveButton.textContent =
-        "⏳ Saving...";
+    }
 
 
     try {
 
         const response =
             await fetch(
-                `${API_BASE_URL}/api/user/${encodeURIComponent(userData.id)}/settings`,
+
+                API_BASE_URL +
+                "/api/user/" +
+                encodeURIComponent(
+                    userData.id
+                ) +
+                "/settings",
+
                 {
 
                     method:
@@ -2918,6 +3625,7 @@ async function saveProfile() {
                         )
 
                 }
+
             );
 
 
@@ -2925,23 +3633,20 @@ async function saveProfile() {
             await response.json();
 
 
-        /* ==================================
-           BACKEND ERROR
-        ================================== */
+        if (
+            response.status === 403 &&
+            data.dormant
+        ) {
+
+            throw new Error(
+                data.message ||
+                "Your account is dormant. Verification is required."
+            );
+
+        }
+
 
         if (!response.ok) {
-
-            if (data.dormant) {
-
-                showMessage(
-                    "Your account is dormant. Please reactivate your account.",
-                    "error"
-                );
-
-                return;
-
-            }
-
 
             throw new Error(
                 data.message ||
@@ -2951,121 +3656,80 @@ async function saveProfile() {
         }
 
 
-        /* ==================================
-           UPDATE LOCAL USER
-        ================================== */
-
         if (data.user) {
 
-            const existingInterests =
-                Array.isArray(
-                    userData.interests
-                )
-                    ? userData.interests
-                    : [];
+            userData = {
 
+                ...userData,
 
-            const existingCountry =
-                country;
+                ...data.user
 
-
-            const existingGender =
-                gender;
-
-
-            userData =
-                {
-                    ...userData,
-                    ...data.user
-                };
-
-
-            /*
-               Preserve fields that the current
-               backend publicUser() does not yet
-               return.
-            */
-
-            userData.interests =
-                existingInterests;
-
-
-            userData.country =
-                existingCountry;
-
-
-            userData.gender =
-                existingGender;
+            };
 
         }
 
 
-        /* ==================================
-           LOCAL GENERATION DATA
-        ================================== */
+        /*
+         * Keep the arrays from the saved request
+         * synchronized locally.
+         */
 
-        userData.age =
-            age;
+        userData.interests =
+            interests;
 
+        userData.hobbies =
+            hobbies;
 
-        userData.generation =
-            generation;
-
-
-        userData.generationBadge =
-            info.badge;
-
-
-        userData.generationDescription =
-            info.description;
+        userData.skills =
+            skills;
 
 
-        userData.country =
-            country;
+        saveStoredUser();
 
 
-        userData.gender =
-            gender;
+        updateGenerationDisplay();
+
+        updatePendingNameStatus();
 
 
-        userData.bio =
-            bio;
+        if (
+            data.user &&
+            data.user.pendingNameChange
+        ) {
 
+            showMessage(
 
-        userData.lastProfileUpdate =
-            new Date().toISOString();
+                "Profile saved. Your new name is pending and will become effective after 24 hours.",
 
+                "success"
 
-        /* ==================================
-           SAVE LOCAL STORAGE
-        ================================== */
+            );
 
-        localStorage.setItem(
-            "userData",
-            JSON.stringify(
-                userData
-            )
-        );
+        }
 
+        else {
 
-        /* ==================================
-           SUCCESS
-        ================================== */
+            showMessage(
 
-        showMessage(
-            "Profile updated successfully!",
-            "success"
-        );
+                "Profile updated successfully.",
+
+                "success"
+
+            );
+
+        }
 
 
         setTimeout(
-            function() {
+            () => {
 
                 window.location.href =
                     "profile.html";
 
             },
-            900
+
+            1200
+
         );
 
     }
@@ -3073,7 +3737,7 @@ async function saveProfile() {
     catch (error) {
 
         console.error(
-            "Save profile error:",
+            "Profile save error:",
             error
         );
 
@@ -3084,82 +3748,27 @@ async function saveProfile() {
             "error"
         );
 
+
+        if (saveButton) {
+
+            saveButton.disabled =
+                false;
+
+            saveButton.textContent =
+                "Save Changes";
+
+        }
+
     }
 
-    finally {
-
-        saveButton.disabled =
-            false;
-
-
-        saveButton.textContent =
-            "💾 Save Changes";
-
-    }
-
 }
 
 
-/* ==========================================
-   MESSAGE
-========================================== */
+/* =====================================================
+   CANCEL
+===================================================== */
 
-function showMessage(
-    text,
-    type
-) {
-
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-
-    message.textContent =
-        text;
-
-
-    message.className =
-        type;
-
-
-    message.style.display =
-        "block";
-
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-}
-
-
-/* ==========================================
-   GENERATION HUB
-========================================== */
-
-function goToGenerationHub() {
-
-    /*
-       Your actual generation hub page
-       is generations.html
-    */
-
-    window.location.href =
-        "generations.html";
-
-}
-
-
-/* ==========================================
-   PROFILE
-========================================== */
-
-function goToProfile() {
+function cancelEdit() {
 
     window.location.href =
         "profile.html";
@@ -3167,18 +3776,54 @@ function goToProfile() {
 }
 
 
-/* ==========================================
-   CLOSE MODAL OUTSIDE
-========================================== */
+/* =====================================================
+   GENERATION HUB
+===================================================== */
 
-document.getElementById(
-    "selectorModal"
-).addEventListener(
-    "click",
-    function(event) {
+function goGenerationHub() {
+
+    window.location.href =
+        "generations.html";
+
+}
+
+
+/* =====================================================
+   MODAL OUTSIDE CLICK
+===================================================== */
+
+document
+    .getElementById(
+        "selectorModal"
+    )
+    .addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.id ===
+                "selectorModal"
+            ) {
+
+                closeSelector();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
 
         if (
-            event.target === this
+            event.key ===
+            "Escape"
         ) {
 
             closeSelector();
@@ -3189,40 +3834,54 @@ document.getElementById(
 );
 
 
-/* ==========================================
-   INITIALIZE
-========================================== */
+/* =====================================================
+   INITIALIZATION
+===================================================== */
 
-async function initializeEditProfile() {
+async function initializePage() {
+
+    userData =
+        getStoredUser();
+
+
+    if (
+        !userData ||
+        !userData.id
+    ) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
 
     /*
-       First display whatever is already
-       available locally.
-    */
-
-    prepareUserArrays();
+     * Render cached data immediately.
+     */
 
     loadProfile();
 
 
     /*
-       Then ask the backend for the latest
-       version of the user.
-    */
+     * Then replace cached data with
+     * authoritative backend data.
+     */
 
     await loadUserFromBackend();
-
-
-    /*
-       Refresh the form using the backend data.
-    */
-
-    loadProfile();
 
 }
 
 
-initializeEditProfile();
+/* =====================================================
+   START
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initializePage
+);
 
 </script>
 

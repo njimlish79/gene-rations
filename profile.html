@@ -843,6 +843,46 @@ body {
 
 
 /* ==================================================
+   LOADING
+================================================== */
+
+.profile-loading {
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    color: #777;
+
+    font-weight: bold;
+
+}
+
+
+/* ==================================================
+   ERROR
+================================================== */
+
+.profile-error {
+
+    display: none;
+
+    background: #ffe8e8;
+
+    color: #a00000;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    margin-bottom: 20px;
+
+    text-align: center;
+
+}
+
+
+/* ==================================================
    FOOTER
 ================================================== */
 
@@ -1056,6 +1096,29 @@ body {
 <main class="container">
 
 
+<div
+    id="profileLoading"
+    class="profile-loading"
+>
+
+    Loading your profile...
+
+</div>
+
+
+<div
+    id="profileError"
+    class="profile-error"
+>
+</div>
+
+
+<div
+    id="profileContent"
+    style="display:none;"
+>
+
+
 <!-- ==================================================
      PROFILE HEADER
 ================================================== -->
@@ -1080,9 +1143,7 @@ body {
             id="profileName"
             class="profile-name"
         >
-
-            Loading...
-
+            —
         </div>
 
 
@@ -1090,9 +1151,7 @@ body {
             id="profileGeneration"
             class="profile-generation"
         >
-
-            Loading...
-
+            —
         </div>
 
 
@@ -1100,9 +1159,7 @@ body {
             id="profileBadge"
             class="profile-badge"
         >
-
-            Loading...
-
+            —
         </div>
 
 
@@ -1110,9 +1167,7 @@ body {
             id="memberSince"
             class="member-since"
         >
-
-            Member since: Loading...
-
+            Member since: —
         </div>
 
     </div>
@@ -1406,9 +1461,7 @@ body {
         id="generationCardName"
         class="generation-card-name"
     >
-
-        Loading...
-
+        —
     </div>
 
 
@@ -1416,9 +1469,7 @@ body {
         id="generationCardBadge"
         class="generation-card-badge"
     >
-
-        Loading...
-
+        —
     </div>
 
 
@@ -1426,9 +1477,7 @@ body {
         id="generationCardWelcome"
         class="generation-card-welcome"
     >
-
-        Loading...
-
+        —
     </div>
 
 
@@ -1436,9 +1485,7 @@ body {
         id="generationCardDescription"
         class="generation-card-description"
     >
-
-        Loading...
-
+        —
     </div>
 
 </section>
@@ -1460,9 +1507,7 @@ body {
         id="bio"
         class="about-text"
     >
-
         No bio added yet.
-
     </div>
 
 </div>
@@ -1695,6 +1740,8 @@ body {
 
 </section>
 
+</div>
+
 </main>
 
 
@@ -1800,13 +1847,19 @@ function setText(
         );
 
 
-    if (element) {
+    if (!element) {
 
-        element.textContent =
-            value ??
-            "—";
+        return;
 
     }
+
+
+    element.textContent =
+        value === undefined ||
+        value === null ||
+        value === ""
+            ? "—"
+            : value;
 
 }
 
@@ -1911,10 +1964,34 @@ function displayTags(
         "";
 
 
-    if (
-        !Array.isArray(values) ||
-        values.length === 0
+    let items = [];
+
+
+    if (Array.isArray(values)) {
+
+        items =
+            values;
+
+    }
+
+    else if (
+        typeof values === "string" &&
+        values.trim()
     ) {
+
+        items =
+            values
+                .split(",")
+                .map(
+                    item =>
+                        item.trim()
+                )
+                .filter(Boolean);
+
+    }
+
+
+    if (!items.length) {
 
         const empty =
             document.createElement(
@@ -1940,7 +2017,7 @@ function displayTags(
     }
 
 
-    values.forEach(
+    items.forEach(
         function(value) {
 
             const tag =
@@ -2045,9 +2122,13 @@ function getProfileGenerationInfo(
         "Unknown Generation";
 
 
-    let info =
-        null;
+    let info = null;
 
+
+    /*
+       Use the existing Gene-rations
+       generation engine if available.
+    */
 
     if (
         typeof getGenerationData ===
@@ -2074,6 +2155,10 @@ function getProfileGenerationInfo(
 
     }
 
+
+    /*
+       Fallback data.
+    */
 
     if (!info) {
 
@@ -2104,7 +2189,7 @@ function getProfileGenerationInfo(
 
 
 /* ==================================================
-   DISPLAY USER PROFILE
+   DISPLAY PROFILE
 ================================================== */
 
 function displayProfile(
@@ -2140,14 +2225,14 @@ function displayProfile(
     setText(
         "profileName",
         user.fullName ||
-        user.name ||
         "Gene-rations Member"
     );
 
 
     setText(
         "profileGeneration",
-        generationInfo.name
+        generationInfo.name ||
+        generation
     );
 
 
@@ -2185,9 +2270,14 @@ function displayProfile(
                 date.toLocaleDateString(
                     undefined,
                     {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric"
+                        year:
+                            "numeric",
+
+                        month:
+                            "long",
+
+                        day:
+                            "numeric"
                     }
                 );
 
@@ -2239,7 +2329,6 @@ function displayProfile(
     setText(
         "infoFullName",
         user.fullName ||
-        user.name ||
         "—"
     );
 
@@ -2292,7 +2381,8 @@ function displayProfile(
 
     setText(
         "generationCardName",
-        generationInfo.name
+        generationInfo.name ||
+        generation
     );
 
 
@@ -2305,7 +2395,8 @@ function displayProfile(
 
     setText(
         "generationCardWelcome",
-        generationInfo.welcome
+        generationInfo.welcome ||
+        `Welcome to the ${generation} community.`
     );
 
 
@@ -2320,11 +2411,21 @@ function displayProfile(
        ABOUT ME
     ================================================== */
 
-    setText(
-        "bio",
-        user.bio ||
-        "No bio added yet."
-    );
+    const bio =
+        document.getElementById(
+            "bio"
+        );
+
+
+    if (bio) {
+
+        bio.textContent =
+            user.bio &&
+            user.bio.trim()
+                ? user.bio
+                : "No bio added yet.";
+
+    }
 
 
     /* ==================================================
@@ -2431,7 +2532,7 @@ function displayProfile(
         catch (error) {
 
             console.warn(
-                "Generation theme could not be applied:",
+                "Generation theme unavailable:",
                 error
             );
 
@@ -2439,17 +2540,11 @@ function displayProfile(
 
     }
 
-
-    console.log(
-        "Profile displayed:",
-        user
-    );
-
 }
 
 
 /* ==================================================
-   FETCH PROFILE FROM BACKEND
+   FETCH PROFILE
 ================================================== */
 
 async function fetchProfileFromBackend(
@@ -2461,7 +2556,7 @@ async function fetchProfileFromBackend(
 
 
     console.log(
-        "Fetching profile:",
+        "Fetching:",
         url
     );
 
@@ -2485,38 +2580,38 @@ async function fetchProfileFromBackend(
         await response.json();
 
 
-    /* ------------------------------------------
-       BACKEND RESPONSE VALIDATION
-    ------------------------------------------ */
+    /*
+       Support BOTH possible response styles:
+
+       1. { success: true, user: {...} }
+
+       2. { id: "...", fullName: "...", ... }
+    */
 
     if (
-        !data ||
-        data.success !== true ||
-        !data.user ||
-        !data.user.id
+        data &&
+        data.success === true &&
+        data.user
     ) {
 
-        throw new Error(
-            "Backend returned invalid user data."
-        );
+        return data.user;
 
     }
 
 
-    /*
-       IMPORTANT:
-       server.js returns:
+    if (
+        data &&
+        data.id
+    ) {
 
-       {
-           success: true,
-           user: {...}
-       }
+        return data;
 
-       Therefore return data.user,
-       not the entire response.
-    */
+    }
 
-    return data.user;
+
+    throw new Error(
+        "Backend returned invalid user data."
+    );
 
 }
 
@@ -2527,9 +2622,24 @@ async function fetchProfileFromBackend(
 
 async function loadProfile() {
 
+    const loading =
+        document.getElementById(
+            "profileLoading"
+        );
+
+    const content =
+        document.getElementById(
+            "profileContent"
+        );
+
+    const errorBox =
+        document.getElementById(
+            "profileError"
+        );
+
 
     /* ------------------------------------------
-       GET LOCAL SESSION
+       READ LOCAL SESSION
     ------------------------------------------ */
 
     const sessionUser =
@@ -2541,31 +2651,41 @@ async function loadProfile() {
         !sessionUser.id
     ) {
 
-        console.warn(
-            "No logged-in user found."
-        );
-
-
         window.location.href =
             "login.html";
-
 
         return;
 
     }
 
 
-    /* ------------------------------------------
-       SHOW CACHED DATA FIRST
-    ------------------------------------------ */
+    /*
+       Display cached information immediately.
+    */
 
     displayProfile(
         sessionUser
     );
 
 
+    if (content) {
+
+        content.style.display =
+            "block";
+
+    }
+
+
+    if (loading) {
+
+        loading.style.display =
+            "none";
+
+    }
+
+
     /* ------------------------------------------
-       BACKEND CONNECTION
+       GET FRESH DATA
     ------------------------------------------ */
 
     try {
@@ -2576,9 +2696,9 @@ async function loadProfile() {
             );
 
 
-        /* --------------------------------------
-           SAVE FRESH BACKEND DATA
-        -------------------------------------- */
+        /*
+           Update local storage.
+        */
 
         localStorage.setItem(
             "userData",
@@ -2588,18 +2708,14 @@ async function loadProfile() {
         );
 
 
-        /* --------------------------------------
-           DISPLAY FRESH DATA
-        -------------------------------------- */
+        /*
+           Update page with latest backend data.
+        */
 
         displayProfile(
             freshUser
         );
 
-
-        /* --------------------------------------
-           CONNECTION SUCCESS
-        -------------------------------------- */
 
         setBackendStatus(
             true
@@ -2607,30 +2723,8 @@ async function loadProfile() {
 
 
         console.log(
-            "================================"
-        );
-
-        console.log(
-            "BACKEND PROFILE CONNECTED"
-        );
-
-        console.log(
-            "User ID:",
-            freshUser.id
-        );
-
-        console.log(
-            "Name:",
-            freshUser.fullName
-        );
-
-        console.log(
-            "Generation:",
-            freshUser.generation
-        );
-
-        console.log(
-            "================================"
+            "Gene-rations profile loaded:",
+            freshUser
         );
 
     }
@@ -2638,23 +2732,29 @@ async function loadProfile() {
     catch (error) {
 
         console.error(
-            "Backend profile request failed:",
+            "Profile backend error:",
             error
         );
 
-
-        /* --------------------------------------
-           KEEP CACHED PROFILE
-        -------------------------------------- */
 
         setBackendStatus(
             false
         );
 
 
-        console.warn(
-            "Using locally cached profile data."
-        );
+        /*
+           Cached profile remains visible.
+        */
+
+        if (errorBox) {
+
+            errorBox.textContent =
+                "The latest profile information could not be loaded. Showing saved profile information.";
+
+            errorBox.style.display =
+                "block";
+
+        }
 
     }
 
@@ -2662,7 +2762,7 @@ async function loadProfile() {
 
 
 /* ==================================================
-   START
+   START PROFILE
 ================================================== */
 
 document.addEventListener(
@@ -2674,7 +2774,7 @@ document.addEventListener(
     }
 );
 
-      </script>
+</script>
 
 
 </body>
