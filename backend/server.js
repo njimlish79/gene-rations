@@ -11,6 +11,9 @@ const PORT = 3000;
 const usersFile =
     path.join(__dirname, "users.json");
 
+const postsFile =
+    path.join(__dirname, "posts.json");
+
 
 /* =====================================================
    MIDDLEWARE
@@ -32,12 +35,11 @@ app.use(
 function loadUsers() {
 
     if (!fs.existsSync(usersFile)) {
-
         fs.writeFileSync(
             usersFile,
-            "[]"
+            "[]",
+            "utf8"
         );
-
     }
 
     try {
@@ -57,9 +59,7 @@ function loadUsers() {
         );
 
         return [];
-
     }
-
 }
 
 
@@ -71,22 +71,70 @@ function saveUsers(users) {
             users,
             null,
             2
-        )
+        ),
+        "utf8"
     );
-
 }
 
 
 /* =====================================================
-   GENERATION CALCULATION
+   POSTS DATABASE
+===================================================== */
+
+function loadPosts() {
+
+    if (!fs.existsSync(postsFile)) {
+
+        fs.writeFileSync(
+            postsFile,
+            "[]",
+            "utf8"
+        );
+    }
+
+    try {
+
+        return JSON.parse(
+            fs.readFileSync(
+                postsFile,
+                "utf8"
+            )
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Unable to read posts.json:",
+            error
+        );
+
+        return [];
+    }
+}
+
+
+function savePosts(posts) {
+
+    fs.writeFileSync(
+        postsFile,
+        JSON.stringify(
+            posts,
+            null,
+            2
+        ),
+        "utf8"
+    );
+}
+
+
+/* =====================================================
+   AGE
 ===================================================== */
 
 function calculateAge(dob) {
 
     if (!dob) {
-
         return null;
-
     }
 
     const birthDate =
@@ -95,27 +143,21 @@ function calculateAge(dob) {
     const today =
         new Date();
 
-
     if (
         isNaN(
             birthDate.getTime()
         )
     ) {
-
         return null;
-
     }
-
 
     let age =
         today.getFullYear() -
         birthDate.getFullYear();
 
-
     const monthDifference =
         today.getMonth() -
         birthDate.getMonth();
-
 
     if (
         monthDifference < 0 ||
@@ -125,169 +167,137 @@ function calculateAge(dob) {
             birthDate.getDate()
         )
     ) {
-
         age--;
-
     }
 
-
     return age;
-
 }
 
+
+/* =====================================================
+   GENERATION
+===================================================== */
 
 function determineGeneration(age) {
 
     if (
         age === null ||
+        age === undefined ||
         age < 0
     ) {
-
-        return null;
-
+        return "";
     }
-
 
     if (age >= 65) {
-
         return "Silent Generation";
-
     }
-
 
     if (age >= 45) {
-
         return "Generation X";
-
     }
-
 
     if (age >= 29) {
-
         return "Millennial";
-
     }
-
 
     if (age >= 13) {
-
         return "Generation Z";
-
     }
 
-
     return "Generation Alpha";
-
 }
 
 
-/* =====================================================
-   GENERATION BADGE
-===================================================== */
-
-function getGenerationBadge(generation) {
+function getGenerationBadge(
+    generation
+) {
 
     const badges = {
 
-        "Generation Alpha":
-            "🧬 Alpha",
-
-        "Generation Z":
-            "⚡ Gen Z",
-
-        "Millennial":
-            "🌍 Millennial",
+        "Silent Generation":
+            "🏅 Silent Generation",
 
         "Generation X":
-            "🔥 Gen X",
+            "❌ Generation X",
 
-        "Baby Boomer":
-            "🏆 Boomer",
+        "Millennial":
+            "🌟 Millennial",
 
-        "Silent Generation":
-            "⭐ Silent"
+        "Generation Z":
+            "⚡ Generation Z",
 
+        "Generation Alpha":
+            "🚀 Generation Alpha"
     };
-
 
     return (
         badges[generation] ||
-        `🏷️ ${generation || "Gene-rations"}`
+        "🏷️ Gene-rations"
     );
-
 }
 
-
-/* =====================================================
-   GENERATION DESCRIPTION
-===================================================== */
 
 function getGenerationDescription(
     generation
 ) {
 
-    return (
-        `Welcome to the ${generation} community.`
-    );
+    const descriptions = {
 
+        "Silent Generation":
+            "A generation known for resilience, experience and wisdom.",
+
+        "Generation X":
+            "A generation known for independence, adaptability and practical thinking.",
+
+        "Millennial":
+            "A generation shaped by technology, creativity and social change.",
+
+        "Generation Z":
+            "A digitally connected generation focused on creativity, identity and new possibilities.",
+
+        "Generation Alpha":
+            "A generation growing up in a highly connected and technology-driven world."
+    };
+
+    return (
+        descriptions[generation] ||
+        "Your generation is calculated automatically from your date of birth."
+    );
 }
 
 
-/* =====================================================
-   UPDATE CALCULATED USER DATA
-===================================================== */
-
 function refreshGenerationData(user) {
-
-    if (!user.dob) {
-
-        return;
-
-    }
-
 
     const age =
         calculateAge(
             user.dob
         );
 
-
     const generation =
         determineGeneration(
             age
         );
 
+    user.age =
+        age;
 
-    if (age !== null) {
+    user.generation =
+        generation;
 
-        user.age =
-            age;
+    user.generationBadge =
+        getGenerationBadge(
+            generation
+        );
 
-    }
-
-
-    if (generation) {
-
-        user.generation =
-            generation;
-
-        user.generationBadge =
-            getGenerationBadge(
-                generation
-            );
-
-        user.generationDescription =
-            getGenerationDescription(
-                generation
-            );
-
-    }
-
+    user.generationDescription =
+        getGenerationDescription(
+            generation
+        );
 }
 
 
 /* =====================================================
-   NAME CHANGE HELPERS
+   NAME CHANGE
 ===================================================== */
 
 function cleanNameHistory(user) {
@@ -297,68 +307,8 @@ function cleanNameHistory(user) {
             user.nameChangeHistory
         )
     ) {
-
         user.nameChangeHistory = [];
-
     }
-
-
-    const sixMonthsAgo =
-        Date.now() -
-        (
-            183 *
-            24 *
-            60 *
-            60 *
-            1000
-        );
-
-
-    user.nameChangeHistory =
-        user.nameChangeHistory.filter(
-            timestamp =>
-                timestamp >=
-                sixMonthsAgo
-        );
-
-}
-
-
-function canRequestNameChange(user) {
-
-    cleanNameHistory(user);
-
-
-    return (
-        user.nameChangeHistory.length <
-        2
-    );
-
-}
-
-
-/* =====================================================
-   DORMANT ACCOUNT CHECK
-===================================================== */
-
-function checkDormantStatus(user) {
-
-    if (!user.verified) {
-
-        return false;
-
-    }
-
-
-    const lastActivity =
-        user.lastActive
-        ? new Date(
-            user.lastActive
-        ).getTime()
-        : new Date(
-            user.memberSince
-        ).getTime();
-
 
     const sixMonths =
         183 *
@@ -367,34 +317,110 @@ function checkDormantStatus(user) {
         60 *
         1000;
 
+    const cutoff =
+        Date.now() -
+        sixMonths;
+
+    user.nameChangeHistory =
+        user.nameChangeHistory.filter(
+            timestamp =>
+                timestamp >= cutoff
+        );
+}
+
+
+function canRequestNameChange(user) {
+
+    cleanNameHistory(user);
+
+    return (
+        user.nameChangeHistory.length < 2
+    );
+}
+
+
+function applyPendingNameChange(user) {
 
     if (
-        Date.now() -
-        lastActivity >
-        sixMonths
+        !user.pendingNameChange
     ) {
-
-        user.dormant = true;
-
-        return true;
-
+        return false;
     }
 
+    if (
+        Date.now() <
+        user.pendingNameChange.effectiveAt
+    ) {
+        return false;
+    }
 
-    return !!user.dormant;
+    cleanNameHistory(user);
 
+    user.fullName =
+        user.pendingNameChange.name;
+
+    user.nameChangeHistory.push(
+        Date.now()
+    );
+
+    user.pendingNameChange =
+        null;
+
+    return true;
 }
 
 
 /* =====================================================
-   PUBLIC USER DATA
-   NEVER SEND PASSWORD HASH
+   DORMANT ACCOUNT
+===================================================== */
+
+function checkDormantStatus(user) {
+
+    if (
+        !user.verified
+    ) {
+        return false;
+    }
+
+    if (
+        !user.lastActive
+    ) {
+        return false;
+    }
+
+    const sixMonths =
+        183 *
+        24 *
+        60 *
+        60 *
+        1000;
+
+    const inactive =
+        Date.now() -
+        new Date(
+            user.lastActive
+        ).getTime();
+
+    if (
+        inactive >
+        sixMonths
+    ) {
+
+        user.dormant =
+            true;
+
+        return true;
+    }
+
+    return !!user.dormant;
+}
+
+
+/* =====================================================
+   PUBLIC USER
 ===================================================== */
 
 function publicUser(user) {
-
-    refreshGenerationData(user);
-
 
     return {
 
@@ -416,8 +442,11 @@ function publicUser(user) {
         age:
             user.age,
 
+        country:
+            user.country || "",
+
         gender:
-            user.gender,
+            user.gender || "",
 
         generation:
             user.generation,
@@ -429,43 +458,79 @@ function publicUser(user) {
             user.generationDescription,
 
         profilePhoto:
-            user.profilePhoto,
+            user.profilePhoto || "",
 
         bio:
-            user.bio,
+            user.bio || "",
 
         interests:
-            user.interests,
+            Array.isArray(
+                user.interests
+            )
+                ? user.interests
+                : [],
 
         hobbies:
-            user.hobbies,
+            Array.isArray(
+                user.hobbies
+            )
+                ? user.hobbies
+                : [],
 
         skills:
-            user.skills,
+            Array.isArray(
+                user.skills
+            )
+                ? user.skills
+                : [],
 
         followers:
-            user.followers,
+            Array.isArray(
+                user.followers
+            )
+                ? user.followers.length
+                : 0,
 
         following:
-            user.following,
+            Array.isArray(
+                user.following
+            )
+                ? user.following.length
+                : 0,
 
         posts:
-            user.posts,
+            Array.isArray(
+                user.posts
+            )
+                ? user.posts
+                : [],
 
         communities:
-            user.communities,
+            Array.isArray(
+                user.communities
+            )
+                ? user.communities
+                : [],
 
         events:
-            user.events,
+            Array.isArray(
+                user.events
+            )
+                ? user.events
+                : [],
 
         familyMembers:
-            user.familyMembers,
+            Array.isArray(
+                user.familyMembers
+            )
+                ? user.familyMembers
+                : [],
 
         profileViews:
-            user.profileViews,
+            user.profileViews || 0,
 
         verified:
-            user.verified,
+            !!user.verified,
 
         memberSince:
             user.memberSince,
@@ -481,21 +546,19 @@ function publicUser(user) {
 
         personalInfoVisibility:
             user.personalInfoVisibility ||
-            "private",
+            "public",
 
         nameChangeHistory:
             user.nameChangeHistory || [],
 
         pendingNameChange:
             user.pendingNameChange || null
-
     };
-
 }
 
 
 /* =====================================================
-   TEST BACKEND
+   HOME / SERVER TEST
 ===================================================== */
 
 app.get(
@@ -508,15 +571,13 @@ app.get(
 
             message:
                 "Gene-rations backend is running."
-
         });
-
     }
 );
 
 
 /* =====================================================
-   SIGNUP
+   SIGN UP
 ===================================================== */
 
 app.post(
@@ -526,25 +587,19 @@ app.post(
         try {
 
             const {
-
                 fullName,
                 email,
                 phone,
                 dob,
                 age,
                 gender,
+                country,
                 generation,
                 generationBadge,
                 generationDescription,
                 verificationMethod,
                 password
-
             } = req.body;
-
-
-            /* -----------------------------------------
-               VALIDATION
-            ----------------------------------------- */
 
             if (
                 !fullName ||
@@ -558,30 +613,25 @@ app.post(
 
                     message:
                         "Full name, email and password are required."
-
                 });
-
             }
-
 
             const users =
                 loadUsers();
 
+            const normalizedEmail =
+                email
+                    .trim()
+                    .toLowerCase();
 
-            /* -----------------------------------------
-               EMAIL MUST BE UNIQUE
-            ----------------------------------------- */
-
-            const existingEmail =
-                users.find(
+            const emailExists =
+                users.some(
                     user =>
-                        user.email &&
-                        user.email.toLowerCase() ===
-                        email.toLowerCase()
+                        user.email ===
+                        normalizedEmail
                 );
 
-
-            if (existingEmail) {
+            if (emailExists) {
 
                 return res.status(409).json({
 
@@ -589,27 +639,19 @@ app.post(
 
                     message:
                         "An account with this email already exists."
-
                 });
-
             }
-
-
-            /* -----------------------------------------
-               PHONE MUST ALSO BE UNIQUE
-            ----------------------------------------- */
 
             if (phone) {
 
-                const existingPhone =
-                    users.find(
+                const phoneExists =
+                    users.some(
                         user =>
-                            user.phone &&
-                            user.phone === phone
+                            user.phone ===
+                            phone
                     );
 
-
-                if (existingPhone) {
+                if (phoneExists) {
 
                     return res.status(409).json({
 
@@ -617,23 +659,20 @@ app.post(
 
                         message:
                             "An account with this phone number already exists."
-
                     });
-
                 }
-
             }
 
 
-            /* -----------------------------------------
-               CALCULATE GENERATION FROM DOB
-            ----------------------------------------- */
-
-            const calculatedAge =
-                calculateAge(
-                    dob
+            const passwordHash =
+                await bcrypt.hash(
+                    password,
+                    12
                 );
 
+
+            const calculatedAge =
+                calculateAge(dob);
 
             const calculatedGeneration =
                 determineGeneration(
@@ -646,27 +685,6 @@ app.post(
                 generation ||
                 "";
 
-
-            const finalBadge =
-                getGenerationBadge(
-                    finalGeneration
-                );
-
-
-            /* -----------------------------------------
-               PASSWORD HASH
-            ----------------------------------------- */
-
-            const passwordHash =
-                await bcrypt.hash(
-                    password,
-                    12
-                );
-
-
-            /* -----------------------------------------
-               VERIFICATION
-            ----------------------------------------- */
 
             const verificationCode =
                 Math.floor(
@@ -685,10 +703,6 @@ app.post(
                 );
 
 
-            /* -----------------------------------------
-               USER
-            ----------------------------------------- */
-
             const newUser = {
 
                 id:
@@ -698,16 +712,21 @@ app.post(
                     fullName.trim(),
 
                 email:
-                    email.trim().toLowerCase(),
+                    normalizedEmail,
 
                 phone:
                     phone || "",
+
+                country:
+                    country || "",
 
                 dob:
                     dob || "",
 
                 age:
-                    calculatedAge,
+                    calculatedAge ??
+                    age ??
+                    null,
 
                 gender:
                     gender || "",
@@ -716,18 +735,27 @@ app.post(
                     finalGeneration,
 
                 generationBadge:
-                    finalBadge,
+                    getGenerationBadge(
+                        finalGeneration
+                    ),
 
                 generationDescription:
                     getGenerationDescription(
                         finalGeneration
                     ),
 
+                passwordHash,
+
                 verificationMethod:
                     verificationMethod ||
                     "email",
 
-                passwordHash,
+                verificationCode,
+
+                verificationExpires,
+
+                verified:
+                    false,
 
                 profilePhoto:
                     "",
@@ -765,34 +793,26 @@ app.post(
                 profileViews:
                     0,
 
-                verified:
-                    false,
-
-                verificationCode,
-
-                verificationExpires,
-
-                memberSince:
-                    new Date().toISOString(),
-
-                lastActive:
-                    null,
-
-                dormant:
-                    false,
+                personalInfoVisibility:
+                    "public",
 
                 accountVisibility:
                     "public",
-
-                personalInfoVisibility:
-                    "private",
 
                 nameChangeHistory:
                     [],
 
                 pendingNameChange:
-                    null
+                    null,
 
+                dormant:
+                    false,
+
+                memberSince:
+                    new Date().toISOString(),
+
+                lastActive:
+                    new Date().toISOString()
             };
 
 
@@ -800,51 +820,15 @@ app.post(
                 newUser
             );
 
-
             saveUsers(
                 users
             );
 
 
-            /* -----------------------------------------
-               DEVELOPMENT VERIFICATION CODE
-            ----------------------------------------- */
-
-            console.log("");
-
             console.log(
-                "================================"
-            );
-
-            console.log(
-                "GENE-RATIONS VERIFICATION"
-            );
-
-            console.log(
-                "User:",
-                newUser.fullName
-            );
-
-            console.log(
-                "Email:",
-                newUser.email
-            );
-
-            console.log(
-                "Method:",
-                newUser.verificationMethod
-            );
-
-            console.log(
-                "CODE:",
+                "Gene-rations verification code:",
                 verificationCode
             );
-
-            console.log(
-                "================================"
-            );
-
-            console.log("");
 
 
             res.status(201).json({
@@ -858,31 +842,27 @@ app.post(
                     newUser.id,
 
                 verificationRequired:
-                    true
+                    true,
 
+                verificationMethod:
+                    newUser.verificationMethod
             });
 
-        }
-
-        catch (error) {
+        } catch (error) {
 
             console.error(
                 "Signup error:",
                 error
             );
 
-
             res.status(500).json({
 
                 success: false,
 
                 message:
-                    "Server error."
-
+                    "Unable to create account."
             });
-
         }
-
     }
 );
 
@@ -898,40 +878,19 @@ app.post(
         try {
 
             const {
-                email,
+                userId,
                 code
             } = req.body;
-
-
-            if (
-                !email ||
-                !code
-            ) {
-
-                return res.status(400).json({
-
-                    success: false,
-
-                    message:
-                        "Email and verification code are required."
-
-                });
-
-            }
-
 
             const users =
                 loadUsers();
 
-
             const user =
                 users.find(
-                    item =>
-                        item.email &&
-                        item.email.toLowerCase() ===
-                        email.toLowerCase()
+                    u =>
+                        u.id ===
+                        userId
                 );
-
 
             if (!user) {
 
@@ -940,37 +899,27 @@ app.post(
                     success: false,
 
                     message:
-                        "Account not found."
-
+                        "User account not found."
                 });
-
             }
 
-
-            /* -----------------------------------------
-               ALREADY VERIFIED
-            ----------------------------------------- */
-
-            if (user.verified) {
-
-                return res.json({
-
-                    success: true,
-
-                    message:
-                        "Account is already verified."
-
-                });
-
-            }
-
-
-            /* -----------------------------------------
-               CODE EXPIRATION
-            ----------------------------------------- */
 
             if (
-                !user.verificationExpires ||
+                user.verificationCode !==
+                code
+            ) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "Invalid verification code."
+                });
+            }
+
+
+            if (
                 Date.now() >
                 user.verificationExpires
             ) {
@@ -981,44 +930,12 @@ app.post(
 
                     message:
                         "Verification code has expired."
-
                 });
-
             }
 
-
-            /* -----------------------------------------
-               CODE CHECK
-            ----------------------------------------- */
-
-            if (
-                String(code).trim() !==
-                String(
-                    user.verificationCode
-                )
-            ) {
-
-                return res.status(400).json({
-
-                    success: false,
-
-                    message:
-                        "Invalid verification code."
-
-                });
-
-            }
-
-
-            /* -----------------------------------------
-               VERIFY
-            ----------------------------------------- */
 
             user.verified =
                 true;
-
-            user.dormant =
-                false;
 
             user.verificationCode =
                 null;
@@ -1041,30 +958,23 @@ app.post(
 
                 message:
                     "Account verified successfully."
-
             });
 
-        }
-
-        catch (error) {
+        } catch (error) {
 
             console.error(
                 "Verification error:",
                 error
             );
 
-
             res.status(500).json({
 
                 success: false,
 
                 message:
-                    "Server error."
-
+                    "Unable to verify account."
             });
-
         }
-
     }
 );
 
@@ -1084,36 +994,20 @@ app.post(
                 password
             } = req.body;
 
-
-            if (
-                !email ||
-                !password
-            ) {
-
-                return res.status(400).json({
-
-                    success: false,
-
-                    message:
-                        "Email and password are required."
-
-                });
-
-            }
-
-
             const users =
                 loadUsers();
 
+            const normalizedEmail =
+                String(email || "")
+                    .trim()
+                    .toLowerCase();
 
             const user =
                 users.find(
-                    item =>
-                        item.email &&
-                        item.email.toLowerCase() ===
-                        email.toLowerCase()
+                    u =>
+                        u.email ===
+                        normalizedEmail
                 );
-
 
             if (!user) {
 
@@ -1123,24 +1017,17 @@ app.post(
 
                     message:
                         "Invalid email or password."
-
                 });
-
             }
 
 
-            /* -----------------------------------------
-               PASSWORD
-            ----------------------------------------- */
-
-            const passwordMatch =
+            const passwordMatches =
                 await bcrypt.compare(
                     password,
                     user.passwordHash
                 );
 
-
-            if (!passwordMatch) {
+            if (!passwordMatches) {
 
                 return res.status(401).json({
 
@@ -1148,15 +1035,9 @@ app.post(
 
                     message:
                         "Invalid email or password."
-
                 });
-
             }
 
-
-            /* -----------------------------------------
-               VERIFICATION
-            ----------------------------------------- */
 
             if (!user.verified) {
 
@@ -1165,16 +1046,16 @@ app.post(
                     success: false,
 
                     message:
-                        "Please verify your account first."
+                        "Please verify your account before logging in.",
 
+                    verificationRequired:
+                        true,
+
+                    userId:
+                        user.id
                 });
-
             }
 
-
-            /* -----------------------------------------
-               DORMANT CHECK
-            ----------------------------------------- */
 
             if (
                 checkDormantStatus(
@@ -1186,7 +1067,6 @@ app.post(
                     users
                 );
 
-
                 return res.status(403).json({
 
                     success: false,
@@ -1194,61 +1074,21 @@ app.post(
                     dormant: true,
 
                     message:
-                        "Your account is dormant because it has been inactive for more than 6 months. Verification is required to reactivate your account."
-
+                        "Your account is dormant. Verification is required for reactivation."
                 });
-
             }
 
 
-            /* -----------------------------------------
-               APPLY PENDING NAME IF READY
-            ----------------------------------------- */
-
-            if (
-                user.pendingNameChange &&
-                Date.now() >=
-                user.pendingNameChange.effectiveAt
-            ) {
-
-                cleanNameHistory(
-                    user
-                );
-
-
-                user.fullName =
-                    user.pendingNameChange.name;
-
-
-                user.nameChangeHistory.push(
-                    Date.now()
-                );
-
-
-                user.pendingNameChange =
-                    null;
-
-            }
-
-
-            /* -----------------------------------------
-               REFRESH GENERATION
-            ----------------------------------------- */
+            applyPendingNameChange(
+                user
+            );
 
             refreshGenerationData(
                 user
             );
 
-
-            /* -----------------------------------------
-               ACTIVE
-            ----------------------------------------- */
-
             user.lastActive =
                 new Date().toISOString();
-
-            user.dormant =
-                false;
 
 
             saveUsers(
@@ -1260,37 +1100,25 @@ app.post(
 
                 success: true,
 
-                message:
-                    "Login successful.",
-
                 user:
-                    publicUser(
-                        user
-                    )
-
+                    publicUser(user)
             });
 
-        }
-
-        catch (error) {
+        } catch (error) {
 
             console.error(
                 "Login error:",
                 error
             );
 
-
             res.status(500).json({
 
                 success: false,
 
                 message:
-                    "Server error."
-
+                    "Unable to log in."
             });
-
         }
-
     }
 );
 
@@ -1308,14 +1136,12 @@ app.get(
             const users =
                 loadUsers();
 
-
             const user =
                 users.find(
-                    item =>
-                        item.id ===
+                    u =>
+                        u.id ===
                         req.params.userId
                 );
-
 
             if (!user) {
 
@@ -1325,9 +1151,7 @@ app.get(
 
                     message:
                         "User not found."
-
                 });
-
             }
 
 
@@ -1341,7 +1165,6 @@ app.get(
                     users
                 );
 
-
                 return res.status(403).json({
 
                     success: false,
@@ -1349,21 +1172,23 @@ app.get(
                     dormant: true,
 
                     message:
-                        "Account is dormant."
-
+                        "Your account is dormant. Verification is required."
                 });
-
             }
 
+
+            const changed =
+                applyPendingNameChange(
+                    user
+                );
 
             refreshGenerationData(
                 user
             );
 
-
-            saveUsers(
-                users
-            );
+            if (changed) {
+                saveUsers(users);
+            }
 
 
             res.json({
@@ -1371,35 +1196,30 @@ app.get(
                 success: true,
 
                 user:
-                    publicUser(
-                        user
-                    )
-
+                    publicUser(user)
             });
 
-        }
+        } catch (error) {
 
-        catch (error) {
-
-            console.error(error);
+            console.error(
+                "Get user error:",
+                error
+            );
 
             res.status(500).json({
 
                 success: false,
 
                 message:
-                    "Server error."
-
+                    "Unable to load user."
             });
-
         }
-
     }
 );
 
 
 /* =====================================================
-   UPDATE PROFILE SETTINGS
+   UPDATE USER SETTINGS / PROFILE
 ===================================================== */
 
 app.patch(
@@ -1408,14 +1228,32 @@ app.patch(
 
         try {
 
+            const {
+                fullName,
+                gender,
+                country,
+                bio,
+                interests,
+                hobbies,
+                skills,
+                personalInfoVisibility,
+
+                email,
+                phone,
+                dob,
+                age,
+                generation,
+                generationBadge
+            } = req.body;
+
+
             const users =
                 loadUsers();
 
-
             const user =
                 users.find(
-                    item =>
-                        item.id ===
+                    u =>
+                        u.id ===
                         req.params.userId
                 );
 
@@ -1428,15 +1266,9 @@ app.patch(
 
                     message:
                         "User not found."
-
                 });
-
             }
 
-
-            /* -----------------------------------------
-               DORMANT ACCOUNT
-            ----------------------------------------- */
 
             if (
                 checkDormantStatus(
@@ -1448,7 +1280,6 @@ app.patch(
                     users
                 );
 
-
                 return res.status(403).json({
 
                     success: false,
@@ -1456,22 +1287,23 @@ app.patch(
                     dormant: true,
 
                     message:
-                        "Dormant accounts must be reactivated first."
-
+                        "Your account is dormant. Verification is required."
                 });
-
             }
 
 
-            /* -----------------------------------------
-               PERMANENT ACCOUNT INFORMATION
-            ----------------------------------------- */
+            /*
+             * These values are controlled
+             * permanently by the backend.
+             */
 
             if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "email"
-                )
+                email !== undefined ||
+                phone !== undefined ||
+                dob !== undefined ||
+                age !== undefined ||
+                generation !== undefined ||
+                generationBadge !== undefined
             ) {
 
                 return res.status(400).json({
@@ -1479,149 +1311,35 @@ app.patch(
                     success: false,
 
                     message:
-                        "Email address is permanent and cannot be changed."
-
+                        "Email, phone, date of birth, age and generation information cannot be changed from settings."
                 });
-
             }
 
 
-            if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "phone"
-                )
-            ) {
-
-                return res.status(400).json({
-
-                    success: false,
-
-                    message:
-                        "Phone number is permanent and cannot be changed."
-
-                });
-
-            }
-
+            /* =========================
+               NAME CHANGE
+            ========================= */
 
             if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "dob"
-                )
-            ) {
-
-                return res.status(400).json({
-
-                    success: false,
-
-                    message:
-                        "Date of birth is permanent and cannot be changed."
-
-                });
-
-            }
-
-
-            if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "age"
-                )
-            ) {
-
-                return res.status(400).json({
-
-                    success: false,
-
-                    message:
-                        "Age is calculated automatically from your date of birth."
-
-                });
-
-            }
-
-
-            if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "generation"
-                )
-            ) {
-
-                return res.status(400).json({
-
-                    success: false,
-
-                    message:
-                        "Generation is calculated automatically from your date of birth."
-
-                });
-
-            }
-
-
-            if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "generationBadge"
-                )
-            ) {
-
-                return res.status(400).json({
-
-                    success: false,
-
-                    message:
-                        "Generation badge is calculated automatically."
-
-                });
-
-            }
-
-
-            /* -----------------------------------------
-               FULL NAME
-               Only create a pending change when
-               the name is actually different.
-            ----------------------------------------- */
-
-            if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "fullName"
-                )
+                fullName !== undefined
             ) {
 
                 const newName =
                     String(
-                        req.body.fullName
+                        fullName
                     ).trim();
 
-
-                if (
-                    newName.length < 2
-                ) {
+                if (!newName) {
 
                     return res.status(400).json({
 
                         success: false,
 
                         message:
-                            "Please enter a valid full name."
-
+                            "Full name cannot be empty."
                     });
-
                 }
 
-
-                /*
-                 * IMPORTANT:
-                 * If the name has NOT changed,
-                 * do nothing and continue saving
-                 * the other profile fields.
-                 */
 
                 if (
                     newName !==
@@ -1629,36 +1347,18 @@ app.patch(
                 ) {
 
                     if (
-                        user.pendingNameChange
-                    ) {
-
-                        return res.status(409).json({
-
-                            success: false,
-
-                            message:
-                                "You already have a name change waiting to take effect."
-
-                        });
-
-                    }
-
-
-                    if (
                         !canRequestNameChange(
                             user
                         )
                     ) {
 
-                        return res.status(429).json({
+                        return res.status(400).json({
 
                             success: false,
 
                             message:
-                                "You have reached the maximum of 2 name changes within 6 months."
-
+                                "You can only change your name twice within the allowed period."
                         });
-
                     }
 
 
@@ -1678,71 +1378,43 @@ app.patch(
                                 60 *
                                 1000
                             )
-
                     };
-
                 }
-
             }
 
 
-            /* -----------------------------------------
-               GENDER
-            ----------------------------------------- */
+            /* =========================
+               OTHER PROFILE DATA
+            ========================= */
 
             if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "gender"
-                )
+                gender !== undefined
             ) {
-
                 user.gender =
-                    String(
-                        req.body.gender || ""
-                    ).trim();
-
+                    gender;
             }
 
 
-            /* -----------------------------------------
-               COUNTRY
-            ----------------------------------------- */
-
             if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "country"
-                )
+                country !== undefined
             ) {
-
                 user.country =
-                    String(
-                        req.body.country || ""
-                    ).trim();
-
+                    country;
             }
 
 
-            /* -----------------------------------------
-               BIO
-            ----------------------------------------- */
-
             if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "bio"
-                )
+                bio !== undefined
             ) {
 
-                const bio =
+                const cleanBio =
                     String(
-                        req.body.bio || ""
+                        bio
                     ).trim();
-
 
                 if (
-                    bio.length > 500
+                    cleanBio.length >
+                    500
                 ) {
 
                     return res.status(400).json({
@@ -1751,265 +1423,105 @@ app.patch(
 
                         message:
                             "Bio cannot exceed 500 characters."
-
                     });
-
                 }
-
 
                 user.bio =
-                    bio;
-
+                    cleanBio;
             }
 
 
-            /* -----------------------------------------
-               INTERESTS
-            ----------------------------------------- */
-
             if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "interests"
-                )
+                interests !== undefined
             ) {
-
-                if (
-                    !Array.isArray(
-                        req.body.interests
-                    )
-                ) {
-
-                    return res.status(400).json({
-
-                        success: false,
-
-                        message:
-                            "Interests must be an array."
-
-                    });
-
-                }
-
 
                 user.interests =
-                    req.body.interests
-                        .map(
-                            item =>
-                                String(item).trim()
-                        )
-                        .filter(
-                            item =>
-                                item.length > 0
-                        );
-
+                    Array.isArray(
+                        interests
+                    )
+                        ? interests
+                        : [];
             }
 
 
-            /* -----------------------------------------
-               HOBBIES
-            ----------------------------------------- */
-
             if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "hobbies"
-                )
+                hobbies !== undefined
             ) {
-
-                if (
-                    !Array.isArray(
-                        req.body.hobbies
-                    )
-                ) {
-
-                    return res.status(400).json({
-
-                        success: false,
-
-                        message:
-                            "Hobbies must be an array."
-
-                    });
-
-                }
-
 
                 user.hobbies =
-                    req.body.hobbies
-                        .map(
-                            item =>
-                                String(item).trim()
-                        )
-                        .filter(
-                            item =>
-                                item.length > 0
-                        );
-
+                    Array.isArray(
+                        hobbies
+                    )
+                        ? hobbies
+                        : [];
             }
 
 
-            /* -----------------------------------------
-               SKILLS
-            ----------------------------------------- */
-
             if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "skills"
-                )
+                skills !== undefined
             ) {
-
-                if (
-                    !Array.isArray(
-                        req.body.skills
-                    )
-                ) {
-
-                    return res.status(400).json({
-
-                        success: false,
-
-                        message:
-                            "Skills must be an array."
-
-                    });
-
-                }
-
 
                 user.skills =
-                    req.body.skills
-                        .map(
-                            item =>
-                                String(item).trim()
-                        )
-                        .filter(
-                            item =>
-                                item.length > 0
-                        );
-
+                    Array.isArray(
+                        skills
+                    )
+                        ? skills
+                        : [];
             }
 
-
-            /* -----------------------------------------
-               PERSONAL INFORMATION VISIBILITY
-            ----------------------------------------- */
 
             if (
-                Object.prototype.hasOwnProperty.call(
-                    req.body,
-                    "personalInfoVisibility"
-                )
+                personalInfoVisibility !==
+                undefined
             ) {
 
-                const visibility =
-                    req.body.personalInfoVisibility;
-
-
-                if (
-                    visibility !== "public" &&
-                    visibility !== "private"
-                ) {
-
-                    return res.status(400).json({
-
-                        success: false,
-
-                        message:
-                            "Personal information visibility must be public or private."
-
-                    });
-
-                }
-
-
                 user.personalInfoVisibility =
-                    visibility;
-
+                    personalInfoVisibility;
             }
 
-
-            /* -----------------------------------------
-               ACCOUNT VISIBILITY
-               Gene-rations accounts remain public.
-            ----------------------------------------- */
-
-            user.accountVisibility =
-                "public";
-
-
-            /* -----------------------------------------
-               GENERATION DATA
-               ALWAYS CALCULATED FROM DOB
-            ----------------------------------------- */
 
             refreshGenerationData(
                 user
             );
 
-
-            /* -----------------------------------------
-               ACTIVITY
-            ----------------------------------------- */
-
             user.lastActive =
                 new Date().toISOString();
 
-            user.dormant =
-                false;
-
-
-            /* -----------------------------------------
-               SAVE USER
-            ----------------------------------------- */
 
             saveUsers(
                 users
             );
 
 
-            /* -----------------------------------------
-               RESPONSE
-            ----------------------------------------- */
-
-            return res.json({
+            res.json({
 
                 success: true,
 
                 message:
-                    "Settings updated successfully.",
+                    "Profile updated successfully.",
 
                 user:
-                    publicUser(
-                        user
-                    )
-
+                    publicUser(user)
             });
 
-        }
-
-        catch (error) {
+        } catch (error) {
 
             console.error(
                 "Settings update error:",
                 error
             );
 
-
-            return res.status(500).json({
+            res.status(500).json({
 
                 success: false,
 
                 message:
-                    "Server error."
-
+                    "Unable to update profile."
             });
-
         }
-
     }
 );
+
 
 /* =====================================================
    PROFILE PHOTO
@@ -2025,15 +1537,13 @@ app.patch(
                 profilePhoto
             } = req.body;
 
-
             const users =
                 loadUsers();
 
-
             const user =
                 users.find(
-                    item =>
-                        item.id ===
+                    u =>
+                        u.id ===
                         req.params.userId
                 );
 
@@ -2046,9 +1556,7 @@ app.patch(
 
                     message:
                         "User not found."
-
                 });
-
             }
 
 
@@ -2058,11 +1566,6 @@ app.patch(
                 )
             ) {
 
-                saveUsers(
-                    users
-                );
-
-
                 return res.status(403).json({
 
                     success: false,
@@ -2070,10 +1573,8 @@ app.patch(
                     dormant: true,
 
                     message:
-                        "Dormant accounts must be reactivated first."
-
+                        "Your account is dormant. Verification is required."
                 });
-
             }
 
 
@@ -2088,15 +1589,12 @@ app.patch(
 
                     message:
                         "Invalid profile photo."
-
                 });
-
             }
 
 
             user.profilePhoto =
                 profilePhoto;
-
 
             user.lastActive =
                 new Date().toISOString();
@@ -2115,80 +1613,141 @@ app.patch(
                     "Profile photo updated successfully.",
 
                 user:
-                    publicUser(
-                        user
-                    )
-
+                    publicUser(user)
             });
 
-        }
-
-        catch (error) {
+        } catch (error) {
 
             console.error(
                 "Profile photo error:",
                 error
             );
 
+            res.status(500).json({
+
+                success: false,
+
+                message:
+                    "Unable to save profile photo."
+            });
+        }
+    }
+);
+
+
+/* =====================================================
+   POSTS - GET ALL
+===================================================== */
+
+app.get(
+    "/api/posts",
+    (req, res) => {
+
+        try {
+
+            const posts =
+                loadPosts();
+
+            const users =
+                loadUsers();
+
+
+            /*
+             * Keep post author information
+             * synchronized with the account.
+             */
+
+            posts.forEach(
+                post => {
+
+                    const user =
+                        users.find(
+                            u =>
+                                u.id ===
+                                post.authorId
+                        );
+
+                    if (!user) {
+                        return;
+                    }
+
+
+                    post.author =
+                        user.fullName;
+
+                    post.authorEmail =
+                        user.email;
+
+                    post.generation =
+                        user.generation;
+
+                    post.generationBadge =
+                        user.generationBadge;
+
+                    post.profilePhoto =
+                        user.profilePhoto ||
+                        "";
+                }
+            );
+
+
+            savePosts(
+                posts
+            );
+
+
+            res.json({
+
+                success: true,
+
+                posts:
+                    posts
+            });
+
+        } catch (error) {
+
+            console.error(
+                "GET /api/posts error:",
+                error
+            );
 
             res.status(500).json({
 
                 success: false,
 
                 message:
-                    "Server error."
-
+                    "Unable to load posts."
             });
-
         }
-
     }
 );
 
 
 /* =====================================================
-   REACTIVATE DORMANT ACCOUNT
+   POSTS - CREATE
 ===================================================== */
 
 app.post(
-    "/api/auth/reactivate",
+    "/api/posts",
     (req, res) => {
 
         try {
 
             const {
-                email,
-                code
+                userId,
+                content,
+                image
             } = req.body;
-
-
-            if (
-                !email ||
-                !code
-            ) {
-
-                return res.status(400).json({
-
-                    success: false,
-
-                    message:
-                        "Email and verification code are required."
-
-                });
-
-            }
 
 
             const users =
                 loadUsers();
 
-
             const user =
                 users.find(
-                    item =>
-                        item.email &&
-                        item.email.toLowerCase() ===
-                        email.toLowerCase()
+                    u =>
+                        u.id ===
+                        userId
                 );
 
 
@@ -2199,18 +1758,792 @@ app.post(
                     success: false,
 
                     message:
-                        "Account not found."
-
+                        "User not found."
                 });
+            }
 
+
+            if (!user.verified) {
+
+                return res.status(403).json({
+
+                    success: false,
+
+                    message:
+                        "Your account must be verified before creating posts."
+                });
             }
 
 
             if (
-                String(code).trim() !==
-                String(
-                    user.verificationCode
+                checkDormantStatus(
+                    user
                 )
+            ) {
+
+                saveUsers(
+                    users
+                );
+
+                return res.status(403).json({
+
+                    success: false,
+
+                    dormant: true,
+
+                    message:
+                        "Your account is dormant. Verification is required."
+                });
+            }
+
+
+            const postContent =
+                typeof content ===
+                "string"
+                    ? content.trim()
+                    : "";
+
+
+            const postImage =
+                typeof image ===
+                "string"
+                    ? image
+                    : "";
+
+
+            if (
+                !postContent &&
+                !postImage
+            ) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "A post must contain text or an image."
+                });
+            }
+
+
+            if (
+                postContent.length >
+                3000
+            ) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "Post cannot exceed 3000 characters."
+                });
+            }
+
+
+            const posts =
+                loadPosts();
+
+
+            const newPost = {
+
+                id:
+                    Date.now().toString(),
+
+                authorId:
+                    user.id,
+
+                authorEmail:
+                    user.email,
+
+                author:
+                    user.fullName,
+
+                generation:
+                    user.generation,
+
+                generationBadge:
+                    user.generationBadge,
+
+                profilePhoto:
+                    user.profilePhoto ||
+                    "",
+
+                content:
+                    postContent,
+
+                image:
+                    postImage,
+
+                likes:
+                    [],
+
+                comments:
+                    [],
+
+                createdAt:
+                    new Date().toISOString()
+            };
+
+
+            posts.unshift(
+                newPost
+            );
+
+
+            savePosts(
+                posts
+            );
+
+
+            if (
+                !Array.isArray(
+                    user.posts
+                )
+            ) {
+                user.posts = [];
+            }
+
+
+            user.posts.unshift(
+                newPost.id
+            );
+
+
+            user.lastActive =
+                new Date().toISOString();
+
+
+            saveUsers(
+                users
+            );
+
+
+            res.status(201).json({
+
+                success: true,
+
+                message:
+                    "Post created successfully.",
+
+                post:
+                    newPost
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Create post error:",
+                error
+            );
+
+            res.status(500).json({
+
+                success: false,
+
+                message:
+                    "Unable to create post."
+            });
+        }
+    }
+);
+
+
+/* =====================================================
+   POSTS - LIKE / UNLIKE
+===================================================== */
+
+app.post(
+    "/api/posts/:postId/like",
+    (req, res) => {
+
+        try {
+
+            const {
+                userId
+            } = req.body;
+
+
+            const users =
+                loadUsers();
+
+            const user =
+                users.find(
+                    u =>
+                        u.id ===
+                        userId
+                );
+
+
+            if (!user) {
+
+                return res.status(404).json({
+
+                    success: false,
+
+                    message:
+                        "User not found."
+                });
+            }
+
+
+            if (
+                checkDormantStatus(
+                    user
+                )
+            ) {
+
+                return res.status(403).json({
+
+                    success: false,
+
+                    dormant: true,
+
+                    message:
+                        "Your account is dormant."
+                });
+            }
+
+
+            const posts =
+                loadPosts();
+
+            const post =
+                posts.find(
+                    p =>
+                        p.id ===
+                        req.params.postId
+                );
+
+
+            if (!post) {
+
+                return res.status(404).json({
+
+                    success: false,
+
+                    message:
+                        "Post not found."
+                });
+            }
+
+
+            if (
+                !Array.isArray(
+                    post.likes
+                )
+            ) {
+                post.likes = [];
+            }
+
+
+            const existingIndex =
+                post.likes.indexOf(
+                    userId
+                );
+
+
+            let liked;
+
+
+            if (
+                existingIndex ===
+                -1
+            ) {
+
+                post.likes.push(
+                    userId
+                );
+
+                liked =
+                    true;
+
+            } else {
+
+                post.likes.splice(
+                    existingIndex,
+                    1
+                );
+
+                liked =
+                    false;
+            }
+
+
+            user.lastActive =
+                new Date().toISOString();
+
+
+            savePosts(
+                posts
+            );
+
+            saveUsers(
+                users
+            );
+
+
+            res.json({
+
+                success: true,
+
+                liked:
+
+                    liked,
+
+                likes:
+                    post.likes.length,
+
+                post:
+                    post
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Like post error:",
+                error
+            );
+
+            res.status(500).json({
+
+                success: false,
+
+                message:
+                    "Unable to update like."
+            });
+        }
+    }
+);
+
+
+/* =====================================================
+   POSTS - COMMENTS
+===================================================== */
+
+app.post(
+    "/api/posts/:postId/comments",
+    (req, res) => {
+
+        try {
+
+            const {
+                userId,
+                content
+            } = req.body;
+
+
+            const cleanContent =
+                typeof content ===
+                "string"
+                    ? content.trim()
+                    : "";
+
+
+            if (!cleanContent) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "Comment cannot be empty."
+                });
+            }
+
+
+            const users =
+                loadUsers();
+
+            const user =
+                users.find(
+                    u =>
+                        u.id ===
+                        userId
+                );
+
+
+            if (!user) {
+
+                return res.status(404).json({
+
+                    success: false,
+
+                    message:
+                        "User not found."
+                });
+            }
+
+
+            if (
+                checkDormantStatus(
+                    user
+                )
+            ) {
+
+                return res.status(403).json({
+
+                    success: false,
+
+                    dormant: true,
+
+                    message:
+                        "Your account is dormant."
+                });
+            }
+
+
+            const posts =
+                loadPosts();
+
+            const post =
+                posts.find(
+                    p =>
+                        p.id ===
+                        req.params.postId
+                );
+
+
+            if (!post) {
+
+                return res.status(404).json({
+
+                    success: false,
+
+                    message:
+                        "Post not found."
+                });
+            }
+
+
+            if (
+                !Array.isArray(
+                    post.comments
+                )
+            ) {
+                post.comments = [];
+            }
+
+
+            const comment = {
+
+                id:
+                    Date.now().toString(),
+
+                userId:
+                    user.id,
+
+                author:
+                    user.fullName,
+
+                profilePhoto:
+                    user.profilePhoto ||
+                    "",
+
+                content:
+                    cleanContent,
+
+                createdAt:
+                    new Date().toISOString()
+            };
+
+
+            post.comments.push(
+                comment
+            );
+
+
+            user.lastActive =
+                new Date().toISOString();
+
+
+            savePosts(
+                posts
+            );
+
+            saveUsers(
+                users
+            );
+
+
+            res.status(201).json({
+
+                success: true,
+
+                comment:
+                    comment,
+
+                post:
+                    post
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Comment error:",
+                error
+            );
+
+            res.status(500).json({
+
+                success: false,
+
+                message:
+                    "Unable to add comment."
+            });
+        }
+    }
+);
+
+
+/* =====================================================
+   POSTS - DELETE
+===================================================== */
+
+app.delete(
+    "/api/posts/:postId",
+    (req, res) => {
+
+        try {
+
+            const {
+                userId
+            } = req.body;
+
+
+            const users =
+                loadUsers();
+
+            const user =
+                users.find(
+                    u =>
+                        u.id ===
+                        userId
+                );
+
+
+            if (!user) {
+
+                return res.status(404).json({
+
+                    success: false,
+
+                    message:
+                        "User not found."
+                });
+            }
+
+
+            const posts =
+                loadPosts();
+
+            const postIndex =
+                posts.findIndex(
+                    p =>
+                        p.id ===
+                        req.params.postId
+                );
+
+
+            if (
+                postIndex ===
+                -1
+            ) {
+
+                return res.status(404).json({
+
+                    success: false,
+
+                    message:
+                        "Post not found."
+                });
+            }
+
+
+            const post =
+                posts[postIndex];
+
+
+            if (
+                post.authorId !==
+                userId
+            ) {
+
+                return res.status(403).json({
+
+                    success: false,
+
+                    message:
+                        "You can only delete your own posts."
+                });
+            }
+
+
+            posts.splice(
+                postIndex,
+                1
+            );
+
+
+            if (
+                Array.isArray(
+                    user.posts
+                )
+            ) {
+
+                user.posts =
+                    user.posts.filter(
+                        id =>
+                            id !==
+                            post.id
+                    );
+            }
+
+
+            user.lastActive =
+                new Date().toISOString();
+
+
+            savePosts(
+                posts
+            );
+
+            saveUsers(
+                users
+            );
+
+
+            res.json({
+
+                success: true,
+
+                message:
+                    "Post deleted successfully."
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Delete post error:",
+                error
+            );
+
+            res.status(500).json({
+
+                success: false,
+
+                message:
+                    "Unable to delete post."
+            });
+        }
+    }
+);
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+app.post(
+    "/api/auth/logout",
+    (req, res) => {
+
+        try {
+
+            const {
+                userId
+            } = req.body;
+
+            const users =
+                loadUsers();
+
+            const user =
+                users.find(
+                    u =>
+                        u.id ===
+                        userId
+                );
+
+
+            if (user) {
+
+                user.lastActive =
+                    new Date().toISOString();
+
+                saveUsers(
+                    users
+                );
+            }
+
+
+            res.json({
+
+                success: true,
+
+                message:
+                    "Logged out successfully."
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+            res.status(500).json({
+
+                success: false,
+
+                message:
+                    "Unable to log out."
+            });
+        }
+    }
+);
+
+
+/* =====================================================
+   REACTIVATE ACCOUNT
+===================================================== */
+
+app.post(
+    "/api/auth/reactivate",
+    (req, res) => {
+
+        try {
+
+            const {
+                userId,
+                code
+            } = req.body;
+
+            const users =
+                loadUsers();
+
+            const user =
+                users.find(
+                    u =>
+                        u.id ===
+                        userId
+                );
+
+
+            if (!user) {
+
+                return res.status(404).json({
+
+                    success: false,
+
+                    message:
+                        "User not found."
+                });
+            }
+
+
+            if (
+                user.verificationCode !==
+                code
             ) {
 
                 return res.status(400).json({
@@ -2219,27 +2552,7 @@ app.post(
 
                     message:
                         "Invalid verification code."
-
                 });
-
-            }
-
-
-            if (
-                user.verificationExpires &&
-                Date.now() >
-                user.verificationExpires
-            ) {
-
-                return res.status(400).json({
-
-                    success: false,
-
-                    message:
-                        "Verification code has expired."
-
-                });
-
             }
 
 
@@ -2272,111 +2585,24 @@ app.post(
                     "Account reactivated successfully.",
 
                 user:
-                    publicUser(
-                        user
-                    )
-
+                    publicUser(user)
             });
 
-        }
-
-        catch (error) {
+        } catch (error) {
 
             console.error(
                 "Reactivation error:",
                 error
             );
 
-
             res.status(500).json({
 
                 success: false,
 
                 message:
-                    "Server error."
-
+                    "Unable to reactivate account."
             });
-
         }
-
-    }
-);
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-app.post(
-    "/api/auth/logout",
-    (req, res) => {
-
-        try {
-
-            const {
-                userId
-            } = req.body;
-
-
-            if (userId) {
-
-                const users =
-                    loadUsers();
-
-
-                const user =
-                    users.find(
-                        item =>
-                            item.id ===
-                            userId
-                    );
-
-
-                if (user) {
-
-                    user.lastActive =
-                        new Date().toISOString();
-
-
-                    saveUsers(
-                        users
-                    );
-
-                }
-
-            }
-
-
-            res.json({
-
-                success: true,
-
-                message:
-                    "Logged out successfully."
-
-            });
-
-        }
-
-        catch (error) {
-
-            console.error(
-                "Logout error:",
-                error
-            );
-
-
-            res.status(500).json({
-
-                success: false,
-
-                message:
-                    "Server error."
-
-            });
-
-        }
-
     }
 );
 
@@ -2390,24 +2616,15 @@ app.listen(
     () => {
 
         console.log(
-            "================================"
+            `Gene-rations backend running on port ${PORT}`
         );
 
         console.log(
-            "Gene-rations Backend"
+            `http://localhost:${PORT}`
         );
 
         console.log(
-            `Server running on port ${PORT}`
+            `Posts API: http://localhost:${PORT}/api/posts`
         );
-
-        console.log(
-            "Milestone 4 Account Rules Active"
-        );
-
-        console.log(
-            "================================"
-        );
-
     }
 );

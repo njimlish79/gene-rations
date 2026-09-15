@@ -1437,6 +1437,20 @@ body {
 <script>
 
 /* ==================================================
+   GENE-RATIONS — GENERATION HUB
+   BACKEND CONNECTED VERSION
+================================================== */
+
+
+/* ==================================================
+   CONFIGURATION
+================================================== */
+
+const API_BASE_URL =
+    "http://localhost:3000";
+
+
+/* ==================================================
    NAVIGATION
 ================================================== */
 
@@ -1448,7 +1462,7 @@ function openPage(page) {
 
 
 /* ==================================================
-   GET USER DATA
+   GET STORED USER
 ================================================== */
 
 function getStoredUser() {
@@ -1456,19 +1470,15 @@ function getStoredUser() {
     const storedUser =
         localStorage.getItem("userData");
 
-
     if (!storedUser) {
 
         return null;
 
     }
 
-
     try {
 
-        return JSON.parse(
-            storedUser
-        );
+        return JSON.parse(storedUser);
 
     }
 
@@ -1479,6 +1489,10 @@ function getStoredUser() {
             error
         );
 
+        localStorage.removeItem(
+            "userData"
+        );
+
         return null;
 
     }
@@ -1487,15 +1501,56 @@ function getStoredUser() {
 
 
 /* ==================================================
+   SAVE USER
+================================================== */
+
+function saveUser(user) {
+
+    if (!user) {
+
+        return;
+
+    }
+
+    localStorage.setItem(
+        "userData",
+        JSON.stringify(user)
+    );
+
+}
+
+
+/* ==================================================
+   GET USER ID
+================================================== */
+
+function getUserId() {
+
+    const user =
+        getStoredUser();
+
+    if (!user) {
+
+        return null;
+
+    }
+
+    return (
+        user.id ||
+        user.userId ||
+        null
+    );
+
+}
+
+
+/* ==================================================
    GENERATION FALLBACK
-   Used only if generation-engine.js
-   is unavailable.
 ================================================== */
 
 function calculateGeneration(age) {
 
     age = Number(age);
-
 
     if (age >= 65) {
 
@@ -1503,13 +1558,11 @@ function calculateGeneration(age) {
 
     }
 
-
     if (age >= 45) {
 
         return "Generation X";
 
     }
-
 
     if (age >= 29) {
 
@@ -1517,13 +1570,11 @@ function calculateGeneration(age) {
 
     }
 
-
     if (age >= 13) {
 
         return "Generation Z";
 
     }
-
 
     return "Generation Alpha";
 
@@ -1531,51 +1582,135 @@ function calculateGeneration(age) {
 
 
 /* ==================================================
-   LOAD DYNAMIC GENERATION
+   SAFE COUNT
 ================================================== */
 
-function loadDynamicGeneration() {
+function getCount(value) {
 
+    if (Array.isArray(value)) {
 
-    /* ------------------------------------------
-       GET USER
-    ------------------------------------------ */
+        return value.length;
 
-    let user = null;
-
+    }
 
     if (
-        typeof updateUserGeneration ===
+        typeof value === "number" &&
+        Number.isFinite(value)
+    ) {
+
+        return value;
+
+    }
+
+    return 0;
+
+}
+
+
+/* ==================================================
+   SET TEXT SAFELY
+================================================== */
+
+function setText(
+    elementId,
+    value,
+    fallback = ""
+) {
+
+    const element =
+        document.getElementById(
+            elementId
+        );
+
+    if (!element) {
+
+        return;
+
+    }
+
+    element.textContent =
+        value ??
+        fallback;
+
+}
+
+
+/* ==================================================
+   GET GENERATION INFORMATION
+================================================== */
+
+function getHubGenerationInfo(
+    generation
+) {
+
+    if (
+        typeof getGenerationData ===
         "function"
     ) {
 
-        user =
-            updateUserGeneration();
+        try {
+
+            const data =
+                getGenerationData(
+                    generation
+                );
+
+            if (data) {
+
+                return data;
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.warn(
+                "Generation data error:",
+                error
+            );
+
+        }
 
     }
 
 
-    /*
-       If generation-engine.js did not
-       return the user, load directly.
-    */
+    return {
+
+        name:
+            generation ||
+            "Gene-rations",
+
+        badge:
+            `🏷️ ${
+                generation ||
+                "Gene-rations"
+            }`,
+
+        welcome:
+            `Welcome to the ${
+                generation ||
+                "Gene-rations"
+            } community.`,
+
+        description:
+            `Connect, share ideas and build meaningful relationships with members of ${
+                generation ||
+                "your generation"
+            }.`
+
+    };
+
+}
+
+
+/* ==================================================
+   DISPLAY USER ON HUB
+================================================== */
+
+function displayHubUser(user) {
 
     if (!user) {
-
-        user =
-            getStoredUser();
-
-    }
-
-
-    /* ------------------------------------------
-       NO USER
-    ------------------------------------------ */
-
-    if (!user) {
-
-        window.location.href =
-            "login.html";
 
         return;
 
@@ -1590,10 +1725,6 @@ function loadDynamicGeneration() {
         user.generation;
 
 
-    /*
-       Fallback if generation is missing.
-    */
-
     if (!generation) {
 
         generation =
@@ -1601,310 +1732,136 @@ function loadDynamicGeneration() {
                 user.age
             );
 
-        user.generation =
-            generation;
-
-        localStorage.setItem(
-            "userData",
-            JSON.stringify(user)
-        );
-
     }
+
+
+    const generationInfo =
+        getHubGenerationInfo(
+            generation
+        );
 
 
     /* ------------------------------------------
-       GENERATION DATA
+       NAME
     ------------------------------------------ */
 
-    let generationInfo = null;
-
-
-    if (
-        typeof getGenerationData ===
-        "function"
-    ) {
-
-        generationInfo =
-            getGenerationData(
-                generation
-            );
-
-    }
-
-
-    /*
-       Safe fallback.
-    */
-
-    if (!generationInfo) {
-
-        generationInfo = {
-
-            name:
-                generation,
-
-            badge:
-                "🏷️ " + generation,
-
-            welcome:
-                `Welcome to the ${generation} community.`,
-
-            description:
-                `Connect, share ideas and build meaningful relationships with members of ${generation}.`
-
-        };
-
-    }
-
-
-    /* ==================================================
-       USER NAME
-    ================================================== */
-
     const fullName =
-        document.getElementById(
-            "fullName"
-        );
+        user.fullName ||
+        user.name ||
+        "Gene-rations Member";
 
 
-    if (fullName) {
-
-        fullName.textContent =
-            user.fullName ||
-            user.name ||
-            "Gene-rations Member";
-
-    }
+    setText(
+        "fullName",
+        fullName,
+        "Gene-rations Member"
+    );
 
 
-    /* ==================================================
-       WELCOME
-    ================================================== */
-
-    const welcome =
-        document.getElementById(
-            "welcome"
-        );
+    setText(
+        "welcome",
+        `Welcome back, ${fullName}`,
+        "Welcome back"
+    );
 
 
-    if (welcome) {
-
-        welcome.textContent =
-            `Welcome back, ${
-                user.fullName ||
-                user.name ||
-                "Member"
-            }`;
-
-    }
-
-
-    /* ==================================================
+    /* ------------------------------------------
        GENERATION NAME
-    ================================================== */
+    ------------------------------------------ */
 
-    const generationName =
-        document.getElementById(
-            "generationName"
-        );
-
-
-    if (generationName) {
-
-        generationName.textContent =
-            generationInfo.name ||
-            generation;
-
-    }
+    setText(
+        "generationName",
+        generationInfo.name ||
+        generation,
+        generation
+    );
 
 
-    /* ==================================================
+    /* ------------------------------------------
        GENERATION BADGE
-    ================================================== */
+    ------------------------------------------ */
 
-    const badge =
-        document.getElementById(
-            "generationBadge"
-        );
-
-
-    if (badge) {
-
-        badge.textContent =
-            generationInfo.badge ||
-            `🏷️ ${generation}`;
-
-    }
+    setText(
+        "generationBadge",
+        user.generationBadge ||
+        generationInfo.badge ||
+        `🏷️ ${generation}`,
+        `🏷️ ${generation}`
+    );
 
 
-    /* ==================================================
+    /* ------------------------------------------
        GENERATION WELCOME
-    ================================================== */
+    ------------------------------------------ */
 
-    const generationWelcome =
-        document.getElementById(
-            "generationWelcome"
-        );
-
-
-    if (generationWelcome) {
-
-        generationWelcome.textContent =
-            generationInfo.welcome ||
-            `Welcome to the ${generation} community.`;
-
-    }
+    setText(
+        "generationWelcome",
+        generationInfo.welcome ||
+        `Welcome to the ${generation} community.`,
+        `Welcome to the ${generation} community.`
+    );
 
 
-    /* ==================================================
-       DESCRIPTION
-    ================================================== */
+    /* ------------------------------------------
+       GENERATION DESCRIPTION
+    ------------------------------------------ */
 
-    const description =
-        document.getElementById(
-            "generationDescription"
-        );
-
-
-    if (description) {
-
-        description.textContent =
-            generationInfo.description ||
-            "";
-
-    }
+    setText(
+        "generationDescription",
+        user.generationDescription ||
+        generationInfo.description ||
+        "",
+        ""
+    );
 
 
-    /* ==================================================
-       AGE
-    ================================================== */
-
-    const ageElement =
-        document.getElementById(
-            "age"
-        );
-
-
-    if (ageElement) {
-
-        ageElement.textContent =
-            user.age ?? "—";
-
-    }
-
-
-    /* ==================================================
-       PROFILE PHOTO
-    ================================================== */
-
-    const profilePhoto =
-        document.getElementById(
-            "profilePhoto"
-        );
-
-
-    if (
-        profilePhoto &&
-        user.profilePhoto
-    ) {
-
-        profilePhoto.src =
-            user.profilePhoto;
-
-    }
-
-
-    /* ==================================================
+    /* ------------------------------------------
        FOLLOWERS
-    ================================================== */
+    ------------------------------------------ */
 
-    const followers =
-        document.getElementById(
-            "followersCount"
-        );
-
-
-    if (followers) {
-
-        followers.textContent =
-            Array.isArray(
-                user.followers
-            )
-                ? user.followers.length
-                : 0;
-
-    }
+    setText(
+        "followersCount",
+        getCount(user.followers),
+        "0"
+    );
 
 
-    /* ==================================================
+    /* ------------------------------------------
        FOLLOWING
-    ================================================== */
+    ------------------------------------------ */
 
-    const following =
-        document.getElementById(
-            "followingCount"
-        );
-
-
-    if (following) {
-
-        following.textContent =
-            Array.isArray(
-                user.following
-            )
-                ? user.following.length
-                : 0;
-
-    }
+    setText(
+        "followingCount",
+        getCount(user.following),
+        "0"
+    );
 
 
-    /* ==================================================
+    /* ------------------------------------------
        POSTS
-    ================================================== */
+    ------------------------------------------ */
 
-    const posts =
-        document.getElementById(
-            "postsCount"
-        );
-
-
-    if (posts) {
-
-        posts.textContent =
-            Array.isArray(
-                user.posts
-            )
-                ? user.posts.length
-                : 0;
-
-    }
+    setText(
+        "postsCount",
+        getCount(user.posts),
+        "0"
+    );
 
 
-    /* ==================================================
+    /* ------------------------------------------
        COMMUNITIES
-    ================================================== */
+    ------------------------------------------ */
 
-    const communities =
-        document.getElementById(
-            "communitiesCount"
-        );
-
-
-    if (communities) {
-
-        communities.textContent =
-            Array.isArray(
-                user.communities
-            )
-                ? user.communities.length
-                : 0;
-
-    }
+    setText(
+        "communitiesCount",
+        getCount(user.communities),
+        "0"
+    );
 
 
-    /* ==================================================
+    /* ------------------------------------------
        APPLY GENERATION THEME
-    ================================================== */
+    ------------------------------------------ */
 
     if (
         typeof applyGenerationTheme ===
@@ -1931,31 +1888,371 @@ function loadDynamicGeneration() {
     }
 
 
-    /* ==================================================
-       SAVE UPDATED USER
-    ================================================== */
+    /* ------------------------------------------
+       SAVE LATEST USER
+    ------------------------------------------ */
 
-    localStorage.setItem(
-        "userData",
-        JSON.stringify(user)
-    );
+    saveUser({
+
+        ...user,
+
+        generation:
+            generation
+
+    });
 
 
     console.log(
-        "Gene-rations user loaded:",
+        "Gene-rations Hub user:",
         user
-    );
-
-    console.log(
-        "Current generation:",
-        generation
     );
 
 }
 
 
 /* ==================================================
+   SHOW DORMANT ACCOUNT
+================================================== */
+
+function handleDormantAccount(
+    message
+) {
+
+    alert(
+        message ||
+        "Your Gene-rations account is dormant. Please reactivate your account."
+    );
+
+
+    localStorage.removeItem(
+        "loginSession"
+    );
+
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* ==================================================
+   FETCH USER FROM BACKEND
+================================================== */
+
+async function fetchHubUser(
+    userId
+) {
+
+    const response =
+        await fetch(
+            `${API_BASE_URL}/api/user/${encodeURIComponent(userId)}`,
+            {
+                method: "GET",
+
+                headers: {
+                    "Accept":
+                        "application/json"
+                }
+            }
+        );
+
+
+    let data = null;
+
+
+    try {
+
+        data =
+            await response.json();
+
+    }
+
+    catch (error) {
+
+        data = null;
+
+    }
+
+
+    /* ------------------------------------------
+       DORMANT ACCOUNT
+    ------------------------------------------ */
+
+    if (
+        response.status === 403 &&
+        data &&
+        data.dormant
+    ) {
+
+        handleDormantAccount(
+            data.message
+        );
+
+        return null;
+
+    }
+
+
+    /* ------------------------------------------
+       OTHER BACKEND ERRORS
+    ------------------------------------------ */
+
+    if (!response.ok) {
+
+        throw new Error(
+            data &&
+            data.message
+                ? data.message
+                : `Backend error: ${response.status}`
+        );
+
+    }
+
+
+    /* ------------------------------------------
+       SUPPORT BOTH RESPONSE FORMATS
+    ------------------------------------------ */
+
+    if (
+        data &&
+        data.success &&
+        data.user
+    ) {
+
+        return data.user;
+
+    }
+
+
+    if (data && data.id) {
+
+        return data;
+
+    }
+
+
+    throw new Error(
+        "The backend returned invalid user data."
+    );
+
+}
+
+
+/* ==================================================
+   LOAD HUB
+================================================== */
+
+async function loadGenerationHub() {
+
+    const storedUser =
+        getStoredUser();
+
+
+    /* ------------------------------------------
+       REQUIRE LOGIN
+    ------------------------------------------ */
+
+    if (!storedUser) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    const userId =
+        getUserId();
+
+
+    if (!userId) {
+
+        console.error(
+            "No user ID found."
+        );
+
+        localStorage.removeItem(
+            "userData"
+        );
+
+        localStorage.removeItem(
+            "loginSession"
+        );
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    /* ------------------------------------------
+       SHOW CACHED USER FIRST
+       Makes the page feel instant.
+    ------------------------------------------ */
+
+    displayHubUser(
+        storedUser
+    );
+
+
+    /* ------------------------------------------
+       GET AUTHORITATIVE BACKEND DATA
+    ------------------------------------------ */
+
+    try {
+
+        const backendUser =
+            await fetchHubUser(
+                userId
+            );
+
+
+        if (!backendUser) {
+
+            return;
+
+        }
+
+
+        /* --------------------------------------
+           UPDATE LOCAL DATA
+        -------------------------------------- */
+
+        saveUser(
+            backendUser
+        );
+
+
+        /* --------------------------------------
+           DISPLAY FRESH DATA
+        -------------------------------------- */
+
+        displayHubUser(
+            backendUser
+        );
+
+
+        console.log(
+            "Generation Hub connected to backend."
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Generation Hub backend error:",
+            error
+        );
+
+
+        /*
+           We deliberately keep the cached
+           profile visible if the backend is
+           temporarily unavailable.
+        */
+
+        console.warn(
+            "Using cached user data."
+        );
+
+    }
+
+}
+
+
+/* ==================================================
    LOGOUT
+================================================== */
+
+async function logoutUser() {
+
+    const confirmLogout =
+        confirm(
+            "Are you sure you want to log out?"
+        );
+
+
+    if (!confirmLogout) {
+
+        return;
+
+    }
+
+
+    const user =
+        getStoredUser();
+
+
+    /* ------------------------------------------
+       INFORM BACKEND
+    ------------------------------------------ */
+
+    if (user && user.id) {
+
+        try {
+
+            await fetch(
+                `${API_BASE_URL}/api/auth/logout`,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+                            userId:
+                                user.id
+                        })
+                }
+            );
+
+        }
+
+        catch (error) {
+
+            console.warn(
+                "Backend logout notification failed:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* ------------------------------------------
+       CLEAR LOCAL SESSION
+    ------------------------------------------ */
+
+    localStorage.removeItem(
+        "loginSession"
+    );
+
+
+    localStorage.removeItem(
+        "userData"
+    );
+
+
+    /* ------------------------------------------
+       RETURN TO LOGIN
+    ------------------------------------------ */
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* ==================================================
+   LOGOUT BUTTON
 ================================================== */
 
 const logoutButton =
@@ -1968,50 +2265,47 @@ if (logoutButton) {
 
     logoutButton.addEventListener(
         "click",
-        function () {
-
-
-            const confirmLogout =
-                confirm(
-                    "Are you sure you want to log out?"
-                );
-
-
-            if (!confirmLogout) {
-
-                return;
-
-            }
-
-
-            localStorage.removeItem(
-                "loginSession"
-            );
-
-
-            window.location.href =
-                "login.html";
-
-        }
+        logoutUser
     );
 
 }
 
 
 /* ==================================================
-   START PAGE
+   REFRESH WHEN PAGE BECOMES VISIBLE
+================================================== */
+
+document.addEventListener(
+    "visibilitychange",
+    function () {
+
+        if (
+            document.visibilityState ===
+            "visible"
+        ) {
+
+            loadGenerationHub();
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   START
 ================================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-        loadDynamicGeneration();
+        loadGenerationHub();
 
     }
 );
 
-</script>
+                  </script>
 
 
 </body>

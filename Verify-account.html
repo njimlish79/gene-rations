@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Gene-rations | Verify Account</title>
+
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* =========================================
+           BODY
+        ========================================= */
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6098f8,
+                    #cc1919,
+                    #1408dc66    
+                );
+
+            color: #222;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+
+        /* =========================================
+           MAIN CONTAINER
+        ========================================= */
+
+        .verification-container {
+
+            width: 100%;
+
+            max-width: 460px;
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            padding: 32px 24px;
+
+            box-shadow:
+                0 10px 35px
+                rgba(0, 0, 0, 0.10);
+
+            text-align: center;
+        }
+
+
+        /* =========================================
+           LOGO
+        ========================================= */
+
+        .logo {
+
+            width: 72px;
+
+            height: 72px;
+
+            margin:
+                0 auto 18px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 34px;
+        }
+
+
+        /* =========================================
+           TITLE
+        ========================================= */
+
+        h1 {
+
+            font-size: 28px;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================================
+           SUBTITLE
+        ========================================= */
+
+        .subtitle {
+
+            color: #666;
+
+            line-height: 1.5;
+
+            margin-bottom: 24px;
+        }
+
+
+        /* =========================================
+           ACCOUNT INFORMATION
+        ========================================= */
+
+        .account-box {
+
+            background: #f6f8ff;
+
+            border-radius: 12px;
+
+            padding: 14px;
+
+            margin-bottom: 22px;
+
+            text-align: left;
+        }
+
+
+        .account-box strong {
+
+            display: block;
+
+            margin-bottom: 5px;
+        }
+
+
+        #verificationDestination {
+
+            color: #555;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================================
+           CODE INPUT
+        ========================================= */
+
+        .code-input {
+
+            width: 100%;
+
+            padding: 16px;
+
+            border:
+                2px solid
+                #d9dce5;
+
+            border-radius: 12px;
+
+            font-size: 26px;
+
+            letter-spacing: 8px;
+
+            text-align: center;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s;
+        }
+
+
+        .code-input:focus {
+
+            border-color:
+                #667eea;
+        }
+
+
+        /* =========================================
+           VERIFY BUTTON
+        ========================================= */
+
+        .verify-button {
+
+            width: 100%;
+
+            border: none;
+
+            border-radius: 12px;
+
+            padding: 15px;
+
+            margin-top: 16px;
+
+            background: #667eea;
+
+            color: #ffffff;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .verify-button:disabled {
+
+            opacity: 0.65;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =========================================
+           MESSAGE
+        ========================================= */
+
+        .message {
+
+            min-height: 24px;
+
+            margin-top: 16px;
+
+            font-size: 14px;
+
+            line-height: 1.4;
+        }
+
+
+        .message.error {
+
+            color: #c62828;
+        }
+
+
+        .message.success {
+
+            color: #188038;
+        }
+
+
+        /* =========================================
+           HELPER TEXT
+        ========================================= */
+
+        .helper {
+
+            margin-top: 22px;
+
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================
+           BACK LINK
+        ========================================= */
+
+        .back-link {
+
+            display: inline-block;
+
+            margin-top: 18px;
+
+            color: #667eea;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 480px) {
+
+            .verification-container {
+
+                padding:
+                    28px 18px;
+            }
+
+
+            h1 {
+
+                font-size: 24px;
+            }
+
+
+            .code-input {
+
+                font-size: 22px;
+
+                letter-spacing: 6px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main
+        class="verification-container"
+    >
+
+
+        <!-- =====================================
+             LOGO
+        ====================================== -->
+
+        <div class="logo">
+            🌍
+        </div>
+
+
+        <!-- =====================================
+             TITLE
+        ====================================== -->
+
+        <h1>
+            Verify Your Account
+        </h1>
+
+
+        <p class="subtitle">
+
+            Enter the 6-digit verification
+            code sent using your selected
+            verification method.
+
+        </p>
+
+
+        <!-- =====================================
+             ACCOUNT INFORMATION
+        ====================================== -->
+
+        <div class="account-box">
+
+            <strong>
+                Verification destination
+            </strong>
+
+            <span
+                id="verificationDestination"
+            >
+                Loading...
+            </span>
+
+        </div>
+
+
+        <!-- =====================================
+             VERIFICATION FORM
+        ====================================== -->
+
+        <form
+            id="verificationForm"
+        >
+
+
+            <input
+                type="text"
+                id="verificationCode"
+                class="code-input"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                maxlength="6"
+                pattern="[0-9]{6}"
+                placeholder="000000"
+                aria-label="6-digit verification code"
+                required
+            >
+
+
+            <button
+                type="submit"
+                id="verifyButton"
+                class="verify-button"
+            >
+                Verify Account
+            </button>
+
+
+        </form>
+
+
+        <!-- =====================================
+             MESSAGE
+        ====================================== -->
+
+        <div
+            id="message"
+            class="message"
+            role="alert"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- =====================================
+             HELPER
+        ====================================== -->
+
+        <p class="helper">
+
+            The verification code expires
+            after 10 minutes.
+
+            During local testing, the code
+            is displayed in the Gene-rations
+            backend terminal.
+
+        </p>
+
+
+        <!-- =====================================
+             BACK
+        ====================================== -->
+
+        <a
+            href="signup.html"
+            class="back-link"
+        >
+            ← Back to Sign Up
+        </a>
+
+
+    </main>
+
+
+
+    <script>
+
+
+        /* ========================================================
+           GENE-RATIONS ACCOUNT VERIFICATION
+        =========================================================
+
+           IMPORTANT BACKEND CONTRACT
+
+           Your current backend endpoint is:
+
+           POST
+           http://localhost:3000/api/auth/verify
+
+           It expects:
+
+           {
+               userId: "...",
+               code: "......"
+           }
+
+           It does NOT expect:
+
+           {
+               email: "...",
+               code: "......"
+           }
+
+           Therefore this page uses:
+
+           pendingVerification.userId
+
+           ======================================================== */
+
+
+        /* ========================================================
+           API BASE URL
+        ======================================================== */
+
+        const API_BASE_URL =
+            "http://localhost:3000";
+
+
+
+        /* ========================================================
+           GET PENDING VERIFICATION
+        ======================================================== */
+
+        const pendingData =
+            localStorage.getItem(
+                "pendingVerification"
+            );
+
+
+
+        /* ========================================================
+           GET PAGE ELEMENTS
+        ======================================================== */
+
+        const destinationElement =
+            document.getElementById(
+                "verificationDestination"
+            );
+
+
+        const verificationForm =
+            document.getElementById(
+                "verificationForm"
+            );
+
+
+        const codeInput =
+            document.getElementById(
+                "verificationCode"
+            );
+
+
+        const verifyButton =
+            document.getElementById(
+                "verifyButton"
+            );
+
+
+        const messageElement =
+            document.getElementById(
+                "message"
+            );
+
+
+
+        /* ========================================================
+           VARIABLES
+        ======================================================== */
+
+        let userId = null;
+
+        let userEmail = null;
+
+        let userPhone = null;
+
+        let verificationMethod = null;
+
+
+
+        /* ========================================================
+           LOAD PENDING VERIFICATION
+        ======================================================== */
+
+        if (!pendingData) {
+
+
+            destinationElement.textContent =
+                "No pending verification found.";
+
+
+            showMessage(
+
+                "Your verification session is missing. Please create your account again.",
+
+                "error"
+
+            );
+
+
+            verifyButton.disabled =
+                true;
+
+
+        } else {
+
+
+            try {
+
+
+                const pendingVerification =
+                    JSON.parse(
+                        pendingData
+                    );
+
+
+                /* =========================================
+                   IMPORTANT FIX
+
+                   GET USER ID FROM SIGNUP RESPONSE
+                ========================================= */
+
+                userId =
+                    pendingVerification.userId;
+
+
+                userEmail =
+                    pendingVerification.email;
+
+
+                userPhone =
+                    pendingVerification.phone;
+
+
+                verificationMethod =
+                    pendingVerification.verificationMethod;
+
+
+
+                /* =========================================
+                   CHECK USER ID
+                ========================================= */
+
+                if (!userId) {
+
+
+                    console.error(
+
+                        "Gene-rations verification error: userId is missing.",
+
+                        pendingVerification
+
+                    );
+
+
+                    showMessage(
+
+                        "Your verification information is incomplete. Please sign up again.",
+
+                        "error"
+
+                    );
+
+
+                    verifyButton.disabled =
+                        true;
+
+
+                } else {
+
+
+                    /* =====================================
+                       DISPLAY DESTINATION
+                    ===================================== */
+
+                    if (
+                        verificationMethod ===
+                        "sms"
+                    ) {
+
+
+                        destinationElement.textContent =
+                            userPhone ||
+                            "your registered phone number";
+
+
+                    } else {
+
+
+                        destinationElement.textContent =
+                            userEmail ||
+                            "your registered email address";
+
+                    }
+
+
+                }
+
+
+            } catch (error) {
+
+
+                console.error(
+
+                    "Unable to read pendingVerification:",
+
+                    error
+
+                );
+
+
+                showMessage(
+
+                    "The saved verification information is invalid. Please sign up again.",
+
+                    "error"
+
+                );
+
+
+                verifyButton.disabled =
+                    true;
+
+            }
+
+        }
+
+
+
+        /* ========================================================
+           VERIFY ACCOUNT
+        ======================================================== */
+
+        verificationForm.addEventListener(
+
+            "submit",
+
+            async function (event) {
+
+
+                event.preventDefault();
+
+
+
+                /* =========================================
+                   GET CODE
+                ========================================= */
+
+                const code =
+                    codeInput.value.trim();
+
+
+
+                /* =========================================
+                   CHECK USER ID
+                ========================================= */
+
+                if (!userId) {
+
+
+                    showMessage(
+
+                        "User verification ID is missing. Please sign up again.",
+
+                        "error"
+
+                    );
+
+
+                    return;
+
+                }
+
+
+
+                /* =========================================
+                   CHECK CODE
+                ========================================= */
+
+                if (
+                    !/^\d{6}$/.test(code)
+                ) {
+
+
+                    showMessage(
+
+                        "Please enter the 6-digit verification code.",
+
+                        "error"
+
+                    );
+
+
+                    codeInput.focus();
+
+
+                    return;
+
+                }
+
+
+
+                /* =========================================
+                   DISABLE BUTTON
+                ========================================= */
+
+                verifyButton.disabled =
+                    true;
+
+
+                verifyButton.textContent =
+                    "Verifying...";
+
+
+                clearMessage();
+
+
+
+                /* =========================================
+                   SEND VERIFICATION REQUEST
+                ========================================= */
+
+                try {
+
+
+                    const response =
+                        await fetch(
+
+                            API_BASE_URL +
+                            "/api/auth/verify",
+
+                            {
+
+                                method:
+                                    "POST",
+
+
+                                headers: {
+
+                                    "Content-Type":
+                                        "application/json"
+
+                                },
+
+
+                                /* =================================
+                                   CRITICAL FIX
+
+                                   SEND USER ID + CODE
+                                ================================= */
+
+                                body:
+                                    JSON.stringify({
+
+                                        userId:
+                                            userId,
+
+                                        code:
+                                            code
+
+                                    })
+
+                            }
+
+                        );
+
+
+
+                    /* =========================================
+                       READ SERVER RESPONSE
+                    ========================================= */
+
+                    let result = {};
+
+
+                    try {
+
+
+                        result =
+                            await response.json();
+
+
+                    } catch (jsonError) {
+
+
+                        console.error(
+
+                            "Invalid server response:",
+
+                            jsonError
+
+                        );
+
+
+                        throw new Error(
+
+                            "The Gene-rations server returned an invalid response."
+
+                        );
+
+                    }
+
+
+
+                    /* =========================================
+                       SERVER RETURNED AN ERROR
+                    ========================================= */
+
+                    if (!response.ok) {
+
+
+                        showMessage(
+
+                            result.message ||
+                            "Account verification failed.",
+
+                            "error"
+
+                        );
+
+
+                        verifyButton.disabled =
+                            false;
+
+
+                        verifyButton.textContent =
+                            "Verify Account";
+
+
+                        return;
+
+                    }
+
+
+
+                    /* =========================================
+                       SUCCESS
+                    ========================================= */
+
+                    if (result.success) {
+
+
+                        showMessage(
+
+                            "Account verified successfully! Redirecting to login...",
+
+                            "success"
+
+                        );
+
+
+
+                        /* =====================================
+                           REMOVE TEMPORARY VERIFICATION DATA
+                        ===================================== */
+
+                        localStorage.removeItem(
+
+                            "pendingVerification"
+
+                        );
+
+
+
+                        /* =====================================
+                           GO TO LOGIN
+                        ===================================== */
+
+                        setTimeout(
+
+                            function () {
+
+                                window.location.href =
+                                    "login.html";
+
+                            },
+
+                            1200
+
+                        );
+
+
+                        return;
+
+                    }
+
+
+
+                    /* =========================================
+                       UNEXPECTED RESPONSE
+                    ========================================= */
+
+                    showMessage(
+
+                        "The account could not be verified.",
+
+                        "error"
+
+                    );
+
+
+                    verifyButton.disabled =
+                        false;
+
+
+                    verifyButton.textContent =
+                        "Verify Account";
+
+
+                } catch (error) {
+
+
+                    console.error(
+
+                        "Gene-rations verification request failed:",
+
+                        error
+
+                    );
+
+
+
+                    /* =========================================
+                       CONNECTION ERROR
+                    =========================================
+
+                       This happens only when the browser cannot
+                       successfully communicate with the backend.
+
+                       Backend errors such as:
+
+                       "User account not found."
+                       "Invalid verification code."
+                       "Verification code has expired."
+
+                       are handled above.
+                    ========================================= */
+
+
+                    showMessage(
+
+                        "Unable to connect to the Gene-rations server. Make sure the backend is running on http://localhost:3000.",
+
+                        "error"
+
+                    );
+
+
+                    verifyButton.disabled =
+                        false;
+
+
+                    verifyButton.textContent =
+                        "Verify Account";
+
+                }
+
+            }
+
+        );
+
+
+
+        /* ========================================================
+           CODE INPUT
+        ======================================================== */
+
+        codeInput.addEventListener(
+
+            "input",
+
+            function () {
+
+
+                /* =========================================
+                   ALLOW NUMBERS ONLY
+                ========================================= */
+
+                this.value =
+
+                    this.value
+                        .replace(
+                            /\D/g,
+                            ""
+                        )
+                        .slice(
+                            0,
+                            6
+                        );
+
+            }
+
+        );
+
+
+
+        /* ========================================================
+           MESSAGE FUNCTION
+        ======================================================== */
+
+        function showMessage(
+
+            text,
+
+            type
+
+        ) {
+
+
+            messageElement.textContent =
+                text;
+
+
+            messageElement.className =
+                "message " +
+                (type || "");
+
+        }
+
+
+
+        /* ========================================================
+           CLEAR MESSAGE
+        ======================================================== */
+
+        function clearMessage() {
+
+
+            messageElement.textContent =
+                "";
+
+
+            messageElement.className =
+                "message";
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

@@ -14,12 +14,13 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f3f6fa;
             min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #f4f8ff, #ffffff);
+            color: #222;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 20px;
         }
 
@@ -27,772 +28,706 @@
             width: 100%;
             max-width: 460px;
             background: #ffffff;
-            padding: 32px;
-            border-radius: 18px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+            border-radius: 20px;
+            padding: 32px 24px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.10);
             text-align: center;
         }
 
         .logo {
-            font-size: 30px;
-            font-weight: bold;
-            color: #1877f2;
-            margin-bottom: 12px;
-        }
-
-        .icon {
-            width: 70px;
-            height: 70px;
-            margin: 15px auto 20px;
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 18px;
             border-radius: 50%;
-            background: #eef5ff;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
+            font-size: 34px;
         }
 
         h1 {
-            font-size: 24px;
-            color: #222;
+            font-size: 28px;
             margin-bottom: 10px;
         }
 
-        .description {
+        .subtitle {
             color: #666;
             line-height: 1.5;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
-        .contact {
-            font-weight: bold;
-            color: #1877f2;
+        .account-box {
+            background: #f6f8ff;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 22px;
+            text-align: left;
+        }
+
+        .account-box strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #verificationDestination {
+            color: #555;
             word-break: break-word;
         }
 
         .code-input {
             width: 100%;
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 24px;
+            padding: 16px;
+            border: 2px solid #d9dce5;
+            border-radius: 12px;
+            font-size: 26px;
             letter-spacing: 8px;
+            text-align: center;
             outline: none;
-            margin: 20px 0 15px;
+            transition: border-color 0.2s;
         }
 
         .code-input:focus {
-            border-color: #1877f2;
+            border-color: #667eea;
         }
 
         .verify-button {
             width: 100%;
-            padding: 14px;
             border: none;
-            border-radius: 10px;
-            background: #1877f2;
-            color: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 16px;
+            background: #667eea;
+            color: #fff;
             font-size: 17px;
             font-weight: bold;
             cursor: pointer;
         }
 
-        .verify-button:hover {
-            background: #0d65d9;
-        }
-
-        .resend {
-            margin-top: 18px;
-        }
-
-        .resend button {
-            border: none;
-            background: transparent;
-            color: #1877f2;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .resend button:disabled {
-            color: #999;
+        .verify-button:disabled {
+            opacity: 0.65;
             cursor: not-allowed;
         }
 
-        .change-method {
-            margin-top: 15px;
-        }
-
-        .change-method button {
-            border: none;
-            background: transparent;
-            color: #555;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
         .message {
-            margin-top: 15px;
+            min-height: 24px;
+            margin-top: 16px;
             font-size: 14px;
             line-height: 1.4;
         }
 
-        .error {
-            color: #d93025;
+        .message.error {
+            color: #c62828;
         }
 
-        .success {
+        .message.success {
             color: #188038;
         }
 
-        .login-link {
+        .helper {
             margin-top: 22px;
-            font-size: 14px;
-            color: #666;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.5;
         }
 
-        .login-link a {
-            color: #1877f2;
+        .back-link {
+            display: inline-block;
+            margin-top: 18px;
+            color: #667eea;
             text-decoration: none;
             font-weight: bold;
+        }
+
+        .debug-info {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .verification-container {
+                padding: 28px 18px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .code-input {
+                font-size: 22px;
+                letter-spacing: 6px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<div class="verification-container">
+    <main class="verification-container">
 
-    <div class="logo">
-        Gene-rations
-    </div>
+        <div class="logo">🌍</div>
 
-    <div class="icon" id="verificationIcon">
-        ✉️
-    </div>
+        <h1>Verify Your Account</h1>
 
-    <h1 id="verificationTitle">
-        Verify Your Account
-    </h1>
+        <p class="subtitle">
+            Enter the 6-digit verification code sent to your selected
+            verification method.
+        </p>
 
-    <p class="description">
-        Enter the verification code sent to:
-        <br>
-        <span class="contact" id="contactDisplay">
-            Loading...
-        </span>
-    </p>
+        <div class="account-box">
+            <strong>Verification destination</strong>
+            <span id="verificationDestination">Loading...</span>
+        </div>
 
-    <form id="verificationForm">
+        <form id="verificationForm">
 
-        <input
-            type="text"
-            id="verificationCode"
-            class="code-input"
-            placeholder="000000"
-            inputmode="numeric"
-            maxlength="6"
-            autocomplete="one-time-code"
-            required
-        >
+            <input
+                type="text"
+                id="verificationCode"
+                class="code-input"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                maxlength="6"
+                pattern="[0-9]{6}"
+                placeholder="000000"
+                aria-label="6-digit verification code"
+                required
+            >
 
-        <button
-            type="submit"
-            class="verify-button"
-        >
-            Verify Account
-        </button>
+            <button
+                type="submit"
+                id="verifyButton"
+                class="verify-button"
+            >
+                Verify Account
+            </button>
 
-    </form>
+        </form>
 
-    <div class="resend">
+        <div
+            id="message"
+            class="message"
+            role="alert"
+            aria-live="polite"
+        ></div>
 
-        <button
-            type="button"
-            id="resendButton"
-            disabled
-        >
-            Resend Code
-        </button>
+        <p class="helper">
+            The verification code expires after 10 minutes.
+            Use the code displayed by your local Gene-rations backend
+            during testing.
+        </p>
 
-        <span id="countdown">
-            60
-        </span>
-
-    </div>
-
-    <div class="change-method">
-
-        <button
-            type="button"
-            id="changeMethod"
-        >
-            Change verification method
-        </button>
-
-    </div>
-
-    <div
-        id="message"
-        class="message"
-    ></div>
-
-    <div class="login-link">
-
-        Already verified?
-
-        <a href="login.html">
-            Log In
+        <a href="signup.html" class="back-link">
+            ← Back to Sign Up
         </a>
 
-    </div>
+        <!--
+            The following values are intentionally kept hidden.
+            They are populated from localStorage and used for verification.
+        -->
+        <div class="debug-info">
+            <span id="userId"></span>
+            <span id="verificationMethod"></span>
+        </div>
 
-</div>
+    </main>
 
-<script>
-
-/* ==========================================
-   PENDING VERIFICATION
-========================================== */
-
-const pendingData =
-    localStorage.getItem("pendingVerification");
-
-
-/*
-   Signup should have created this before
-   sending the user here.
-*/
-
-if (!pendingData) {
-
-    window.location.href =
-        "signup.html";
-
-}
-
-
-/* ==========================================
-   GET PENDING DATA
-========================================== */
-
-const pendingVerification =
-    JSON.parse(pendingData);
-
-const userEmail =
-    pendingVerification.email;
-
-const verificationMethod =
-    pendingVerification.verificationMethod;
-
-
-/* ==========================================
-   ELEMENTS
-========================================== */
-
-const verificationIcon =
-    document.getElementById(
-        "verificationIcon"
-    );
-
-const verificationTitle =
-    document.getElementById(
-        "verificationTitle"
-    );
-
-const contactDisplay =
-    document.getElementById(
-        "contactDisplay"
-    );
-
-const verificationForm =
-    document.getElementById(
-        "verificationForm"
-    );
-
-const verificationCode =
-    document.getElementById(
-        "verificationCode"
-    );
-
-const resendButton =
-    document.getElementById(
-        "resendButton"
-    );
-
-const changeMethod =
-    document.getElementById(
-        "changeMethod"
-    );
-
-const countdown =
-    document.getElementById(
-        "countdown"
-    );
-
-const message =
-    document.getElementById(
-        "message"
-    );
-
-
-/* ==========================================
-   MASK EMAIL
-========================================== */
-
-function maskEmail(email) {
-
-    if (!email) {
-        return "";
-    }
-
-    const parts =
-        email.split("@");
-
-    if (parts.length !== 2) {
-        return email;
-    }
-
-    const name =
-        parts[0];
-
-    const domain =
-        parts[1];
-
-    let visibleName;
-
-    if (name.length <= 2) {
-
-        visibleName =
-            name.charAt(0) +
-            "••••";
-
-    } else {
-
-        visibleName =
-            name.substring(0, 2) +
-            "••••";
-
-    }
-
-    return (
-        visibleName +
-        "@" +
-        domain
-    );
-
-}
-
-
-/* ==========================================
-   DISPLAY VERIFICATION
-========================================== */
-
-function updateVerificationDisplay() {
-
-    if (
-        verificationMethod ===
-        "sms"
-    ) {
-
-        verificationIcon.textContent =
-            "📱";
-
-        verificationTitle.textContent =
-            "Verify Your Phone";
-
+    <script>
         /*
-           We currently only have the email
-           inside pendingVerification.
+        ============================================================
+        GENE-RATIONS ACCOUNT VERIFICATION
+        ============================================================
 
-           We will add phone here when we
-           implement real SMS sending.
-        */
+        IMPORTANT:
+        The backend endpoint /api/auth/verify expects:
 
-        contactDisplay.textContent =
-            "your registered phone number";
-
-    }
-
-    else {
-
-        verificationIcon.textContent =
-            "✉️";
-
-        verificationTitle.textContent =
-            "Verify Your Account";
-
-        contactDisplay.textContent =
-            maskEmail(userEmail);
-
-    }
-
-}
-
-
-/* ==========================================
-   INITIAL DISPLAY
-========================================== */
-
-updateVerificationDisplay();
-
-
-/* ==========================================
-   VERIFY ACCOUNT
-========================================== */
-
-verificationForm.addEventListener(
-    "submit",
-    async function(event) {
-
-        event.preventDefault();
-
-
-        const code =
-            verificationCode.value
-                .trim();
-
-
-        /* -------------------------------
-           CODE VALIDATION
-        -------------------------------- */
-
-        if (
-            !/^\d{6}$/.test(code)
-        ) {
-
-            showMessage(
-                "Please enter the 6-digit verification code.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        /* -------------------------------
-           BUTTON
-        -------------------------------- */
-
-        const verifyButton =
-            verificationForm.querySelector(
-                "button[type='submit']"
-            );
-
-        verifyButton.disabled =
-            true;
-
-        verifyButton.textContent =
-            "Verifying...";
-
-
-        showMessage(
-            "Verifying your account...",
-            ""
-        );
-
-
-        /* -------------------------------
-           SEND TO BACKEND
-        -------------------------------- */
-
-        try {
-
-            const response =
-                await fetch(
-                    "http://localhost:3000/api/auth/verify",
-                    {
-
-                        method:
-                            "POST",
-
-                        headers: {
-
-                            "Content-Type":
-                                "application/json"
-
-                        },
-
-                        body:
-                            JSON.stringify({
-
-                                email:
-                                    userEmail,
-
-                                code:
-                                    code
-
-                            })
-
-                    }
-                );
-
-
-            const result =
-                await response.json();
-
-
-            /* -------------------------------
-               VERIFICATION FAILED
-            -------------------------------- */
-
-            if (!response.ok) {
-
-                showMessage(
-                    result.message ||
-                    "Verification failed.",
-                    "error"
-                );
-
-                verifyButton.disabled =
-                    false;
-
-                verifyButton.textContent =
-                    "Verify Account";
-
-                return;
-
+            {
+                userId: "...",
+                code: "......"
             }
 
+        NOT:
 
-            /* -------------------------------
-               SUCCESS
-            -------------------------------- */
+            {
+                email: "...",
+                code: "......"
+            }
+
+        Signup already stores the backend userId in:
+
+            localStorage.pendingVerification.userId
+        ============================================================
+        */
+
+        const API_BASE_URL =
+            "http://localhost:3000";
+
+        const pendingData =
+            localStorage.getItem("pendingVerification");
+
+        const destinationElement =
+            document.getElementById(
+                "verificationDestination"
+            );
+
+        const verificationForm =
+            document.getElementById(
+                "verificationForm"
+            );
+
+        const codeInput =
+            document.getElementById(
+                "verificationCode"
+            );
+
+        const verifyButton =
+            document.getElementById(
+                "verifyButton"
+            );
+
+        const messageElement =
+            document.getElementById(
+                "message"
+            );
+
+        const userIdElement =
+            document.getElementById(
+                "userId"
+            );
+
+        const methodElement =
+            document.getElementById(
+                "verificationMethod"
+            );
+
+
+        /*
+        ============================================================
+        LOAD PENDING VERIFICATION
+        ============================================================
+        */
+
+        if (!pendingData) {
+
+            destinationElement.textContent =
+                "No pending verification found.";
 
             showMessage(
-                "Account verified successfully! Redirecting to login...",
-                "success"
-            );
-
-
-            /*
-               Remove pending verification.
-            */
-
-            localStorage.removeItem(
-                "pendingVerification"
-            );
-
-
-            /*
-               Give the user a moment to see
-               the success message.
-            */
-
-            setTimeout(
-                function() {
-
-                    window.location.href =
-                        "login.html";
-
-                },
-                1000
-            );
-
-        }
-
-        catch (error) {
-
-            console.error(
-                "Verification error:",
-                error
-            );
-
-
-            showMessage(
-                "Unable to connect to the Gene-rations server.",
+                "Your verification session is missing. Please create your account again.",
                 "error"
             );
 
+            verifyButton.disabled = true;
 
-            verifyButton.disabled =
-                false;
+        } else {
 
-            verifyButton.textContent =
-                "Verify Account";
+            try {
 
-        }
+                const pendingVerification =
+                    JSON.parse(
+                        pendingData
+                    );
 
-    }
-);
+                /*
+                ----------------------------------------------------
+                THIS IS THE IMPORTANT FIX
+                ----------------------------------------------------
+                Get the USER ID returned by the backend during signup.
+                */
 
+                const userId =
+                    pendingVerification.userId;
 
-/* ==========================================
-   RESEND CODE
-========================================== */
+                const userEmail =
+                    pendingVerification.email;
 
-let seconds = 60;
+                const userPhone =
+                    pendingVerification.phone;
 
-let timer;
-
-
-function startCountdown() {
-
-    seconds = 60;
-
-    resendButton.disabled =
-        true;
-
-    countdown.textContent =
-        seconds;
+                const verificationMethod =
+                    pendingVerification.verificationMethod;
 
 
-    clearInterval(timer);
+                /*
+                ----------------------------------------------------
+                Validate the stored verification information.
+                ----------------------------------------------------
+                */
+
+                if (!userId) {
+
+                    console.error(
+                        "Gene-rations verification error: userId is missing.",
+                        pendingVerification
+                    );
+
+                    showMessage(
+                        "Your verification information is incomplete. Please sign up again.",
+                        "error"
+                    );
+
+                    verifyButton.disabled = true;
+
+                } else {
+
+                    userIdElement.textContent =
+                        userId;
+
+                    methodElement.textContent =
+                        verificationMethod || "email";
 
 
-    timer =
-        setInterval(
-            function() {
+                    /*
+                    ------------------------------------------------
+                    Display the selected verification destination.
+                    Only ONE method is used per signup.
+                    ------------------------------------------------
+                    */
 
-                seconds--;
+                    if (
+                        verificationMethod ===
+                        "sms"
+                    ) {
 
-                countdown.textContent =
-                    seconds;
+                        destinationElement.textContent =
+                            userPhone ||
+                            "your registered phone number";
+
+                    } else {
+
+                        destinationElement.textContent =
+                            userEmail ||
+                            "your registered email address";
+                    }
 
 
-                if (
-                    seconds <= 0
-                ) {
+                    /*
+                    ------------------------------------------------
+                    Store the values for form submission.
+                    ------------------------------------------------
+                    */
 
-                    clearInterval(timer);
-
-                    resendButton.disabled =
-                        false;
-
-                    countdown.textContent =
-                        "";
+                    verificationForm.dataset.userId =
+                        userId;
 
                 }
 
-            },
-            1000
-        );
+            } catch (error) {
 
-}
-
-
-startCountdown();
-
-
-/* ==========================================
-   RESEND
-========================================== */
-
-resendButton.addEventListener(
-    "click",
-    async function() {
-
-        showMessage(
-            "Resend functionality will be connected to the email/SMS service next.",
-            "success"
-        );
-
-        startCountdown();
-
-    }
-);
-
-
-/* ==========================================
-   CHANGE METHOD
-========================================== */
-
-changeMethod.addEventListener(
-    "click",
-    function() {
-
-        /*
-           We are NOT changing the method
-           locally anymore.
-
-           The backend must be updated before
-           switching from email to SMS or SMS
-           to email.
-        */
-
-        showMessage(
-            "Verification method switching will be connected to the backend next.",
-            "error"
-        );
-
-    }
-);
-
-
-/* ==========================================
-   MESSAGE
-========================================== */
-
-function showMessage(
-    text,
-    type
-) {
-
-    message.textContent =
-        text;
-
-    message.className =
-        "message";
-
-    if (type) {
-
-        message.classList.add(
-            type
-        );
-
-    }
-
-}
-
-
-/* ==========================================
-   ONLY NUMBERS
-========================================== */
-
-verificationCode.addEventListener(
-    "input",
-    function() {
-
-        this.value =
-            this.value
-                .replace(
-                    /\D/g,
-                    ""
-                )
-                .slice(
-                    0,
-                    6
+                console.error(
+                    "Unable to read pendingVerification:",
+                    error
                 );
 
-    }
-);
+                showMessage(
+                    "The saved verification information is invalid. Please sign up again.",
+                    "error"
+                );
+
+                verifyButton.disabled = true;
+            }
+        }
 
 
-/* ==========================================
-   ENTER KEY
-========================================== */
+        /*
+        ============================================================
+        VERIFY ACCOUNT
+        ============================================================
+        */
 
-verificationCode.addEventListener(
-    "keydown",
-    function(event) {
+        verificationForm.addEventListener(
+            "submit",
+            async function (event) {
 
-        if (
-            event.key ===
-            "Enter"
+                event.preventDefault();
+
+                const code =
+                    codeInput.value.trim();
+
+                const userId =
+                    verificationForm.dataset.userId;
+
+
+                /*
+                ----------------------------------------------------
+                Validate user ID
+                ----------------------------------------------------
+                */
+
+                if (!userId) {
+
+                    showMessage(
+                        "User verification ID is missing. Please sign up again.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                /*
+                ----------------------------------------------------
+                Validate six-digit code
+                ----------------------------------------------------
+                */
+
+                if (!/^\d{6}$/.test(code)) {
+
+                    showMessage(
+                        "Please enter the 6-digit verification code.",
+                        "error"
+                    );
+
+                    codeInput.focus();
+
+                    return;
+                }
+
+
+                /*
+                ----------------------------------------------------
+                Prevent double submission
+                ----------------------------------------------------
+                */
+
+                verifyButton.disabled = true;
+
+                verifyButton.textContent =
+                    "Verifying...";
+
+                clearMessage();
+
+
+                try {
+
+                    /*
+                    =================================================
+                    IMPORTANT FIX
+                    =================================================
+
+                    The backend expects USER ID + CODE.
+
+                    We deliberately do NOT send email here.
+                    =================================================
+                    */
+
+                    const response =
+                        await fetch(
+                            API_BASE_URL +
+                            "/api/auth/verify",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify({
+                                        userId:
+                                            userId,
+
+                                        code:
+                                            code
+                                    })
+                            }
+                        );
+
+
+                    /*
+                    ------------------------------------------------
+                    Read the backend response safely.
+                    ------------------------------------------------
+                    */
+
+                    let result = {};
+
+                    try {
+
+                        result =
+                            await response.json();
+
+                    } catch (jsonError) {
+
+                        console.error(
+                            "Invalid server response:",
+                            jsonError
+                        );
+
+                        throw new Error(
+                            "The Gene-rations server returned an invalid response."
+                        );
+                    }
+
+
+                    /*
+                    ------------------------------------------------
+                    Backend returned an error.
+                    ------------------------------------------------
+                    */
+
+                    if (!response.ok) {
+
+                        showMessage(
+                            result.message ||
+                            "Account verification failed.",
+                            "error"
+                        );
+
+                        verifyButton.disabled =
+                            false;
+
+                        verifyButton.textContent =
+                            "Verify Account";
+
+                        return;
+                    }
+
+
+                    /*
+                    ------------------------------------------------
+                    Verification succeeded.
+                    ------------------------------------------------
+                    */
+
+                    if (result.success) {
+
+                        showMessage(
+                            "Account verified successfully! Redirecting...",
+                            "success"
+                        );
+
+
+                        /*
+                        Remove the temporary verification data.
+                        The account is now verified.
+                        */
+
+                        localStorage.removeItem(
+                            "pendingVerification"
+                        );
+
+
+                        /*
+                        Give the success message a moment
+                        before moving to login.
+                        */
+
+                        setTimeout(
+                            function () {
+
+                                window.location.href =
+                                    "login.html";
+
+                            },
+                            1200
+                        );
+
+                        return;
+                    }
+
+
+                    /*
+                    ------------------------------------------------
+                    Unexpected successful HTTP response.
+                    ------------------------------------------------
+                    */
+
+                    showMessage(
+                        "The account could not be verified.",
+                        "error"
+                    );
+
+                    verifyButton.disabled =
+                        false;
+
+                    verifyButton.textContent =
+                        "Verify Account";
+
+                } catch (error) {
+
+                    console.error(
+                        "Gene-rations verification request failed:",
+                        error
+                    );
+
+
+                    /*
+                    This message is only used when the browser
+                    cannot reach the backend at all.
+
+                    It is different from backend errors such as:
+                        "User account not found."
+                        "Invalid verification code."
+                        "Verification code has expired."
+                    */
+
+                    showMessage(
+                        "Unable to connect to the Gene-rations server. Make sure the backend is running on http://localhost:3000.",
+                        "error"
+                    );
+
+                    verifyButton.disabled =
+                        false;
+
+                    verifyButton.textContent =
+                        "Verify Account";
+                }
+
+            }
+        );
+
+
+        /*
+        ============================================================
+        INPUT: ALLOW DIGITS ONLY
+        ============================================================
+        */
+
+        codeInput.addEventListener(
+            "input",
+            function () {
+
+                this.value =
+                    this.value
+                        .replace(/\D/g, "")
+                        .slice(0, 6);
+
+            }
+        );
+
+
+        /*
+        ============================================================
+        MESSAGE HELPERS
+        ============================================================
+        */
+
+        function showMessage(
+            text,
+            type
         ) {
 
-            event.preventDefault();
+            messageElement.textContent =
+                text;
 
-            verificationForm.requestSubmit();
+            messageElement.className =
+                "message " +
+                (type || "");
 
         }
 
-    }
-);
 
-  
-</script>
+        function clearMessage() {
+
+            messageElement.textContent =
+                "";
+
+            messageElement.className =
+                "message";
+
+        }
+    </script>
 
 </body>
 </html>

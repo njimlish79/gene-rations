@@ -22,7 +22,7 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f3ff;
+    background: #fceca8;
     color: #29194d;
 }
 
@@ -916,333 +916,899 @@ textarea:focus {
 
 <script>
 
-/* =================================================
-   GENE-RATIONS POSTS ENGINE
-================================================= */
+/* =====================================================
+   GENE-RATIONS POSTS
+   BACKEND CONNECTED
+===================================================== */
+
+const API_URL = "http://localhost:3000";
+
+let userData = null;
+let posts = [];
+let currentFilter = "all";
 
 
-/* ================================================
-   CURRENT USER
-================================================ */
+/* =====================================================
+   DEFAULT PROFILE PHOTO
+===================================================== */
 
-let userData =
-    JSON.parse(
-        localStorage.getItem("userData")
-    );
-
-
-if (!userData) {
-
-    window.location.href =
-        "login.html";
-
-}
-
-
-/* ================================================
-   DEFAULT PHOTO
-================================================ */
-
-const defaultPhoto =
+const DEFAULT_PHOTO =
     "data:image/svg+xml;charset=UTF-8," +
     encodeURIComponent(`
-
         <svg xmlns="http://www.w3.org/2000/svg"
              width="200"
-             height="200">
+             height="200"
+             viewBox="0 0 200 200">
 
-            <rect
-                width="200"
-                height="200"
-                fill="#e8defd"/>
+            <rect width="200"
+                  height="200"
+                  rx="100"
+                  fill="#e9eef7"/>
 
-            <circle
-                cx="100"
-                cy="70"
-                r="38"
-                fill="#8d72c8"/>
+            <circle cx="100"
+                    cy="75"
+                    r="35"
+                    fill="#9aa8bd"/>
 
-            <path
-                d="M35 180
-                   C40 125
-                   70 110
-                   100 110
-                   C130 110
-                   160 125
-                   165 180Z"
-                fill="#8d72c8"/>
+            <path d="
+                M40 170
+                C45 125 70 110 100 110
+                C130 110 155 125 160 170
+                Z"
+                fill="#9aa8bd"/>
 
         </svg>
-
     `);
 
 
-/* ================================================
-   POST STORAGE
-================================================ */
+/* =====================================================
+   GET STORED USER
+===================================================== */
 
-const postStorageKey =
-    "geneRationsPosts";
+function getStoredUser() {
 
+    try {
 
-let posts =
-    JSON.parse(
-        localStorage.getItem(
-            postStorageKey
-        )
-    );
+        return JSON.parse(
+            localStorage.getItem("userData")
+        );
 
+    } catch (error) {
 
-if (!Array.isArray(posts)) {
+        return null;
 
-    posts = [];
+    }
 
 }
 
 
-/* ================================================
-   NORMALIZE POSTS
-================================================ */
+/* =====================================================
+   SAVE USER
+===================================================== */
 
-posts =
-    posts.map(
-        function(post) {
+function saveUser(user) {
 
-            return {
+    if (!user) return;
 
-                id:
-                    post.id ||
-                    Date.now() +
-                    Math.random(),
-
-                authorEmail:
-                    post.authorEmail ||
-                    "",
-
-                author:
-                    post.author ||
-                    "Gene-rations Member",
-
-                generation:
-                    post.generation ||
-                    "Generation Alpha",
-
-                profilePhoto:
-                    post.profilePhoto ||
-                    "",
-
-                content:
-                    post.content ||
-                    "",
-
-                image:
-                    post.image ||
-                    "",
-
-                likes:
-                    Array.isArray(post.likes)
-                        ? post.likes
-                        : [],
-
-                comments:
-                    Array.isArray(post.comments)
-                        ? post.comments
-                        : [],
-
-                createdAt:
-                    post.createdAt ||
-                    new Date().toISOString()
-
-            };
-
-        }
-    );
-
-
-savePosts();
-
-
-/* ================================================
-   CURRENT FILTER
-================================================ */
-
-let currentFilter =
-    "all";
-
-
-/* ================================================
-   SAVE POSTS
-================================================ */
-
-function savePosts() {
+    userData = user;
 
     localStorage.setItem(
-        postStorageKey,
-        JSON.stringify(posts)
+        "userData",
+        JSON.stringify(user)
     );
 
 }
 
 
-/* ================================================
-   LOAD USER INFORMATION
-================================================ */
+/* =====================================================
+   PROFILE PHOTO
+===================================================== */
 
-function loadUser() {
+function getProfilePhoto(photo) {
 
-    document.getElementById(
-        "currentUserName"
-    ).textContent =
-        userData.fullName ||
-        "Gene-rations Member";
-
-
-    document.getElementById(
-        "currentUserGeneration"
-    ).textContent =
-        userData.generation ||
-        "Generation community";
-
-
-    document.getElementById(
-        "currentUserPhoto"
-    ).src =
-        userData.profilePhoto ||
-        defaultPhoto;
+    return photo || DEFAULT_PHOTO;
 
 }
 
 
-loadUser();
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value || "";
+
+    return div.innerHTML;
+
+}
 
 
-/* ================================================
-   IMAGE UPLOAD
-================================================ */
+/* =====================================================
+   FORMAT TIME
+===================================================== */
 
-let selectedImage =
-    "";
+function formatPostTime(dateString) {
+
+    if (!dateString) {
+        return "";
+    }
+
+    const date =
+        new Date(dateString);
+
+    if (isNaN(date.getTime())) {
+        return "";
+    }
+
+    const now = new Date();
+
+    const difference =
+        Math.floor(
+            (now - date) / 1000
+        );
 
 
-document.getElementById(
-    "imageInput"
-).addEventListener(
-    "change",
-    function(event) {
-
-        const file =
-            event.target.files[0];
+    if (difference < 60) {
+        return "Just now";
+    }
 
 
-        if (!file) {
-            return;
-        }
+    if (difference < 3600) {
+
+        return (
+            Math.floor(
+                difference / 60
+            ) + "m ago"
+        );
+
+    }
+
+
+    if (difference < 86400) {
+
+        return (
+            Math.floor(
+                difference / 3600
+            ) + "h ago"
+        );
+
+    }
+
+
+    if (difference < 604800) {
+
+        return (
+            Math.floor(
+                difference / 86400
+            ) + "d ago"
+        );
+
+    }
+
+
+    return date.toLocaleDateString();
+
+}
+
+
+/* =====================================================
+   SHOW MESSAGE
+===================================================== */
+
+function showMessage(
+    text,
+    type = "success"
+) {
+
+    const message =
+        document.getElementById("message");
+
+    if (!message) return;
+
+    message.textContent = text;
+
+    message.className = type;
+
+    message.style.display = "block";
+
+
+    setTimeout(() => {
+
+        message.style.display = "none";
+
+    }, 4000);
+
+}
+
+
+/* =====================================================
+   DISPLAY CURRENT USER
+===================================================== */
+
+function displayCurrentUser() {
+
+    if (!userData) return;
+
+
+    const name =
+        document.getElementById(
+            "currentUserName"
+        );
+
+    const generation =
+        document.getElementById(
+            "currentUserGeneration"
+        );
+
+    const photo =
+        document.getElementById(
+            "currentUserPhoto"
+        );
+
+
+    if (name) {
+
+        name.textContent =
+            userData.fullName ||
+            "Gene-rations Member";
+
+    }
+
+
+    if (generation) {
+
+        generation.textContent =
+            (
+                userData.generationBadge ||
+                ""
+            ) +
+            " " +
+            (
+                userData.generation ||
+                "Gene-rations"
+            );
+
+    }
+
+
+    if (photo) {
+
+        photo.src =
+            getProfilePhoto(
+                userData.profilePhoto
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD CURRENT USER
+===================================================== */
+
+async function loadCurrentUser() {
+
+    const storedUser =
+        getStoredUser();
+
+
+    if (
+        !storedUser ||
+        !storedUser.id
+    ) {
+
+        window.location.href =
+            "login.html";
+
+        return false;
+
+    }
+
+
+    userData =
+        storedUser;
+
+
+    displayCurrentUser();
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/user/" +
+                encodeURIComponent(
+                    storedUser.id
+                )
+            );
+
+
+        const data =
+            await response.json();
 
 
         if (
-            !file.type.startsWith(
-                "image/"
-            )
+            response.status === 403 &&
+            data.dormant
         ) {
 
-            showMessage(
-                "Please select an image.",
-                "error"
+            alert(
+                data.message ||
+                "Your account is dormant."
+            );
+
+            return false;
+
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                "Unable to load account."
+            );
+
+        }
+
+
+        if (data.user) {
+
+            saveUser(data.user);
+
+            displayCurrentUser();
+
+        }
+
+
+        return true;
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Could not refresh user:",
+            error
+        );
+
+        /*
+         * Cached user can still be used.
+         */
+
+        return true;
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD POSTS FROM BACKEND
+===================================================== */
+
+async function loadPosts() {
+
+    const feed =
+        document.getElementById("feed");
+
+
+    if (feed) {
+
+        feed.innerHTML = `
+            <div style="
+                background:white;
+                padding:30px;
+                border-radius:22px;
+                text-align:center;
+                color:#777;
+            ">
+                Loading posts...
+            </div>
+        `;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "/api/posts"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                "Unable to load posts."
+            );
+
+        }
+
+
+        posts =
+            Array.isArray(data.posts)
+                ? data.posts
+                : [];
+
+
+        renderPosts();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Load posts error:",
+            error
+        );
+
+
+        if (feed) {
+
+            feed.innerHTML = `
+                <div class="empty">
+                    <div class="empty-icon">
+                        ⚠️
+                    </div>
+
+                    <h2>
+                        Unable to load posts
+                    </h2>
+
+                    <p>
+                        Please make sure the
+                        Gene-rations backend is running.
+                    </p>
+                </div>
+            `;
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   GET FILTERED POSTS
+===================================================== */
+
+function getFilteredPosts() {
+
+    if (currentFilter === "generation") {
+
+        return posts.filter(
+            post =>
+                post.generation ===
+                userData?.generation
+        );
+
+    }
+
+
+    if (currentFilter === "mine") {
+
+        return posts.filter(
+            post =>
+                post.authorId ===
+                userData?.id
+        );
+
+    }
+
+
+    return posts;
+
+}
+
+
+/* =====================================================
+   RENDER POSTS
+===================================================== */
+
+function renderPosts() {
+
+    const feed =
+        document.getElementById("feed");
+
+    const empty =
+        document.getElementById("empty");
+
+
+    if (!feed) return;
+
+
+    const filteredPosts =
+        getFilteredPosts();
+
+
+    feed.innerHTML = "";
+
+
+    if (
+        filteredPosts.length === 0
+    ) {
+
+        if (empty) {
+
+            empty.style.display =
+                "block";
+
+        }
+
+        return;
+
+    }
+
+
+    if (empty) {
+
+        empty.style.display =
+            "none";
+
+    }
+
+
+    feed.innerHTML =
+        filteredPosts
+            .map(
+                post =>
+                    createPostHTML(post)
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   CREATE POST HTML
+===================================================== */
+
+function createPostHTML(post) {
+
+    const photo =
+        getProfilePhoto(
+            post.profilePhoto
+        );
+
+
+    const liked =
+        Array.isArray(post.likes) &&
+        post.likes.includes(
+            userData?.id
+        );
+
+
+    const likeCount =
+        Array.isArray(post.likes)
+            ? post.likes.length
+            : 0;
+
+
+    const comments =
+        Array.isArray(post.comments)
+            ? post.comments
+            : [];
+
+
+    const isOwner =
+        post.authorId ===
+        userData?.id;
+
+
+    return `
+
+        <article
+            class="post"
+            data-post-id="${escapeHTML(post.id)}"
+        >
+
+            <div class="post-header">
+
+                <img
+                    class="post-author-photo"
+                    src="${photo}"
+                    alt="Profile"
+                >
+
+
+                <div>
+
+                    <div class="post-author">
+
+                        ${escapeHTML(
+                            post.author ||
+                            "Gene-rations Member"
+                        )}
+
+                    </div>
+
+
+                    <div class="post-generation">
+
+                        ${escapeHTML(
+                            post.generationBadge ||
+                            ""
+                        )}
+
+                        ${escapeHTML(
+                            post.generation ||
+                            ""
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div class="post-time">
+
+                    ${formatPostTime(
+                        post.createdAt
+                    )}
+
+                </div>
+
+            </div>
+
+
+            ${
+                post.content
+                ? `
+                    <div class="post-content">
+
+                        ${escapeHTML(
+                            post.content
+                        ).replace(
+                            /\n/g,
+                            "<br>"
+                        )}
+
+                    </div>
+                `
+                : ""
+            }
+
+
+            ${
+                post.image
+                ? `
+                    <img
+                        class="post-image"
+                        src="${post.image}"
+                        alt="Post image"
+                    >
+                `
+                : ""
+            }
+
+
+            <div class="post-actions">
+
+                <button
+                    class="action-button ${
+                        liked ? "liked" : ""
+                    }"
+                    onclick="likePost(
+                        '${escapeHTML(post.id)}'
+                    )"
+                >
+
+                    ❤️
+                    ${likeCount}
+
+                </button>
+
+
+                <button
+                    class="action-button"
+                    onclick="toggleComments(
+                        '${escapeHTML(post.id)}'
+                    )"
+                >
+
+                    💬
+                    ${comments.length}
+
+                </button>
+
+
+                ${
+                    isOwner
+                    ? `
+                        <button
+                            class="action-button"
+                            onclick="deletePost(
+                                '${escapeHTML(post.id)}'
+                            )"
+                        >
+
+                            🗑️
+
+                        </button>
+                    `
+                    : ""
+                }
+
+            </div>
+
+
+            <div
+                class="comments"
+                id="comments-${escapeHTML(post.id)}"
+            >
+
+                ${
+                    comments.length
+                    ? comments.map(
+                        comment => `
+                            <div class="comment">
+
+                                <div class="comment-author">
+
+                                    ${escapeHTML(
+                                        comment.author
+                                    )}
+
+                                </div>
+
+                                <div class="comment-text">
+
+                                    ${escapeHTML(
+                                        comment.content
+                                    )}
+
+                                </div>
+
+                            </div>
+                        `
+                    ).join("")
+                    : `
+                        <div style="
+                            color:#999;
+                            font-size:13px;
+                            margin-bottom:8px;
+                        ">
+                            No comments yet.
+                        </div>
+                    `
+                }
+
+
+                <div class="comment-form">
+
+                    <input
+                        class="comment-input"
+                        id="comment-input-${escapeHTML(post.id)}"
+                        type="text"
+                        maxlength="1000"
+                        placeholder="Write a comment..."
+                    >
+
+
+                    <button
+                        class="comment-submit"
+                        onclick="addComment(
+                            '${escapeHTML(post.id)}'
+                        )"
+                    >
+
+                        Send
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =====================================================
+   CREATE POST
+===================================================== */
+
+async function createPost() {
+
+    if (
+        !userData ||
+        !userData.id
+    ) {
+
+        alert(
+            "Please log in first."
+        );
+
+        return;
+
+    }
+
+
+    const text =
+        document.getElementById(
+            "postText"
+        );
+
+
+    const imageInput =
+        document.getElementById(
+            "imageInput"
+        );
+
+
+    const postButton =
+        document.querySelector(
+            ".post-button"
+        );
+
+
+    const content =
+        text
+        ? text.value.trim()
+        : "";
+
+
+    let image = "";
+
+
+    /* ---------------------------------------------
+       IMAGE
+    --------------------------------------------- */
+
+    if (
+        imageInput &&
+        imageInput.files &&
+        imageInput.files.length > 0
+    ) {
+
+        try {
+
+            image =
+                await compressPostImage(
+                    imageInput.files[0]
+                );
+
+        }
+
+        catch (error) {
+
+            alert(
+                error.message ||
+                "Unable to process image."
             );
 
             return;
 
         }
 
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function(e) {
-
-                selectedImage =
-                    e.target.result;
-
-
-                const preview =
-                    document.getElementById(
-                        "previewImage"
-                    );
-
-
-                preview.src =
-                    selectedImage;
-
-
-                preview.style.display =
-                    "block";
-
-
-                document.getElementById(
-                    "removePreview"
-                ).style.display =
-                    "block";
-
-            };
-
-
-        reader.readAsDataURL(file);
-
     }
-);
-
-
-/* ================================================
-   REMOVE IMAGE
-================================================ */
-
-document.getElementById(
-    "removePreview"
-).addEventListener(
-    "click",
-    function() {
-
-        selectedImage = "";
-
-        document.getElementById(
-            "imageInput"
-        ).value = "";
-
-
-        document.getElementById(
-            "previewImage"
-        ).style.display =
-            "none";
-
-
-        this.style.display =
-            "none";
-
-    }
-);
-
-
-/* ================================================
-   CREATE POST
-================================================ */
-
-function createPost() {
-
-    const text =
-        document.getElementById(
-            "postText"
-        ).value.trim();
 
 
     if (
-        !text &&
-        !selectedImage
+        !content &&
+        !image
     ) {
 
         showMessage(
-            "Write something or add a photo before posting.",
+            "Please write something or select a photo.",
             "error"
         );
 
@@ -1251,697 +1817,597 @@ function createPost() {
     }
 
 
-    const newPost = {
-
-        id:
-            Date.now() +
-            Math.random(),
-
-        authorEmail:
-            userData.email,
-
-        author:
-            userData.fullName ||
-            "Gene-rations Member",
-
-        generation:
-            userData.generation ||
-            "Generation Alpha",
-
-        profilePhoto:
-            userData.profilePhoto ||
-            "",
-
-        content:
-            text,
-
-        image:
-            selectedImage,
-
-        likes: [],
-
-        comments: [],
-
-        createdAt:
-            new Date().toISOString()
-
-    };
-
-
-    posts.unshift(
-        newPost
-    );
-
-
-    savePosts();
-
-
-    /* =========================================
-       ALSO UPDATE USER'S OWN POSTS
-    ========================================= */
-
     if (
-        !Array.isArray(
-            userData.posts
-        )
+        content.length > 3000
     ) {
 
-        userData.posts = [];
-
-    }
-
-
-    userData.posts.unshift(
-        newPost.id
-    );
-
-
-    localStorage.setItem(
-        "userData",
-        JSON.stringify(
-            userData
-        )
-    );
-
-
-    /* =========================================
-       CLEAR FORM
-    ========================================= */
-
-    document.getElementById(
-        "postText"
-    ).value = "";
-
-
-    selectedImage = "";
-
-
-    document.getElementById(
-        "imageInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "previewImage"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "removePreview"
-    ).style.display =
-        "none";
-
-
-    showMessage(
-        "Your post was published successfully!",
-        "success"
-    );
-
-
-    renderPosts();
-
-}
-
-
-/* ================================================
-   RENDER POSTS
-================================================ */
-
-function renderPosts() {
-
-    const feed =
-        document.getElementById(
-            "feed"
+        showMessage(
+            "Your post cannot exceed 3000 characters.",
+            "error"
         );
-
-
-    const empty =
-        document.getElementById(
-            "empty"
-        );
-
-
-    feed.innerHTML = "";
-
-
-    let filteredPosts =
-        [...posts];
-
-
-    if (
-        currentFilter ===
-        "generation"
-    ) {
-
-        filteredPosts =
-            filteredPosts.filter(
-                function(post) {
-
-                    return (
-                        post.generation ===
-                        userData.generation
-                    );
-
-                }
-            );
-
-    }
-
-
-    if (
-        currentFilter ===
-        "mine"
-    ) {
-
-        filteredPosts =
-            filteredPosts.filter(
-                function(post) {
-
-                    return (
-                        post.authorEmail ===
-                        userData.email
-                    );
-
-                }
-            );
-
-    }
-
-
-    if (
-        filteredPosts.length === 0
-    ) {
-
-        feed.style.display =
-            "none";
-
-        empty.style.display =
-            "block";
 
         return;
 
     }
 
 
-    feed.style.display =
-        "block";
+    if (postButton) {
 
-    empty.style.display =
-        "none";
+        postButton.disabled =
+            true;
 
-
-    filteredPosts.forEach(
-        function(post) {
-
-            feed.appendChild(
-                createPostElement(
-                    post
-                )
-            );
-
-        }
-    );
-
-}
-
-
-/* ================================================
-   CREATE POST HTML
-================================================ */
-
-function createPostElement(
-    post
-) {
-
-    const article =
-        document.createElement(
-            "article"
-        );
-
-
-    article.className =
-        "post";
-
-
-    const liked =
-        post.likes.includes(
-            userData.email
-        );
-
-
-    const likeCount =
-        post.likes.length;
-
-
-    const commentCount =
-        post.comments.length;
-
-
-    article.innerHTML = `
-
-        <div class="post-header">
-
-            <img
-                class="post-author-photo"
-                src="${
-                    post.profilePhoto ||
-                    defaultPhoto
-                }"
-                alt="Profile">
-
-
-            <div>
-
-                <div class="post-author">
-
-                    ${escapeHTML(
-                        post.author
-                    )}
-
-                </div>
-
-
-                <div class="post-generation">
-
-                    ${
-                        escapeHTML(
-                            post.generation
-                        )
-                    }
-
-                </div>
-
-            </div>
-
-
-            <div class="post-time">
-
-                ${
-                    formatTime(
-                        post.createdAt
-                    )
-                }
-
-            </div>
-
-        </div>
-
-
-        ${
-            post.content
-            ?
-            `
-                <div class="post-content">
-                    ${escapeHTML(
-                        post.content
-                    )}
-                </div>
-            `
-            :
-            ""
-        }
-
-
-        ${
-            post.image
-            ?
-            `
-                <img
-                    class="post-image"
-                    src="${post.image}"
-                    alt="Post image">
-            `
-            :
-            ""
-        }
-
-
-        <div class="post-actions">
-
-            <button
-                class="action-button ${
-                    liked
-                        ? "liked"
-                        : ""
-                }"
-                onclick="toggleLike('${post.id}')">
-
-                ${
-                    liked
-                        ? "❤️"
-                        : "🤍"
-                }
-
-                Like ${likeCount}
-
-            </button>
-
-
-            <button
-                class="action-button"
-                onclick="toggleComments('${post.id}')">
-
-                💬 Comment ${commentCount}
-
-            </button>
-
-
-            ${
-                post.authorEmail ===
-                userData.email
-                ?
-                `
-                    <button
-                        class="action-button"
-                        onclick="deletePost('${post.id}')">
-
-                        🗑️ Delete
-
-                    </button>
-                `
-                :
-                ""
-            }
-
-        </div>
-
-
-        <div
-            id="comments-${post.id}"
-            class="comments">
-
-            ${
-                renderCommentsHTML(
-                    post
-                )
-            }
-
-
-            <div class="comment-form">
-
-                <input
-                    id="comment-${post.id}"
-                    class="comment-input"
-                    placeholder="Write a comment...">
-
-
-                <button
-                    class="comment-submit"
-                    onclick="addComment('${post.id}')">
-
-                    Send
-
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    return article;
-
-}
-
-
-/* ================================================
-   COMMENTS HTML
-================================================ */
-
-function renderCommentsHTML(
-    post
-) {
-
-    if (
-        post.comments.length === 0
-    ) {
-
-        return `
-            <div
-                style="
-                    color:#999;
-                    font-size:13px;
-                    margin-bottom:10px;
-                ">
-
-                No comments yet.
-
-            </div>
-        `;
+        postButton.textContent =
+            "Posting...";
 
     }
 
 
-    return post.comments
-        .map(
-            function(comment) {
+    try {
 
-                return `
-
-                    <div class="comment">
-
-                        <div class="comment-author">
-
-                            ${
-                                escapeHTML(
-                                    comment.author
-                                )
-                            }
-
-                        </div>
-
-
-                        <div class="comment-text">
-
-                            ${
-                                escapeHTML(
-                                    comment.text
-                                )
-                            }
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        )
-        .join("");
-
-}
-
-
-/* ================================================
-   LIKE
-================================================ */
-
-function toggleLike(
-    postId
-) {
-
-    const post =
-        posts.find(
-            function(item) {
-
-                return String(item.id) ===
-                    String(postId);
-
-            }
-        );
-
-
-    if (!post) {
-        return;
-    }
-
-
-    const index =
-        post.likes.indexOf(
-            userData.email
-        );
-
-
-    if (index === -1) {
-
-        post.likes.push(
-            userData.email
-        );
-
-
-        /* ======================================
-           NOTIFICATION
-        ====================================== */
-
-        if (
-            post.authorEmail !==
-            userData.email
-        ) {
-
-            createNotificationForUser(
-                post.authorEmail,
+        const response =
+            await fetch(
+                API_URL + "/api/posts",
                 {
-                    type: "social",
-                    title: "Someone liked your post",
-                    message:
-                        userData.fullName +
-                        " liked your post.",
-                    icon: "❤️"
+
+                    method:
+                        "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            userId:
+                                userData.id,
+
+                            content:
+                                content,
+
+                            image:
+                                image
+
+                        })
+
                 }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                "Unable to create post."
             );
 
         }
 
-    } else {
 
-        post.likes.splice(
-            index,
-            1
+        /*
+         * Clear composer.
+         */
+
+        if (text) {
+
+            text.value = "";
+
+        }
+
+
+        if (imageInput) {
+
+            imageInput.value = "";
+
+        }
+
+
+        clearImagePreview();
+
+
+        /*
+         * Reload posts from backend.
+         */
+
+        await loadPosts();
+
+
+        showMessage(
+            "Post published successfully!",
+            "success"
+        );
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Create post error:",
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            "Unable to create post.",
+            "error"
         );
 
     }
 
+    finally {
 
-    savePosts();
+        if (postButton) {
 
-    renderPosts();
+            postButton.disabled =
+                false;
+
+            postButton.textContent =
+                "Post";
+
+        }
+
+    }
 
 }
 
 
-/* ================================================
-   COMMENTS
-================================================ */
+/* =====================================================
+   IMAGE COMPRESSION
+===================================================== */
 
-function addComment(
-    postId
-) {
+function compressPostImage(file) {
 
-    const input =
-        document.getElementById(
-            `comment-${postId}`
-        );
+    return new Promise(
+        (resolve, reject) => {
 
+            if (
+                !file.type.startsWith(
+                    "image/"
+                )
+            ) {
 
-    const text =
-        input.value.trim();
+                reject(
+                    new Error(
+                        "Please select an image."
+                    )
+                );
 
-
-    if (!text) {
-        return;
-    }
-
-
-    const post =
-        posts.find(
-            function(item) {
-
-                return String(item.id) ===
-                    String(postId);
+                return;
 
             }
-        );
 
 
-    if (!post) {
-        return;
-    }
+            const reader =
+                new FileReader();
 
 
-    post.comments.push({
+            reader.onload =
+                event => {
 
-        id:
-            Date.now() +
-            Math.random(),
-
-        author:
-            userData.fullName ||
-            "Gene-rations Member",
-
-        authorEmail:
-            userData.email,
-
-        text:
-            text,
-
-        createdAt:
-            new Date().toISOString()
-
-    });
+                    const image =
+                        new Image();
 
 
-    savePosts();
+                    image.onload =
+                        () => {
+
+                            const maxSize =
+                                1200;
+
+                            let width =
+                                image.width;
+
+                            let height =
+                                image.height;
 
 
-    /* ======================================
-       NOTIFICATION
-    ====================================== */
+                            if (
+                                width > maxSize ||
+                                height > maxSize
+                            ) {
 
-    if (
-        post.authorEmail !==
-        userData.email
-    ) {
+                                if (
+                                    width >
+                                    height
+                                ) {
 
-        createNotificationForUser(
-            post.authorEmail,
-            {
-                type: "social",
-                title: "New comment",
-                message:
-                    userData.fullName +
-                    " commented on your post.",
-                icon: "💬"
-            }
-        );
+                                    height =
+                                        Math.round(
+                                            height *
+                                            maxSize /
+                                            width
+                                        );
 
-    }
+                                    width =
+                                        maxSize;
+
+                                } else {
+
+                                    width =
+                                        Math.round(
+                                            width *
+                                            maxSize /
+                                            height
+                                        );
+
+                                    height =
+                                        maxSize;
+
+                                }
+
+                            }
 
 
-    renderPosts();
+                            const canvas =
+                                document.createElement(
+                                    "canvas"
+                                );
 
 
-    setTimeout(
-        function() {
+                            canvas.width =
+                                width;
 
-            const comments =
+                            canvas.height =
+                                height;
+
+
+                            const context =
+                                canvas.getContext(
+                                    "2d"
+                                );
+
+
+                            context.drawImage(
+                                image,
+                                0,
+                                0,
+                                width,
+                                height
+                            );
+
+
+                            resolve(
+                                canvas.toDataURL(
+                                    "image/jpeg",
+                                    0.80
+                                )
+                            );
+
+                        };
+
+
+                    image.onerror =
+                        () => {
+
+                            reject(
+                                new Error(
+                                    "Unable to read image."
+                                )
+                            );
+
+                        };
+
+
+                    image.src =
+                        event.target.result;
+
+                };
+
+
+            reader.onerror =
+                () => {
+
+                    reject(
+                        new Error(
+                            "Unable to read selected file."
+                        )
+                    );
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   IMAGE PREVIEW
+===================================================== */
+
+document
+    .getElementById("imageInput")
+    ?.addEventListener(
+        "change",
+        function () {
+
+            const file =
+                this.files?.[0];
+
+            const preview =
                 document.getElementById(
-                    `comments-${postId}`
+                    "previewImage"
+                );
+
+            const removeButton =
+                document.getElementById(
+                    "removePreview"
                 );
 
 
-            if (comments) {
+            if (
+                !file ||
+                !preview
+            ) {
 
-                comments.style.display =
-                    "block";
+                return;
 
             }
 
-        },
-        0
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                event => {
+
+                    preview.src =
+                        event.target.result;
+
+                    preview.style.display =
+                        "block";
+
+
+                    if (removeButton) {
+
+                        removeButton.style.display =
+                            "block";
+
+                    }
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        }
     );
+
+
+/* =====================================================
+   REMOVE IMAGE PREVIEW
+===================================================== */
+
+document
+    .getElementById("removePreview")
+    ?.addEventListener(
+        "click",
+        clearImagePreview
+    );
+
+
+function clearImagePreview() {
+
+    const input =
+        document.getElementById(
+            "imageInput"
+        );
+
+    const preview =
+        document.getElementById(
+            "previewImage"
+        );
+
+    const removeButton =
+        document.getElementById(
+            "removePreview"
+        );
+
+
+    if (input) {
+
+        input.value = "";
+
+    }
+
+
+    if (preview) {
+
+        preview.src = "";
+
+        preview.style.display =
+            "none";
+
+    }
+
+
+    if (removeButton) {
+
+        removeButton.style.display =
+            "none";
+
+    }
 
 }
 
 
-/* ================================================
-   SHOW COMMENTS
-================================================ */
+/* =====================================================
+   EMOJI
+===================================================== */
 
-function toggleComments(
-    postId
-) {
+function addEmoji() {
 
-    const comments =
+    const textarea =
         document.getElementById(
-            `comments-${postId}`
+            "postText"
         );
 
 
-    if (!comments) {
+    if (!textarea) return;
+
+
+    const emojis =
+        [
+            "😊",
+            "❤️",
+            "😂",
+            "🔥",
+            "👍",
+            "🎉",
+            "🌍",
+            "💡",
+            "🚀",
+            "🙏"
+        ];
+
+
+    const emoji =
+        emojis[
+            Math.floor(
+                Math.random() *
+                emojis.length
+            )
+        ];
+
+
+    textarea.value +=
+        emoji;
+
+
+    textarea.focus();
+
+}
+
+
+/* =====================================================
+   LIKE / UNLIKE
+===================================================== */
+
+async function likePost(postId) {
+
+    if (
+        !userData ||
+        !userData.id
+    ) {
+
         return;
+
     }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/posts/" +
+                encodeURIComponent(
+                    postId
+                ) +
+                "/like",
+                {
+
+                    method:
+                        "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            userId:
+                                userData.id
+
+                        })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                "Unable to like post."
+            );
+
+        }
+
+
+        const post =
+            posts.find(
+                p =>
+                    p.id === postId
+            );
+
+
+        if (post) {
+
+            post.likes =
+                data.post.likes;
+
+        }
+
+
+        renderPosts();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Like error:",
+            error
+        );
+
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   TOGGLE COMMENTS
+===================================================== */
+
+function toggleComments(postId) {
+
+    const comments =
+        document.getElementById(
+            "comments-" +
+            postId
+        );
+
+
+    if (!comments) return;
 
 
     if (
@@ -1957,38 +2423,33 @@ function toggleComments(
         comments.style.display =
             "block";
 
+        const input =
+            document.getElementById(
+                "comment-input-" +
+                postId
+            );
+
+
+        if (input) {
+
+            input.focus();
+
+        }
+
     }
 
 }
 
 
-/* ================================================
-   DELETE POST
-================================================ */
+/* =====================================================
+   ADD COMMENT
+===================================================== */
 
-function deletePost(
-    postId
-) {
-
-    const post =
-        posts.find(
-            function(item) {
-
-                return String(item.id) ===
-                    String(postId);
-
-            }
-        );
-
-
-    if (!post) {
-        return;
-    }
-
+async function addComment(postId) {
 
     if (
-        post.authorEmail !==
-        userData.email
+        !userData ||
+        !userData.id
     ) {
 
         return;
@@ -1996,355 +2457,272 @@ function deletePost(
     }
 
 
-    const confirmed =
-        confirm(
-            "Delete this post?"
+    const input =
+        document.getElementById(
+            "comment-input-" +
+            postId
         );
 
 
-    if (!confirmed) {
+    if (!input) return;
+
+
+    const content =
+        input.value.trim();
+
+
+    if (!content) {
+
         return;
+
     }
 
 
-    posts =
-        posts.filter(
-            function(item) {
+    try {
 
-                return String(item.id) !==
-                    String(postId);
+        const response =
+            await fetch(
+                API_URL +
+                "/api/posts/" +
+                encodeURIComponent(
+                    postId
+                ) +
+                "/comments",
+                {
 
-            }
-        );
+                    method:
+                        "POST",
 
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-    savePosts();
+                    body:
+                        JSON.stringify({
 
+                            userId:
+                                userData.id,
 
-    /* ======================================
-       REMOVE FROM USER POSTS
-    ====================================== */
+                            content:
+                                content
 
-    if (
-        Array.isArray(
-            userData.posts
-        )
-    ) {
-
-        userData.posts =
-            userData.posts.filter(
-                function(id) {
-
-                    return String(id) !==
-                        String(postId);
+                        })
 
                 }
             );
 
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                "Unable to add comment."
+            );
+
+        }
+
+
+        const post =
+            posts.find(
+                p =>
+                    p.id === postId
+            );
+
+
+        if (post) {
+
+            post.comments =
+                data.post.comments;
+
+        }
+
+
+        renderPosts();
+
+
+        /*
+         * Open comments again after rendering.
+         */
+
+        const comments =
+            document.getElementById(
+                "comments-" +
+                postId
+            );
+
+
+        if (comments) {
+
+            comments.style.display =
+                "block";
+
+        }
+
     }
 
+    catch (error) {
 
-    localStorage.setItem(
-        "userData",
-        JSON.stringify(
-            userData
-        )
-    );
+        console.error(
+            "Comment error:",
+            error
+        );
 
 
-    renderPosts();
+        showMessage(
+            error.message,
+            "error"
+        );
+
+    }
 
 }
 
 
-/* ================================================
-   NOTIFICATION CREATOR
-================================================ */
+/* =====================================================
+   DELETE POST
+===================================================== */
 
-function createNotificationForUser(
-    targetEmail,
-    data
-) {
+async function deletePost(postId) {
 
-    const key =
-        "geneRationsNotifications";
+    if (
+        !userData ||
+        !userData.id
+    ) {
 
-
-    let notifications =
-        JSON.parse(
-            localStorage.getItem(
-                key
-            )
-        );
-
-
-    if (!Array.isArray(notifications)) {
-
-        notifications = [];
+        return;
 
     }
 
 
-    notifications.unshift({
-
-        id:
-            Date.now() +
-            Math.random(),
-
-        userEmail:
-            targetEmail,
-
-        type:
-            data.type ||
-            "social",
-
-        title:
-            data.title ||
-            "Gene-rations Update",
-
-        message:
-            data.message ||
-            "",
-
-        icon:
-            data.icon ||
-            "🔔",
-
-        createdAt:
-            new Date().toISOString(),
-
-        read:
-            false
-
-    });
-
-
-    localStorage.setItem(
-        key,
-        JSON.stringify(
-            notifications
+    if (
+        !confirm(
+            "Are you sure you want to delete this post?"
         )
-    );
+    ) {
 
-}
-
-
-/* ================================================
-   TIME
-================================================ */
-
-function formatTime(
-    dateString
-) {
-
-    const date =
-        new Date(
-            dateString
-        );
-
-
-    const now =
-        new Date();
-
-
-    const seconds =
-        Math.floor(
-            (
-                now - date
-            ) / 1000
-        );
-
-
-    if (seconds < 60) {
-
-        return "Just now";
+        return;
 
     }
 
 
-    const minutes =
-        Math.floor(
-            seconds / 60
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/posts/" +
+                encodeURIComponent(
+                    postId
+                ),
+                {
+
+                    method:
+                        "DELETE",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            userId:
+                                userData.id
+
+                        })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                "Unable to delete post."
+            );
+
+        }
+
+
+        posts =
+            posts.filter(
+                post =>
+                    post.id !==
+                    postId
+            );
+
+
+        renderPosts();
+
+
+        showMessage(
+            "Post deleted successfully.",
+            "success"
         );
-
-
-    if (minutes < 60) {
-
-        return minutes +
-            "m ago";
 
     }
 
+    catch (error) {
 
-    const hours =
-        Math.floor(
-            minutes / 60
+        console.error(
+            "Delete post error:",
+            error
         );
 
 
-    if (hours < 24) {
-
-        return hours +
-            "h ago";
+        showMessage(
+            error.message,
+            "error"
+        );
 
     }
 
-
-    const days =
-        Math.floor(
-            hours / 24
-        );
-
-
-    if (days < 7) {
-
-        return days +
-            "d ago";
-
-    }
-
-
-    return date.toLocaleDateString();
-
 }
 
 
-/* ================================================
-   ESCAPE HTML
-================================================ */
-
-function escapeHTML(
-    value
-) {
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* ================================================
-   EMOJI
-================================================ */
-
-function addEmoji() {
-
-    const textarea =
-        document.getElementById(
-            "postText"
-        );
-
-
-    textarea.value += " 😊";
-
-
-    textarea.focus();
-
-}
-
-
-/* ================================================
-   MESSAGE
-================================================ */
-
-function showMessage(
-    text,
-    type
-) {
-
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-
-    message.textContent =
-        text;
-
-
-    message.className =
-        type;
-
-
-    message.style.display =
-        "block";
-
-
-    setTimeout(
-        function() {
-
-            message.style.display =
-                "none";
-
-        },
-        2500
-    );
-
-}
-
-
-/* ================================================
+/* =====================================================
    FILTERS
-================================================ */
+===================================================== */
 
 document
-    .querySelectorAll(
-        ".filter"
-    )
+    .querySelectorAll(".filter")
     .forEach(
-        function(button) {
+        button => {
 
             button.addEventListener(
                 "click",
-                function() {
+                () => {
 
                     document
                         .querySelectorAll(
                             ".filter"
                         )
                         .forEach(
-                            function(item) {
-
-                                item.classList
-                                    .remove(
-                                        "active"
-                                    );
-
-                            }
+                            item =>
+                                item.classList.remove(
+                                    "active"
+                                )
                         );
 
 
-                    this.classList.add(
+                    button.classList.add(
                         "active"
                     );
 
 
                     currentFilter =
-                        this.dataset.filter;
+                        button.dataset.filter;
 
 
                     renderPosts();
@@ -2356,9 +2734,9 @@ document
     );
 
 
-/* ================================================
-   NAVIGATION
-================================================ */
+/* =====================================================
+   GENERATION HUB
+===================================================== */
 
 function goToHub() {
 
@@ -2368,6 +2746,10 @@ function goToHub() {
 }
 
 
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
 function goToNotifications() {
 
     window.location.href =
@@ -2376,11 +2758,32 @@ function goToNotifications() {
 }
 
 
-/* ================================================
+/* =====================================================
    INITIALIZE
-================================================ */
+===================================================== */
 
-renderPosts();
+async function initializePostsPage() {
+
+    const userLoaded =
+        await loadCurrentUser();
+
+
+    if (!userLoaded) {
+
+        return;
+
+    }
+
+
+    await loadPosts();
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initializePostsPage
+);
 
 </script>
 
