@@ -62,7 +62,7 @@
     "followers": [],
     "following": [],
     "posts": [
-      "1789453767152",
+      "1789798969617",
       "1789158451243"
     ],
     "communities": [],
@@ -74,6 +74,46 @@
     "nameChangeHistory": [],
     "pendingNameChange": null,
     "memberSince": "2026-09-11T20:23:52.855Z",
-    "lastActive": "2026-09-15T06:29:27.181Z"
+    "lastActive": "2026-09-19T06:25:54.281Z"
+  },
+  {
+    "id": "1789666984421",
+    "fullName": "James Ng'ang'a",
+    "email": "jimlish7900@gmail.com",
+    "phone": "+254722385246",
+    "country": "",
+    "dob": "1998-09-17",
+    "age": 28,
+    "gender": "Male",
+    "generation": "Generation Z",
+    "generationBadge": "⚡ Generation Z",
+    "generationDescription": "A digitally connected generation focused on creativity, identity and new possibilities.",
+    "passwordHash": "$2b$12$QUwTf.dJ9eBv5GQ6WMmYEudKVj2uzOECqrvYlOtkaMnrkrrKFX9XW",
+    "verificationMethod": "email",
+    "verificationCode": null,
+    "verificationExpires": null,
+    "verified": true,
+    "profilePhoto": "",
+    "bio": "",
+    "interests": [],
+    "hobbies": [],
+    "skills": [],
+    "followers": [],
+    "following": [],
+    "posts": [
+      "1789667326618",
+      "1789667078323"
+    ],
+    "communities": [],
+    "events": [],
+    "familyMembers": [],
+    "profileViews": 0,
+    "personalInfoVisibility": "public",
+    "accountVisibility": "public",
+    "nameChangeHistory": [],
+    "pendingNameChange": null,
+    "dormant": false,
+    "memberSince": "2026-09-17T17:43:04.421Z",
+    "lastActive": "2026-09-23T13:56:04.427Z"
   }
 ]

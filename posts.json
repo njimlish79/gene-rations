@@ -1,16 +1,76 @@
 [
   {
-    "id": "1789453767152",
+    "id": "1789798969617",
     "authorId": "1789158232855",
     "authorEmail": "njimlish002@gmail.com",
     "author": "James Ng'ang'a",
     "generation": "Generation Alpha",
     "generationBadge": "🚀",
     "profilePhoto": "",
-    "content": "Backend test post from Gene-rations",
+    "content": "What are your future plan",
     "image": "",
-    "likes": [],
+    "likes": [
+      "1789158232855"
+    ],
+    "comments": [
+      {
+        "id": "1789799002312",
+        "userId": "1789158232855",
+        "author": "James Ng'ang'a",
+        "profilePhoto": "",
+        "content": "Building a very strong relationship",
+        "createdAt": "2026-09-19T06:23:22.312Z"
+      }
+    ],
+    "createdAt": "2026-09-19T06:22:49.618Z"
+  },
+  {
+    "id": "1789667326618",
+    "authorId": "1789666984421",
+    "authorEmail": "jimlish7900@gmail.com",
+    "author": "James Ng'ang'a",
+    "generation": "Generation Z",
+    "generationBadge": "⚡ Generation Z",
+    "profilePhoto": "",
+    "content": "Good evening friends",
+    "image": "",
+    "likes": [
+      "1789158232855"
+    ],
     "comments": [],
-    "createdAt": "2026-09-15T06:29:27.152Z"
+    "createdAt": "2026-09-17T17:48:46.618Z"
+  },
+  {
+    "id": "1789667078323",
+    "authorId": "1789666984421",
+    "authorEmail": "jimlish7900@gmail.com",
+    "author": "James Ng'ang'a",
+    "generation": "Generation Z",
+    "generationBadge": "⚡ Generation Z",
+    "profilePhoto": "",
+    "content": "Hi gene-rations members",
+    "image": "",
+    "likes": [
+      "1789666984421"
+    ],
+    "comments": [
+      {
+        "id": "1789667115814",
+        "userId": "1789666984421",
+        "author": "James Ng'ang'a",
+        "profilePhoto": "",
+        "content": "Are you there",
+        "createdAt": "2026-09-17T17:45:15.814Z"
+      },
+      {
+        "id": "1789799134636",
+        "userId": "1789158232855",
+        "author": "James Ng'ang'a",
+        "profilePhoto": "",
+        "content": "We are good for nothing",
+        "createdAt": "2026-09-19T06:25:34.636Z"
+      }
+    ],
+    "createdAt": "2026-09-17T17:44:38.324Z"
   }
 ]

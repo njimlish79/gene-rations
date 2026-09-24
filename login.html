@@ -16,7 +16,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: #08f46a;
+            background: #76dcf7;
             min-height: 100vh;
 
             display: flex;
@@ -593,30 +593,59 @@ loginForm.addEventListener(
                 return;
 
             }
-
-
-            /* ==============================
+          
+      /* ==============================
                CREATE SESSION
-            ============================== */
+       ============================== */
 
-            const loginSession = {
+            const sessionToken =
+    result.sessionToken;
 
-                loggedIn:
-                    true,
 
-                userId:
-                    userData.id,
+if (!sessionToken) {
 
-                email:
-                    userData.email,
+    message.textContent =
+        "Login succeeded but no secure session was created.";
 
-                generation:
-                    userData.generation,
+    message.className =
+        "message error";
 
-                loginTime:
-                    new Date().toISOString()
+    if (loginButton) {
 
-            };
+        loginButton.disabled =
+            false;
+
+    }
+
+    return;
+}
+
+
+/* ==============================
+   CREATE SECURE SESSION
+============================== */
+
+const loginSession = {
+
+    loggedIn:
+        true,
+
+    userId:
+        userData.id,
+
+    email:
+        userData.email,
+
+    generation:
+        userData.generation,
+
+    sessionToken:
+        sessionToken,
+
+    loginTime:
+        new Date().toISOString()
+
+};
 
 
             localStorage.setItem(

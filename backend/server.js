@@ -14,6 +14,8 @@ const usersFile =
 const postsFile =
     path.join(__dirname, "posts.json");
 
+const sessionsFile =
+    path.join(__dirname, "sessions.json");
 
 /* =====================================================
    MIDDLEWARE
@@ -74,6 +76,233 @@ function saveUsers(users) {
         ),
         "utf8"
     );
+}
+
+/* =====================================================
+   SESSIONS
+===================================================== */
+
+function loadSessions() {
+
+    if (!fs.existsSync(sessionsFile)) {
+
+        fs.writeFileSync(
+            sessionsFile,
+            "[]",
+            "utf8"
+        );
+    }
+
+    try {
+
+        return JSON.parse(
+            fs.readFileSync(
+                sessionsFile,
+                "utf8"
+            )
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Unable to read sessions.json:",
+            error
+        );
+
+        return [];
+    }
+}
+
+
+function saveSessions(sessions) {
+
+    fs.writeFileSync(
+        sessionsFile,
+        JSON.stringify(
+            sessions,
+            null,
+            2
+        ),
+        "utf8"
+    );
+}
+
+
+/* =====================================================
+   SESSION TOKEN
+===================================================== */
+
+function generateSessionToken() {
+
+    return require("crypto")
+        .randomBytes(32)
+        .toString("hex");
+}
+
+
+/* =====================================================
+   CREATE SESSION
+===================================================== */
+
+function createSession(userId) {
+
+    const sessions =
+        loadSessions();
+
+    const token =
+        generateSessionToken();
+
+    const session = {
+
+        token:
+            token,
+
+        userId:
+            userId,
+
+        createdAt:
+            new Date().toISOString(),
+
+        expiresAt:
+            new Date(
+                Date.now() +
+                (
+                    7 *
+                    24 *
+                    60 *
+                    60 *
+                    1000
+                )
+            ).toISOString()
+    };
+
+    sessions.push(
+        session
+    );
+
+    saveSessions(
+        sessions
+    );
+
+    return token;
+}
+
+
+/* =====================================================
+   AUTHENTICATED USER
+===================================================== */
+
+function getAuthenticatedUser(req) {
+
+    const authorization =
+        req.headers.authorization || "";
+
+    if (
+        !authorization.startsWith(
+            "Bearer "
+        )
+    ) {
+        return null;
+    }
+
+    const token =
+        authorization
+            .slice(7)
+            .trim();
+
+    if (!token) {
+        return null;
+    }
+
+    const sessions =
+        loadSessions();
+
+    const session =
+        sessions.find(
+            item =>
+                item.token ===
+                token
+        );
+
+    if (!session) {
+        return null;
+    }
+
+
+    /* =========================
+       CHECK SESSION EXPIRATION
+    ========================= */
+
+    if (
+        Date.now() >
+        new Date(
+            session.expiresAt
+        ).getTime()
+    ) {
+
+        const remainingSessions =
+            sessions.filter(
+                item =>
+                    item.token !==
+                    token
+            );
+
+        saveSessions(
+            remainingSessions
+        );
+
+        return null;
+    }
+
+
+    const users =
+        loadUsers();
+
+    const user =
+        users.find(
+            item =>
+                item.id ===
+                session.userId
+        );
+
+    if (!user) {
+        return null;
+    }
+
+    return user;
+}
+
+
+/* =====================================================
+   REQUIRE AUTHENTICATION
+===================================================== */
+
+function requireAuthentication(
+    req,
+    res,
+    next
+) {
+
+    const user =
+        getAuthenticatedUser(
+            req
+        );
+
+    if (!user) {
+
+        return res.status(401).json({
+
+            success: false,
+
+            message:
+                "Authentication required."
+        });
+    }
+
+    req.authenticatedUser =
+        user;
+
+    next();
 }
 
 
@@ -1092,17 +1321,31 @@ app.post(
 
 
             saveUsers(
-                users
-            );
+              users
+);
 
 
-            res.json({
+/* =========================
+   CREATE SECURE SESSION
+========================= */
 
-                success: true,
+const sessionToken =
+    createSession(
+        user.id
+    );
 
-                user:
-                    publicUser(user)
-            });
+
+res.json({
+
+    success: true,
+
+    sessionToken:
+
+        sessionToken,
+
+    user:
+        publicUser(user)
+});
 
         } catch (error) {
 

@@ -646,6 +646,8 @@ textarea:focus {
 
     .header-button {
         font-size: 12px;
+
+      
         padding: 9px 11px;
     }
 
@@ -1162,16 +1164,39 @@ function displayCurrentUser() {
 
     if (generation) {
 
-        generation.textContent =
-            (
-                userData.generationBadge ||
-                ""
-            ) +
-            " " +
-            (
-                userData.generation ||
-                "Gene-rations"
-            );
+    const generationName =
+        userData.generation ||
+        "Gene-rations";
+
+    let generationBadge =
+        userData.generationBadge ||
+        "";
+
+    /*
+     * Prevent duplicate generation names
+     * when the badge already contains the name.
+     */
+    if (
+        generationName &&
+        generationBadge.includes(generationName)
+    ) {
+
+        generationBadge =
+            generationBadge
+                .replace(generationName, "")
+                .trim();
+
+    }
+
+    generation.textContent =
+        generationBadge +
+        (
+            generationBadge &&
+            generationName
+                ? " "
+                : ""
+        ) +
+        generationName;
 
     }
 
@@ -1540,17 +1565,42 @@ function createPostHTML(post) {
 
                     <div class="post-generation">
 
-                        ${escapeHTML(
-                            post.generationBadge ||
-                            ""
-                        )}
+${escapeHTML(
+    (() => {
 
-                        ${escapeHTML(
-                            post.generation ||
-                            ""
-                        )}
+        const generation =
+            post.generation || "";
 
-                    </div>
+        let badge =
+            post.generationBadge || "";
+
+        /*
+         * Prevent the generation name from
+         * appearing twice if the badge already
+         * contains it.
+         */
+        if (
+            generation &&
+            badge.includes(generation)
+        ) {
+
+            badge =
+                badge
+                .replace(generation, "")
+                .trim();
+
+        }
+
+        return (
+            badge +
+            (badge && generation ? " " : "") +
+            generation
+        );
+
+    })()
+)}
+
+</div>
 
                 </div>
 

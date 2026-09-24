@@ -1,0 +1,3 @@
+Gene-rations backend running on port 3000
+http://localhost:3000
+Posts API: http://localhost:3000/api/posts
